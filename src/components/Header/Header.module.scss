@@ -1,0 +1,27 @@
+.Header {
+    @apply flex justify-between mx-24;
+
+    .Center {
+        @apply flex items-center;
+        
+        div {
+            @apply px-4 text-gray-300 font-bold text-lg;
+        }
+    }
+    .Right {
+        @apply flex items-center;
+
+        div {
+            @apply pl-4 text-gray-300;
+
+            button {
+                @apply px-4 py-2 ml-2;
+            }
+        }
+
+        svg {
+            width: 30px;
+            height: 30px;
+        }
+    }
+}

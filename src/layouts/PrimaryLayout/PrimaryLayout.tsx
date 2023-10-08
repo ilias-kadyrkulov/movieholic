@@ -1,12 +1,16 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom'
+import Header from '../../components/Header/Header'
+import { Carousel } from '../../components/Slider/Slider'
 
 const PrimaryLayout = () => {
-  return (
-    <>
-      <div>PrimaryLayout</div>
-      <Outlet />
-    </>
-  );
-};
+    return (
+        <>
+            <div>PrimaryLayout</div>
+            <Header />
+            <Carousel />
+            <Outlet />
+        </>
+    )
+}
 
-export default PrimaryLayout;
+export default PrimaryLayout

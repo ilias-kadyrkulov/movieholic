@@ -1,0 +1,40 @@
+.Form {
+    @apply hidden transition-all flex-col border-2 border-gray-500 bg-slate-950 rounded-3xl p-6 absolute w-1/4 content-none top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4;
+
+    &.active {
+        @apply flex;
+    }
+    .details {
+        div {
+            @apply m-2 flex flex-col;
+
+            label {
+                @apply text-white;
+            }
+        }
+        .policy {
+            @apply text-gray-500 flex-row items-center;
+    
+            input {
+                @apply rounded-3xl appearance-none cursor-pointer h-7 w-7;
+    
+                &:checked {
+                    background-color: green;
+                }
+            }
+    
+            span {
+                @apply text-white;
+            }
+    
+            label {
+                @apply text-gray-500;
+            }
+        }
+    
+    }
+
+    input {
+        @apply p-4 border-2 border-gray-500 rounded-xl;
+    }
+}
