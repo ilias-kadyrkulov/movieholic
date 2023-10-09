@@ -1,9 +1,9 @@
 .Header {
-    @apply flex justify-between mx-24;
+    @apply relative z-50 flex justify-between mx-24 mt-8;
 
     .Center {
         @apply flex items-center;
-        
+
         div {
             @apply px-4 text-gray-300 font-bold text-lg;
         }
@@ -22,6 +22,10 @@
         svg {
             width: 30px;
             height: 30px;
+        }
+
+        .Avatar {
+            @apply after:absolute after:-right-5 after:top-2/4 after:-translate-y-2/4 after:w-0.5 after:h-3 after:bg-white after:rotate-45 before:absolute before:-right-3 before:top-2/4 before:-translate-y-2/4 before:w-0.5 before:h-3 before:bg-white before:-rotate-45;
         }
     }
 }

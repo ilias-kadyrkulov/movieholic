@@ -5,7 +5,6 @@ import { Carousel } from '../../components/Slider/Slider'
 const PrimaryLayout = () => {
     return (
         <>
-            <div>PrimaryLayout</div>
             <Header />
             <Carousel />
             <Outlet />

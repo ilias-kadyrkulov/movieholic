@@ -1,14 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=AR+One+Sans:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=AR+One+Sans:wght@400;500;600;700&display=swap');
-
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 body {
     font-family: 'AR One Sans', sans-serif;
+    background-color: #1c1c1c;
+}
+
+.slick-list {
+    @apply h-full;
+}
+
+.slick-track {
+    @apply h-full;
+}
+
+.slick-slide {
+    > div {
+        height: 100%;
+    }
 }
