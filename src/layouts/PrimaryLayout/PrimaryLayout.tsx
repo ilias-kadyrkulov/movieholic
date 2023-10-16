@@ -1,12 +1,12 @@
 import { Outlet } from 'react-router-dom'
 import Header from '../../components/Header/Header'
-import { Carousel } from '../../components/Slider/Slider'
+import Hero from '../../components/Hero/Hero'
 
 const PrimaryLayout = () => {
     return (
         <>
             <Header />
-            <Carousel />
+            <Hero />
             <Outlet />
         </>
     )

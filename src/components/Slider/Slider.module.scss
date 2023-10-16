@@ -1,5 +1,5 @@
 .Carousel {
-    @apply relative -top-80 w-full z-10 overflow-hidden;
+    @apply relative w-full z-10 overflow-hidden;
     height: 1080px;
 
     .slick-list {
@@ -51,15 +51,9 @@
 }
 
 .Inner {
-    @apply relative -top-80 z-50;
+    @apply relative z-50;
     height: 100px;
-
-    -webkit-box-shadow: 0px -100px 100px 250px rgba(28, 28, 28, 0.8) inset;
-    -moz-box-shadow: 0px -100px 100px 250px rgba(28, 28, 28, 0.8) inset;
-    box-shadow: 0px -100px 100px 250px rgba(28, 28, 28, 0.8) inset;
-
     
-
     .MiniCarousel {
         @apply h-full;
 

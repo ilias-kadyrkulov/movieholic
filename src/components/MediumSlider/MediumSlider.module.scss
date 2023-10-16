@@ -1,0 +1,28 @@
+.MediumSlider {
+    .OuterBlock {
+        position: relative;
+        -webkit-box-shadow: 0px -40px 0px 0px rgba(0, 0, 0, 0.8) inset;
+        -moz-box-shadow: 0px -40px 0px 0px rgba(0, 0, 0, 0.8) inset;
+        box-shadow: 0px -40px 0px 0px rgba(0, 0, 0, 0.8) inset;
+
+        .MovieCard {
+            @apply bg-cover bg-no-repeat bg-center;
+
+            svg {
+                @apply w-5 h-5 text-orange-400;
+                
+                path {
+                    @apply fill-yellow-400
+                }
+            }
+        }
+
+        .Genres {
+            @apply inline text-xs pl-2 before:absolute before:left-0 before:bg-slate-400 before:h-4;
+
+            &:before {
+                width: 1px;
+            }
+        }
+    }
+}

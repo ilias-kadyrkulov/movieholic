@@ -1,7 +1,10 @@
+import { Carousel } from "../Slider/Slider"
 
 const Hero = () => {
   return (
-    <div>Hero</div>
+    <div className="hero">
+      <Carousel />
+    </div>
   )
 }
 

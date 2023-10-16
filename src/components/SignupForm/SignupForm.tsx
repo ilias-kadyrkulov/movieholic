@@ -30,7 +30,7 @@ const SignupForm = (props: PropsType) => {
 
     const id = useId()
 
-    const onsubmit = (
+    const handleSubmit = (
         values: FormType,
         { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
     ) => {
@@ -53,7 +53,7 @@ const SignupForm = (props: PropsType) => {
                 password: '',
                 policy: false
             }}
-            onSubmit={onsubmit}
+            onSubmit={handleSubmit}
         >
             {({ isSubmitting }) => (
                 <Form
@@ -69,7 +69,7 @@ const SignupForm = (props: PropsType) => {
                             </p>
                         </div>
                         <div>
-                            <button className="text-gray-400 border-2 border-gray-300 rounded-xl px-5 py-3 transition-colors hover:bg-slate-50 hover:text-black" onClick={props.closeForm}>
+                            <button type='button' className="text-gray-400 border-2 border-gray-300 rounded-xl px-5 py-3 transition-colors hover:bg-slate-50 hover:text-black" onClick={props.closeForm}>
                                 Close
                             </button>
                         </div>

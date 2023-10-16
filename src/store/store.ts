@@ -1,11 +1,19 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import {
+    configureStore,
+    combineReducers,
+    getDefaultMiddleware
+} from '@reduxjs/toolkit'
+import { api } from '../api/api'
+import { titlesAPI } from '../api/titles.api'
 
 const rootReducer = combineReducers({
-    
-}) 
+    [api.reducerPath]: api.reducer
+})
 
 export const store = configureStore({
-    reducer: rootReducer
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(titlesAPI.middleware)
 })
 
 export type RootState = ReturnType<typeof store.getState>
