@@ -39,5 +39,4 @@ export const titlesAPI = api.injectEndpoints({
     })
 })
 
-export const { useGetJustReleasedTitlesQuery } =
-    titlesAPI
+export const { useGetJustReleasedTitlesQuery } = titlesAPI
