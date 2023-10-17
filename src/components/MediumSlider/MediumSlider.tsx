@@ -33,7 +33,7 @@ const MediumSlider = (props: PropsType) => {
                                 <h2 className="font-bold text-white mb-2">
                                     {m.titleText.text}
                                 </h2>
-                                <div className="flex">
+                                <div className="flex max-w-full">
                                     <div className='flex flex-col items-center'>
                                         <AiFillStar />
                                         <div className="font-bold mx-2 text-white">
@@ -41,7 +41,7 @@ const MediumSlider = (props: PropsType) => {
                                         </div>
                                     </div>
 
-                                    <div className="relative flex w-full">
+                                    <div className="relative flex max-w-full w-10/12">
                                         <div className={styles.Genres}>
                                             {m.genres.genres.map((g) => (
                                                 <span

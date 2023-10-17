@@ -40,10 +40,16 @@
                 }
 
                 .TrailerButton {
-                    @apply flex items-center justify-between mr-6 rounded-md bg-green-600 text-white font-bold;
+                    @apply flex items-center justify-between mr-6 rounded-md bg-green-600 text-white font-bold hover:opacity-90;
                 }
                 .WatchButton {
-                    @apply flex items-center border-2 rounded-md border-slate-400 text-slate-200 font-bold transition-colors hover:bg-purple-900 hover:text-white;
+                    @apply flex items-center border-2 rounded-md border-slate-400 text-slate-200 font-bold transition-colors hover:bg-purple-900;
+
+                    &:hover {
+                        polygon {
+                            @apply fill-yellow-400;
+                        }
+                    }
                 }
             }
         }
@@ -53,7 +59,7 @@
 .Inner {
     @apply relative z-50;
     height: 100px;
-    
+
     .MiniCarousel {
         @apply h-full;
 

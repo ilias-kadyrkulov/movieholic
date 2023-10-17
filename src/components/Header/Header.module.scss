@@ -7,6 +7,10 @@
         div {
             @apply px-4 text-gray-300 font-bold text-lg;
         }
+
+        a {
+          @apply hover:opacity-80; 
+        }
     }
     .Right {
         @apply flex items-center;

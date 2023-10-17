@@ -17,7 +17,7 @@
             @apply relative -z-50 rounded-2xl;
         }
         svg {
-            @apply w-5 h-5 text-orange-400;
+            @apply w-5 h-5;
 
             path {
                 @apply fill-yellow-400;
@@ -32,13 +32,14 @@
     }
 
     .Genres {
-        @apply pl-2 before:absolute before:left-0 before:bg-slate-400 before:h-10;
+        @apply pl-2 before:absolute before:left-0 before:bg-slate-400 before:h-10 leading-4;
 
         &:before {
             width: 1px;
         }
 
         span {
+            display: inline-block;
             font-size: 11px;
         }
     }

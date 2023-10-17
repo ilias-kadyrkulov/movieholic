@@ -108,7 +108,7 @@ const Header = () => {
                                 Sign up
                             </button>
                             <button
-                                className="border-green-700 border-2 rounded-md bg-green-700"
+                                className="border-green-700 border-2 rounded-md bg-green-700 hover:opacity-90"
                                 onClick={handleLoginFormOnClick}
                             >
                                 Login
