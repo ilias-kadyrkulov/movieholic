@@ -2,35 +2,18 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import Slider from 'react-slick'
 import styles from './Slider.module.scss'
-import swfa from '../../assets/swfa.jpg'
 import { BsPlayCircle } from 'react-icons/bs'
 import { GrBookmark } from 'react-icons/gr'
 import disneyIcon from '../../assets/icons8-disney-plus.svg'
 import hboIcon from '../../assets/icons8-hbo.svg'
 import netflixIcon from '../../assets/icons8-netflix.svg'
+import { TopRatedSeriesEntryType } from '../../api/titles.api'
 
-const images = [
-    {
-        url: swfa,
-        title: 'Star Wars: The Force Awakens',
-        details: ['2h40m', '2022', 'Fantasy', 'Actions'],
-        desc: ' Lorem ipsum dolor sit, amet consecteturadipisicing elit. Maxime deserunt hic sit quosofficia quis, adipisci nisi voluptatibus, voluptate veritatis iusto quidem perferendisaspernatur asperiores ea maiores unde qui.Dolores.'
-    },
-    {
-        url: swfa,
-        title: 'Star Wars: The Force Awakens',
-        details: ['2h40m', '2022', 'Fantasy', 'Actions'],
-        desc: ' Lorem ipsum dolor sit, amet consecteturadipisicing elit. Maxime deserunt hic sit quosofficia quis, adipisci nisi voluptatibus, voluptate veritatis iusto quidem perferendisaspernatur asperiores ea maiores unde qui.Dolores.'
-    },
-    {
-        url: swfa,
-        title: 'Star Wars: The Force Awakens',
-        details: ['2h40m', '2022', 'Fantasy', 'Actions'],
-        desc: ' Lorem ipsum dolor sit, amet consecteturadipisicing elit. Maxime deserunt hic sit quosofficia quis, adipisci nisi voluptatibus, voluptate veritatis iusto quidem perferendisaspernatur asperiores ea maiores unde qui.Dolores.'
-    }
-]
+type PropsType = {
+    topRatedSeries: TopRatedSeriesEntryType[] | undefined
+}
 
-export const Carousel = () => {
+export const Carousel = (props: PropsType) => {
     let settings = {
         arrows: false,
         dots: true,
@@ -50,19 +33,32 @@ export const Carousel = () => {
     return (
         <>
             <Slider {...settings} className={styles.Carousel}>
-                {images.map((s, index) => (
+                {props.topRatedSeries?.map((s, index) => (
                     <div key={index} className={styles.Slide}>
                         <div
                             className={`bg-cover bg-no-repeat bg-center h-full`}
-                            style={{ backgroundImage: `url(${s.url})` }}
+                            style={{
+                                backgroundImage: `url(${s.primaryImage.url})`
+                            }}
                         >
                             <div className={styles.Details}>
                                 <h3 className="text-4xl text-slate-200 font-bold">
-                                    {s.title}
+                                    {s.titleText.text}
                                 </h3>
-                                <span className="my-5 text-slate-400 opacity-95">{`• ${s.details}`}</span>
+                                <div>
+                                    <p className="font-bold text-slate-400">Episode duration: {s.runtime.seconds / 60}min</p>
+                                    <span className="font-bold text-slate-400">{s.releaseYear.year} • </span>
+                                    {s.genres.genres.map((g) => (
+                                        <span
+                                            className="font-bold text-slate-400 mr-1"
+                                            key={g.id}
+                                        >
+                                            {g.text} •
+                                        </span>
+                                    ))}
+                                </div>
                                 <p className="font-medium text-gray-300">
-                                    {s.desc}
+                                    {s.plot.plotText.plainText}
                                 </p>
                                 <div className={styles.Buttons}>
                                     <button className={styles.TrailerButton}>

@@ -63,7 +63,7 @@ body {
 .slick-list:nth-child(2) {
         .slick-track {
             .slick-slide {
-                @apply px-5;
+                @apply pr-5;
             }
         }
     

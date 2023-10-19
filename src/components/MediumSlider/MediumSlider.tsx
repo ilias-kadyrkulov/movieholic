@@ -4,7 +4,7 @@ import { EntryType } from '../../api/titles.api'
 import { AiFillStar } from 'react-icons/ai'
 
 type PropsType = {
-    mostPopularMovies?: EntryType[]
+    topBoxOffice?: EntryType[]
 }
 
 const MediumSlider = (props: PropsType) => {
@@ -18,29 +18,25 @@ const MediumSlider = (props: PropsType) => {
 
     return (
         <Slider {...settings} className={styles.MediumSlider}>
-            {props?.mostPopularMovies?.map((m) => (
+            {props?.topBoxOffice?.map((m) => (
                 <>
                     {m.primaryImage && m.primaryImage.url && (
                         <div
                             className={styles.MovieCard}
                             key={m.id}
-                            // style={{
-                            //     backgroundImage: `url(${m.primaryImage.url})`
-                            // }}
                         >
                             <img src={m.primaryImage.url} />
                             <div className={styles.MovieDetails}>
-                                <h2 className="font-bold text-white mb-2">
+                                <h2 className="font-bold text-xl text-white mb-2">
                                     {m.titleText.text}
                                 </h2>
                                 <div className="flex max-w-full">
                                     <div className='flex flex-col items-center'>
                                         <AiFillStar />
-                                        <div className="font-bold mx-2 text-white">
+                                        <div className="font-bold text-lg mx-2 text-white">
                                             {m.ratingsSummary.aggregateRating}
                                         </div>
                                     </div>
-
                                     <div className="relative flex max-w-full w-10/12">
                                         <div className={styles.Genres}>
                                             {m.genres.genres.map((g) => (

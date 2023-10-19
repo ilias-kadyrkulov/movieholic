@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-export const API_URL = 'https://moviesdatabase.p.rapidapi.com/titles'
+const API_URL = 'https://moviesdatabase.p.rapidapi.com/titles'
 
 export const api = createApi({
     reducerPath: 'api',
@@ -12,5 +12,5 @@ export const api = createApi({
             'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
         }
     }),
-    endpoints: (builder) => ({})
+    endpoints: _ => ({})
 })

@@ -32,7 +32,7 @@
     }
 
     .Genres {
-        @apply pl-2 before:absolute before:left-0 before:bg-slate-400 before:h-10 leading-4;
+        @apply pl-2 before:absolute before:left-0 before:bg-slate-400 before:h-10 leading-3;
 
         &:before {
             width: 1px;
