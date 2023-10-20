@@ -11,7 +11,7 @@ const Hero = () => {
         }
     )
     return (
-        <div className="hero">
+        <div className="hero relative">
             <Carousel topRatedSeries={results} />
         </div>
     )

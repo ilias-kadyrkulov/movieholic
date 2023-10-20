@@ -18,6 +18,57 @@ type GetTopRatedSeriesResponseType = {
     page: number
     results: TopRatedSeriesEntryType[]
 }
+type GetShowInfoByIdResponseType = {
+    results: {
+        id: string
+        episodes: {
+            episodes: { total: number }
+        }
+        titleType: {
+            text: string
+        }
+        primaryImage: {
+            url: string
+        }
+        genres: {
+            genres: GenreType[]
+        }
+        originalTitleText: {
+            text: string
+        }
+        releaseYear: {
+            year: number
+        }
+        runtime: {
+            displayableProperty: {
+                value: {
+                    plainText: string
+                }
+            }
+        }
+        plot: { plotText: { plainText: string } }
+    }
+}
+export type GetCastInfoResponseType = {
+    results: CastEntryType
+}
+type EdgesType = {
+    node: {
+        name: {
+            nameText: {
+                text: string
+            }
+            primaryImage: {
+                url: string
+            }
+        }
+        characters: ActorNameType[]
+    }
+}
+type ActorNameType = {
+    name: string
+}
+
 type QueryParams = {
     list: string
     info: string
@@ -27,6 +78,13 @@ type QueryParamsWithYear = QueryParams & { sort: string }
 type GenreType = {
     id: string
     text: string
+}
+
+export type CastEntryType = {
+    id: string
+    cast: {
+        edges: EdgesType[]
+    }
 }
 export type EntryType = {
     id: string
@@ -66,15 +124,31 @@ export const titlesAPI = api.injectEndpoints({
         >({
             query: ({ list, info }) => `?list=${list}&info=${info}`
         }),
-        getTopRatedSeries: builder.query<GetTopRatedSeriesResponseType, QueryParamsWithYear>({
+        getTopRatedSeries: builder.query<
+            GetTopRatedSeriesResponseType,
+            QueryParamsWithYear
+        >({
             query: ({ list, info, sort }) =>
                 `?list=${list}&info=${info}&sort=${sort}`
-        })
+        }),
+        getShowInfoById: builder.query<
+            GetShowInfoByIdResponseType,
+            string | undefined
+        >({
+            query: (id) => `/${id}?info=base_info`
+        }),
+        getCastInfo: builder.query<GetCastInfoResponseType, string | undefined>(
+            {
+                query: (id) => `/${id}?info=extendedCast`
+            }
+        )
     })
 })
 
 export const {
     useGetPopularOfTheWeekQuery,
     useGetTopBoxOfficeQuery,
-    useGetTopRatedSeriesQuery
+    useGetTopRatedSeriesQuery,
+    useGetShowInfoByIdQuery,
+    useGetCastInfoQuery
 } = titlesAPI

@@ -2,12 +2,12 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import Slider from 'react-slick'
 import styles from './Slider.module.scss'
-import { BsPlayCircle } from 'react-icons/bs'
-import { GrBookmark } from 'react-icons/gr'
 import disneyIcon from '../../assets/icons8-disney-plus.svg'
 import hboIcon from '../../assets/icons8-hbo.svg'
 import netflixIcon from '../../assets/icons8-netflix.svg'
 import { TopRatedSeriesEntryType } from '../../api/titles.api'
+import GreenButton from '../../common/Buttons/GreenButton/GreenButton'
+import TransparrentButton from '../../common/Buttons/TransparrentButton/TransparrentButton'
 
 type PropsType = {
     topRatedSeries: TopRatedSeriesEntryType[] | undefined
@@ -26,15 +26,15 @@ export const Carousel = (props: PropsType) => {
         infinite: false,
         swipe: false,
         speed: 500,
-        slidesToShow: 7,
+        slidesToShow: 9,
         slidesToScroll: 1
     }
 
     return (
         <>
             <Slider {...settings} className={styles.Carousel}>
-                {props.topRatedSeries?.map((s, index) => (
-                    <div key={index} className={styles.Slide}>
+                {props.topRatedSeries?.map((s) => (
+                    <div key={s.id} className={styles.Slide}>
                         <div
                             className={`bg-cover bg-no-repeat bg-center h-full`}
                             style={{
@@ -46,8 +46,13 @@ export const Carousel = (props: PropsType) => {
                                     {s.titleText.text}
                                 </h3>
                                 <div>
-                                    <p className="font-bold text-slate-400">Episode duration: {s.runtime.seconds / 60}min</p>
-                                    <span className="font-bold text-slate-400">{s.releaseYear.year} • </span>
+                                    <p className="font-bold text-slate-400">
+                                        Episode duration:{' '}
+                                        {s.runtime.seconds / 60}min
+                                    </p>
+                                    <span className="font-bold text-slate-400">
+                                        {s.releaseYear.year} •{' '}
+                                    </span>
                                     {s.genres.genres.map((g) => (
                                         <span
                                             className="font-bold text-slate-400 mr-1"
@@ -61,14 +66,8 @@ export const Carousel = (props: PropsType) => {
                                     {s.plot.plotText.plainText}
                                 </p>
                                 <div className={styles.Buttons}>
-                                    <button className={styles.TrailerButton}>
-                                        <BsPlayCircle />
-                                        <span>Watch Trailer</span>
-                                    </button>
-                                    <button className={styles.WatchButton}>
-                                        <GrBookmark />
-                                        <span>Add to Watchlist</span>
-                                    </button>
+                                    <GreenButton text='Watch Trailer' id={s.id} />
+                                    <TransparrentButton text='Add To Watchlist' />
                                 </div>
                             </div>
                         </div>
@@ -77,7 +76,7 @@ export const Carousel = (props: PropsType) => {
             </Slider>
             <div className={styles.Inner}>
                 <Slider {...sSettings} className={styles.MiniCarousel}>
-                    <div className="flex">
+                    <div>
                         <img src={disneyIcon} />
                     </div>
                     <div>

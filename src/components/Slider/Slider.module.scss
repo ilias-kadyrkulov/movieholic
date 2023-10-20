@@ -1,6 +1,6 @@
 .Carousel {
     @apply relative w-full z-10 overflow-hidden;
-    height: 1080px;
+    height: 750px;
 
     .slick-list {
         @apply h-full;
@@ -16,13 +16,13 @@
         @apply h-full relative;
 
         > div {
-            -webkit-box-shadow: 0px -100px 100px 250px rgba(28, 28, 28, 0.8) inset;
-            -moz-box-shadow: 0px -100px 100px 250px rgba(28, 28, 28, 0.8) inset;
-            box-shadow: 0px -100px 100px 250px rgba(28, 28, 28, 0.8) inset;
+            -webkit-box-shadow: 0px 0px 200px 150px rgba(28, 28, 28, 0.8) inset;
+            -moz-box-shadow: 0px 0px 200px 150px rgba(28, 28, 28, 0.8) inset;
+            box-shadow: 0px 0px 200px 150px rgba(28, 28, 28, 0.8) inset;
         }
 
         .Details {
-            @apply absolute bottom-36 left-20 max-w-xl z-30;
+            @apply absolute bottom-24 left-20 max-w-xl z-30;
 
             .Buttons {
                 @apply flex my-4;
@@ -57,15 +57,18 @@
 }
 
 .Inner {
-    @apply relative z-50;
+    @apply absolute z-50 bottom-0;
     height: 100px;
 
     .MiniCarousel {
         @apply h-full;
 
+        div {
+            @apply bg-black rounded-3xl
+        }
         img {
             display: inline;
-            width: 300px;
+            width: 100px;
             height: 100px;
         }
     }

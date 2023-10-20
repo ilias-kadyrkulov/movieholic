@@ -54,7 +54,9 @@ const Header = () => {
         <>
             <div className={styles.Header}>
                 <div className="left">
+                    <Link to='/'>
                     <img className="w-46 h-12" src={logo} alt="Logo" />
+                    </Link>
                 </div>
                 <div className={styles.Center}>
                     <div>

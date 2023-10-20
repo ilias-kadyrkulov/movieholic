@@ -8,6 +8,7 @@ import MovieReleasePage from './screens/MovieReleasePage/MovieReleasePage'
 import ForumPage from './screens/ForumPage/ForumPage'
 import AboutPage from './screens/AboutPage/AboutPage'
 import NotFoundPage from './screens/NotFoundPage/NotFoundPage'
+import ShowPage from './components/ShowPage/ShowPage'
 
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
                         element={<MovieReleasePage />}
                     />
                     <Route path="forum" element={<ForumPage />} />
+                    <Route path="titles/:id?" element={<ShowPage />} />
                 </Route>
             </Routes>
         </Router>
