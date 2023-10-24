@@ -29,6 +29,7 @@ const ShowPage = ({ authUser }: { authUser: User | null }) => {
     })
 
     const watchList = useAppSelector((state) => state.watchList)
+    const likeList = useAppSelector((state) => state.likeList)
 
     return (
         <div
@@ -86,7 +87,7 @@ const ShowPage = ({ authUser }: { authUser: User | null }) => {
                     <div className="flex">
                         <DownloadButton />
                         <ShareButton />
-                        <LikeButton />
+                            <LikeButton showId={show?.id} />
                     </div>
                 </div>
                 <div>

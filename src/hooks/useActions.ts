@@ -2,10 +2,12 @@ import { bindActionCreators } from "@reduxjs/toolkit"
 import { useAppDispatch } from "./hooks"
 import { watchListActions } from './../store/slices/watchListSlice';
 import { userActions } from './../store/slices/userSlice';
+import { likeListActions } from './../store/slices/likeListSlice';
 
 const allActions = {
     ...watchListActions,
-    ...userActions
+    ...userActions,
+    ...likeListActions
 }
 
 export const useActions = () => {

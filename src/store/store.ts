@@ -7,11 +7,13 @@ import { api } from '../api/api'
 import { titlesAPI } from '../api/titles.api'
 import { watchListReducer } from './slices/watchListSlice'
 import { userReducer } from './slices/userSlice'
+import { likeListReducer } from './slices/likeListSlice'
 
 const rootReducer = combineReducers({
     [api.reducerPath]: api.reducer,
     watchList: watchListReducer,
-    user: userReducer
+    user: userReducer,
+    likeList: likeListReducer
 })
 
 export const store = configureStore({
