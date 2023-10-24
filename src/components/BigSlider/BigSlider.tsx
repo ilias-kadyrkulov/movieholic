@@ -1,19 +1,41 @@
+import { useState, useEffect } from 'react'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import Slider from 'react-slick'
-import styles from './Slider.module.scss'
+import styles from './BigSlider.module.scss'
 import disneyIcon from '../../assets/icons8-disney-plus.svg'
 import hboIcon from '../../assets/icons8-hbo.svg'
 import netflixIcon from '../../assets/icons8-netflix.svg'
 import { TopRatedSeriesEntryType } from '../../api/titles.api'
 import GreenButton from '../../common/Buttons/GreenButton/GreenButton'
 import TransparrentButton from '../../common/Buttons/TransparrentButton/TransparrentButton'
+import { auth } from '../../firebase'
+import { User, onAuthStateChanged } from 'firebase/auth'
+import { useAppSelector } from '../../hooks/hooks'
 
 type PropsType = {
     topRatedSeries: TopRatedSeriesEntryType[] | undefined
 }
 
-export const Carousel = (props: PropsType) => {
+export const BigSlider = (props: PropsType) => {
+    const watchList = useAppSelector((state) => state.watchList)
+
+    const [user, setUser] = useState<User | null>()
+
+    useEffect(() => {
+        const listen = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUser(user)
+            } else {
+                setUser(null)
+            }
+        })
+
+        return () => {
+            listen()
+        }
+    }, [])
+
     let settings = {
         arrows: false,
         dots: true,
@@ -66,8 +88,21 @@ export const Carousel = (props: PropsType) => {
                                     {s.plot.plotText.plainText}
                                 </p>
                                 <div className={styles.Buttons}>
-                                    <GreenButton text='Watch Trailer' id={s.id} />
-                                    <TransparrentButton text='Add To Watchlist' />
+                                    <GreenButton
+                                        text="Watch Trailer"
+                                        id={s.id}
+                                    />
+                                    {user && !watchList.includes(s.id) ? (
+                                        <TransparrentButton
+                                            text="Add to Watchlist"
+                                            id={s.id}
+                                        />
+                                    ) : (
+                                        <TransparrentButton
+                                            text="Remove from Watchlist"
+                                            id={s.id}
+                                        />
+                                    )}
                                 </div>
                             </div>
                         </div>

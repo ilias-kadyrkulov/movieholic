@@ -1,15 +1,20 @@
 import Slider from 'react-slick'
-import styles from './SmallSlider.module.scss'
-import { SmallMediumEntryType } from '../../api/titles.api'
+import styles from './WatchListSlider.module.scss'
+import { useGetWatchListQuery } from '../../api/titles.api'
 import { AiFillStar } from 'react-icons/ai'
 import { LiaFilmSolid } from 'react-icons/lia'
 import { Link } from 'react-router-dom'
+import { useAppSelector } from '../../hooks/hooks'
 
-type PropsType = {
-    popularOfTheWeek?: SmallMediumEntryType[]
-}
+const WatchListSlider = () => {
+    const showIds = useAppSelector((state) => state.watchList)
 
-const SmallSlider = (props: PropsType) => {
+    const { results } = useGetWatchListQuery(showIds, {
+        selectFromResult: ({ data }) => ({
+            results: data?.results
+        })
+    })
+
     let settings = {
         infinite: false,
         speed: 600,
@@ -19,15 +24,12 @@ const SmallSlider = (props: PropsType) => {
     }
 
     return (
-        <Slider {...settings} className={styles.SmallSlider}>
-            {props.popularOfTheWeek?.map((e, index) => (
+        <Slider {...settings} className={styles.WatchListSlider}>
+            {results?.map((e) => (
                 <>
                     {e.primaryImage && e.primaryImage.url && (
                         <Link to={`titles/${e.id}`} key={e.id}>
                             <div className={styles.MovieCard}>
-                                <div className="flex items-center font-bold text-white text-5xl">
-                                    {index + 1}
-                                </div>
                                 <img src={e.primaryImage.url} />
                                 <div className={styles.MovieDetails}>
                                     <h2 className="font-bold text-base text-white">
@@ -72,4 +74,4 @@ const SmallSlider = (props: PropsType) => {
     )
 }
 
-export default SmallSlider
+export default WatchListSlider

@@ -10,8 +10,10 @@ import DownloadButton from '../../common/Buttons/DownloadButton/DownloadButton'
 import ShareButton from '../../common/Buttons/ShareButton/ShareButton'
 import LikeButton from '../../common/Buttons/LikeButton/LikeButton'
 import CastSlider from '../CastSlider/CastSlider'
+import { User } from 'firebase/auth'
+import { useAppSelector } from '../../hooks/hooks'
 
-const ShowPage = () => {
+const ShowPage = ({ authUser }: { authUser: User | null }) => {
     const { id } = useParams<{ id?: string }>()
 
     const { show } = useGetShowInfoByIdQuery(id, {
@@ -19,13 +21,14 @@ const ShowPage = () => {
             show: data?.results
         })
     })
-    console.log(show)
 
     const { cast } = useGetCastInfoQuery(id, {
         selectFromResult: ({ data }) => ({
             cast: data?.results
         })
     })
+
+    const watchList = useAppSelector((state) => state.watchList)
 
     return (
         <div
@@ -68,7 +71,17 @@ const ShowPage = () => {
                 <div className={styles.Buttons}>
                     <div className="flex">
                         <PlayContinueButton text="Watch Trailer" />
-                        <TransparrentButton text="Add To Watchlist" />
+                        {authUser && show && !watchList.includes(show.id) ? (
+                            <TransparrentButton
+                                text="Add to Watchlist"
+                                id={show.id}
+                            />
+                        ) : (
+                            <TransparrentButton
+                                text="Remove from Watchlist"
+                                id={show?.id}
+                            />
+                        )}
                     </div>
                     <div className="flex">
                         <DownloadButton />

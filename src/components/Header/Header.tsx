@@ -5,21 +5,24 @@ import avatarDummy from '../../assets/pianoCrop.jpg'
 import { Link } from 'react-router-dom'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { IoMdNotificationsOutline } from 'react-icons/io'
-import 'firebase/auth'
 import SignupForm from '../SignupForm/SignupForm'
 import { User, onAuthStateChanged, signOut } from 'firebase/auth'
 import { auth } from '../../firebase'
 import LoginForm from '../LoginForm/LoginForm'
+import { useActions } from '../../hooks/useActions'
 
 const Header = () => {
     const [authUser, setAuthUser] = useState<User | null>(null)
     const [signupFormClicked, setSignupFormClicked] = useState(false)
     const [loginFormClicked, setLoginFormClicked] = useState(false)
 
+    const { watchListCleared, userLoggedIn, userLoggedOut } = useActions()
+
     useEffect(() => {
         const listen = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setAuthUser(user)
+                userLoggedIn(user)
             } else {
                 setAuthUser(null)
             }
@@ -32,6 +35,8 @@ const Header = () => {
 
     const handleSignOut = () => {
         signOut(auth)
+        watchListCleared()
+        userLoggedOut()
     }
 
     const handleSignUpFormOnClose = () => {
@@ -54,8 +59,8 @@ const Header = () => {
         <>
             <div className={styles.Header}>
                 <div className="left">
-                    <Link to='/'>
-                    <img className="w-46 h-12" src={logo} alt="Logo" />
+                    <Link to="/">
+                        <img className="w-46 h-12" src={logo} alt="Logo" />
                     </Link>
                 </div>
                 <div className={styles.Center}>

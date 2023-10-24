@@ -8,10 +8,9 @@ const CastSlider = ({ data }: { data: CastEntryType | undefined }) => {
         infinite: false,
         speed: 600,
         slidesToShow: 6,
-        slidesToScroll: 2,
+        slidesToScroll: 4,
         rows: 1
     }
-    console.log(data)
 
     return (
         <Slider {...settings} className={styles.CastSlider}>
@@ -19,8 +18,8 @@ const CastSlider = ({ data }: { data: CastEntryType | undefined }) => {
                 <div key={data.id}>
                     <div className="flex">
                         <img
-                            className="rounded-full w-16 h-16"
-                            src={e.node.name.primaryImage.url}
+                            className="rounded-full w-16 h-20"
+                            src={e.node?.name?.primaryImage?.url}
                         />
                         <div className="flex flex-col ml-3 font-medium">
                             <h3 className='text-slate-100'>{e.node.name.nameText.text}</h3>

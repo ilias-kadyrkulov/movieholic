@@ -4,7 +4,7 @@ type GetPopularOfTheWeekResponseType = {
     entries: number
     next: string
     page: number
-    results: PopularOfTheWeekEntryType[]
+    results: SmallMediumEntryType[]
 }
 type GetTopBoxOfficeResponseType = {
     entries: number
@@ -52,6 +52,12 @@ type GetShowInfoByIdResponseType = {
 export type GetCastInfoResponseType = {
     results: CastEntryType
 }
+
+type GetWatchListResponseType = {
+    entries: number
+    results: SmallMediumEntryType[]
+}
+
 type EdgesType = {
     node: {
         name: {
@@ -68,17 +74,16 @@ type EdgesType = {
 type ActorNameType = {
     name: string
 }
+type GenreType = {
+    id: string
+    text: string
+}
 
 type QueryParams = {
     list: string
     info: string
 }
 type QueryParamsWithYear = QueryParams & { sort: string }
-
-type GenreType = {
-    id: string
-    text: string
-}
 
 export type CastEntryType = {
     id: string
@@ -101,7 +106,7 @@ export type EntryType = {
         aggregateRating: number
     }
 }
-export type PopularOfTheWeekEntryType = EntryType & {
+export type SmallMediumEntryType = EntryType & {
     titleType: { text: string }
 }
 export type TopRatedSeriesEntryType = EntryType & {
@@ -141,7 +146,13 @@ export const titlesAPI = api.injectEndpoints({
             {
                 query: (id) => `/${id}?info=extendedCast`
             }
-        )
+        ),
+        getWatchList: builder.query<
+            GetWatchListResponseType,
+            string[] | undefined
+        >({
+            query: (ids) => `x/titles-by-ids?idsList=${ids}&info=base_info`
+        })
     })
 })
 
@@ -150,5 +161,6 @@ export const {
     useGetTopBoxOfficeQuery,
     useGetTopRatedSeriesQuery,
     useGetShowInfoByIdQuery,
-    useGetCastInfoQuery
+    useGetCastInfoQuery,
+    useGetWatchListQuery
 } = titlesAPI

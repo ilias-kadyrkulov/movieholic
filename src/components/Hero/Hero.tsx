@@ -1,5 +1,5 @@
 import { useGetTopRatedSeriesQuery } from '../../api/titles.api'
-import { Carousel } from '../Slider/Slider'
+import { BigSlider } from '../BigSlider/BigSlider'
 
 const Hero = () => {
     const { results } = useGetTopRatedSeriesQuery(
@@ -12,7 +12,7 @@ const Hero = () => {
     )
     return (
         <div className="hero relative">
-            <Carousel topRatedSeries={results} />
+            <BigSlider topRatedSeries={results} />
         </div>
     )
 }

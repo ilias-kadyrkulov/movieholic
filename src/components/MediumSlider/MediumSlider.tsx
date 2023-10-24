@@ -22,8 +22,8 @@ const MediumSlider = (props: PropsType) => {
             {props?.topBoxOffice?.map((m) => (
                 <>
                     {m.primaryImage && m.primaryImage.url && (
-                        <Link to={`titles/${m.id}`}>
-                            <div className={styles.MovieCard} key={m.id}>
+                        <Link to={`titles/${m.id}`} key={m.id}>
+                            <div className={styles.MovieCard}>
                                 <img src={m.primaryImage.url} />
                                 <div className={styles.MovieDetails}>
                                     <h2 className="font-bold text-xl text-white mb-2">
