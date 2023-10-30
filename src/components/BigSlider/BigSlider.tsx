@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import Slider from 'react-slick'
@@ -6,12 +6,13 @@ import styles from './BigSlider.module.scss'
 import disneyIcon from '../../assets/icons8-disney-plus.svg'
 import hboIcon from '../../assets/icons8-hbo.svg'
 import netflixIcon from '../../assets/icons8-netflix.svg'
-import { TopRatedSeriesEntryType } from '../../api/titles.api'
+import { TopRatedSeriesEntryType } from '../../api/show/titles.api'
 import GreenButton from '../../common/Buttons/GreenButton/GreenButton'
 import TransparrentButton from '../../common/Buttons/TransparrentButton/TransparrentButton'
 import { auth } from '../../firebase'
 import { User, onAuthStateChanged } from 'firebase/auth'
 import { useAppSelector } from '../../hooks/hooks'
+import { UserContext } from '../../App'
 
 type PropsType = {
     topRatedSeries: TopRatedSeriesEntryType[] | undefined
@@ -20,21 +21,25 @@ type PropsType = {
 export const BigSlider = (props: PropsType) => {
     const watchList = useAppSelector((state) => state.watchList)
 
-    const [user, setUser] = useState<User | null>()
+    const { uid } = useAppSelector((state) => state.user)
 
-    useEffect(() => {
-        const listen = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUser(user)
-            } else {
-                setUser(null)
-            }
-        })
+    const user = useContext(UserContext)
 
-        return () => {
-            listen()
-        }
-    }, [])
+    // const [user, setUser] = useState<User | null>()
+
+    // useEffect(() => {
+    //     const listen = onAuthStateChanged(auth, (user) => {
+    //         if (user) {
+    //             setUser(user)
+    //         } else {
+    //             setUser(null)
+    //         }
+    //     })
+
+    //     return () => {
+    //         listen()
+    //     }
+    // }, [])
 
     let settings = {
         arrows: false,
@@ -92,12 +97,13 @@ export const BigSlider = (props: PropsType) => {
                                         text="Watch Trailer"
                                         id={s.id}
                                     />
-                                    {user && !watchList.includes(s.id) ? (
+                                    {user && !watchList.includes(s.id) && (
                                         <TransparrentButton
                                             text="Add to Watchlist"
                                             id={s.id}
                                         />
-                                    ) : (
+                                    )}
+                                    {user && watchList.includes(s.id) && (
                                         <TransparrentButton
                                             text="Remove from Watchlist"
                                             id={s.id}

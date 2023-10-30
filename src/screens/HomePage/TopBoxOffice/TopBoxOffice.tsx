@@ -1,4 +1,4 @@
-import { useGetTopBoxOfficeQuery } from "../../../api/titles.api"
+import { useGetTopBoxOfficeQuery } from "../../../api/show/titles.api"
 import MediumSlider from "../../../components/MediumSlider/MediumSlider"
 
 const TopBoxOffice = () => {

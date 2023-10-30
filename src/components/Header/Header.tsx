@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import styles from './Header.module.scss'
 import logo from '../../assets/logo-low-resolution.png'
 import avatarDummy from '../../assets/pianoCrop.jpg'
-import { Link } from 'react-router-dom'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { IoMdNotificationsOutline } from 'react-icons/io'
 import SignupForm from '../SignupForm/SignupForm'
@@ -10,19 +9,19 @@ import { User, onAuthStateChanged, signOut } from 'firebase/auth'
 import { auth } from '../../firebase'
 import LoginForm from '../LoginForm/LoginForm'
 import { useActions } from '../../hooks/useActions'
+import CustomLink from '../../common/CustomLink/CustomLink'
 
 const Header = () => {
     const [authUser, setAuthUser] = useState<User | null>(null)
     const [signupFormClicked, setSignupFormClicked] = useState(false)
     const [loginFormClicked, setLoginFormClicked] = useState(false)
 
-    const { watchListCleared, userLoggedIn, userLoggedOut } = useActions()
+    const { watchListCleared, showListCleared, playerDisabled } = useActions()
 
     useEffect(() => {
         const listen = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setAuthUser(user)
-                userLoggedIn(user)
             } else {
                 setAuthUser(null)
             }
@@ -36,7 +35,7 @@ const Header = () => {
     const handleSignOut = () => {
         signOut(auth)
         watchListCleared()
-        userLoggedOut()
+        showListCleared()
     }
 
     const handleSignUpFormOnClose = () => {
@@ -59,25 +58,25 @@ const Header = () => {
         <>
             <div className={styles.Header}>
                 <div className="left">
-                    <Link to="/">
+                    <CustomLink to="/">
                         <img className="w-46 h-12" src={logo} alt="Logo" />
-                    </Link>
+                    </CustomLink>
                 </div>
                 <div className={styles.Center}>
                     <div>
-                        <Link to="/">Home</Link>
+                        <CustomLink to="/">Home</CustomLink>
                     </div>
                     <div>
-                        <Link to="/discover">Discover</Link>
+                        <CustomLink to="/discover">Discover</CustomLink>
                     </div>
                     <div>
-                        <Link to="/movie-release">Movie Release</Link>
+                        <CustomLink to="/movie-release">Movie Release</CustomLink>
                     </div>
                     <div>
-                        <Link to="/forum">Forum</Link>
+                        <CustomLink to="/forum">Forum</CustomLink>
                     </div>
                     <div>
-                        <Link to="/about">About</Link>
+                        <CustomLink to="/about">About</CustomLink>
                     </div>
                 </div>
                 <div className={styles.Right}>

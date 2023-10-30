@@ -9,7 +9,7 @@ type PropsType = {
 
 const GreenButton = ({text, id}: PropsType) => {
     return (
-        <Link to={`titles/${id}`}>
+        <Link to={`title/${id}`}>
             <button className={styles.GreenButton}>
                 <BsPlayCircle />
                 <span>{text}</span>

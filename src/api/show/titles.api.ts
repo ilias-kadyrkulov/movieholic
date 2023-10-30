@@ -1,4 +1,4 @@
-import { api } from './api'
+import { showApi } from './show.api'
 
 type GetPopularOfTheWeekResponseType = {
     entries: number
@@ -32,6 +32,9 @@ type GetShowInfoByIdResponseType = {
         }
         genres: {
             genres: GenreType[]
+        }
+        titleText: {
+            text: string
         }
         originalTitleText: {
             text: string
@@ -108,6 +111,9 @@ export type EntryType = {
 }
 export type SmallMediumEntryType = EntryType & {
     titleType: { text: string }
+    originalTitleText: {
+        text: string
+    }
 }
 export type TopRatedSeriesEntryType = EntryType & {
     releaseYear: { year: number }
@@ -115,7 +121,7 @@ export type TopRatedSeriesEntryType = EntryType & {
     plot: { plotText: { plainText: string } }
 }
 
-export const titlesAPI = api.injectEndpoints({
+const titlesAPI = showApi.injectEndpoints({
     endpoints: (builder) => ({
         getPopularOfTheWeek: builder.query<
             GetPopularOfTheWeekResponseType,

@@ -3,11 +3,13 @@ import { useAppDispatch } from "./hooks"
 import { watchListActions } from './../store/slices/watchListSlice';
 import { userActions } from './../store/slices/userSlice';
 import { likeListActions } from './../store/slices/likeListSlice';
+import { playerActions } from './../store/slices/playerSlice';
 
 const allActions = {
     ...watchListActions,
     ...userActions,
-    ...likeListActions
+    ...likeListActions,
+    ...playerActions
 }
 
 export const useActions = () => {

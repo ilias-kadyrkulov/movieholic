@@ -3,7 +3,7 @@ import styles from './LikeButton.module.scss'
 import { useActions } from '../../../hooks/useActions'
 import { useAppSelector } from '../../../hooks/hooks'
 
-const LikeButton = ({ showId }: { showId: string | undefined }) => {
+const LikeButton = ({ showId }: { showId?: string }) => {
     const { showGotLiked, showGotUnliked } = useActions()
 
     const likeList = useAppSelector((state) => state.likeList)

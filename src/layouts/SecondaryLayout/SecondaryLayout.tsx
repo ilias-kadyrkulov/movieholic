@@ -1,13 +1,21 @@
-import { Outlet } from 'react-router-dom';
-import Header from '../../components/Header/Header';
+import { Outlet } from 'react-router-dom'
+import Header from '../../components/Header/Header'
+import { useAppSelector } from '../../hooks/hooks'
+import VideoPlayer from '../../components/VideoPlayer/VideoPlayer'
 
 const SecondaryLayout = () => {
-  return (
-    <>
-      <Header />
-      <Outlet />
-    </>
-  );
-};
+    // const { enabled } = useAppSelector((state) => state.player)
+    return (
+        <>
+            {/* {!enabled && ( */}
+                <div className="secondary-layout">
+                    <Header />
+                    <Outlet />
+                </div>
+            {/* )} */}
+            {/* {enabled && <VideoPlayer />} */}
+        </>
+    )
+}
 
-export default SecondaryLayout;
+export default SecondaryLayout

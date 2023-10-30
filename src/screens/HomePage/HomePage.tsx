@@ -1,14 +1,17 @@
-import { User } from 'firebase/auth'
 import PopularOfTheWeek from './PopularOfTheWeek/PopularOfTheWeek'
 import TopBoxOffice from './TopBoxOffice/TopBoxOffice'
 import { WatchList } from './WatchList/WatchList'
+import { useContext } from 'react'
+import { UserContext } from '../../App'
 
-const HomePage = ({ authUser }: { authUser: User | null}) => {
+const HomePage = () => {
+    const user = useContext(UserContext)
+
     return (
         <div className="home mt-10 mx-12">
             <TopBoxOffice />
             <PopularOfTheWeek />
-            {authUser && <WatchList authUser={authUser} />}
+            {user && <WatchList />}
         </div>
     )
 }

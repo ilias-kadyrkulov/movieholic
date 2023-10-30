@@ -1,4 +1,4 @@
-import { useGetPopularOfTheWeekQuery } from '../../../api/titles.api'
+import { useGetPopularOfTheWeekQuery } from '../../../api/show/titles.api'
 import SmallSlider from '../../../components/SmallSlider/SmallSlider'
 import styles from './PopularOfTheWeek.module.scss'
 

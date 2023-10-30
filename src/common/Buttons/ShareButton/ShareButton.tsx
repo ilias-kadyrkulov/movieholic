@@ -1,10 +1,10 @@
-import { BsPlayCircle } from 'react-icons/bs'
+import { HiOutlineShare } from 'react-icons/hi'
 import styles from './ShareButton.module.scss'
 
 const ShareButton = () => {
     return (
         <button className={styles.ShareButton}>
-            <BsPlayCircle />
+            <HiOutlineShare />
             <span>Share</span>
         </button>
     )

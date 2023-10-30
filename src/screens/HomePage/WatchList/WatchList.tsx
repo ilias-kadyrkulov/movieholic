@@ -8,15 +8,15 @@ import {
 } from 'firebase/firestore'
 import { db } from '../../../firebase'
 import { useActions } from '../../../hooks/useActions'
-import { useEffect, useMemo } from 'react'
-import { useAppSelector } from '../../../hooks/hooks'
+import { useContext, useEffect, useMemo } from 'react'
+import { UserContext } from '../../../App'
 
 export const WatchList = () => {
-    const collectionRef = useMemo(() => collection(db, 'collection'), [])
+    const collectionRef = useMemo(() => collection(db, 'watchList'), [])
 
     const { watchListReceived } = useActions()
 
-    const user = useAppSelector((state) => state.user)
+    const user = useContext(UserContext)
     
     const getData = () => {
         getDocs(collectionRef).then((response) => {
@@ -25,7 +25,7 @@ export const WatchList = () => {
     }
     
     useEffect(() => {
-        const queryTest = query(collectionRef, where('userId', '==', user.uid))
+        const queryTest = query(collectionRef, where('userId', '==', user?.uid))
 
         onSnapshot(queryTest, (snapshot) => {
             let arrayOfDocs = snapshot.docs.map((document) => {

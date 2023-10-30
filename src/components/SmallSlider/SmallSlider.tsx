@@ -1,6 +1,6 @@
 import Slider from 'react-slick'
 import styles from './SmallSlider.module.scss'
-import { SmallMediumEntryType } from '../../api/titles.api'
+import { SmallMediumEntryType } from '../../api/show/titles.api'
 import { AiFillStar } from 'react-icons/ai'
 import { LiaFilmSolid } from 'react-icons/lia'
 import { Link } from 'react-router-dom'
@@ -31,7 +31,7 @@ const SmallSlider = (props: PropsType) => {
                                 <img src={e.primaryImage.url} />
                                 <div className={styles.MovieDetails}>
                                     <h2 className="font-bold text-base text-white">
-                                        {e.titleText.text}
+                                        {e.originalTitleText.text}
                                     </h2>
 
                                     <div className="flex items-center my-2">

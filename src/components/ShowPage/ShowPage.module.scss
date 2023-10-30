@@ -8,15 +8,16 @@
 }
 
 .Details {
-    @apply absolute bottom-0 left-20 max-w-xl z-30;
+    padding-top: 60vh;
+    padding-left: 4rem;
+
+    max-width: 95%;
 
     .Buttons {
         @apply flex justify-between my-4;
 
-        width: 200%;
-
         button {
-            @apply py-4 px-8;
+            @apply py-3 px-5;
         }
 
         span {

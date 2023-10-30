@@ -1,6 +1,6 @@
 import Slider from 'react-slick'
 import styles from './WatchListSlider.module.scss'
-import { useGetWatchListQuery } from '../../api/titles.api'
+import { useGetWatchListQuery } from '../../api/show/titles.api'
 import { AiFillStar } from 'react-icons/ai'
 import { LiaFilmSolid } from 'react-icons/lia'
 import { Link } from 'react-router-dom'
@@ -28,7 +28,7 @@ const WatchListSlider = () => {
             {results?.map((e) => (
                 <>
                     {e.primaryImage && e.primaryImage.url && (
-                        <Link to={`titles/${e.id}`} key={e.id}>
+                        <Link to={`title/${e.id}`} key={e.id}>
                             <div className={styles.MovieCard}>
                                 <img src={e.primaryImage.url} />
                                 <div className={styles.MovieDetails}>
