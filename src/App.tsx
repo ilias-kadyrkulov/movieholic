@@ -49,8 +49,11 @@ function App() {
                             element={<MovieReleasePage />}
                         />
                         <Route path="forum" element={<ForumPage />} />
-                        <Route path="title/:id?" element={<ShowPage />} />
-                        <Route path='title/:id?/:ep' element={<VideoPlayer />} />
+                        <Route path="title/:id" element={<ShowPage />} />
+                        <Route
+                            path="title/:id/:ep"
+                            element={<VideoPlayer />}
+                        />
                     </Route>
                 </Routes>
             </Router>

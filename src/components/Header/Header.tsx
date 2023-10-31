@@ -16,7 +16,7 @@ const Header = () => {
     const [signupFormClicked, setSignupFormClicked] = useState(false)
     const [loginFormClicked, setLoginFormClicked] = useState(false)
 
-    const { watchListCleared, showListCleared, playerDisabled } = useActions()
+    const { watchListCleared, showListCleared } = useActions()
 
     useEffect(() => {
         const listen = onAuthStateChanged(auth, (user) => {

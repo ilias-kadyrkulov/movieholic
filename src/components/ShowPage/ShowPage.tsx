@@ -21,6 +21,9 @@ const ShowPage = () => {
     const { id } = useParams<{ id?: string }>()
     const { fileListReceived } = useActions()
 
+    const { fileList } = useAppSelector((state) => state.player)
+    const watchList = useAppSelector((state) => state.watchList)
+
     const { show } = useGetShowInfoByIdQuery(id, {
         selectFromResult: ({ data }) => ({
             show: data?.results
@@ -33,16 +36,27 @@ const ShowPage = () => {
         })
     })
 
-    const { fileList } = useGetFileListQuery(show?.originalTitleText.text, {
+    const { fileListData } = useGetFileListQuery(show?.originalTitleText.text, {
         selectFromResult: ({ data }) => ({
-            fileList: data?.result.files
+            fileListData: data?.result.files
         })
     })
-    fileListReceived(fileList)
+
+    if (fileListData && fileListData.length > 0) {
+        const sortedFileListData = fileListData.slice().sort((a, b) =>
+            a.title.localeCompare(b.title, undefined, {
+                sensitivity: 'base'
+            })
+        )
+
+        if (!fileList?.length) {
+            fileListReceived(sortedFileListData)
+        }
+    }
+
     console.log(fileList)
 
     const user = useContext(UserContext)
-    const watchList = useAppSelector((state) => state.watchList)
 
     return (
         <div>

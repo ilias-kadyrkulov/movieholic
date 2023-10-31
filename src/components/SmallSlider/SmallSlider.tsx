@@ -21,52 +21,48 @@ const SmallSlider = (props: PropsType) => {
     return (
         <Slider {...settings} className={styles.SmallSlider}>
             {props.popularOfTheWeek?.map((e, index) => (
-                <>
+                <Link to={`title/${e.id}`} key={e.id}>
                     {e.primaryImage && e.primaryImage.url && (
-                        <Link to={`titles/${e.id}`} key={e.id}>
-                            <div className={styles.MovieCard}>
-                                <div className="flex items-center font-bold text-white text-5xl">
-                                    {index + 1}
-                                </div>
-                                <img src={e.primaryImage.url} />
-                                <div className={styles.MovieDetails}>
-                                    <h2 className="font-bold text-base text-white">
-                                        {e.originalTitleText.text}
-                                    </h2>
+                        <div className={styles.MovieCard}>
+                            <div className="flex items-center font-bold text-white text-5xl">
+                                {index + 1}
+                            </div>
+                            <img src={e.primaryImage.url} />
+                            <div className={styles.MovieDetails}>
+                                <h2 className="font-bold text-base text-white">
+                                    {e.originalTitleText.text}
+                                </h2>
 
-                                    <div className="flex items-center my-2">
-                                        <AiFillStar />
-                                        <div className="font-bold text-lg mx-2 text-white">
-                                            {e.ratingsSummary.aggregateRating}
-                                        </div>
-                                        <div className="relative">
-                                            <div className={styles.TitleType}>
-                                                {e.titleType.text}
-                                            </div>
+                                <div className="flex items-center my-2">
+                                    <AiFillStar />
+                                    <div className="font-bold text-lg mx-2 text-white">
+                                        {e.ratingsSummary.aggregateRating}
+                                    </div>
+                                    <div className="relative">
+                                        <div className={styles.TitleType}>
+                                            {e.titleType.text}
                                         </div>
                                     </div>
-                                    <div className={styles.Genres}>
-                                        <div className="pr-1">
-                                            <LiaFilmSolid />
-                                        </div>
-                                        <div className="leading-3 w-full">
-                                            {e.genres.genres.map((g) => (
-                                                <>
-                                                    <span
-                                                        className="font-bold text-slate-400 mr-1"
-                                                        key={g.id}
-                                                    >
-                                                        {g.text}
-                                                    </span>
-                                                </>
-                                            ))}
-                                        </div>
+                                </div>
+                                <div className={styles.Genres}>
+                                    <div className="pr-1">
+                                        <LiaFilmSolid />
+                                    </div>
+                                    <div className="leading-3 w-full">
+                                        {e.genres.genres.map((g) => (
+                                            <span
+                                                className="font-bold text-slate-400 mr-1"
+                                                key={g.id}
+                                            >
+                                                {g.text}
+                                            </span>
+                                        ))}
                                     </div>
                                 </div>
                             </div>
-                        </Link>
+                        </div>
                     )}
-                </>
+                </Link>
             ))}
         </Slider>
     )

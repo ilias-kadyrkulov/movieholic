@@ -1,13 +1,9 @@
-import { useParams } from 'react-router-dom'
 import { useAppSelector } from '../../hooks/hooks'
 import { useActions } from '../../hooks/useActions'
 import VerticalEpisodeSlider from '../EpisodeSlider/VerticalMode/VerticalEpisodeSlider'
-import Header from '../Header/Header'
 import styles from './VideoPlayer.module.scss'
 
 const VideoPlayer = () => {
-    const { ep } = useParams<{ ep?: string }>()
-
     const { playerDisabled } = useActions()
 
     const { file_code } = useAppSelector((state) => state.player)

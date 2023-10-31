@@ -2,19 +2,21 @@ import Slider from 'react-slick'
 import styles from '../EpisodeSlider.module.scss'
 import { useActions } from '../../../hooks/useActions'
 import { useAppSelector } from '../../../hooks/hooks'
+import { Link, useParams } from 'react-router-dom'
 
 const VerticalEpisodeSlider = () => {
+    const { ep, id } = useParams<{ ep?: string; id: string }>()
+    console.log(ep, id)
+
     const { playerEnabled } = useActions()
 
     const fileList = useAppSelector((state) => state.player.fileList)
-    console.log(fileList)
 
     let settings = {
-        arrows: true,
         infinite: false,
         speed: 600,
         slidesToShow: 5,
-        slidesToScroll: 4,
+        slidesToScroll: 2,
         vertical: true,
         verticalSwiping: true
     }
@@ -22,7 +24,7 @@ const VerticalEpisodeSlider = () => {
     return (
         <Slider {...settings} className={styles.EpisodeSlider}>
             {fileList?.map((f, index) => (
-                <>
+                <Link to={`/title/${id}/ep-${index + 1}`} replace key={index}>
                     <div
                         className="relative h-28 mx-10 mb-3 rounded-full"
                         style={{
@@ -36,13 +38,13 @@ const VerticalEpisodeSlider = () => {
                             playerEnabled({ file_code: f.file_code })
                         }}
                     >
-                        <div className="absolute bottom-10 left-5">
+                        <div className="absolute bottom-3 left-3">
                             <h4 className="font-bold text-lg text-slate-100">
                                 Episode {index + 1}
                             </h4>
                         </div>
                     </div>
-                </>
+                </Link>
             ))}
         </Slider>
     )

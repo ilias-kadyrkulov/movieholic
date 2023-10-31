@@ -20,43 +20,38 @@ const MediumSlider = (props: PropsType) => {
     return (
         <Slider {...settings} className={styles.MediumSlider}>
             {props?.topBoxOffice?.map((m) => (
-                <>
+                <Link to={`title/${m.id}`} key={m.id}>
                     {m.primaryImage && m.primaryImage.url && (
-                        <Link to={`title/${m.id}`} key={m.id}>
-                            <div className={styles.MovieCard}>
-                                <img src={m.primaryImage.url} />
-                                <div className={styles.MovieDetails}>
-                                    <h2 className="font-bold text-xl text-white mb-2">
-                                        {m.titleText.text}
-                                    </h2>
-                                    <div className="flex max-w-full">
-                                        <div className="flex flex-col items-center">
-                                            <AiFillStar />
-                                            <div className="font-bold text-lg mx-2 text-white">
-                                                {
-                                                    m.ratingsSummary
-                                                        .aggregateRating
-                                                }
-                                            </div>
+                        <div className={styles.MovieCard}>
+                            <img src={m.primaryImage.url} />
+                            <div className={styles.MovieDetails}>
+                                <h2 className="font-bold text-xl text-white mb-2">
+                                    {m.titleText.text}
+                                </h2>
+                                <div className="flex max-w-full">
+                                    <div className="flex flex-col items-center">
+                                        <AiFillStar />
+                                        <div className="font-bold text-lg mx-2 text-white">
+                                            {m.ratingsSummary.aggregateRating}
                                         </div>
-                                        <div className="relative flex max-w-full w-10/12">
-                                            <div className={styles.Genres}>
-                                                {m.genres.genres.map((g) => (
-                                                    <span
-                                                        className="font-bold text-slate-400 mr-1"
-                                                        key={g.id}
-                                                    >
-                                                        {g.text}
-                                                    </span>
-                                                ))}
-                                            </div>
+                                    </div>
+                                    <div className="relative flex max-w-full w-10/12">
+                                        <div className={styles.Genres}>
+                                            {m.genres.genres.map((g) => (
+                                                <span
+                                                    className="font-bold text-slate-400 mr-1"
+                                                    key={g.id}
+                                                >
+                                                    {g.text}
+                                                </span>
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </Link>
+                        </div>
                     )}
-                </>
+                </Link>
             ))}
         </Slider>
     )

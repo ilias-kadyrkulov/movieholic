@@ -23,29 +23,26 @@ const EpisodeSlider = (props: PropsType) => {
     return (
         <Slider {...settings} className={styles.EpisodeSlider}>
             {props?.fileList?.map((f, index) => (
-                <>
-                    <Link to={`ep-${index+1}`}>
-                        <div
-                            className="relative h-52 mr-4"
-                            style={{
-                                backgroundImage: `url(${f.thumbnail})`,
-                                backgroundSize: 'cover',
-                                borderRadius: '20px',
-                                cursor: 'pointer'
-                            }}
-                            key={index}
-                            onClick={() => {
-                                playerEnabled({ file_code: f.file_code })
-                            }}
-                        >
-                            <div className="absolute bottom-10 left-5">
-                                <h4 className="font-bold text-lg text-slate-100">
-                                    Episode {index + 1}
-                                </h4>
-                            </div>
+                <Link to={`ep-${index + 1}`} key={index}>
+                    <div
+                        className="relative h-36 mr-4"
+                        style={{
+                            backgroundImage: `url(${f.thumbnail})`,
+                            backgroundSize: 'cover',
+                            borderRadius: '20px',
+                            cursor: 'pointer'
+                        }}
+                        onClick={() => {
+                            playerEnabled({ file_code: f.file_code })
+                        }}
+                    >
+                        <div className="absolute bottom-5 left-5">
+                            <h4 className="font-bold text-lg text-slate-100">
+                                Episode {index + 1}
+                            </h4>
                         </div>
-                    </Link>
-                </>
+                    </div>
+                </Link>
             ))}
         </Slider>
     )
