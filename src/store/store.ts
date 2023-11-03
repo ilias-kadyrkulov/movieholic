@@ -9,6 +9,7 @@ import { userReducer } from './slices/userSlice'
 import { likeListReducer } from './slices/likeListSlice'
 import { filemoonAPI } from '../api/filemoon/filemoon.api'
 import { playerReducer } from './slices/playerSlice'
+import { showReducer } from './slices/showSlice'
 
 const rootReducer = combineReducers({
     [showApi.reducerPath]: showApi.reducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     user: userReducer,
     likeList: likeListReducer,
     [filemoonAPI.reducerPath]: filemoonAPI.reducer,
-    player: playerReducer
+    player: playerReducer,
+    show: showReducer
 })
 
 export const store = configureStore({

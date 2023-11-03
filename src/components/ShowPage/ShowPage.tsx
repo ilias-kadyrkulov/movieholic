@@ -19,7 +19,7 @@ import { useActions } from '../../hooks/useActions'
 
 const ShowPage = () => {
     const { id } = useParams<{ id?: string }>()
-    const { fileListReceived } = useActions()
+    const { fileListReceived, showBeenClicked } = useActions()
 
     const { fileList } = useAppSelector((state) => state.player)
     const watchList = useAppSelector((state) => state.watchList)
@@ -29,6 +29,9 @@ const ShowPage = () => {
             show: data?.results
         })
     })
+    if(show) {
+        showBeenClicked(show.originalTitleText.text)
+    }
 
     const { cast } = useGetCastInfoQuery(id, {
         selectFromResult: ({ data }) => ({
@@ -41,7 +44,8 @@ const ShowPage = () => {
             fileListData: data?.result.files
         })
     })
-
+    console.log(fileListData);
+    
     if (fileListData && fileListData.length > 0) {
         const sortedFileListData = fileListData.slice().sort((a, b) =>
             a.title.localeCompare(b.title, undefined, {
@@ -53,8 +57,6 @@ const ShowPage = () => {
             fileListReceived(sortedFileListData)
         }
     }
-
-    console.log(fileList)
 
     const user = useContext(UserContext)
 

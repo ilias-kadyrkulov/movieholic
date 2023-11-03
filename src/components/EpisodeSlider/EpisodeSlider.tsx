@@ -9,7 +9,7 @@ type PropsType = {
 }
 
 const EpisodeSlider = (props: PropsType) => {
-    const { playerEnabled } = useActions()
+    const { fileBeenChosen } = useActions()
 
     let settings = {
         arrows: true,
@@ -33,7 +33,7 @@ const EpisodeSlider = (props: PropsType) => {
                             cursor: 'pointer'
                         }}
                         onClick={() => {
-                            playerEnabled({ file_code: f.file_code })
+                            fileBeenChosen(f)
                         }}
                     >
                         <div className="absolute bottom-5 left-5">

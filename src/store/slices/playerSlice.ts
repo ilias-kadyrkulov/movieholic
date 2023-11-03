@@ -1,32 +1,38 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { FileType } from "../../api/filemoon/file.api";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { FileType } from '../../api/filemoon/file.api'
 
 type PlayerType = {
-    file_code: string
-    enabled: boolean,
+    enabled: boolean
     fileList: FileType[] | undefined
+    fileChosen: FileType
 }
 
 const initialState: PlayerType = {
-    file_code: '',
     enabled: false,
-    fileList: []
+    fileList: [],
+    fileChosen: {
+        title: '',
+        file_code: '',
+        thumbnail: ''
+    }
 }
 
 const playerSlice = createSlice({
     name: 'player',
     initialState,
     reducers: {
-        playerEnabled: (state, action: PayloadAction<{file_code: string}>) => {
+        fileBeenChosen: (state, action: PayloadAction<FileType>) => {
             state.enabled = true
-            state.file_code = action.payload.file_code
+            state.fileChosen = action.payload
         },
-        playerDisabled: (state) => {
+        fileListEmptied: (state) => {
             state.enabled = false
-            state.file_code = ''
             state.fileList = []
         },
-        fileListReceived: (state, action: PayloadAction<FileType[] | undefined>) => {
+        fileListReceived: (
+            state,
+            action: PayloadAction<FileType[] | undefined>
+        ) => {
             state.fileList?.push(...(action.payload ?? []))
         }
     }

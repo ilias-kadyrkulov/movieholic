@@ -5,10 +5,9 @@ import { useAppSelector } from '../../../hooks/hooks'
 import { Link, useParams } from 'react-router-dom'
 
 const VerticalEpisodeSlider = () => {
-    const { ep, id } = useParams<{ ep?: string; id: string }>()
-    console.log(ep, id)
+    const { id } = useParams<{ ep?: string; id: string }>()
 
-    const { playerEnabled } = useActions()
+    const { fileBeenChosen } = useActions()
 
     const fileList = useAppSelector((state) => state.player.fileList)
 
@@ -35,7 +34,7 @@ const VerticalEpisodeSlider = () => {
                         }}
                         key={index}
                         onClick={() => {
-                            playerEnabled({ file_code: f.file_code })
+                            fileBeenChosen(f)
                         }}
                     >
                         <div className="absolute bottom-3 left-3">

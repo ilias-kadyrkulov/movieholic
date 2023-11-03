@@ -9,12 +9,12 @@ type PropsType = {
 }
 
 const GreenButton = ({ text, id }: PropsType) => {
-    const { playerDisabled } = useActions()
+    const { fileListEmptied } = useActions()
     return (
         <Link to={`title/${id}`}>
             <button
                 className={styles.GreenButton}
-                onClick={() => playerDisabled()}
+                onClick={() => fileListEmptied()}
             >
                 <BsPlayCircle />
                 <span>{text}</span>
