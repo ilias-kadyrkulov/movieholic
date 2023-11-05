@@ -94,7 +94,7 @@ export const BigSlider = (props: PropsType) => {
                                 </p>
                                 <div className={styles.Buttons}>
                                     <GreenButton
-                                        text="Watch Trailer"
+                                        text="Watch"
                                         id={s.id}
                                     />
                                     {user && !watchList.includes(s.id) && (

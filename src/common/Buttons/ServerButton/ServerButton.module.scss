@@ -1,0 +1,7 @@
+.ServerButton {
+    @apply flex items-center justify-between rounded-md bg-transparent py-3 px-3 text-white font-bold w-32 hover:opacity-90;
+
+    &.active {
+        @apply bg-green-700;
+    }
+}

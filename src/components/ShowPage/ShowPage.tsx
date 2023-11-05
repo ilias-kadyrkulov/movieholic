@@ -29,8 +29,12 @@ const ShowPage = () => {
             show: data?.results
         })
     })
-    if(show) {
-        showBeenClicked(show.originalTitleText.text)
+    if (show) {
+        showBeenClicked({
+            title: show.originalTitleText.text,
+            titleType: show.titleType.text,
+            episodes: show.episodes?.episodes.total
+        })
     }
 
     const { cast } = useGetCastInfoQuery(id, {
@@ -44,8 +48,8 @@ const ShowPage = () => {
             fileListData: data?.result.files
         })
     })
-    console.log(fileListData);
-    
+    console.log(fileListData)
+
     if (fileListData && fileListData.length > 0) {
         const sortedFileListData = fileListData.slice().sort((a, b) =>
             a.title.localeCompare(b.title, undefined, {

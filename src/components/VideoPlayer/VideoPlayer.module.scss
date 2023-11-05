@@ -1,5 +1,15 @@
 .VideoPlayer {
-    @apply w-2/4;
+    @apply w-2/4 mx-10;
 
     height: 540px;
+}
+
+.Episode {
+    @apply py-1 text-slate-200 cursor-pointer w-3/4;
+
+    background-color: #050405;
+
+    &:nth-child(2n) {
+        @apply bg-gray-800
+    } 
 }
