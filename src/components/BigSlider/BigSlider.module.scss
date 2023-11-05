@@ -11,46 +11,46 @@
             height: 100%;
         }
     }
+}
 
-    .Slide {
-        @apply h-full relative;
+.Slide {
+    @apply h-full relative;
 
-        > div {
-            -webkit-box-shadow: 0px 0px 200px 150px rgba(28, 28, 28, 0.8) inset;
-            -moz-box-shadow: 0px 0px 200px 150px rgba(28, 28, 28, 0.8) inset;
-            box-shadow: 0px 0px 200px 150px rgba(28, 28, 28, 0.8) inset;
-        }
+    > div {
+        -webkit-box-shadow: 0px 0px 200px 150px rgba(28, 28, 28, 0.8) inset;
+        -moz-box-shadow: 0px 0px 200px 150px rgba(28, 28, 28, 0.8) inset;
+        box-shadow: 0px 0px 200px 150px rgba(28, 28, 28, 0.8) inset;
+    }
+}
 
-        .Details {
-            @apply absolute bottom-24 left-20 max-w-xl z-30;
+.Details {
+    @apply absolute bottom-24 left-20 max-w-lg z-30;
+}
 
-            .Buttons {
-                @apply flex my-4;
+.Buttons {
+    @apply flex my-4;
 
-                button {
-                    @apply py-4 px-8 cursor-pointer;
-                }
+    button {
+        @apply py-4 px-8 cursor-pointer;
+    }
 
-                span {
-                    @apply ml-5;
-                }
+    span {
+        @apply ml-5;
+    }
 
-                svg {
-                    @apply w-5 h-5;
-                }
+    svg {
+        @apply w-5 h-5;
+    }
 
-                .TrailerButton {
-                    @apply flex items-center justify-between mr-6 rounded-md bg-green-600 text-white font-bold hover:opacity-90;
-                }
-                .WatchButton {
-                    @apply flex items-center border-2 rounded-md border-slate-400 text-slate-200 font-bold transition-colors hover:bg-purple-900;
+    .TrailerButton {
+        @apply flex items-center justify-between mr-6 rounded-md bg-green-600 text-white font-bold hover:opacity-90;
+    }
+    .WatchButton {
+        @apply flex items-center border-2 rounded-md border-slate-400 text-slate-200 font-bold transition-colors hover:bg-purple-900;
 
-                    &:hover {
-                        polygon {
-                            @apply fill-yellow-400;
-                        }
-                    }
-                }
+        &:hover {
+            polygon {
+                @apply fill-yellow-400;
             }
         }
     }
@@ -64,12 +64,74 @@
         @apply h-full;
 
         div {
-            @apply bg-black rounded-3xl
+            @apply bg-black rounded-3xl;
         }
         img {
             display: inline;
             width: 100px;
             height: 100px;
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .Details {
+        @apply max-w-md left-10 bottom-10;
+
+        h3 {
+            @apply text-2xl;
+        }
+        p {
+            @apply text-sm;
+        }
+        span {
+            @apply text-sm;
+        }
+    }
+    .Buttons {
+        button {
+            @apply py-2 px-4;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .Details {
+        h3 {
+            @apply text-2xl;
+        }
+        p {
+            @apply text-sm;
+        }
+        span {
+            @apply text-sm;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .Details {
+        @apply left-5 mr-6;
+    }
+    .Buttons {
+        span {
+            margin-left: 0.3rem;
+        }
+    }
+}
+
+@media (max-width: 425px) {
+    .Buttons {
+        button {
+            @apply px-2
+        }
+    }
+}
+
+@media (max-width: 375px) {
+    .Buttons {
+        span {
+            font-size: 0.6rem;
         }
     }
 }

@@ -1,8 +1,14 @@
+.CustomHeight {
+    .slick-slide {
+        height: 500px; // Стили для слайдов, если присутствует класс CustomHeight
+    }
+}
+
 .MediumSlider {
     .slick-list {
         .slick-track {
             .slick-slide {
-                @apply px-5;
+                height: 300px;
             }
         }
     }
@@ -11,10 +17,11 @@
         -webkit-box-shadow: 0px 170px 60px -70px rgba(0, 0, 0, 0.8) inset;
         -moz-box-shadow: 0px 170px 60px -70px rgba(0, 0, 0, 0.8) inset;
         box-shadow: 0px 170px 60px -70px rgba(0, 0, 0, 0.8) inset;
-        @apply relative rounded-2xl bg-cover bg-no-repeat bg-center;
+        @apply relative rounded-2xl bg-cover bg-no-repeat bg-center h-full;
 
         img {
-            @apply relative -z-50 rounded-2xl;
+            @apply relative -z-50 rounded-2xl w-full;
+            height: 100%;
         }
         svg {
             @apply w-5 h-5;

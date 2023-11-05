@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import styles from './Header.module.scss'
+import styled from 'styled-components'
 import logo from '../../assets/logo-low-resolution.png'
+import smallLogo from '../../assets/movieholic-favicon-color.png'
 import avatarDummy from '../../assets/pianoCrop.jpg'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { IoMdNotificationsOutline } from 'react-icons/io'
@@ -10,6 +12,9 @@ import { auth } from '../../firebase'
 import LoginForm from '../LoginForm/LoginForm'
 import { useActions } from '../../hooks/useActions'
 import CustomLink from '../../common/CustomLink/CustomLink'
+
+const Logo1024 = styled.img``
+
 
 const Header = () => {
     const [authUser, setAuthUser] = useState<User | null>(null)
@@ -53,13 +58,14 @@ const Header = () => {
         setLoginFormClicked(true)
         setSignupFormClicked(false)
     }
+    console.log(window.window.outerWidth)
 
     return (
         <>
             <div className={styles.Header}>
                 <div className="left">
                     <CustomLink to="/">
-                        <img className="w-46 h-12" src={logo} alt="Logo" />
+                        {window.window.innerWidth <= 1024 ? <img className="w-10 h-12" src={smallLogo} alt="Logo" /> : <img className="w-46 h-12" src={logo} alt="Logo" />}
                     </CustomLink>
                 </div>
                 <div className={styles.Center}>
@@ -70,7 +76,9 @@ const Header = () => {
                         <CustomLink to="/discover">Discover</CustomLink>
                     </div>
                     <div>
-                        <CustomLink to="/movie-release">Movie Release</CustomLink>
+                        <CustomLink to="/movie-release">
+                            Movie Release
+                        </CustomLink>
                     </div>
                     <div>
                         <CustomLink to="/forum">Forum</CustomLink>

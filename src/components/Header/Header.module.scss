@@ -11,7 +11,7 @@
         }
 
         a {
-          @apply hover:opacity-80; 
+            @apply hover:opacity-80;
         }
     }
     .Right {
@@ -33,5 +33,21 @@
         .Avatar {
             @apply after:absolute after:-right-5 after:top-2/4 after:-translate-y-2/4 after:w-0.5 after:h-3 after:bg-white after:rotate-45 before:absolute before:-right-3 before:top-2/4 before:-translate-y-2/4 before:w-0.5 before:h-3 before:bg-white before:-rotate-45;
         }
+    }
+}
+
+@media (max-width: 1000px) {
+    a {
+        @apply text-sm;
+    }
+}
+@media (max-width: 900px) {
+    .Header {
+        @apply px-12;
+    }
+}
+@media (max-width: 768px) { //NOTE - Burger
+    a {
+        @apply text-xs;
     }
 }

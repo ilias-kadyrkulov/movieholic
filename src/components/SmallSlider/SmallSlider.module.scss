@@ -4,7 +4,10 @@
         @apply flex rounded-2xl bg-cover bg-no-repeat bg-center;
 
         img {
-            @apply block mx-3 w-20 rounded-2xl;
+            @apply block mx-3 rounded-2xl;
+
+            width: 110px;
+            height: 160px;
         }
         svg {
             @apply w-5 h-5;
