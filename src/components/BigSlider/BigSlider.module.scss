@@ -76,7 +76,7 @@
 
 @media (max-width: 1024px) {
     .Details {
-        @apply max-w-md left-10 bottom-10;
+        @apply max-w-md left-10 bottom-12;
 
         h3 {
             @apply text-2xl;

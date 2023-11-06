@@ -13,6 +13,7 @@ import ShowPage from './components/ShowPage/ShowPage'
 import { User, onAuthStateChanged } from 'firebase/auth'
 import { auth } from './firebase'
 import VideoPlayer from './components/VideoPlayer/VideoPlayer'
+import MobileMenuPage from './screens/MobileMenuPage/MobileMenuPage'
 
 export const UserContext = createContext<User | null>(null)
 
@@ -55,6 +56,7 @@ function App() {
                             element={<VideoPlayer />}
                         />
                     </Route>
+                    <Route path='mobile-menu' element={<MobileMenuPage />} />
                 </Routes>
             </Router>
         </UserContext.Provider>

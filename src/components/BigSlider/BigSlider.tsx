@@ -18,7 +18,7 @@ const CustomDots = styled.div`
     @media (max-width: 768px) {
         .slick-dots {
             display: flex;
-            bottom: 0.2rem;
+            bottom: 0.4rem;
             left: 40px;
         }
         li {

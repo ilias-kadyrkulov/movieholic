@@ -1,0 +1,25 @@
+@media (max-width: 768px) {
+    .BurgerMenu {
+        @apply relative cursor-pointer;
+        height: 16px;
+        width: 16px;
+
+        a {
+            @apply inline-block h-full w-full;
+        }
+
+        &.active {
+            cursor: pointer;
+        }
+
+        .first {
+            @apply before:absolute before:right-0 before:top-0 before:bg-white before:w-4 before:h-0.5;
+        }
+        .second {
+            @apply before:absolute before:right-0 before:top-2/4 before:-translate-y-2/4 before:bg-white before:w-4 before:h-0.5;
+        }
+        .third {
+            @apply before:absolute before:right-0 before:bottom-0 before:bg-white before:w-2 before:h-0.5;
+        }
+    }
+}

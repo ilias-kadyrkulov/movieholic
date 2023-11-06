@@ -3,50 +3,112 @@
     -webkit-box-shadow: 0px 60px 50px 0px rgba(28, 28, 28, 0.8) inset;
     -moz-box-shadow: 0px 60px 50px 0px rgba(28, 28, 28, 0.8) inset;
     box-shadow: 0px 60px 50px 0px rgba(28, 28, 28, 0.8) inset;
-    .Center {
-        @apply flex items-center;
+}
 
-        div {
-            @apply px-4 text-slate-50 font-bold text-lg;
-        }
+.Center {
+    @apply flex items-center;
 
-        a {
-            @apply hover:opacity-80;
+    div {
+        @apply px-4 text-slate-50 font-bold text-lg;
+    }
+
+    a {
+        @apply hover:opacity-80;
+    }
+}
+.Right {
+    @apply relative flex items-center;
+
+    div {
+        @apply text-gray-300;
+
+        button {
+            @apply px-4 py-2 ml-2;
         }
     }
-    .Right {
-        @apply flex items-center;
 
-        div {
-            @apply pl-4 text-gray-300;
+    svg {
+        @apply mr-3;
 
-            button {
-                @apply px-4 py-2 ml-2;
-            }
-        }
-
-        svg {
-            width: 30px;
-            height: 30px;
-        }
-
-        .Avatar {
-            @apply after:absolute after:-right-5 after:top-2/4 after:-translate-y-2/4 after:w-0.5 after:h-3 after:bg-white after:rotate-45 before:absolute before:-right-3 before:top-2/4 before:-translate-y-2/4 before:w-0.5 before:h-3 before:bg-white before:-rotate-45;
-        }
+        width: 30px;
+        height: 30px;
     }
 }
 
-@media (max-width: 1000px) {
-    a {
-        @apply text-sm;
+.AvatarActive {
+    @apply after:transition-all before:transition-all after:absolute after:-right-5 after:top-2/4 after:-translate-y-2/4 after:w-0.5 after:h-3 after:bg-white after:rotate-45 before:absolute before:-right-3 before:top-2/4 before:-translate-y-2/4 before:w-0.5 before:h-3 before:bg-white before:-rotate-45;
+}
+.Avatar {
+    @apply after:transition-all before:transition-all cursor-pointer after:absolute after:-right-5 after:top-2/4 after:-translate-y-2/4 after:w-0.5 after:h-3 after:bg-white after:-rotate-45 before:absolute before:-right-3 before:top-2/4 before:-translate-y-2/4 before:w-0.5 before:h-3 before:bg-white before:rotate-45;
+}
+
+.Profile {
+    @apply hidden;
+}
+
+.ProfileActive {
+    @apply absolute top-10 w-36 h-16 py-2 bg-slate-800;
+}
+
+@media (max-width: 1024px) {
+    .Header {
+        @apply px-12;
+    }
+    .Right {
+        div {
+            button {
+                @apply px-3 py-1.5 ml-2;
+            }
+        }
     }
 }
 @media (max-width: 900px) {
     .Header {
-        @apply px-12;
+        @apply pl-7 pr-10;
     }
 }
-@media (max-width: 768px) { //NOTE - Burger
+@media (max-width: 768px) {
+    //NOTE - Burger
+    .Center {
+        @apply hidden;
+    }
+    .AvatarActive {
+        @apply after:w-0 before:w-0;
+    }
+    .Avatar {
+        @apply after:w-0 before:w-0;
+    }
+    .LaptopDesktop {
+        @apply hidden;
+    }
+    .Right {
+        svg {
+            @apply mr-10;
+        }
+    }
+    .MobileTablet {
+        @apply relative cursor-pointer;
+        height: 35%;
+        width: 16px;
+        
+        a {
+            @apply inline-block h-full w-full;
+        }
+
+        &.active {
+            cursor: pointer;
+        }
+
+        .first {
+            @apply before:absolute before:right-0 before:top-0 before:bg-white before:w-4 before:h-0.5
+        }
+        .second {
+            @apply before:absolute before:right-0 before:top-2/4 before:-translate-y-2/4 before:bg-white before:w-4 before:h-0.5
+        }
+        .third {
+            @apply before:absolute before:right-0 before:bottom-0 before:bg-white before:w-2 before:h-0.5
+        }
+    }
     a {
         @apply text-xs;
     }
