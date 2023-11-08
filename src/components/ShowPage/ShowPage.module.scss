@@ -2,30 +2,70 @@
     @apply relative bg-cover bg-no-repeat bg-center;
 
     height: 100vh;
-    -webkit-box-shadow: 0px -400px 100px 0px rgba(28, 28, 28, 0.8) inset;
-    -moz-box-shadow: 0px -400px 100px 0px rgba(28, 28, 28, 0.8) inset;
-    box-shadow: 0px -400px 100px 0px rgba(28, 28, 28, 0.8) inset;
+    -webkit-box-shadow: 0 0 200px 200px rgba(28, 28, 28, 0.8) inset;
+    -moz-box-shadow: 0 0 200px 200px rgba(28, 28, 28, 0.8) inset;
+    box-shadow: 0 0 200px 200px rgba(28, 28, 28, 0.8) inset;
 }
 
 .Details {
     padding-top: 60vh;
-    padding-left: 4rem;
+    padding-left: 3rem;
 
     max-width: 95%;
+}
 
+.Buttons {
+    @apply flex justify-between flex-wrap;
+
+    .Right {
+        @apply flex flex-wrap;
+    }
+
+    button {
+        @apply py-3 px-5;
+    }
+
+    span {
+        @apply ml-5;
+    }
+
+    svg {
+        @apply w-5 h-5;
+    }
+}
+
+@media (max-width: 1024px) {
+    .Details {
+        @apply pl-6;
+    }
+}
+@media (max-width: 1215px) {
     .Buttons {
-        @apply flex justify-between my-4;
+        .Right {
+            @apply mt-5;
+        }
+    }
+}
+@media (max-width: 768px) {
+    .Show {
+        -webkit-box-shadow: 0 0 100px 100px rgba(28, 28, 28, 0.8) inset;
+        -moz-box-shadow: 0 0 100px 100px rgba(28, 28, 28, 0.8) inset;
+        box-shadow: 0 0 100px 100px rgba(28, 28, 28, 0.8) inset;
+    }
+    .Buttons {
+        span {
+            @apply text-sm;
+        }
 
         button {
-            @apply py-3 px-5;
+            @apply py-2 px-3;
         }
-
+    }
+}
+@media (max-width: 590px) {
+    .Buttons {
         span {
-            @apply ml-5;
-        }
-
-        svg {
-            @apply w-5 h-5;
+            @apply m-1;
         }
     }
 }

@@ -105,9 +105,17 @@ const ShowPage = () => {
                     </div>
 
                     <div className={styles.Buttons}>
-                        <div className="flex">
-                            <PlayContinueButton text="Play now" id={show?.id} titleType={show?.titleType.text} titleText={show?.titleText.text} />
-                            <WatchTrailerButton text="Watch Trailer" id={show?.id} />
+                        <div className="flex mr-10 flex-wrap">
+                            <PlayContinueButton
+                                text="Play now"
+                                id={show?.id}
+                                titleType={show?.titleType.text}
+                                titleText={show?.titleText.text}
+                            />
+                            <WatchTrailerButton
+                                text="Watch Trailer"
+                                id={show?.id}
+                            />
                             {user && show && !watchList.includes(show.id) && (
                                 <TransparrentButton
                                     text="Add to Watchlist"
@@ -121,7 +129,7 @@ const ShowPage = () => {
                                 />
                             )}
                         </div>
-                        <div className="flex">
+                        <div className={styles.Right}>
                             <DownloadButton />
                             <ShareButton />
                             <LikeButton showId={show?.id} />
@@ -140,12 +148,15 @@ const ShowPage = () => {
                         <CastSlider data={cast} />
                     </div>
                     {show?.titleType.text === 'TV Series' ? (
-                        <div>
+                        <div className='mb-10'>
                             <div className="flex justify-between items-center text-slate-100 font-bold">
                                 <h3 className="text-2xl my-5">1-9 Episode</h3>
                                 <p className="text-sm">Season 1</p>
                             </div>
-                            <EpisodeSlider titleText={show.titleText.text} fileList={fileList} />
+                            <EpisodeSlider
+                                titleText={show.titleText.text}
+                                fileList={fileList}
+                            />
                         </div>
                     ) : (
                         ''

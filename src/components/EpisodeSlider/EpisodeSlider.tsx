@@ -14,11 +14,41 @@ const EpisodeSlider = (props: PropsType) => {
 
     let settings = {
         arrows: true,
-        infinite: false,
+        infinite: true,
         speed: 600,
         slidesToShow: 5,
-        slidesToScroll: 2,
-        rows: 1
+        slidesToScroll: 5,
+        rows: 1,
+        responsive: [
+            {
+                breakpoint: 1440,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 4,
+                }
+            },
+            {
+                breakpoint: 1080,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                }
+            },
+            {
+                breakpoint: 700,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                }
+            },
+            {
+                breakpoint: 425,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
+            },
+        ]
     }
 
     return (

@@ -75,7 +75,7 @@ const Header = () => {
                                 alt="Logo"
                             />
                         ) : (
-                            <img className="w-46 h-12" src={logo} alt="Logo" />
+                            <img className="w-40 h-10" src={logo} alt="Logo" />
                         )}
                     </CustomLink>
                 </div>

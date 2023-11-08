@@ -1,3 +1,12 @@
+.Slide {
+    @apply flex;
+}
 .Actor {
     @apply w-20 h-20;
+}
+
+@media (max-width: 425px) {
+    .Slide {
+        @apply justify-center;
+    }
 }

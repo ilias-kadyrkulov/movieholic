@@ -6,18 +6,58 @@ import castDummy from '../../../assets/noPhotoActor.png'
 const CastSlider = ({ data }: { data: CastEntryType | undefined }) => {
     let settings = {
         arrows: true,
-        infinite: false,
+        infinite: true,
         speed: 600,
-        slidesToShow: 5,
+        slidesToShow: 8,
         slidesToScroll: 4,
-        rows: 1
+        responsive: [
+            {
+                breakpoint: 1920,
+                settings: {
+                    slidesToShow: 7
+                }
+            },
+            {
+                breakpoint: 1600,
+                settings: {
+                    slidesToShow: 6
+                }
+            },
+            {
+                breakpoint: 1440,
+                settings: {
+                    slidesToShow: 4
+                }
+            },
+            {
+                breakpoint: 1220,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 425,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
     }
 
     return (
         <Slider {...settings} className={styles.CastSlider}>
             {data?.cast?.edges?.map((e) => (
                 <div key={data.id}>
-                    <div className="flex">
+                    <div className={styles.Slide}>
                         <div
                             className={styles.Actor}
                             style={{

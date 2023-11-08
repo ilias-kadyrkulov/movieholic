@@ -14,12 +14,11 @@ const CustomStyles = styled.div``
 
 const SmallSlider = (props: PropsType) => {
     let settings = {
-        infinite: false,
+        infinite: true,
         speed: 600,
         slidesToShow: 4,
         slidesToScroll: 4,
         rows: 1,
-        centerMode: true,
         responsive: [
             {
                 breakpoint: 1500,

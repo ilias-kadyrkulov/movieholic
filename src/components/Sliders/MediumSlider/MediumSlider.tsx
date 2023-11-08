@@ -65,12 +65,11 @@ const CustomStyles = styled.div`
 
 const MediumSlider = (props: PropsType) => {
     let settings = {
-        infinite: false,
+        infinite: true,
         speed: 600,
         slidesToShow: 5,
-        slidesToScroll: 2,
+        slidesToScroll: 5,
         rows: 1,
-        centerMode: true,
         responsive: [
             {
                 breakpoint: 1440,

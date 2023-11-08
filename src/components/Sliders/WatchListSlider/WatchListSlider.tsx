@@ -16,12 +16,11 @@ const WatchListSlider = () => {
     })
 
     let settings = {
-        infinite: false,
+        infinite: true,
         speed: 600,
         slidesToShow: 4,
         slidesToScroll: 2,
         rows: 1,
-        centerMode: true,
         responsive: [
             {
                 breakpoint: 1470,
