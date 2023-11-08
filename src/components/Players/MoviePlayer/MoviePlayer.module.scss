@@ -1,5 +1,94 @@
-.MoviePlayer {
-    @apply w-2/4 mx-10;
+@media (min-width: 768px) {
+    .MobileTablet {
+        display: none;
+    }
+    .LaptopDesktop {
+        .MoviePlayer {
+            @apply w-3/4 mx-5;
 
-    height: 540px;
+            height: 500px;
+        }
+
+        .Servers {
+            @apply flex w-1/4 text-slate-200 pl-5;
+        }
+
+        @media (max-width: 1250px) {
+            .MoviePlayer {
+                height: 400px;
+            }
+            .Servers {
+                @apply flex-col;
+
+                div {
+                    @apply w-full m-0;
+                }
+            }
+        }
+        @media (max-width: 768px) {
+            .Servers {
+                @apply pl-3;
+
+                div {
+                    @apply text-sm;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 768px) {
+    .LaptopDesktop {
+        display: none;
+    }
+    .MobileTablet {
+        @apply mx-7;
+        .MoviePlayer {
+            @apply w-full;
+
+            height: 400px;
+        }
+        .Servers {
+            @apply flex w-2/4 text-slate-200 ml-5;
+        }
+    }
+}
+@media (max-width: 600px) {
+    .MobileTablet {
+        .MoviePlayer {
+            height: 300px;
+        }
+    }
+}
+@media (max-width: 568px) {
+    .MobileTablet {
+        .Servers {
+            @apply flex-col;
+            div {
+                @apply w-full;
+            }
+        }
+    }
+}
+@media (max-width: 425px) {
+    .MobileTablet {
+        .MoviePlayer {
+            height: 250px;
+        }
+    }
+}
+@media (max-width: 325px) {
+    .MobileTablet {
+        .MoviePlayer {
+            height: 200px;
+        }
+        .Servers {
+            div {
+                @apply text-sm;
+
+                button {
+                    @apply px-0.5 py-1 w-full;
+                }
+            }
+        }
+    }
 }

@@ -1,5 +1,5 @@
 import Slider from 'react-slick'
-import styles from '../EpisodeSlider.module.scss'
+import styles from './VerticalEpisodeSlider.module.scss'
 import { useActions } from '../../../hooks/useActions'
 import { useAppSelector } from '../../../hooks/hooks'
 import { Link, useParams } from 'react-router-dom'
@@ -17,7 +17,15 @@ const VerticalEpisodeSlider = () => {
         slidesToShow: 5,
         slidesToScroll: 2,
         vertical: true,
-        verticalSwiping: true
+        verticalSwiping: true,
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2,
+                }
+            }
+        ]
     }
 
     return (
@@ -25,7 +33,7 @@ const VerticalEpisodeSlider = () => {
             {fileList?.map((f, index) => (
                 <Link to={`/title/${id}/ep-${index + 1}`} replace key={index}>
                     <div    
-                        className="relative h-28 mx-10 mb-3 rounded-full"
+                        className={styles.Episode}
                         style={{
                             backgroundImage: `url(${f.thumbnail})`,
                             backgroundSize: 'cover',

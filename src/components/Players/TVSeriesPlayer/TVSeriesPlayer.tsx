@@ -25,7 +25,7 @@ const TVSeriesPlayer = () => {
     const { titleType, episodes } = useAppSelector((state) => state.show)
     console.log(fileList)
     console.log(titleType)
-    
+
     console.log(id)
 
     const { show } = useGetShowInfoByIdQuery(id, {
@@ -110,33 +110,9 @@ const TVSeriesPlayer = () => {
 
     return (
         <>
-            <div>
+            <div className={styles.MobileTablet}>
                 <div className="flex pt-32 h-full">
-                    <div className="flex w-1/4 text-slate-200 px-5">
-                        <div className="w-2/4">
-                            You're watching Episode{' '}
-                            <span className="text-green-700">
-                                {episodeRegex}
-                            </span>
-                            .
-                            <br />
-                            If current server doesn't work, please try other
-                            servers beside.
-                        </div>
-                        <div className="w-2/4 ml-2">
-                            <ServerButton
-                                text="Vidplay"
-                                onServerClick={() => setServer('Vidplay')}
-                                serverChosen={server}
-                            />
-                            <ServerButton
-                                text="Filemoon"
-                                onServerClick={() => setServer('Filemoon')}
-                                serverChosen={server}
-                            />
-                        </div>
-                    </div>
-                    <div className={styles.VideoPlayer}>
+                    <div className={styles.TVSeriesPlayer}>
                         {server === 'Filemoon' && fileChosen.file_code && (
                             <iframe
                                 src={`https://filemoon.sx/e/${fileChosen.file_code}}`}
@@ -153,7 +129,101 @@ const TVSeriesPlayer = () => {
                             />
                         )}
                     </div>
-                    {server === 'Filemoon' &&  (
+                </div>
+                <div className="flex mt-5">
+                    {server === 'Filemoon' && (
+                        <div className="w-2/4 flex flex-wrap">
+                            <VerticalEpisodeSlider />
+                        </div>
+                    )}
+                    {server === 'Vidplay' && (
+                        <div className="w-2/4">
+                            {Array.from(
+                                { length: episodes - 1 },
+                                (_, index) => (
+                                    <div
+                                        key={index}
+                                        className={styles.Episode}
+                                        onClick={() =>
+                                            handleEpisodeClick(index)
+                                        }
+                                    >
+                                        {index + 1}
+                                    </div>
+                                )
+                            )}
+                        </div>
+                    )}
+                    <div className={styles.Servers}>
+                        <div className="w-2/4">
+                            You're watching Episode{' '}
+                            <span className="text-green-700">
+                                {episodeRegex}
+                            </span>
+                            .
+                            <br />
+                            If current server doesn't work, please try other
+                            servers beside.
+                        </div>
+                        <div className="pt-2">
+                            <ServerButton
+                                text="Vidplay"
+                                onServerClick={() => setServer('Vidplay')}
+                                serverChosen={server}
+                            />
+                            <ServerButton
+                                text="Filemoon"
+                                onServerClick={() => setServer('Filemoon')}
+                                serverChosen={server}
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className={styles.LaptopDesktop}>
+                <div className="flex pt-32 h-full">
+                    <div className={styles.Servers}>
+                        <div className="w-2/4">
+                            You're watching Episode{' '}
+                            <span className="text-green-700">
+                                {episodeRegex}
+                            </span>
+                            .
+                            <br />
+                            If current server doesn't work, please try other
+                            servers beside.
+                        </div>
+                        <div className="w-2/4 pt-2">
+                            <ServerButton
+                                text="Vidplay"
+                                onServerClick={() => setServer('Vidplay')}
+                                serverChosen={server}
+                            />
+                            <ServerButton
+                                text="Filemoon"
+                                onServerClick={() => setServer('Filemoon')}
+                                serverChosen={server}
+                            />
+                        </div>
+                    </div>
+                    <div className={styles.TVSeriesPlayer}>
+                        {server === 'Filemoon' && fileChosen.file_code && (
+                            <iframe
+                                src={`https://filemoon.sx/e/${fileChosen.file_code}}`}
+                                className="w-full h-full"
+                                allowFullScreen
+                            />
+                        )}
+                        {server === 'Vidplay' && (
+                            <iframe
+                                src={`https://vidsrc.to/embed/tv/${id}`}
+                                className="w-full h-full"
+                                allowFullScreen
+                                ref={iFrameRef}
+                            />
+                        )}
+                    </div>
+                    {server === 'Filemoon' && (
                         <div className="w-1/4">
                             <VerticalEpisodeSlider />
                         </div>

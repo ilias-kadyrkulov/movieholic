@@ -1,0 +1,14 @@
+.Episode {
+    @apply relative h-28 mx-10 mb-3 rounded-full;
+}
+
+@media (max-width: 768px) {
+    .Episode {
+        @apply m-0;
+    }
+}
+@media (max-width: 375px) {
+    .Episode {
+        @apply w-32;
+    }
+}
