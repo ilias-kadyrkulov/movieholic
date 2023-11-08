@@ -1,7 +1,7 @@
 import Slider from 'react-slick'
 import styles from './MediumSlider.module.scss'
 import styled from 'styled-components'
-import { EntryType } from '../../api/show/titles.api'
+import { EntryType } from '../../../api/show/titles.api'
 import { AiFillStar } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 
@@ -11,17 +11,27 @@ type PropsType = {
 
 const CustomStyles = styled.div`
     .slick-slide {
-        height: 450px;
+        height: 600px;
     }
 
-    @media (max-width: 1400px) {
+    @media (max-width: 1920px) {
+        .slick-slide {
+            height: 500px;
+        }
+    }
+    @media (max-width: 1600px) {
+        .slick-slide {
+            height: 400px;
+        }
+    }
+    @media (max-width: 1440px) {
         .slick-slide {
             height: 350px;
         }
     }
-    @media (max-width: 1200px) {
+    @media (max-width: 1024px) {
         .slick-slide {
-            height: 300px;
+            height: 450px;
         }
     }
     @media (max-width: 768px) {
@@ -29,9 +39,26 @@ const CustomStyles = styled.div`
             height: 400px;
         }
     }
+    @media (max-width: 678px) {
+        .slick-slide {
+            height: 350px;
+            padding-right: 0.75rem;
+        }
+    }
     @media (max-width: 600px) {
         .slick-slide {
-            height: 500px;
+            height: 550px;
+            padding-right: 0;
+        }
+    }
+    @media (max-width: 450px) {
+        .slick-slide {
+            height: 450px;
+        }
+    }
+    @media (max-width: 375px) {
+        .slick-slide {
+            height: 300px;
         }
     }
 `
@@ -43,21 +70,24 @@ const MediumSlider = (props: PropsType) => {
         slidesToShow: 5,
         slidesToScroll: 2,
         rows: 1,
+        centerMode: true,
         responsive: [
             {
-                breakpoint: 1800,
+                breakpoint: 1440,
                 settings: {
-                    slidesToShow: 4
+                    slidesToShow: 4,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 1150,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 2
                 }
             },
             {
                 breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3
-                }
-            },
-            {
-                breakpoint: 768,
                 settings: {
                     slidesToShow: 2
                 }
@@ -66,9 +96,9 @@ const MediumSlider = (props: PropsType) => {
                 breakpoint: 600,
                 settings: {
                     slidesToShow: 1,
-                    slidesToScroll: 1,
+                    slidesToScroll: 1
                 }
-            },
+            }
         ]
     }
 
@@ -76,7 +106,7 @@ const MediumSlider = (props: PropsType) => {
         <CustomStyles>
             <Slider {...settings} className={styles.MediumSlider}>
                 {props?.topBoxOffice?.map((m) => (
-                    <Link to={`title/${m.id}`} key={m.id} className='h-full'>
+                    <Link to={`title/${m.id}`} key={m.id} className="h-full">
                         {m.primaryImage && m.primaryImage.url && (
                             <div className={styles.MovieCard}>
                                 <img src={m.primaryImage.url} />

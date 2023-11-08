@@ -1,0 +1,14 @@
+.Home {
+    @apply mt-10 mx-12;
+}
+
+@media (max-width: 768px) {
+    .Home {
+        @apply mx-6;
+    }
+}
+@media (max-width: 475px) {
+    .Home {
+        @apply mx-3;
+    }
+}

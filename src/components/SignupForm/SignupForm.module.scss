@@ -14,27 +14,49 @@
         }
         .policy {
             @apply text-gray-500 flex-row items-center;
-    
+
             input {
                 @apply rounded-3xl appearance-none cursor-pointer h-7 w-7;
-    
+
                 &:checked {
                     background-color: green;
                 }
             }
-    
+
             span {
                 @apply text-white;
             }
-    
+
             label {
                 @apply text-gray-500;
             }
         }
-    
     }
 
     input {
-        @apply p-4 border-2 border-gray-500 rounded-xl;
+        @apply p-4 border-2 border-gray-500 rounded-xl text-slate-100;
+    }
+}
+
+.Logo {
+    @apply flex items-center justify-between;
+}
+
+@media (max-width: 768px) {
+    .Form {
+        width: 100vw;
+        height: 100vw;
+        background-color: #0d0c0f;
+
+        @apply rounded-none border-none translate-x-0 translate-y-0 static;
+
+        .details {
+            input {
+                @apply bg-black;
+            }
+        }
+    }
+    .Logo {
+        display: none;
     }
 }

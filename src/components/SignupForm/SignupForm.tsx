@@ -9,7 +9,7 @@ import { auth } from '../../firebase'
 
 type PropsType = {
     formClicked: boolean
-    closeForm: () => void
+    closeForm?: () => void
 }
 type FormType = {
     email: string
@@ -43,7 +43,7 @@ const SignupForm = (props: PropsType) => {
             
         })
         setSubmitting(false)
-        props.closeForm()
+        props.closeForm && props.closeForm()
     }
 
     return (
@@ -61,7 +61,7 @@ const SignupForm = (props: PropsType) => {
                         isFormActive ? styles.active : ''
                     }`}
                 >
-                    <div className="flex items-center justify-between">
+                    <div className={styles.Logo}>
                         <div>
                             <img className="w-44 h-11" src={logo} />
                             <p className="text-gray-400">
@@ -107,7 +107,7 @@ const SignupForm = (props: PropsType) => {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="text-gray-400 bg-white rounded-md w-full py-3 my-3 transition-colors hover:bg-slate-800 hover:text-white"
+                            className="text-gray-400 bg-white rounded-md w-full py-3 my-3 transition-colors hover:bg-black hover:text-white"
                         >
                             Create account
                         </button>

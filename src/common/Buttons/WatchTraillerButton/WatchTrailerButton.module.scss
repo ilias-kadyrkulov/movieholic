@@ -1,0 +1,9 @@
+.WatchTrailerButton {
+    @apply flex items-center justify-between mr-6 rounded-md bg-slate-800 text-white font-bold hover:opacity-90;
+}
+
+@media (max-width: 325px) {
+    .WatchTrailerButton {
+        @apply mt-2
+    }
+}

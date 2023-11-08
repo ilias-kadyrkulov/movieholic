@@ -1,4 +1,4 @@
-import WatchListSlider from '../../../components/WatchListSlider/WatchListSlider'
+import WatchListSlider from '../../../components/Sliders/WatchListSlider/WatchListSlider'
 import {
     collection,
     getDocs,

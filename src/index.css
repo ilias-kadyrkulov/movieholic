@@ -41,7 +41,7 @@ body {
 
 .slick-dots {
     @apply bottom-28 right-20 w-28 text-center;
-    
+
     li {
         &.slick-active {
             button {
@@ -61,10 +61,9 @@ body {
 }
 
 .slick-list:nth-child(2) {
-        .slick-track {
-            .slick-slide {
-                @apply pr-5;
-            }
+    .slick-track {
+        .slick-slide {
+            @apply pr-5;
         }
-    
+    }
 }

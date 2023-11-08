@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 type ShowType = {
-    title: string
-    titleType: 'TV Series' | 'Movie' | string | null
+    title: string | undefined
+    titleType: 'TV Series' | 'Movie' | string | null | undefined
     episodes: number
 }
 

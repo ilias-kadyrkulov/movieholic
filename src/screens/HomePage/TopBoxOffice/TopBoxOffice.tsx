@@ -1,5 +1,6 @@
 import { useGetTopBoxOfficeQuery } from "../../../api/show/titles.api"
-import MediumSlider from "../../../components/MediumSlider/MediumSlider"
+import MediumSlider from "../../../components/Sliders/MediumSlider/MediumSlider"
+import styles from './TopBoxOffice.module.scss'
 
 const TopBoxOffice = () => {
     const {results} = useGetTopBoxOfficeQuery({
@@ -13,7 +14,7 @@ const TopBoxOffice = () => {
     
 
     return (
-        <div className="font-bold text-3xl text-white mb-8">
+        <div className={styles.TopBoxOffice}>
             <div className="mb-5">Top 200 all-time box office movies</div>
             <MediumSlider topBoxOffice={results} />
         </div>

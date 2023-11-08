@@ -5,6 +5,7 @@ import { useActions } from '../../hooks/useActions'
 import { Link } from 'react-router-dom'
 
 type PropsType = {
+    titleText: string | undefined
     fileList: FileType[] | undefined
 }
 
@@ -23,7 +24,7 @@ const EpisodeSlider = (props: PropsType) => {
     return (
         <Slider {...settings} className={styles.EpisodeSlider}>
             {props?.fileList?.map((f, index) => (
-                <Link to={`ep-${index + 1}`} key={index}>
+                <Link to={`tvSeries/${props.titleText}/ep-${index + 1}`} key={index}>
                     <div
                         className="relative h-36 mr-4"
                         style={{

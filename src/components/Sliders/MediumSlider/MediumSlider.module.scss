@@ -51,3 +51,28 @@
         }
     }
 }
+
+@media (max-width: 850px) {
+    .MovieDetails {
+        h2 {
+            @apply text-base
+        }
+    }
+    .Rating {
+        div {
+            @apply text-sm
+        }
+    }
+}
+@media (max-width: 425px) {
+    .MovieDetails {
+        h2 {
+            @apply text-sm
+        }
+    }
+    .Rating {
+        div {
+            @apply text-sm
+        }
+    }
+}

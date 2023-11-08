@@ -7,7 +7,7 @@ import logo from '../../assets/logo-low-resolution.png'
 
 type PropsType = {
     formClicked: boolean
-    closeForm: () => void
+    closeForm?: () => void
 }
 type FormType = {
     email: string
@@ -26,9 +26,9 @@ const LoginForm = (props: PropsType) => {
         }
     }, [props.formClicked])
 
-    useEffect(() => {
-      props.closeForm()
-    }, [])
+    // useEffect(() => {
+    //   props.closeForm()
+    // }, [])
 
     const id = useId()
 
@@ -42,7 +42,7 @@ const LoginForm = (props: PropsType) => {
             }
         )
         setSubmitting(false)
-        props.closeForm()
+        props.closeForm && props.closeForm()
     }
 
     return (
@@ -60,7 +60,7 @@ const LoginForm = (props: PropsType) => {
                         isFormActive ? styles.active : ''
                     }`}
                 >
-                    <div className="flex items-center justify-between">
+                    <div className={styles.Logo}>
                         <div>
                             <img className="w-44 h-11" src={logo} />
                             <p className="text-gray-400">
@@ -106,7 +106,7 @@ const LoginForm = (props: PropsType) => {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="text-gray-400 bg-white rounded-md w-full py-3 my-3 transition-colors hover:bg-slate-800 hover:text-white"
+                            className="text-gray-400 bg-white rounded-md w-full py-3 my-3 transition-colors hover:bg-black hover:text-white"
                         >
                             Login
                         </button>

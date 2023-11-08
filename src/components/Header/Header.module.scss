@@ -50,10 +50,13 @@
     @apply absolute top-10 w-36 h-16 py-2 bg-slate-800;
 }
 
-@media (max-width: 1024px) {
+
+@media (max-width: 1200px) {
     .Header {
         @apply px-12;
     }
+}
+@media (max-width: 1024px) {
     .Right {
         div {
             button {
@@ -83,7 +86,7 @@
     }
     .Right {
         svg {
-            @apply mr-10;
+            @apply mr-3;
         }
     }
     .MobileTablet {
@@ -111,5 +114,11 @@
     }
     a {
         @apply text-xs;
+    }
+}
+
+@media(max-width: 500px) {
+    .Header {
+        @apply pl-4 pr-7;
     }
 }

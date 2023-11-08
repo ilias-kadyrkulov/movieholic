@@ -1,7 +1,7 @@
 import Slider from 'react-slick'
 import styles from './CastSlider.module.scss'
-import { CastEntryType } from '../../api/show/titles.api'
-import castDummy from '../../assets/noPhotoActor.png'
+import { CastEntryType } from '../../../api/show/titles.api'
+import castDummy from '../../../assets/noPhotoActor.png'
 
 const CastSlider = ({ data }: { data: CastEntryType | undefined }) => {
     let settings = {

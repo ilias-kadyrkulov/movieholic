@@ -12,8 +12,9 @@ import NotFoundPage from './screens/NotFoundPage/NotFoundPage'
 import ShowPage from './components/ShowPage/ShowPage'
 import { User, onAuthStateChanged } from 'firebase/auth'
 import { auth } from './firebase'
-import VideoPlayer from './components/VideoPlayer/VideoPlayer'
 import MobileMenuPage from './screens/MobileMenuPage/MobileMenuPage'
+import TVSeriesPlayer from './components/Players/TVSeriesPlayer/TVSeriesPlayer'
+import MoviePlayer from './components/Players/MoviePlayer/MoviePlayer'
 
 export const UserContext = createContext<User | null>(null)
 
@@ -52,8 +53,12 @@ function App() {
                         <Route path="forum" element={<ForumPage />} />
                         <Route path="title/:id" element={<ShowPage />} />
                         <Route
-                            path="title/:id/:ep"
-                            element={<VideoPlayer />}
+                            path="title/:id/tvSeries/:titleText/:ep"
+                            element={<TVSeriesPlayer />}
+                        />
+                        <Route
+                            path="title/:id/movies/:titleText"
+                            element={<MoviePlayer />}
                         />
                     </Route>
                     <Route path='mobile-menu' element={<MobileMenuPage />} />

@@ -24,14 +24,14 @@
 }
 
 .Details {
-    @apply absolute bottom-24 left-20 max-w-lg z-30;
+    @apply absolute bottom-24 left-20 max-w-2xl z-30;
 }
 
 .Buttons {
-    @apply flex my-4;
+    @apply flex my-4 flex-wrap;
 
     button {
-        @apply py-4 px-8 cursor-pointer;
+        @apply py-3 px-6 cursor-pointer;
     }
 
     span {
@@ -76,7 +76,7 @@
 
 @media (max-width: 1024px) {
     .Details {
-        @apply max-w-md left-10 bottom-12;
+        @apply max-w-xl left-10 bottom-12;
 
         h3 {
             @apply text-2xl;
@@ -97,14 +97,26 @@
 
 @media (max-width: 768px) {
     .Details {
+        @apply left-6;
+
         h3 {
-            @apply text-2xl;
+            @apply text-xl;
         }
         p {
-            @apply text-sm;
+            @apply text-xs;
         }
         span {
-            @apply text-sm;
+            @apply text-xs;
+        }
+    }
+}
+
+@media (max-width: 678px) {
+    .Buttons {
+        button {
+            &:nth-child(3) {
+                @apply mt-2;
+            }
         }
     }
 }
@@ -112,6 +124,10 @@
 @media (max-width: 500px) {
     .Details {
         @apply left-5 mr-6;
+
+        > div {
+            @apply leading-4 mb-1
+        }
     }
     .Buttons {
         span {
@@ -123,12 +139,15 @@
 @media (max-width: 425px) {
     .Buttons {
         button {
-            @apply px-2
+            @apply px-2;
         }
     }
 }
 
 @media (max-width: 375px) {
+    .Details {
+        @apply left-3;
+    }
     .Buttons {
         span {
             font-size: 0.6rem;

@@ -1,0 +1,9 @@
+.TopBoxOffice {
+    @apply font-bold text-3xl text-white mb-8;
+}
+
+@media (max-width: 768px) {
+    .TopBoxOffice {
+        @apply text-2xl;
+    }
+}

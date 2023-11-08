@@ -25,7 +25,7 @@ type GetShowInfoByIdResponseType = {
             episodes: { total: number }
         }
         titleType: {
-            text: string
+            text: 'Movie' | 'TV Series'
         }
         primaryImage: {
             url: string

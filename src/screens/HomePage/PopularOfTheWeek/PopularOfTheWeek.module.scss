@@ -1,3 +1,11 @@
-.popularOfTheWeek {
-    @apply mb-10
+.PopularOfTheWeek {
+    @apply mb-10;
+}
+
+@media (max-width: 768px) {
+    .PopularOfTheWeek {
+        div {
+            @apply text-xl;
+        }
+    }
 }

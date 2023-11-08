@@ -1,5 +1,5 @@
 import { useGetTopRatedSeriesQuery } from '../../api/show/titles.api'
-import { BigSlider } from '../BigSlider/BigSlider'
+import { BigSlider } from '../Sliders/BigSlider/BigSlider'
 
 const Hero = () => {
     const { results } = useGetTopRatedSeriesQuery(

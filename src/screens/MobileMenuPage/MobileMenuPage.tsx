@@ -4,12 +4,28 @@ import BurgerMenu from '../../components/BurgerMenu/BurgerMenu'
 import styles from './MobileMenuPage.module.scss'
 import CustomLink from '../../common/CustomLink/CustomLink'
 import PagesList from '../../components/PagesList/PagesList'
+import { useNavigate } from 'react-router-dom'
+import SignupForm from '../../components/SignupForm/SignupForm'
+import { useContext, useState } from 'react'
+import LoginForm from '../../components/LoginForm/LoginForm'
+import { UserContext } from '../../App'
 
 const MobileMenuPage = () => {
+    const navigate = useNavigate()
+    const [isSignupFormClicked, setIsSignupFormClicked] = useState(false)
+    const [isLoginFormClicked, setIsLoginFormClicked] = useState(false)
+
+    const user = useContext(UserContext)
+
     return (
         <div>
             <div className={styles.Header}>
-                <div>
+                <div
+                    className="cursor-pointer"
+                    onClick={() => {
+                        navigate(-1)
+                    }}
+                >
                     <IoIosArrowBack />
                 </div>
                 <div>
@@ -22,22 +38,54 @@ const MobileMenuPage = () => {
                 </div>
             </div>
             <div className={styles.Body}>
-                <div className={styles.Buttons}>
-                    <button
-                        className="border-gray-300 transition-colors hover:bg-purple-900 mr-6"
-                        onClick={() => {}}
-                    >
-                        Sign up
-                    </button>
-                    <button
-                        className="border-green-700 bg-green-700 hover:opacity-90 ml-6"
-                        onClick={() => {}}
-                    >
-                        Login
-                    </button>
+                <div
+                    className={
+                        isSignupFormClicked || isLoginFormClicked
+                            ? styles.hidden
+                            : styles.Buttons
+                    }
+                >
+                    {user ? (
+                        <button
+                            className="border-green-700 bg-green-700 hover:opacity-90 ml-6"
+                            onClick={() => {}}
+                        >
+                            Change profile
+                        </button>
+                    ) : (
+                        <>
+                            <button
+                                className="border-gray-300 transition-colors hover:bg-purple-900 mr-6"
+                                onClick={() => {
+                                    setIsSignupFormClicked(!isSignupFormClicked)
+                                }}
+                            >
+                                Sign up
+                            </button>
+                            <button
+                                className="border-green-700 bg-green-700 hover:opacity-90 ml-6"
+                                onClick={() => {
+                                    setIsLoginFormClicked(!isLoginFormClicked)
+                                }}
+                            >
+                                Login
+                            </button>
+                        </>
+                    )}
                 </div>
-                <hr className='mt-5' />
-                <PagesList />
+                <SignupForm formClicked={isSignupFormClicked} />
+                <LoginForm formClicked={isLoginFormClicked} />
+
+                <div
+                    className={
+                        isSignupFormClicked || isLoginFormClicked
+                            ? styles.hidden
+                            : ''
+                    }
+                >
+                    <hr className="mt-5" />
+                    <PagesList />
+                </div>
             </div>
         </div>
     )

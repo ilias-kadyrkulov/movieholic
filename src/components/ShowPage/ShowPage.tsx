@@ -10,12 +10,13 @@ import PlayContinueButton from '../../common/Buttons/PlayContinueButton/PlayCont
 import DownloadButton from '../../common/Buttons/DownloadButton/DownloadButton'
 import ShareButton from '../../common/Buttons/ShareButton/ShareButton'
 import LikeButton from '../../common/Buttons/LikeButton/LikeButton'
-import CastSlider from '../CastSlider/CastSlider'
+import CastSlider from '../Sliders/CastSlider/CastSlider'
 import { useAppSelector } from '../../hooks/hooks'
 import { UserContext } from '../../App'
 import EpisodeSlider from '../EpisodeSlider/EpisodeSlider'
 import { useGetFileListQuery } from '../../api/filemoon/file.api'
 import { useActions } from '../../hooks/useActions'
+import WatchTrailerButton from '../../common/Buttons/WatchTraillerButton/WatchTrailerButton'
 
 const ShowPage = () => {
     const { id } = useParams<{ id?: string }>()
@@ -105,7 +106,8 @@ const ShowPage = () => {
 
                     <div className={styles.Buttons}>
                         <div className="flex">
-                            <PlayContinueButton text="Watch Trailer" />
+                            <PlayContinueButton text="Play now" id={show?.id} titleType={show?.titleType.text} titleText={show?.titleText.text} />
+                            <WatchTrailerButton text="Watch Trailer" id={show?.id} />
                             {user && show && !watchList.includes(show.id) && (
                                 <TransparrentButton
                                     text="Add to Watchlist"
@@ -143,7 +145,7 @@ const ShowPage = () => {
                                 <h3 className="text-2xl my-5">1-9 Episode</h3>
                                 <p className="text-sm">Season 1</p>
                             </div>
-                            <EpisodeSlider fileList={fileList} />
+                            <EpisodeSlider titleText={show.titleText.text} fileList={fileList} />
                         </div>
                     ) : (
                         ''

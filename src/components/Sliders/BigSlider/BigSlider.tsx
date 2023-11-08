@@ -4,11 +4,12 @@ import 'slick-carousel/slick/slick-theme.css'
 import Slider from 'react-slick'
 import styles from './BigSlider.module.scss'
 import styled from 'styled-components'
-import { TopRatedSeriesEntryType } from '../../api/show/titles.api'
-import GreenButton from '../../common/Buttons/GreenButton/GreenButton'
-import TransparrentButton from '../../common/Buttons/TransparrentButton/TransparrentButton'
-import { useAppSelector } from '../../hooks/hooks'
-import { UserContext } from '../../App'
+import { TopRatedSeriesEntryType } from '../../../api/show/titles.api'
+import GreenButton from '../../../common/Buttons/GreenButton/GreenButton'
+import TransparrentButton from '../../../common/Buttons/TransparrentButton/TransparrentButton'
+import { useAppSelector } from '../../../hooks/hooks'
+import { UserContext } from '../../../App'
+import WatchTrailerButton from '../../../common/Buttons/WatchTraillerButton/WatchTrailerButton'
 
 type PropsType = {
     topRatedSeries: TopRatedSeriesEntryType[] | undefined
@@ -87,6 +88,10 @@ export const BigSlider = (props: PropsType) => {
                                     </p>
                                     <div className={styles.Buttons}>
                                         <GreenButton text="Watch" id={s.id} />
+                                        <WatchTrailerButton
+                                            id={s.id}
+                                            text="Watch Trailer"
+                                        />
                                         {user && !watchList.includes(s.id) && (
                                             <TransparrentButton
                                                 text="Add to Watchlist"

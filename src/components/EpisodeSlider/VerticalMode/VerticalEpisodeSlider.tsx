@@ -24,7 +24,7 @@ const VerticalEpisodeSlider = () => {
         <Slider {...settings} className={styles.EpisodeSlider}>
             {fileList?.map((f, index) => (
                 <Link to={`/title/${id}/ep-${index + 1}`} replace key={index}>
-                    <div
+                    <div    
                         className="relative h-28 mx-10 mb-3 rounded-full"
                         style={{
                             backgroundImage: `url(${f.thumbnail})`,

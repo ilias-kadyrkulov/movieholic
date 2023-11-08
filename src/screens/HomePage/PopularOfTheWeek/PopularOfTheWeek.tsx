@@ -1,5 +1,5 @@
 import { useGetPopularOfTheWeekQuery } from '../../../api/show/titles.api'
-import SmallSlider from '../../../components/SmallSlider/SmallSlider'
+import SmallSlider from '../../../components/Sliders/SmallSlider/SmallSlider'
 import styles from './PopularOfTheWeek.module.scss'
 
 const PopularOfTheWeek = () => {
@@ -16,7 +16,7 @@ const PopularOfTheWeek = () => {
     )
 
     return (
-        <div className={styles.popularOfTheWeek}>
+        <div className={styles.PopularOfTheWeek}>
             <div className="font-bold text-2xl text-white mb-8">
                 Popular of the week
             </div>

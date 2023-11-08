@@ -1,7 +1,10 @@
 .SmallSlider {
-
     .MovieCard {
         @apply flex rounded-2xl bg-cover bg-no-repeat bg-center;
+
+        .Number {
+            @apply flex items-center font-bold text-white text-5xl;
+        }
 
         img {
             @apply block mx-3 rounded-2xl;
@@ -19,8 +22,12 @@
         .MovieDetails {
             @apply flex flex-col items-baseline max-w-7xl;
 
+            .Rating {
+                @apply flex items-center my-2;
+            }
+
             .Genres {
-                @apply flex;
+                @apply flex justify-center;
 
                 svg {
                     @apply max-w-full h-5;
@@ -41,6 +48,47 @@
                 &::before {
                     width: 1px;
                 }
+            }
+        }
+    }
+}
+
+@media(max-width: 1200px) {
+    .SmallSlider {
+        .MovieCard {
+            .Number {
+                @apply text-3xl;
+            }
+        }
+    }
+}
+
+@media (max-width: 1100px) {
+    .MovieCard {
+        @apply flex-col items-center;
+
+        > div {
+            @apply mb-1;
+        }
+
+        .MovieDetails {
+            h2 {
+                @apply text-center mx-auto;
+            }
+
+            .Rating {
+                div {
+                    @apply text-xs;
+                }
+                margin: 0 auto;
+            }
+
+            .Genres {
+                div {
+                    line-height: 0.5rem;
+                }
+
+                margin: 0 auto;
             }
         }
     }
