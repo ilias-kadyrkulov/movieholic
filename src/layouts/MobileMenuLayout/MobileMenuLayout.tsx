@@ -19,7 +19,7 @@ const MobileMenuLayout = () => {
                     <IoIosArrowBack />
                 </div>
                 <div>
-                    <CustomLink to="/">
+                    <CustomLink to="/movieholic/">
                         <img src={smallLogo} className="h-7 w-7" />
                     </CustomLink>
                 </div>
