@@ -6,16 +6,20 @@ import CustomLink from '../../common/CustomLink/CustomLink'
 import { useActions } from '../../hooks/useActions'
 import { signOut } from 'firebase/auth'
 import { auth } from '../../firebase'
+import { useNavigate } from 'react-router-dom'
 
 const MobileMenuPage = () => {
     const user = useContext(UserContext)
 
     const { watchListCleared, showListCleared } = useActions()
 
+    const navigate = useNavigate();
+
     const handleSignOut = () => {
         signOut(auth)
         watchListCleared()
         showListCleared()
+        navigate('/movieholic/')
     }
 
     return (
