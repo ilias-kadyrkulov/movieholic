@@ -13,10 +13,28 @@ const CustomStyles = styled.div`
     .slick-slide {
         height: 750px;
     }
+    .slick-prev {
+        left: -45px;
+        width: 40px;
+        height: 40px;
+    }
+    .slick-prev::before {
+        font-size: 40px;
+        color: rgb(42, 153, 83);
+    }
+    .slick-next {
+        right: -30px;
+        width: 40px;
+        height: 40px;
+    }
+    .slick-next::before {
+        font-size: 40px;
+        color: rgb(42, 153, 83);
+    }
 
     @media (max-width: 2250px) {
         .slick-slide {
-            height: 650px;
+            height: 600px;
         }
     }
     @media (max-width: 1920px) {

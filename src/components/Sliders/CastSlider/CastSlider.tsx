@@ -2,6 +2,30 @@ import Slider from 'react-slick'
 import styles from './CastSlider.module.scss'
 import { CastEntryType } from '../../../api/show/titles.api'
 import castDummy from '../../../assets/noPhotoActor.png'
+import styled from 'styled-components'
+
+const CustomStyles = styled.div`
+    .slick-prev {
+        left: -45px;
+        top: 45px;
+        width: 40px;
+        height: 40px;
+    }
+    .slick-prev::before {
+        font-size: 30px;
+        color: rgb(42, 153, 83);
+    }
+    .slick-next {
+        right: -45px;
+        top: 45px;
+        width: 40px;
+        height: 40px;
+    }
+    .slick-next::before {
+        font-size: 30px;
+        color: rgb(42, 153, 83);
+    }
+`
 
 const CastSlider = ({ data }: { data: CastEntryType | undefined }) => {
     let settings = {
@@ -54,32 +78,37 @@ const CastSlider = ({ data }: { data: CastEntryType | undefined }) => {
     }
 
     return (
-        <Slider {...settings} className={styles.CastSlider}>
-            {data?.cast?.edges?.map((e) => (
-                <div key={data.id}>
-                    <div className={styles.Slide}>
-                        <div
-                            className={styles.Actor}
-                            style={{
-                                backgroundImage: `url(${e.node.name.primaryImage?.url}), url(${castDummy})`,
-                                backgroundSize: 'cover',
-                                borderRadius: '50%'
-                            }}
-                        />
-                        <div className="flex flex-col ml-3 font-medium">
-                            <h3 className="text-slate-100 w-full">
-                                {e.node?.name?.nameText?.text}
-                            </h3>
-                            {e.node.characters?.map((c, index) => (
-                                <p key={index} className="text-slate-400 w-24">
-                                    {c.name}
-                                </p>
-                            ))}
+        <CustomStyles>
+            <Slider {...settings} className={styles.CastSlider}>
+                {data?.cast?.edges?.map((e) => (
+                    <div key={data.id}>
+                        <div className={styles.Slide}>
+                            <div
+                                className={styles.Actor}
+                                style={{
+                                    backgroundImage: `url(${e.node.name.primaryImage?.url}), url(${castDummy})`,
+                                    backgroundSize: 'cover',
+                                    borderRadius: '50%'
+                                }}
+                            />
+                            <div className="flex flex-col ml-3 font-medium">
+                                <h3 className="text-slate-100 w-full">
+                                    {e.node?.name?.nameText?.text}
+                                </h3>
+                                {e.node.characters?.map((c, index) => (
+                                    <p
+                                        key={index}
+                                        className="text-slate-400 w-24"
+                                    >
+                                        {c.name}
+                                    </p>
+                                ))}
+                            </div>
                         </div>
                     </div>
-                </div>
-            ))}
-        </Slider>
+                ))}
+            </Slider>
+        </CustomStyles>
     )
 }
 

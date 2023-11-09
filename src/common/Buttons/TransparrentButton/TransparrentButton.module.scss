@@ -1,5 +1,5 @@
 .TransparrentButton {
-    @apply flex items-center border-2 rounded-md my-2 border-slate-400 text-slate-200 font-bold transition-colors hover:bg-purple-900;
+    @apply flex items-center border-2 rounded-md mt-2 border-slate-400 text-slate-200 font-bold transition-colors hover:bg-purple-900;
 
     &:hover {
         polygon {

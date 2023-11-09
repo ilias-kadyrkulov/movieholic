@@ -14,7 +14,7 @@ const PlayContinueButton = ({ text, titleType, titleText }: PropsType) => {
     const { showBeenClicked } = useActions()
 
     const handleOnPlayButtonClick = () => {
-        // showBeenClicked({title: title, titleType: titleType})
+        showBeenClicked({title: titleText, titleType: titleType})
     }
 
     return (

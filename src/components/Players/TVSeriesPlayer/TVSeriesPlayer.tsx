@@ -8,7 +8,7 @@ import { useGetFileListQuery } from '../../../api/filemoon/file.api'
 import ServerButton from '../../../common/Buttons/ServerButton/ServerButton'
 import { useGetShowInfoByIdQuery } from '../../../api/show/titles.api'
 
-const TVSeriesPlayer = () => {
+const TVSeriesPlayer = () => { //FIXME - Fix filemoon server 
     const { ep, id, titleText } = useParams<{
         ep?: string
         id?: string
@@ -25,11 +25,12 @@ const TVSeriesPlayer = () => {
     const { titleType, episodes } = useAppSelector((state) => state.show)
     console.log(fileList)
     console.log(titleType)
+    console.log(title)
 
     console.log(id)
 
     const { show } = useGetShowInfoByIdQuery(id, {
-        //TODO - save onto server
+        //TODO - save onto the server
         selectFromResult: ({ data }) => ({
             show: data?.results
         })
@@ -42,23 +43,24 @@ const TVSeriesPlayer = () => {
         })
     }
 
-    const { fileListData } = useGetFileListQuery(title, {
-        //TODO - save onto server
-        selectFromResult: ({ data }) => ({
-            fileListData: data?.result.files
-        })
-    })
-    if (fileListData && fileListData.length > 0) {
-        const sortedFileListData = fileListData.slice().sort((a, b) =>
-            a.title.localeCompare(b.title, undefined, {
-                sensitivity: 'base'
-            })
-        )
+    // const { fileListData } = useGetFileListQuery(title, {
+    //     //TODO - save onto the server
+    //     selectFromResult: ({ data }) => ({
+    //         fileListData: data?.result.files
+    //     })
+    // })
 
-        if (!fileList?.length) {
-            fileListReceived(sortedFileListData)
-        }
-    }
+    // if (fileListData && fileListData.length > 0) {
+    //     const sortedFileListData = fileListData.slice().sort((a, b) =>
+    //         a.title.localeCompare(b.title, undefined, {
+    //             sensitivity: 'base'
+    //         })
+    //     )
+
+    //     if (!fileList?.length) {
+    //         fileListReceived(sortedFileListData)
+    //     }
+    // }
 
     const iFrameRef = useRef<HTMLIFrameElement>(null)
 
@@ -66,24 +68,29 @@ const TVSeriesPlayer = () => {
 
     useEffect(() => {
         console.log('url changed to: ', ep)
-        if (server === 'Filemoon') {
-            if (episodeRegex && fileList) {
-                const index = +episodeRegex[0] - 1
-                const fileToDispatch = fileList[index]
+        // if (server === 'Filemoon') {
+        //     if (episodeRegex && fileList) {
+        //         const index = +episodeRegex[0] - 1
+        //         const fileToDispatch = fileList[index]
 
-                fileToDispatch && fileBeenChosen(fileToDispatch)
+        //         fileToDispatch && fileBeenChosen(fileToDispatch)
 
-                if (fileListData && index > fileListData.length - 1) {
-                    navigate(`/title/${id}/tvSeries/${titleText}/ep-1`)
-                }
-            }
-        }
+        //         if (fileListData) {
+        //             if (index > fileListData.length - 1) {
+        //                 //FIXME - bug in Firefox browser
+        //                 navigate(
+        //                     `/movieholic/title/${id}/tvSeries/${titleText}/ep-1`
+        //                 )
+        //             }
+        //         }
+        //     }
+        // }
         if (episodeRegex && server === 'Vidplay' && episodes) {
             const episode = +episodeRegex[0]
             if (episode >= episodes) {
-                navigate(`/title/${id}/tvSeries/${titleText}/ep-1`)
+                navigate(`/movieholic/title/${id}/tvSeries/${titleText}/ep-1`)
             } else if (episode === 0) {
-                navigate(`/title/${id}/tvSeries/${titleText}/ep-1`)
+                navigate(`/movieholic/title/${id}/tvSeries/${titleText}/ep-1`)
             }
         }
     }, [fileList, episodeRegex])
@@ -104,7 +111,9 @@ const TVSeriesPlayer = () => {
                 index + 1
             }`
 
-            navigate(`/title/${id}/tvSeries/${titleText}/ep-${index + 1}`)
+            navigate(
+                `/movieholic/title/${id}/tvSeries/${titleText}/ep-${index + 1}`
+            )
         }
     }
 
@@ -138,20 +147,21 @@ const TVSeriesPlayer = () => {
                     )}
                     {server === 'Vidplay' && (
                         <div className="w-2/4">
-                            {Array.from(
-                                { length: episodes - 1 },
-                                (_, index) => (
-                                    <div
-                                        key={index}
-                                        className={styles.Episode}
-                                        onClick={() =>
-                                            handleEpisodeClick(index)
-                                        }
-                                    >
-                                        {index + 1}
-                                    </div>
-                                )
-                            )}
+                            {episodes &&
+                                Array.from(
+                                    { length: episodes - 1 },
+                                    (_, index) => (
+                                        <div
+                                            key={index}
+                                            className={styles.Episode}
+                                            onClick={() =>
+                                                handleEpisodeClick(index)
+                                            }
+                                        >
+                                            {index + 1}
+                                        </div>
+                                    )
+                                )}
                         </div>
                     )}
                     <div className={styles.Servers}>
@@ -207,13 +217,15 @@ const TVSeriesPlayer = () => {
                         </div>
                     </div>
                     <div className={styles.TVSeriesPlayer}>
-                        {server === 'Filemoon' && fileChosen.file_code && (
-                            <iframe
-                                src={`https://filemoon.sx/e/${fileChosen.file_code}}`}
-                                className="w-full h-full"
-                                allowFullScreen
-                            />
-                        )}
+                        {server === 'Filemoon' &&
+                            fileChosen.file_code &&
+                            fileList && (
+                                <iframe
+                                    src={`https://filemoon.sx/e/${fileChosen.file_code}}`}
+                                    className="w-full h-full"
+                                    allowFullScreen
+                                />
+                            )}
                         {server === 'Vidplay' && (
                             <iframe
                                 src={`https://vidsrc.to/embed/tv/${id}`}
@@ -230,20 +242,21 @@ const TVSeriesPlayer = () => {
                     )}
                     {server === 'Vidplay' && (
                         <div className="w-1/4">
-                            {Array.from(
-                                { length: episodes - 1 },
-                                (_, index) => (
-                                    <div
-                                        key={index}
-                                        className={styles.Episode}
-                                        onClick={() =>
-                                            handleEpisodeClick(index)
-                                        }
-                                    >
-                                        Episode {index + 1}
-                                    </div>
-                                )
-                            )}
+                            {episodes &&
+                                Array.from(
+                                    { length: episodes - 1 },
+                                    (_, index) => (
+                                        <div
+                                            key={index}
+                                            className={styles.Episode}
+                                            onClick={() =>
+                                                handleEpisodeClick(index)
+                                            }
+                                        >
+                                            Episode {index + 1}
+                                        </div>
+                                    )
+                                )}
                         </div>
                     )}
                 </div>

@@ -13,7 +13,7 @@ import { useActions } from '../../hooks/useActions'
 import CustomLink from '../../common/CustomLink/CustomLink'
 import BurgerMenu from '../BurgerMenu/BurgerMenu'
 import PagesList from '../PagesList/PagesList'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Header = () => {
     const [authUser, setAuthUser] = useState<User | null>(null)
@@ -22,6 +22,8 @@ const Header = () => {
     const [isProfileClicked, setIsProfileClicked] = useState(false)
 
     const { watchListCleared, showListCleared } = useActions()
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         const listen = onAuthStateChanged(auth, (user) => {
@@ -41,6 +43,7 @@ const Header = () => {
         signOut(auth)
         watchListCleared()
         showListCleared()
+        navigate('/movieholic/')
     }
 
     const handleSignUpFormOnClose = () => {
@@ -68,7 +71,7 @@ const Header = () => {
         <>
             <div className={styles.Header}>
                 <div className="left">
-                    <CustomLink to="/">
+                    <CustomLink to="/movieholic/">
                         {window.window.innerWidth <= 1024 ? (
                             <img
                                 className="w-10 h-12"
@@ -129,7 +132,7 @@ const Header = () => {
                             <div className={styles.MobileTablet}>
                                 <div className="flex relative items-center">
                                     <IoMdNotificationsOutline />
-                                    <Link to="/mobile-menu">
+                                    <Link to="/movieholic/mobile-menu">
                                         <img
                                             src={avatarDummy}
                                             className="w-10 h-10 rounded-3xl"

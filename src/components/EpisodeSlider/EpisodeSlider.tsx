@@ -10,9 +10,24 @@ type PropsType = {
     fileList: FileType[] | undefined
 }
 
-const CustomSlides = styled.div`
-    .slick-slide {
-        height: 100%;
+const CustomStyles = styled.div`
+    .slick-prev {
+        left: -45px;
+        width: 40px;
+        height: 40px;
+    }
+    .slick-prev::before {
+        font-size: 30px;
+        color: rgb(42, 153, 83);
+    }
+    .slick-next {
+        right: -45px;
+        width: 40px;
+        height: 40px;
+    }
+    .slick-next::before {
+        font-size: 30px;
+        color: rgb(42, 153, 83);
     }
 `
 
@@ -59,7 +74,7 @@ const EpisodeSlider = (props: PropsType) => {
     }
 
     return (
-        <CustomSlides>
+        <CustomStyles>
             <Slider {...settings} className={styles.EpisodeSlider}>
                 {props?.fileList?.map((f, index) => (
                     <Link
@@ -88,7 +103,7 @@ const EpisodeSlider = (props: PropsType) => {
                     </Link>
                 ))}
             </Slider>
-        </CustomSlides>
+        </CustomStyles>
     )
 }
 

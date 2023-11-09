@@ -18,13 +18,19 @@ type PropsType = {
 const CustomDots = styled.div`
     @media (max-width: 768px) {
         .slick-dots {
-            display: flex;
-            bottom: 0.4rem;
-            left: 20px;
+            bottom: 0.5rem;
+            right: 1rem;
         }
         li {
             margin-left: 0px;
             margin-right: 2px;
+        }
+    }
+    @media (max-width: 425px) {
+        li {
+            button::before {
+                font-size: 10px;
+            }
         }
     }
 `

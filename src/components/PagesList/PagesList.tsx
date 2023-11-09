@@ -5,19 +5,19 @@ const PagesList = () => {
     return (
         <div className={styles.PagesList}>
             <div>
-                <CustomLink to="/">Home</CustomLink>
+                <CustomLink to="/movieholic/">Home</CustomLink>
             </div>
             <div>
-                <CustomLink to="/discover">Discover</CustomLink>
+                <CustomLink to="/movieholic/discover">Discover</CustomLink>
             </div>
             <div>
-                <CustomLink to="/movie-release">Movie Release</CustomLink>
+                <CustomLink to="/movieholic/movie-release">Movie Release</CustomLink>
             </div>
             <div>
-                <CustomLink to="/forum">Forum</CustomLink>
+                <CustomLink to="/movieholic/forum">Forum</CustomLink>
             </div>
             <div>
-                <CustomLink to="/about">About</CustomLink>
+                <CustomLink to="/movieholic/about">About</CustomLink>
             </div>
         </div>
     )

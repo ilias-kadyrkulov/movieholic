@@ -47,7 +47,7 @@ const SignupForm = (props: PropsType) => {
         })
         setSubmitting(false)
         props.closeForm && props.closeForm()
-        navigate('/')
+        navigate('/movieholic/')
     }
 
     return (
@@ -130,7 +130,7 @@ const SignupForm = (props: PropsType) => {
                     </Form>
                     <Form
                         className={
-                            location.pathname != '/mobile-menu/sign-up'
+                            location.pathname != '/movieholic/mobile-menu/sign-up'
                                 ? styles.hidden
                                 : `${styles.MobileTablet}`
                         }

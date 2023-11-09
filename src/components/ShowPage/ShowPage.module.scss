@@ -9,7 +9,7 @@
 
 .Details {
     @apply relative;
-    top: -13rem;
+    top: -12rem;
     padding-top: -40px;
     padding-left: 3rem;
 
@@ -45,7 +45,7 @@
 }
 @media (max-width: 1190px) {
     .Details {
-        top: -16rem;
+        top: -15rem;
     }
 }
 @media (max-width: 1024px) {
@@ -65,7 +65,11 @@
         box-shadow: 0 -100px 100px 100px rgba(28, 28, 28, 0.8) inset;
     }
     .Details {
-        top: -14rem;
+        top: -13rem;
+
+        div {
+            @apply m-1;
+        }
     }
     .Buttons {
         span {
@@ -80,7 +84,7 @@
 
 @media (max-width: 605px) {
     .Details {
-        top: -17rem;
+        top: -16rem;
 
         h3 {
             @apply text-xl;
@@ -89,7 +93,7 @@
 }
 @media (max-width: 590px) {
     .Details {
-        top: -16rem;
+        top: -13rem;
     }
     .Buttons {
         span {
@@ -99,7 +103,7 @@
 }
 @media (max-width: 568px) {
     .Details {
-        top: -14rem;
+        top: -17rem;
     }
 }
 
@@ -112,7 +116,7 @@
 }
 @media (max-width: 528px) {
     .Details {
-        top: -15.5rem;
+        top: -17rem;
     }
 }
 @media (max-width: 390px) {
@@ -122,11 +126,8 @@
         box-shadow: 0 -50px 100px 60px rgba(28, 28, 28, 0.8) inset;
     }
     .Details {
-        top: -7.5rem;
+        top: -6.5rem;
     }
 }
 @media (max-width: 307px) {
-    .Details {
-        top: -9rem;
-    }
 }

@@ -4,7 +4,7 @@ import styles from './BurgerMenu.module.scss'
 const BurgerMenu = () => {
     return (
         <div className={styles.BurgerMenu}>
-            <CustomLink to="/mobile-menu">
+            <CustomLink to="/movieholic/mobile-menu">
                 <span className={styles.first}></span>
                 <span className={styles.second}></span>
                 <span className={styles.third}></span>

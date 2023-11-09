@@ -42,29 +42,29 @@ function App() {
         <UserContext.Provider value={authUser}>
             <Router>
                 <Routes>
-                    <Route path="/" element={<PrimaryLayout />}>
+                    <Route path="/movieholic/" element={<PrimaryLayout />}>
                         <Route index element={<HomePage />} />
-                        <Route path="discover" element={<DiscoverPage />} />
-                        <Route path="about" element={<AboutPage />} />
-                        <Route path="*" element={<NotFoundPage />} />
+                        <Route path="/movieholic/discover" element={<DiscoverPage />} />
+                        <Route path="/movieholic/about" element={<AboutPage />} />
+                        <Route path="/movieholic/*" element={<NotFoundPage />} />
                     </Route>
                     <Route element={<SecondaryLayout />}>
                         <Route
-                            path="movie-release"
+                            path="/movieholic/movie-release"
                             element={<MovieReleasePage />}
                         />
-                        <Route path="forum" element={<ForumPage />} />
-                        <Route path="title/:id" element={<ShowPage />} />
+                        <Route path="/movieholic/forum" element={<ForumPage />} />
+                        <Route path="/movieholic/title/:id" element={<ShowPage />} />
                         <Route
-                            path="title/:id/tvSeries/:titleText/:ep"
+                            path="/movieholic/title/:id/tvSeries/:titleText/:ep"
                             element={<TVSeriesPlayer />}
                         />
                         <Route
-                            path="title/:id/movies/:titleText"
+                            path="/movieholic/title/:id/movies/:titleText"
                             element={<MoviePlayer />}
                         />
                     </Route>
-                    <Route path='mobile-menu' element={<MobileMenuLayout />}>
+                    <Route path='/movieholic/mobile-menu' element={<MobileMenuLayout />}>
                         <Route index element={<MobileMenuPage />} />
                         <Route path='login' element={<LoginForm />} />
                         <Route path='sign-up' element={<SignupForm />} />

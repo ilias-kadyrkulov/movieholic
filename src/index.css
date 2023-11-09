@@ -29,16 +29,6 @@ body {
     }
 }
 
-.slick-prev {
-    left: 10px;
-    z-index: 100;
-}
-
-.slick-next {
-    right: 10px;
-    z-index: 100;
-}
-
 .slick-dots {
     @apply bottom-16 right-16 w-28 text-center;
 

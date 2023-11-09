@@ -99,7 +99,7 @@ const ShowPage = () => {
                             className="font-bold text-slate-400 mr-1"
                             key={g.id}
                         >
-                            {g.text} •
+                            {g.text}
                         </span>
                     ))}
                 </div>
