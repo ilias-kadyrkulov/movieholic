@@ -54,12 +54,12 @@ const Header = () => {
     }
 
     const handleSignupFormOnClick = () => {
-        setSignupFormClicked(true)
         setLoginFormClicked(false)
+        setSignupFormClicked(true)
     }
     const handleLoginFormOnClick = () => {
-        setLoginFormClicked(true)
         setSignupFormClicked(false)
+        setLoginFormClicked(true)
     }
 
     const handleProfileClick = () => {
@@ -168,10 +168,12 @@ const Header = () => {
             <SignupForm
                 formClicked={signupFormClicked}
                 closeForm={handleSignUpFormOnClose}
+                openLoginForm={handleLoginFormOnClick}
             />
             <LoginForm
                 formClicked={loginFormClicked}
                 closeForm={handleLoginFormOnClose}
+                openSignupForm={handleSignupFormOnClick}
             />
         </>
     )

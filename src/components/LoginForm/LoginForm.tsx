@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom'
 type PropsType = {
     formClicked?: boolean
     closeForm?: () => void
+    openSignupForm?: () => void
 }
 type FormType = {
     email: string
@@ -124,8 +125,8 @@ const LoginForm = (props: PropsType) => {
                         </div>
                         <h3 className="text-center mt-4 text-gray-500 text-sm">
                             Don't have an account?{' '}
-                            <span className="text-slate-200 font-bold hover:opacity-80">
-                                <Link to="/mobile-menu/sign-up">Sign up</Link>
+                            <span className="text-slate-200 font-bold hover:opacity-80 cursor-pointer" onClick={props.openSignupForm}>
+                                Sign up
                             </span>
                         </h3>
                     </Form>

@@ -11,6 +11,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 type PropsType = {
     formClicked?: boolean
     closeForm?: () => void
+    openLoginForm?: () => void
 }
 type FormType = {
     email: string
@@ -125,12 +126,18 @@ const SignupForm = (props: PropsType) => {
                         </div>
                         <h3 className="text-center mt-4 text-gray-500">
                             Already have an account?{' '}
-                            <span className="text-white">Login</span>
+                            <span
+                                className="text-slate-200 font-bold hover:opacity-80 cursor-pointer"
+                                onClick={props.openLoginForm}
+                            >
+                                Login
+                            </span>
                         </h3>
                     </Form>
                     <Form
                         className={
-                            location.pathname != '/movieholic/mobile-menu/sign-up'
+                            location.pathname !=
+                            '/movieholic/mobile-menu/sign-up'
                                 ? styles.hidden
                                 : `${styles.MobileTablet}`
                         }
@@ -195,7 +202,7 @@ const SignupForm = (props: PropsType) => {
                         <h3 className="text-center mt-4 text-gray-500 text-sm">
                             Already have an account?{' '}
                             <span className="text-slate-200 font-bold hover:opacity-80">
-                                <Link to='/mobile-menu/login'>Login</Link>
+                                <Link to="/mobile-menu/login">Login</Link>
                             </span>
                         </h3>
                     </Form>
