@@ -12,6 +12,8 @@ type PropsType = {
 const CustomStyles = styled.div`
     .slick-slide {
         height: 750px;
+        padding-right: 1.25rem;
+        padding-left: 0.75rem;
     }
     .slick-prev {
         left: -45px;
@@ -42,36 +44,73 @@ const CustomStyles = styled.div`
             height: 500px;
         }
     }
-    @media (max-width: 1600px) {
+    @media (max-width: 1640px) {
         .slick-slide {
             height: 400px;
         }
     }
-    @media (max-width: 1024px) {
+    @media (max-width: 1175px) {
         .slick-slide {
-            height: 450px;
+            height: 350px;
         }
     }
     @media (max-width: 900px) {
         .slick-slide {
-            height: 400px;
+            height: 300px;
+        }
+    }
+    @media (max-width: 768px) {
+        .slick-slide {
+            height: 450px;
+            padding-right: 0.75rem;
+        }
+        .slick-prev {
+            left: -35px;
+        }
+        .slick-prev::before {
+            font-size: 30px;
+        }
+        .slick-next {
+            right: -20px;
+        }
+        .slick-next::before {
+            font-size: 30px;
         }
     }
     @media (max-width: 678px) {
-        .slick-slide {
-            height: 350px;
-            padding-right: 0.75rem;
+        .slick-prev {
+            left: -25px;
+        }
+        .slick-prev::before {
+            font-size: 25px;
+        }
+        .slick-next {
+            right: -20px;
+        }
+        .slick-next::before {
+            font-size: 25px;
         }
     }
     @media (max-width: 600px) {
         .slick-slide {
             height: 700px;
-            padding-right: 0;
         }
     }
     @media (max-width: 500px) {
         .slick-slide {
-            height: 600px;
+            height: 550px;
+        }
+    }
+    @media (max-width: 475px) {
+        .slick-slide {
+            padding-right: 1.25rem;
+            padding-left: 1.25rem;
+        }
+        .slick-prev {
+            left: -18px;
+        }
+        .slick-next {
+            right: -13px;
         }
     }
     @media (max-width: 375px) {

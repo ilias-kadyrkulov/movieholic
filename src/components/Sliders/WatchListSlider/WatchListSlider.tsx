@@ -8,6 +8,9 @@ import { useAppSelector } from '../../../hooks/hooks'
 import styled from 'styled-components'
 
 const CustomStyles = styled.div`
+.slick-slide {
+    padding-left: 2rem;
+}
     .slick-prev {
         left: -45px;
         width: 40px;
@@ -25,6 +28,28 @@ const CustomStyles = styled.div`
     .slick-next::before {
         font-size: 30px;
         color: rgb(42, 153, 83);
+    }
+
+    @media(max-width: 768px) {
+        .slick-prev {
+            left: -15px;
+        }
+        .slick-next {
+            right: -5px;
+        }
+    }
+    @media(max-width: 475px) {
+        .slick-prev {
+            left: -5px;
+        }
+        .slick-next {
+            right: 0px;
+        }
+    }
+    @media(max-width: 425px) {
+        .slick-slide {
+            padding-left: 0rem;
+        }
     }
 `
 

@@ -49,11 +49,3 @@ body {
         }
     }
 }
-
-.slick-list:nth-child(2) {
-    .slick-track {
-        .slick-slide {
-            @apply pr-5;
-        }
-    }
-}
