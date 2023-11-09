@@ -4,7 +4,7 @@ import { useActions } from '../../../hooks/useActions'
 import VerticalEpisodeSlider from '../../EpisodeSlider/VerticalMode/VerticalEpisodeSlider'
 import styles from './TVSeriesPlayer.module.scss'
 import { useState, useEffect, useRef } from 'react'
-import { useGetFileListQuery } from '../../../api/filemoon/file.api'
+// import { useGetFileListQuery } from '../../../api/filemoon/file.api'
 import ServerButton from '../../../common/Buttons/ServerButton/ServerButton'
 import { useGetShowInfoByIdQuery } from '../../../api/show/titles.api'
 
@@ -15,7 +15,7 @@ const TVSeriesPlayer = () => { //FIXME - Fix filemoon server
         titleText?: string
     }>()
     const navigate = useNavigate()
-    const { fileBeenChosen, fileListReceived, showBeenClicked } = useActions()
+    const { showBeenClicked } = useActions()
 
     const [server, setServer] = useState<'Filemoon' | 'Vidplay'>('Vidplay')
 

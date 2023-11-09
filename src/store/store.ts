@@ -1,7 +1,6 @@
 import {
     configureStore,
-    combineReducers,
-    getDefaultMiddleware
+    combineReducers
 } from '@reduxjs/toolkit'
 import { showApi } from '../api/show/show.api'
 import { watchListReducer } from './slices/watchListSlice'

@@ -48,13 +48,13 @@ export const BigSlider = (props: PropsType) => {
         slidesToShow: 1,
         slidesToScroll: 1
     }
-    let sSettings = {
-        infinite: false,
-        swipe: false,
-        speed: 500,
-        slidesToShow: 9,
-        slidesToScroll: 1
-    }
+    // let sSettings = {
+    //     infinite: false,
+    //     swipe: false,
+    //     speed: 500,
+    //     slidesToShow: 9,
+    //     slidesToScroll: 1
+    // }
 
     return (
         <>

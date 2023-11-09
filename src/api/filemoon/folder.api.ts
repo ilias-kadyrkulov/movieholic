@@ -1,8 +1,5 @@
 import { FILEMOON_API_KEY, filemoonAPI } from './filemoon.api'
 
-type GetFileListResponseType = {
-    result: FileType[]
-}
 export type FileType = {
     title: string
     file_code: string

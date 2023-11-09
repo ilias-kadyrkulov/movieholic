@@ -1,7 +1,7 @@
 import WatchListSlider from '../../../components/Sliders/WatchListSlider/WatchListSlider'
 import {
     collection,
-    getDocs,
+    // getDocs,
     onSnapshot,
     query,
     where
@@ -18,11 +18,11 @@ export const WatchList = () => {
 
     const user = useContext(UserContext)
     
-    const getData = () => {
-        getDocs(collectionRef).then((response) => {
-            response.docs.map((item) => item.data())
-        })
-    }
+    // const getData = () => {
+    //     getDocs(collectionRef).then((response) => {
+    //         response.docs.map((item) => item.data())
+    //     })
+    // }
     
     useEffect(() => {
         const queryTest = query(collectionRef, where('userId', '==', user?.uid))
