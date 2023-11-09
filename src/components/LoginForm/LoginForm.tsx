@@ -4,9 +4,10 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../firebase'
 import styles from '../SignupForm/SignupForm.module.scss'
 import logo from '../../assets/logo-low-resolution.png'
+import { Link, useNavigate } from 'react-router-dom'
 
 type PropsType = {
-    formClicked: boolean
+    formClicked?: boolean
     closeForm?: () => void
 }
 type FormType = {
@@ -16,6 +17,8 @@ type FormType = {
 
 const LoginForm = (props: PropsType) => {
     const [isFormActive, setIsFormActive] = useState(false)
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (!props.formClicked) {
@@ -43,6 +46,7 @@ const LoginForm = (props: PropsType) => {
         )
         setSubmitting(false)
         props.closeForm && props.closeForm()
+        navigate('/')
     }
 
     return (
@@ -55,44 +59,122 @@ const LoginForm = (props: PropsType) => {
             onSubmit={handleSubmit}
         >
             {({ isSubmitting }) => (
-                <Form
-                    className={`${styles.Form} ${
-                        isFormActive ? styles.active : ''
-                    }`}
-                >
-                    <div className={styles.Logo}>
-                        <div>
-                            <img className="w-44 h-11" src={logo} />
-                            <p className="text-gray-400">
-                                Login to your account
-                            </p>
+                <>
+                    <Form
+                        className={`${styles.LaptopDesktop} ${
+                            isFormActive ? styles.active : ''
+                        }`}
+                    >
+                        <div className={styles.Logo}>
+                            <div>
+                                <img className="w-44 h-11" src={logo} />
+                                <p className="text-gray-400">
+                                    Log into your account
+                                </p>
+                            </div>
+                            <div>
+                                <button
+                                    type="button"
+                                    className="text-gray-400 border-2 border-gray-300 rounded-xl px-5 py-3 transition-colors hover:bg-slate-50 hover:text-black"
+                                    onClick={props.closeForm}
+                                >
+                                    Close
+                                </button>
+                            </div>
                         </div>
-                        <div>
-                            <button type='button' className="text-gray-400 border-2 border-gray-300 rounded-xl px-5 py-3 transition-colors hover:bg-slate-50 hover:text-black" onClick={props.closeForm}>
-                                Close
+                        <div className={styles.Details}>
+                            <div>
+                                <label htmlFor={`${id}-email`}>Email</label>
+                                <Field
+                                    type="email"
+                                    placeholder="Email..."
+                                    name="email"
+                                    id={`${id}-email`}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor={`${id}-password`}>
+                                    Password
+                                </label>
+                                <Field
+                                    type="password"
+                                    placeholder="Password..."
+                                    name="password"
+                                    id={`${id}-password`}
+                                />
+                            </div>
+                            {/* <div className={styles.policy}>
+                    <Field
+                        type="checkbox"
+                        name="policy"
+                        id={`${id}-policy`}
+                    />
+                    <label className="pl-2" htmlFor={`${id}-policy`}>
+                        I agree to our <span>Privacy Policy</span> and{' '}
+                        <span>Terms & Conditions</span>
+                    </label>
+                </div> */}
+                            <button
+                                type="submit"
+                                disabled={isSubmitting}
+                                className="text-gray-400 font-bold bg-slate-200 rounded-md w-full py-3 my-3 transition-colors hover:bg-black hover:text-slate-200e"
+                            >
+                                Login
                             </button>
                         </div>
-                    </div>
-                    <div className={styles.details}>
-                        <div>
-                            <label htmlFor={`${id}-email`}>Email</label>
-                            <Field
-                                type="email"
-                                placeholder="Email..."
-                                name="email"
-                                id={`${id}-email`}
-                            />
+                        <h3 className="text-center mt-4 text-gray-500 text-sm">
+                            Don't have an account?{' '}
+                            <span className="text-slate-200 font-bold hover:opacity-80">
+                                <Link to="/mobile-menu/sign-up">Sign up</Link>
+                            </span>
+                        </h3>
+                    </Form>
+                    <Form
+                        className={
+                            location.pathname != '/mobile-menu/login'
+                                ? styles.hidden
+                                : `${styles.MobileTablet}`
+                        }
+                    >
+                        <div className={styles.Logo}>
+                            <div>
+                                <img className="w-44 h-11" src={logo} />
+                                <p className="text-gray-400">
+                                    Login to your account
+                                </p>
+                            </div>
+                            <div>
+                                <button
+                                    type="button"
+                                    className="text-gray-400 border-2 border-gray-300 rounded-xl px-5 py-3 transition-colors hover:bg-slate-50 hover:text-black"
+                                    onClick={props.closeForm}
+                                >
+                                    Close
+                                </button>
+                            </div>
                         </div>
-                        <div>
-                            <label htmlFor={`${id}-password`}>Password</label>
-                            <Field
-                                type="password"
-                                placeholder="Password..."
-                                name="password"
-                                id={`${id}-password`}
-                            />
-                        </div>
-                        {/* <div className={styles.policy}>
+                        <div className={styles.Details}>
+                            <div>
+                                <label htmlFor={`${id}-email`}>Email</label>
+                                <Field
+                                    type="email"
+                                    placeholder="Email..."
+                                    name="email"
+                                    id={`${id}-email`}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor={`${id}-password`}>
+                                    Password
+                                </label>
+                                <Field
+                                    type="password"
+                                    placeholder="Password..."
+                                    name="password"
+                                    id={`${id}-password`}
+                                />
+                            </div>
+                            {/* <div className={styles.policy}>
                       <Field
                           type="checkbox"
                           name="policy"
@@ -103,19 +185,22 @@ const LoginForm = (props: PropsType) => {
                           <span>Terms & Conditions</span>
                       </label>
                   </div> */}
-                        <button
-                            type="submit"
-                            disabled={isSubmitting}
-                            className="text-gray-400 bg-white rounded-md w-full py-3 my-3 transition-colors hover:bg-black hover:text-white"
-                        >
-                            Login
-                        </button>
-                    </div>
-                    <h3 className="text-center mt-4 text-gray-500">
-                        Don't have an account?{' '}
-                        <span className="text-white">Sign up</span>
-                    </h3>
-                </Form>
+                            <button
+                                type="submit"
+                                disabled={isSubmitting}
+                                className="text-gray-400 font-bold bg-slate-200 rounded-md w-full py-3 my-3 transition-colors hover:bg-black hover:text-slate-200"
+                            >
+                                Login
+                            </button>
+                        </div>
+                        <h3 className="text-center mt-4 text-gray-500 text-sm">
+                            Don't have an account?{' '}
+                            <span className="text-slate-200 font-bold hover:opacity-80">
+                                <Link to="/mobile-menu/sign-up">Sign up</Link>
+                            </span>
+                        </h3>
+                    </Form>
+                </>
             )}
         </Formik>
     )

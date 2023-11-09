@@ -1,62 +1,91 @@
-.Form {
-    @apply z-50 hidden transition-colors flex-col border-2 border-gray-500 bg-slate-950 rounded-3xl p-6 absolute w-1/4 content-none top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4;
-
-    &.active {
-        @apply flex;
+@media (min-width: 768px) {
+    .MobileTablet {
+        display: none;
     }
-    .details {
-        div {
-            @apply m-2 flex flex-col;
+    .LaptopDesktop {
+        @apply z-50 hidden transition-colors flex-col border-gray-500 rounded-3xl p-6 absolute w-2/4 h-2/4 content-none top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4;
+        background-color: #0d0c0f;
+        border: 1px solid rgb(32, 32, 32);
 
-            label {
-                @apply text-white;
-            }
+        &.active {
+            @apply flex;
         }
-        .policy {
-            @apply text-gray-500 flex-row items-center;
+        .Details {
+            div {
+                @apply m-2 flex flex-col;
 
-            input {
-                @apply rounded-3xl appearance-none cursor-pointer h-7 w-7;
-
-                &:checked {
-                    background-color: green;
+                label {
+                    @apply text-slate-200 mb-2;
                 }
             }
+            .policy {
+                @apply text-gray-500 flex-row items-center;
 
-            span {
-                @apply text-white;
-            }
+                input {
+                    @apply rounded-3xl appearance-none cursor-pointer h-7 w-7;
 
-            label {
-                @apply text-gray-500;
+                    &:checked {
+                        background-color: green;
+                    }
+                }
+
+                span {
+                    @apply text-white;
+                }
+
+                label {
+                    @apply text-gray-500;
+                }
             }
+        }
+
+        input {
+            @apply bg-black rounded-lg py-2 px-3 text-slate-200;
+            border: 1px solid rgb(32, 32, 32);
         }
     }
 
-    input {
-        @apply p-4 border-2 border-gray-500 rounded-xl text-slate-100;
+    .Logo {
+        @apply flex items-center justify-between;
     }
-}
-
-.Logo {
-    @apply flex items-center justify-between;
 }
 
 @media (max-width: 768px) {
-    .Form {
+    .LaptopDesktop {
+        display: none;
+    }
+
+    .MobileTablet {
         width: 100vw;
         height: 100vw;
+        padding: 0 25px;
         background-color: #0d0c0f;
 
-        @apply rounded-none border-none translate-x-0 translate-y-0 static;
+        @apply border-none translate-x-0 translate-y-0 static;
 
-        .details {
+        .Details {
+            @apply flex flex-col items-center;
+
+            div {
+                @apply flex flex-col w-full mb-3;
+            }
+
+            label {
+                @apply text-slate-200 mb-2;
+            }
+
             input {
-                @apply bg-black;
+                @apply bg-black rounded-lg py-2 px-3 text-slate-200;
+
+                border: 1px solid rgb(32, 32, 32);
             }
         }
     }
     .Logo {
         display: none;
     }
+}
+
+.hidden {
+    display: none;
 }

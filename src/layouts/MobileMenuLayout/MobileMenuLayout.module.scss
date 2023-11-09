@@ -1,0 +1,7 @@
+.Header {
+    @apply flex justify-between items-center py-5 px-5;
+
+    svg {
+        @apply w-7 h-7 fill-white;
+    }
+}

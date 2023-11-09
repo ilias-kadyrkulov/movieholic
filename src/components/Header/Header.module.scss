@@ -44,9 +44,14 @@
 }
 
 .ProfileActive {
-    @apply absolute top-10 w-36 h-16 py-2 bg-slate-800;
+    @apply absolute top-10 -right-8 w-36 h-16 py-2 pl-2 mr-2 bg-slate-800;
 }
 
+@media (min-width: 768px) {
+    .MobileTablet {
+        @apply hidden;
+    }
+}
 
 @media (max-width: 1400px) {
     .Header {
@@ -87,31 +92,14 @@
         }
     }
     .MobileTablet {
-        @apply relative cursor-pointer;
-        height: 35%;
-        width: 16px;
-        
-        a {
-            @apply inline-block h-full w-full;
-        }
-
-        &.active {
-            cursor: pointer;
-        }
-
-        .first {
-            @apply before:absolute before:right-0 before:top-0 before:bg-white before:w-4 before:h-0.5
-        }
-        .second {
-            @apply before:absolute before:right-0 before:top-2/4 before:-translate-y-2/4 before:bg-white before:w-4 before:h-0.5
-        }
-        .third {
-            @apply before:absolute before:right-0 before:bottom-0 before:bg-white before:w-2 before:h-0.5
-        }
+        @apply relative;
+    }
+    .Laptop {
+        @apply hidden;
     }
 }
 
-@media(max-width: 500px) {
+@media (max-width: 500px) {
     .Header {
         @apply pl-4 pr-7;
     }

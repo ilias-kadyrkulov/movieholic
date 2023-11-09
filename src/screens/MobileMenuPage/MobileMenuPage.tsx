@@ -1,91 +1,60 @@
-import { IoIosArrowBack } from 'react-icons/io'
-import smallLogo from '../../assets/movieholic-favicon-color.png'
-import BurgerMenu from '../../components/BurgerMenu/BurgerMenu'
 import styles from './MobileMenuPage.module.scss'
-import CustomLink from '../../common/CustomLink/CustomLink'
 import PagesList from '../../components/PagesList/PagesList'
-import { useNavigate } from 'react-router-dom'
-import SignupForm from '../../components/SignupForm/SignupForm'
-import { useContext, useState } from 'react'
-import LoginForm from '../../components/LoginForm/LoginForm'
+import { useContext } from 'react'
 import { UserContext } from '../../App'
+import CustomLink from '../../common/CustomLink/CustomLink'
+import { useActions } from '../../hooks/useActions'
+import { signOut } from 'firebase/auth'
+import { auth } from '../../firebase'
 
 const MobileMenuPage = () => {
-    const navigate = useNavigate()
-    const [isSignupFormClicked, setIsSignupFormClicked] = useState(false)
-    const [isLoginFormClicked, setIsLoginFormClicked] = useState(false)
-
     const user = useContext(UserContext)
 
+    const { watchListCleared, showListCleared } = useActions()
+
+    const handleSignOut = () => {
+        signOut(auth)
+        watchListCleared()
+        showListCleared()
+    }
+
     return (
-        <div>
-            <div className={styles.Header}>
-                <div
-                    className="cursor-pointer"
-                    onClick={() => {
-                        navigate(-1)
-                    }}
-                >
-                    <IoIosArrowBack />
-                </div>
-                <div>
-                    <CustomLink to="/">
-                        <img src={smallLogo} className="h-7 w-7" />
-                    </CustomLink>
-                </div>
-                <div>
-                    <BurgerMenu />
-                </div>
-            </div>
-            <div className={styles.Body}>
-                <div
-                    className={
-                        isSignupFormClicked || isLoginFormClicked
-                            ? styles.hidden
-                            : styles.Buttons
-                    }
-                >
-                    {user ? (
+        <div className={styles.Body}>
+            <div className={styles.Buttons}>
+                {user ? (
+                    <>
                         <button
-                            className="border-green-700 bg-green-700 hover:opacity-90 ml-6"
+                            className="border-green-700 bg-green-700 hover:opacity-90"
                             onClick={() => {}}
                         >
                             Change profile
                         </button>
-                    ) : (
-                        <>
-                            <button
-                                className="border-gray-300 transition-colors hover:bg-purple-900 mr-6"
-                                onClick={() => {
-                                    setIsSignupFormClicked(!isSignupFormClicked)
-                                }}
-                            >
+                        <button
+                            className="border-gray-300 transition-colors hover:bg-purple-900"
+                            onClick={handleSignOut}
+                        >
+                            Sign out
+                        </button>
+                    </>
+                ) : (
+                    <>
+                        <CustomLink to="sign-up">
+                            <button className="border-gray-300 transition-colors hover:bg-purple-900 mr-6">
                                 Sign up
                             </button>
-                            <button
-                                className="border-green-700 bg-green-700 hover:opacity-90 ml-6"
-                                onClick={() => {
-                                    setIsLoginFormClicked(!isLoginFormClicked)
-                                }}
-                            >
+                        </CustomLink>
+                        <CustomLink to="login">
+                            <button className="border-green-700 bg-green-700 hover:opacity-90 ml-6">
                                 Login
                             </button>
-                        </>
-                    )}
-                </div>
-                <SignupForm formClicked={isSignupFormClicked} />
-                <LoginForm formClicked={isLoginFormClicked} />
+                        </CustomLink>
+                    </>
+                )}
+            </div>
 
-                <div
-                    className={
-                        isSignupFormClicked || isLoginFormClicked
-                            ? styles.hidden
-                            : ''
-                    }
-                >
-                    <hr className="mt-5" />
-                    <PagesList />
-                </div>
+            <div>
+                <hr className="mt-5" />
+                <PagesList />
             </div>
         </div>
     )

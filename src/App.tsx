@@ -15,6 +15,9 @@ import { auth } from './firebase'
 import MobileMenuPage from './screens/MobileMenuPage/MobileMenuPage'
 import TVSeriesPlayer from './components/Players/TVSeriesPlayer/TVSeriesPlayer'
 import MoviePlayer from './components/Players/MoviePlayer/MoviePlayer'
+import LoginForm from './components/LoginForm/LoginForm'
+import SignupForm from './components/SignupForm/SignupForm'
+import MobileMenuLayout from './layouts/MobileMenuLayout/MobileMenuLayout'
 
 export const UserContext = createContext<User | null>(null)
 
@@ -61,7 +64,11 @@ function App() {
                             element={<MoviePlayer />}
                         />
                     </Route>
-                    <Route path='mobile-menu' element={<MobileMenuPage />} />
+                    <Route path='mobile-menu' element={<MobileMenuLayout />}>
+                        <Route index element={<MobileMenuPage />} />
+                        <Route path='login' element={<LoginForm />} />
+                        <Route path='sign-up' element={<SignupForm />} />
+                    </Route>
                 </Routes>
             </Router>
         </UserContext.Provider>

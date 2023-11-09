@@ -13,6 +13,7 @@ import { useActions } from '../../hooks/useActions'
 import CustomLink from '../../common/CustomLink/CustomLink'
 import BurgerMenu from '../BurgerMenu/BurgerMenu'
 import PagesList from '../PagesList/PagesList'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
     const [authUser, setAuthUser] = useState<User | null>(null)
@@ -87,41 +88,57 @@ const Header = () => {
                         <AiOutlineSearch />
                     </div>
 
-                    {authUser ? (
-                        <div className="relative">
-                            <div className="flex relative items-center">
-                                <div
-                                    className={
-                                        isProfileClicked
-                                            ? styles.ProfileActive
-                                            : styles.Profile
-                                    }
-                                >
-                                    <p className="cursor-pointer">Profile</p>
-                                    <p
-                                        className="cursor-pointer"
-                                        onClick={handleSignOut}
+                    {authUser ? ( //TODO - Profile page
+                        <>
+                            <div className={styles.Laptop}>
+                                <div className="flex relative items-center">
+                                    <div
+                                        className={
+                                            isProfileClicked
+                                                ? styles.ProfileActive
+                                                : styles.Profile
+                                        }
                                     >
-                                        Sign out
-                                    </p>
-                                </div>
-                                <IoMdNotificationsOutline />
-                                <div
-                                    className={
-                                        isProfileClicked
-                                            ? styles.AvatarActive
-                                            : styles.Avatar
-                                    }
-                                    onClick={handleProfileClick}
-                                >
-                                    <img
-                                        src={avatarDummy}
-                                        className="w-10 h-10 rounded-3xl"
-                                        alt="Avatar"
-                                    />
+                                        <p className="cursor-pointer">
+                                            Profile
+                                        </p>
+                                        <p
+                                            className="cursor-pointer"
+                                            onClick={handleSignOut}
+                                        >
+                                            Sign out
+                                        </p>
+                                    </div>
+                                    <IoMdNotificationsOutline />
+                                    <div
+                                        className={
+                                            isProfileClicked
+                                                ? styles.AvatarActive
+                                                : styles.Avatar
+                                        }
+                                        onClick={handleProfileClick}
+                                    >
+                                        <img
+                                            src={avatarDummy}
+                                            className="w-10 h-10 rounded-3xl"
+                                            alt="Avatar"
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <div className={styles.MobileTablet}>
+                                <div className="flex relative items-center">
+                                    <IoMdNotificationsOutline />
+                                    <Link to="/mobile-menu">
+                                        <img
+                                            src={avatarDummy}
+                                            className="w-10 h-10 rounded-3xl"
+                                            alt="Avatar"
+                                        />
+                                    </Link>
+                                </div>
+                            </div>
+                        </>
                     ) : (
                         <>
                             <div className={styles.LaptopDesktop}>

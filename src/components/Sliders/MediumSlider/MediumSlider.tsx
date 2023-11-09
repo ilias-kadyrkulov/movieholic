@@ -11,9 +11,14 @@ type PropsType = {
 
 const CustomStyles = styled.div`
     .slick-slide {
-        height: 600px;
+        height: 750px;
     }
 
+    @media (max-width: 2250px) {
+        .slick-slide {
+            height: 650px;
+        }
+    }
     @media (max-width: 1920px) {
         .slick-slide {
             height: 500px;
@@ -24,17 +29,12 @@ const CustomStyles = styled.div`
             height: 400px;
         }
     }
-    @media (max-width: 1440px) {
-        .slick-slide {
-            height: 350px;
-        }
-    }
     @media (max-width: 1024px) {
         .slick-slide {
             height: 450px;
         }
     }
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
         .slick-slide {
             height: 400px;
         }
@@ -47,18 +47,23 @@ const CustomStyles = styled.div`
     }
     @media (max-width: 600px) {
         .slick-slide {
-            height: 550px;
+            height: 700px;
             padding-right: 0;
         }
     }
-    @media (max-width: 450px) {
+    @media (max-width: 500px) {
         .slick-slide {
-            height: 450px;
+            height: 600px;
         }
     }
     @media (max-width: 375px) {
         .slick-slide {
-            height: 300px;
+            height: 500px;
+        }
+    }
+    @media (max-width: 325px) {
+        .slick-slide {
+            height: 400px;
         }
     }
 `
@@ -79,16 +84,17 @@ const MediumSlider = (props: PropsType) => {
                 }
             },
             {
-                breakpoint: 1150,
+                breakpoint: 1024,
                 settings: {
                     slidesToShow: 3,
-                    slidesToScroll: 2
+                    slidesToScroll: 3
                 }
             },
             {
-                breakpoint: 1024,
+                breakpoint: 768,
                 settings: {
-                    slidesToShow: 2
+                    slidesToShow: 2,
+                    slidesToScroll: 2
                 }
             },
             {
