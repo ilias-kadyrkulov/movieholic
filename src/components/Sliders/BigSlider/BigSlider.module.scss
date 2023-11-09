@@ -96,6 +96,9 @@
 }
 
 @media (max-width: 768px) {
+    .Carousel {
+        height: 600px;
+    }
     .Details {
         @apply left-6;
 
@@ -107,6 +110,13 @@
         }
         span {
             @apply text-xs;
+        }
+    }
+    .Slide {
+        > div {
+            -webkit-box-shadow: 0 0 100px 100px rgba(28, 28, 28, 0.8) inset;
+            -moz-box-shadow: 0 0 100px 100px rgba(28, 28, 28, 0.8) inset;
+            box-shadow: 0 0 100px 100px rgba(28, 28, 28, 0.8) inset;
         }
     }
 }
@@ -126,7 +136,7 @@
         @apply left-5 mr-6;
 
         > div {
-            @apply leading-4 mb-1
+            @apply leading-4 mb-1;
         }
     }
     .Buttons {

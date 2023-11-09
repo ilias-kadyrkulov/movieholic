@@ -66,104 +66,103 @@ const ShowPage = () => {
     const user = useContext(UserContext)
 
     return (
-        <div>
+        <>
             <div
                 className={styles.Show}
                 style={{
                     backgroundImage: `url(${show?.primaryImage.url})`
                 }}
-            >
-                <div className={styles.Details}>
-                    <h3 className="text-4xl text-slate-200 font-bold">
-                        {show?.originalTitleText.text}
-                    </h3>
-                    <div className="my-3">
-                        {show?.titleType.text === 'TV Series' ? (
-                            <p className="font-bold text-slate-400">
-                                {show?.episodes?.episodes.total} Episodes
-                            </p>
-                        ) : (
-                            <p className="font-bold text-slate-400">
-                                {
-                                    show?.runtime?.displayableProperty?.value
-                                        .plainText
-                                }
-                            </p>
-                        )}
-
-                        <span className="font-bold text-slate-400">
-                            {show?.releaseYear.year} •{' '}
-                        </span>
-                        {show?.genres.genres.map((g) => (
-                            <span
-                                className="font-bold text-slate-400 mr-1"
-                                key={g.id}
-                            >
-                                {g.text} •
-                            </span>
-                        ))}
-                    </div>
-
-                    <div className={styles.Buttons}>
-                        <div className="flex mr-10 flex-wrap">
-                            <PlayContinueButton
-                                text="Play now"
-                                id={show?.id}
-                                titleType={show?.titleType.text}
-                                titleText={show?.titleText.text}
-                            />
-                            <WatchTrailerButton
-                                text="Watch Trailer"
-                                id={show?.id}
-                            />
-                            {user && show && !watchList.includes(show.id) && (
-                                <TransparrentButton
-                                    text="Add to Watchlist"
-                                    id={show.id}
-                                />
-                            )}
-                            {user && show && watchList.includes(show.id) && (
-                                <TransparrentButton
-                                    text="Remove from Watchlist"
-                                    id={show.id}
-                                />
-                            )}
-                        </div>
-                        <div className={styles.Right}>
-                            <DownloadButton />
-                            <ShareButton />
-                            <LikeButton showId={show?.id} />
-                        </div>
-                    </div>
-                    <div>
-                        <h2 className="font-bold text-white mb-3 mt-12">
-                            Story Line
-                        </h2>
-                        <p className="font-medium text-gray-300">
-                            {show?.plot.plotText.plainText}
-                        </p>
-                    </div>
-                    <div>
-                        <h2 className="font-bold text-white mb-3 mt-4">Cast</h2>
-                        <CastSlider data={cast} />
-                    </div>
+            ></div>
+            <div className={styles.Details}>
+                <h3 className="text-4xl text-slate-200 font-bold">
+                    {show?.originalTitleText.text}
+                </h3>
+                <div className="my-3">
                     {show?.titleType.text === 'TV Series' ? (
-                        <div className='mb-10'>
-                            <div className="flex justify-between items-center text-slate-100 font-bold">
-                                <h3 className="text-2xl my-5">1-9 Episode</h3>
-                                <p className="text-sm">Season 1</p>
-                            </div>
-                            <EpisodeSlider
-                                titleText={show.titleText.text}
-                                fileList={fileList}
-                            />
-                        </div>
+                        <p className="font-bold text-slate-400">
+                            {show?.episodes?.episodes.total} Episodes
+                        </p>
                     ) : (
-                        ''
+                        <p className="font-bold text-slate-400">
+                            {
+                                show?.runtime?.displayableProperty?.value
+                                    .plainText
+                            }
+                        </p>
                     )}
+
+                    <span className="font-bold text-slate-400">
+                        {show?.releaseYear.year} •{' '}
+                    </span>
+                    {show?.genres.genres.map((g) => (
+                        <span
+                            className="font-bold text-slate-400 mr-1"
+                            key={g.id}
+                        >
+                            {g.text} •
+                        </span>
+                    ))}
                 </div>
+
+                <div className={styles.Buttons}>
+                    <div className="flex mr-10 flex-wrap">
+                        <PlayContinueButton
+                            text="Play now"
+                            id={show?.id}
+                            titleType={show?.titleType.text}
+                            titleText={show?.titleText.text}
+                        />
+                        <WatchTrailerButton
+                            text="Watch Trailer"
+                            id={show?.id}
+                        />
+                        {user && show && !watchList.includes(show.id) && (
+                            <TransparrentButton
+                                text="Add to Watchlist"
+                                id={show.id}
+                            />
+                        )}
+                        {user && show && watchList.includes(show.id) && (
+                            <TransparrentButton
+                                text="Remove from Watchlist"
+                                id={show.id}
+                            />
+                        )}
+                    </div>
+                    <div className={styles.Right}>
+                        <DownloadButton />
+                        <ShareButton />
+                        <LikeButton showId={show?.id} />
+                    </div>
+                </div>
+                <div>
+                    <h2 className="font-bold text-white mb-3 mt-12">
+                        Story Line
+                    </h2>
+                    <p className="font-medium text-gray-300">
+                        {show?.plot.plotText.plainText}
+                    </p>
+                </div>
+                <div>
+                    <h2 className="font-bold text-white mb-3 mt-4">Cast</h2>
+                    <CastSlider data={cast} />
+                </div>
+                {show?.titleType.text === 'TV Series' ? (
+                    <div className="mb-10 mt-5">
+                        <div className="flex justify-between items-center text-slate-100 font-bold mb-5">
+                            <h3 className="text-2xl">1-9 Episode</h3>
+                            <p className="text-sm">Season 1</p>
+                        </div>
+                        <EpisodeSlider
+                            titleText={show.titleText.text}
+                            fileList={fileList}
+                        />
+                    </div>
+                ) : (
+                    ''
+                )}
             </div>
-        </div>
+        </>
     )
 }
 

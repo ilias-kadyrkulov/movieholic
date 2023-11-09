@@ -20,7 +20,7 @@ const CustomDots = styled.div`
         .slick-dots {
             display: flex;
             bottom: 0.4rem;
-            left: 40px;
+            left: 20px;
         }
         li {
             margin-left: 0px;

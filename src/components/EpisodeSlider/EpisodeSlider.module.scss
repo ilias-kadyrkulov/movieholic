@@ -1,0 +1,14 @@
+.EpisodeSlider {
+    height: 250px;
+}
+
+@media (max-width: 1920px) {
+    .EpisodeSlider {
+        height: 200px;
+    }
+}
+@media (max-width: 1400px) {
+    .EpisodeSlider {
+        height: 150px;
+    }
+}

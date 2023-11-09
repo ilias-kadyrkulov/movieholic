@@ -40,7 +40,7 @@ body {
 }
 
 .slick-dots {
-    @apply bottom-28 right-20 w-28 text-center;
+    @apply bottom-16 right-16 w-28 text-center;
 
     li {
         &.slick-active {
