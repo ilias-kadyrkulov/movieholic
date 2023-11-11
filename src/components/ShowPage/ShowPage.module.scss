@@ -10,7 +10,6 @@
 .Details {
     @apply relative;
     top: -12rem;
-    padding-top: -40px;
     padding-left: 3rem;
 
     max-width: 95%;
@@ -66,10 +65,6 @@
     }
     .Details {
         top: -13rem;
-
-        div {
-            @apply m-1;
-        }
     }
     .Buttons {
         span {
@@ -103,6 +98,7 @@
 }
 @media (max-width: 568px) {
     .Details {
+        padding-left: 1.5rem;
         top: -17rem;
     }
 }
@@ -129,5 +125,8 @@
         top: -6.5rem;
     }
 }
-@media (max-width: 307px) {
+@media (max-width: 375px) {
+    .Details {
+        padding-left: 1rem;
+    }
 }

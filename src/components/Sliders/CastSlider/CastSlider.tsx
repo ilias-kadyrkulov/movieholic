@@ -5,25 +5,69 @@ import castDummy from '../../../assets/noPhotoActor.png'
 import styled from 'styled-components'
 
 const CustomStyles = styled.div`
+    .slick-slide {
+        padding-left: 1rem;
+    }
     .slick-prev {
-        left: -45px;
+        left: -40px;
         top: 45px;
-        width: 40px;
-        height: 40px;
     }
     .slick-prev::before {
         font-size: 30px;
         color: rgb(42, 153, 83);
     }
     .slick-next {
-        right: -45px;
+        right: -35px;
         top: 45px;
-        width: 40px;
-        height: 40px;
     }
     .slick-next::before {
         font-size: 30px;
         color: rgb(42, 153, 83);
+    }
+
+    @media (max-width: 1024px) {
+        .slick-prev {
+            left: -20px;
+        }
+        .slick-prev::before {
+            font-size: 25px;
+        }
+        .slick-next {
+            right: -25px;
+        }
+        .slick-next::before {
+            font-size: 25px;
+        }
+    }
+    @media (max-width: 768px) {
+        .slick-slide {
+            padding-left: 1rem;
+        }
+        .slick-prev::before {
+            font-size: 20px;
+        }
+        .slick-next {
+            right: -25px;
+        }
+        .slick-next::before {
+            font-size: 20px;
+        }
+    }
+    @media (max-width: 550px) {
+        .slick-next {
+            right: -22px;
+        }
+    }
+    @media (max-width: 425px) {
+        .slick-slide {
+            padding-left: 0;
+        }
+        .slick-prev {
+            left: -15px;
+        }
+        .slick-next {
+            right: -15px;
+        }
     }
 `
 
