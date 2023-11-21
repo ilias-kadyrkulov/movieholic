@@ -15,12 +15,12 @@ import { UserContext } from '../../../App'
 
 const TransparrentButton = ({
     text,
-    id
+    tmdbId
 }: {
     text: 'Add to Watchlist' | 'Remove from Watchlist'
-    id: string | undefined
+    tmdbId: number | undefined
 }) => {
-    const collectionRef = collection(db, 'watchList')
+    const watchlistCollectionRef = collection(db, 'watchList')
 
     const user = useContext(UserContext)
 
@@ -28,18 +28,18 @@ const TransparrentButton = ({
 
     const handleAddToWatchlist = async () => {
         //NOTE - Adding a doc with userId and showId fields
-        await addDoc(collectionRef, {
+        await addDoc(watchlistCollectionRef, {
             userId: user?.uid,
-            showId: id
+            showId: tmdbId
         })
     }
 
     const handleRemoveFromWatchlist = async () => {
         //NOTE - Searching for document with certain showId
         const q = query(
-            collectionRef,
+            watchlistCollectionRef,
             where('userId', '==', user?.uid),
-            where('showId', '==', id)
+            where('showId', '==', tmdbId)
         )
         const querySnapshot = await getDocs(q)
 
@@ -48,7 +48,7 @@ const TransparrentButton = ({
             await deleteDoc(doc.ref)
         })
 
-        deleteShowById(id)
+        deleteShowById(tmdbId)
     }
 
     return (

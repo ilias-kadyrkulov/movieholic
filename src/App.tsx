@@ -1,23 +1,48 @@
-import { useState, useEffect, createContext } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import React, { useState, useEffect, createContext, Suspense } from 'react'
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route
+} from 'react-router-dom'
 import './App.css'
 import PrimaryLayout from './layouts/PrimaryLayout/PrimaryLayout'
-import SecondaryLayout from './layouts/SecondaryLayout/SecondaryLayout'
 import HomePage from './screens/HomePage/HomePage'
-import DiscoverPage from './screens/DiscoverPage/DiscoverPage'
-import MovieReleasePage from './screens/MovieReleasePage/MovieReleasePage'
-import ForumPage from './screens/ForumPage/ForumPage'
-import AboutPage from './screens/AboutPage/AboutPage'
-import NotFoundPage from './screens/NotFoundPage/NotFoundPage'
-import ShowPage from './components/ShowPage/ShowPage'
 import { User, onAuthStateChanged } from 'firebase/auth'
 import { auth } from './firebase'
-import MobileMenuPage from './screens/MobileMenuPage/MobileMenuPage'
-import TVSeriesPlayer from './components/Players/TVSeriesPlayer/TVSeriesPlayer'
-import MoviePlayer from './components/Players/MoviePlayer/MoviePlayer'
-import LoginForm from './components/LoginForm/LoginForm'
-import SignupForm from './components/SignupForm/SignupForm'
-import MobileMenuLayout from './layouts/MobileMenuLayout/MobileMenuLayout'
+import LoginForm from './components/Forms/LoginForm/LoginForm'
+import SignupForm from './components/Forms/SignupForm/SignupForm'
+import { RotatingLines } from 'react-loader-spinner'
+
+const MoviePage = React.lazy(() => import('./components/MoviePage/MoviePage'))
+const MoviePlayer = React.lazy(
+    () => import('./components/Players/MoviePlayer/MoviePlayer')
+)
+const TVSeriesPlayer = React.lazy(
+    () => import('./components/Players/TVSeriesPlayer/TVSeriesPlayer')
+)
+const TrailerPlayer = React.lazy(
+    () => import('./components/Players/TrailerPlayer/TrailerPlayer')
+)
+const SecondaryLayout = React.lazy(
+    () => import('./layouts/SecondaryLayout/SecondaryLayout')
+)
+const DiscoverPage = React.lazy(
+    () => import('./screens/DiscoverPage/DiscoverPage')
+)
+const MovieReleasePage = React.lazy(
+    () => import('./screens/MovieReleasePage/MovieReleasePage')
+)
+const ForumPage = React.lazy(() => import('./screens/ForumPage/ForumPage'))
+const AboutPage = React.lazy(() => import('./screens/AboutPage/AboutPage'))
+const NotFoundPage = React.lazy(
+    () => import('./screens/NotFoundPage/NotFoundPage')
+)
+const MobileMenuLayout = React.lazy(
+    () => import('./layouts/MobileMenuLayout/MobileMenuLayout')
+)
+const MobileMenuPage = React.lazy(
+    () => import('./screens/MobileMenuPage/MobileMenuPage')
+)
 
 export const UserContext = createContext<User | null>(null)
 
@@ -39,39 +64,63 @@ function App() {
     }, [])
 
     return (
-        <UserContext.Provider value={authUser}>
-            <Router>
-                <Routes>
-                    <Route path="/movieholic/" element={<PrimaryLayout />}>
-                        <Route index element={<HomePage />} />
-                        <Route path="/movieholic/discover" element={<DiscoverPage />} />
-                        <Route path="/movieholic/about" element={<AboutPage />} />
-                        <Route path="/movieholic/*" element={<NotFoundPage />} />
-                    </Route>
-                    <Route element={<SecondaryLayout />}>
+        <Suspense
+            fallback={
+                <div className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">
+                    <RotatingLines
+                        strokeColor="grey"
+                        strokeWidth="5"
+                        animationDuration="0.75"
+                        width="100"
+                        visible={true}
+                    />
+                </div>
+            }
+        >
+            <UserContext.Provider value={authUser}>
+                <Router>
+                    <Routes>
+                        <Route path="/movieholic" element={<PrimaryLayout />}>
+                            <Route index element={<HomePage />} />
+                            <Route path="discover" element={<DiscoverPage />} />
+                            <Route path="about" element={<AboutPage />} />
+                        </Route>
+                        <Route path="/movieholic" element={<SecondaryLayout />}>
+                            <Route
+                                path="movie-release"
+                                element={<MovieReleasePage />}
+                            />
+                            <Route path="forum" element={<ForumPage />} />
+                            <Route
+                                path="title/movie/:id"
+                                element={<MoviePage />}
+                            />
+                            <Route
+                                path="title/tvSeries/:id/:titleText/:ep"
+                                element={<TVSeriesPlayer />}
+                            />
+                            <Route
+                                path="title/movie/:id/:titleText"
+                                element={<MoviePlayer />}
+                            />
+                            <Route
+                                path="trailer/:id"
+                                element={<TrailerPlayer />}
+                            />
+                        </Route>
                         <Route
-                            path="/movieholic/movie-release"
-                            element={<MovieReleasePage />}
-                        />
-                        <Route path="/movieholic/forum" element={<ForumPage />} />
-                        <Route path="/movieholic/title/:id" element={<ShowPage />} />
-                        <Route
-                            path="/movieholic/title/:id/tvSeries/:titleText/:ep"
-                            element={<TVSeriesPlayer />}
-                        />
-                        <Route
-                            path="/movieholic/title/:id/movies/:titleText"
-                            element={<MoviePlayer />}
-                        />
-                    </Route>
-                    <Route path='/movieholic/mobile-menu' element={<MobileMenuLayout />}>
-                        <Route index element={<MobileMenuPage />} />
-                        <Route path='login' element={<LoginForm />} />
-                        <Route path='sign-up' element={<SignupForm />} />
-                    </Route>
-                </Routes>
-            </Router>
-        </UserContext.Provider>
+                            path="/movieholic/mobile-menu"
+                            element={<MobileMenuLayout />}
+                        >
+                            <Route index element={<MobileMenuPage />} />
+                            <Route path="login" element={<LoginForm />} />
+                            <Route path="sign-up" element={<SignupForm />} />
+                        </Route>
+                        <Route path="*" element={<NotFoundPage />} />
+                    </Routes>
+                </Router>
+            </UserContext.Provider>
+        </Suspense>
     )
 }
 

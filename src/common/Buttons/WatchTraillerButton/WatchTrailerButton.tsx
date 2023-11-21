@@ -5,13 +5,13 @@ import { AiOutlinePlayCircle } from 'react-icons/ai'
 
 type PropsType = {
     text: 'Watch Trailer'
-    id: string | undefined
+    tmdbId: number | undefined
 }
 
-const WatchTrailerButton = ({ text, id }: PropsType) => {
+const WatchTrailerButton = ({ text, tmdbId }: PropsType) => {
     const { fileListEmptied } = useActions()
     return (
-        <Link to={`/trailer/${id}`}>
+        <Link to={`/movieholic/trailer/${tmdbId}`}>
             <button
                 className={styles.WatchTrailerButton}
                 onClick={() => fileListEmptied()}

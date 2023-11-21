@@ -5,13 +5,14 @@ import { useActions } from '../../../hooks/useActions'
 
 type PropsType = {
     text: string
-    id: string
+    id?: string
+    tmdbId: number
 }
 
-const GreenButton = ({ text, id }: PropsType) => {
+const GreenButton = ({ text, id, tmdbId }: PropsType) => {
     const { fileListEmptied } = useActions()
     return (
-        <Link to={`title/${id}`}>
+        <Link to={`title/movie/${tmdbId}`}>
             <button
                 className={styles.GreenButton}
                 onClick={() => fileListEmptied()}

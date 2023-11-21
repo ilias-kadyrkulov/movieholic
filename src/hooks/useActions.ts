@@ -1,17 +1,23 @@
-import { bindActionCreators } from "@reduxjs/toolkit"
-import { useAppDispatch } from "./hooks"
-import { watchListActions } from './../store/slices/watchListSlice';
-import { userActions } from './../store/slices/userSlice';
-import { likeListActions } from './../store/slices/likeListSlice';
-import { playerActions } from './../store/slices/playerSlice';
-import { showActions } from './../store/slices/showSlice';
+import { bindActionCreators } from '@reduxjs/toolkit'
+import { useAppDispatch } from './hooks'
+import { watchListActions } from './../store/slices/watchListSlice'
+import { userActions } from './../store/slices/userSlice'
+import { likeListActions } from './../store/slices/likeListSlice'
+import { playerActions } from './../store/slices/playerSlice'
+import { showActions } from './../store/slices/showSlice'
+import { tmdbSessionActions } from './../store/slices/tmdbSessionSlice'
+import { tmdbAccountActions } from './../store/slices/tmdbAccountSlice';
+import { functionOptimizationActions } from './../store/slices/functionOptimizationSlice';
 
 const allActions = {
     ...watchListActions,
     ...userActions,
     ...likeListActions,
     ...playerActions,
-    ...showActions
+    ...showActions,
+    ...tmdbSessionActions,
+    ...tmdbAccountActions,
+    ...functionOptimizationActions
 }
 
 export const useActions = () => {

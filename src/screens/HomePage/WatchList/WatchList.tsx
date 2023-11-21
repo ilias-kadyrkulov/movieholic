@@ -8,11 +8,11 @@ import {
 } from 'firebase/firestore'
 import { db } from '../../../firebase'
 import { useActions } from '../../../hooks/useActions'
-import { useContext, useEffect, useMemo } from 'react'
+import { useContext, useEffect } from 'react'
 import { UserContext } from '../../../App'
 
 export const WatchList = () => {
-    const collectionRef = useMemo(() => collection(db, 'watchList'), [])
+    const collectionRef = collection(db, 'watchList')
 
     const { watchListReceived } = useActions()
 

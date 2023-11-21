@@ -28,24 +28,3 @@ body {
         height: 100%;
     }
 }
-
-.slick-dots {
-    @apply bottom-16 right-16 w-28 text-center;
-
-    li {
-        &.slick-active {
-            button {
-                &::before {
-                    color: #fff;
-                }
-            }
-        }
-
-        button {
-            &::before {
-                font-size: 12px;
-                color: #fff;
-            }
-        }
-    }
-}

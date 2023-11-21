@@ -1,10 +1,12 @@
 import { useState, useEffect, useId } from 'react'
 import { Field, Form, Formik } from 'formik'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../../firebase'
+import { db } from '../../../firebase'
 import styles from '../SignupForm/SignupForm.module.scss'
-import logo from '../../assets/logo-low-resolution.png'
+import logo from '../../../assets/logo-low-resolution.png'
 import { Link, useNavigate } from 'react-router-dom'
+import { collection, getDocs, query, where } from 'firebase/firestore'
+import { useActions } from '../../../hooks/useActions'
+import { useAppSelector } from '../../../hooks/hooks'
 
 type PropsType = {
     formClicked?: boolean
@@ -12,14 +14,60 @@ type PropsType = {
     openSignupForm?: () => void
 }
 type FormType = {
-    email: string
+    username: string
     password: string
+}
+type FirestoreSnapshot = {
+    username?: string
+    password?: string
+    sessionId?: string
+}
+
+const validateUsername = (value: string) => {
+    if (!value) {
+        return 'Required.'
+    }
+}
+const validatePassword = (value: string) => {
+    if (!value) {
+        return 'Required.'
+    }
 }
 
 const LoginForm = (props: PropsType) => {
+
     const [isFormActive, setIsFormActive] = useState(false)
+    const [authValidText, setAuthValidText] = useState('')
+
+    const requestToken = useAppSelector(
+        (state) => state.tmdbSession.requestToken
+    )
 
     const navigate = useNavigate()
+
+    const { userLoggedIn, sessionBeenStored } = useActions()
+
+    const sessionIdsCollection = collection(db, 'sessionIds')
+
+    const id = useId()
+
+    const handleUsernameWithSession = async (
+        username: string,
+        password: string
+    ) => {
+        const q = query(
+            sessionIdsCollection,
+            where('username', '==', username),
+            where('password', '==', password)
+        )
+        const querySnapshot = await getDocs(q)
+
+        if (querySnapshot.empty) {
+            return []
+        } else {
+            return querySnapshot.docs.map((doc) => doc.data())
+        }
+    }
 
     useEffect(() => {
         if (!props.formClicked) {
@@ -30,36 +78,52 @@ const LoginForm = (props: PropsType) => {
         }
     }, [props.formClicked])
 
-    // useEffect(() => {
-    //   props.closeForm()
-    // }, [])
-
-    const id = useId()
-
     const handleSubmit = (
         values: FormType,
         { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
     ) => {
-        signInWithEmailAndPassword(auth, values.email, values.password).then(
-            (userCredential) => {
-                console.log(userCredential)
-            }
+        const result = handleUsernameWithSession(
+            values.username,
+            values.password
         )
-        setSubmitting(false)
-        props.closeForm && props.closeForm()
-        navigate('/movieholic/')
+        console.log(result)
+        result
+            .then((response) => {
+                if (response.length === 0) {
+                    //TODO - Validation
+                    setAuthValidText('Invalid username and/or password.')
+                    setSubmitting(false)
+                } else {
+                    console.log(response)
+
+                    const userData: FirestoreSnapshot = response[0]
+                    const username = userData.username
+                    const sessionId = userData.sessionId
+
+                    userLoggedIn({ username: username })
+                    sessionBeenStored({ session_id: sessionId })
+
+                    setSubmitting(false)
+                    props.closeForm && props.closeForm()
+                    navigate('/movieholic/')
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+                setSubmitting(false)
+            })
     }
 
     return (
         <Formik
             initialValues={{
-                email: '',
+                username: '',
                 password: '',
                 policy: false
             }}
             onSubmit={handleSubmit}
         >
-            {({ isSubmitting }) => (
+            {({ isSubmitting, errors, touched }) => (
                 <>
                     <Form
                         className={`${styles.LaptopDesktop} ${
@@ -85,13 +149,21 @@ const LoginForm = (props: PropsType) => {
                         </div>
                         <div className={styles.Details}>
                             <div>
-                                <label htmlFor={`${id}-email`}>Email</label>
+                                <label htmlFor={`${id}-username`}>
+                                    Username
+                                </label>
                                 <Field
-                                    type="email"
-                                    placeholder="Email..."
-                                    name="email"
-                                    id={`${id}-email`}
+                                    type="username"
+                                    placeholder="Username..."
+                                    name="username"
+                                    id={`${id}-username`}
+                                    validate={validateUsername}
                                 />
+                                {errors.username && touched.username && (
+                                    <div className="text-red-600 font-bold mt-3">
+                                        {errors.username}
+                                    </div>
+                                )}
                             </div>
                             <div>
                                 <label htmlFor={`${id}-password`}>
@@ -102,7 +174,18 @@ const LoginForm = (props: PropsType) => {
                                     placeholder="Password..."
                                     name="password"
                                     id={`${id}-password`}
+                                    validate={validatePassword}
                                 />
+                                {errors.password && touched.password && (
+                                    <div className="text-red-600 font-bold mt-3">
+                                        {errors.password}
+                                    </div>
+                                )}
+                                {authValidText && (
+                                    <p className="text-red-600 font-bold">
+                                        {authValidText}
+                                    </p>
+                                )}
                             </div>
                             {/* <div className={styles.policy}>
                     <Field
@@ -118,15 +201,24 @@ const LoginForm = (props: PropsType) => {
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="text-gray-400 font-bold bg-slate-200 rounded-md w-full py-3 my-3 transition-colors hover:bg-black hover:text-slate-200e"
+                                className="text-gray-400 font-bold bg-white rounded-md w-full py-3 my-3 transition-colors hover:bg-black hover:text-slate-200"
                             >
                                 Login
                             </button>
                         </div>
                         <h3 className="text-center mt-4 text-gray-500 text-sm">
                             Don't have an account?{' '}
-                            <span className="text-slate-200 font-bold hover:opacity-80 cursor-pointer" onClick={props.openSignupForm}>
-                                Sign up
+                            <span
+                                className="text-slate-200 font-bold hover:opacity-80 cursor-pointer"
+                                onClick={() => {
+                                    props.openSignupForm && props.openSignupForm()
+                                }}
+                            >
+                                <a
+                                    href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=http://127.0.0.1:5173/movieholic/`}
+                                >
+                                    Sign up
+                                </a>
                             </span>
                         </h3>
                     </Form>
@@ -156,13 +248,21 @@ const LoginForm = (props: PropsType) => {
                         </div>
                         <div className={styles.Details}>
                             <div>
-                                <label htmlFor={`${id}-email`}>Email</label>
+                                <label htmlFor={`${id}-username`}>
+                                    Username
+                                </label>
                                 <Field
-                                    type="email"
-                                    placeholder="Email..."
-                                    name="email"
-                                    id={`${id}-email`}
+                                    type="username"
+                                    placeholder="Username..."
+                                    name="username"
+                                    id={`${id}-username`}
+                                    validate={validateUsername}
                                 />
+                                {errors.username && touched.username && (
+                                    <div className="text-red-600 font-bold mt-3">
+                                        {errors.username}
+                                    </div>
+                                )}
                             </div>
                             <div>
                                 <label htmlFor={`${id}-password`}>
@@ -173,7 +273,18 @@ const LoginForm = (props: PropsType) => {
                                     placeholder="Password..."
                                     name="password"
                                     id={`${id}-password`}
+                                    validate={validatePassword}
                                 />
+                                {errors.password && touched.password && (
+                                    <div className="text-red-600 font-bold mt-3">
+                                        {errors.password}
+                                    </div>
+                                )}
+                                {authValidText && (
+                                    <p className="text-red-600 font-bold mt-3">
+                                        {authValidText}
+                                    </p>
+                                )}
                             </div>
                             {/* <div className={styles.policy}>
                       <Field
@@ -197,7 +308,11 @@ const LoginForm = (props: PropsType) => {
                         <h3 className="text-center mt-4 text-gray-500 text-sm">
                             Don't have an account?{' '}
                             <span className="text-slate-200 font-bold hover:opacity-80">
-                                <Link to="/mobile-menu/sign-up">Sign up</Link>
+                                <Link
+                                    to={`/movieholic/mobile-menu/sign-up?request_token=${requestToken}`}
+                                >
+                                    Sign up
+                                </Link>
                             </span>
                         </h3>
                     </Form>

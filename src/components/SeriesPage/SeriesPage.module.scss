@@ -1,4 +1,4 @@
-.Show {
+.Movie {
     @apply relative bg-cover bg-no-repeat bg-center;
 
     height: 100vh;
@@ -36,7 +36,7 @@
 }
 
 @media (max-width: 1440px) {
-    .Show {
+    .Movie {
         -webkit-box-shadow: 0 -100px 200px 200px rgba(28, 28, 28, 0.8) inset;
         -moz-box-shadow: 0 -100px 200px 200px rgba(28, 28, 28, 0.8) inset;
         box-shadow: 0 -100px 200px 200px rgba(28, 28, 28, 0.8) inset;
@@ -48,7 +48,7 @@
     }
 }
 @media (max-width: 1024px) {
-    .Show {
+    .Movie {
         -webkit-box-shadow: 0 -70px 100px 150px rgba(28, 28, 28, 0.8) inset;
         -moz-box-shadow: 0 -70px 100px 150px rgba(28, 28, 28, 0.8) inset;
         box-shadow: 0 -70px 100px 150px rgba(28, 28, 28, 0.8) inset;
@@ -58,7 +58,7 @@
     }
 }
 @media (max-width: 768px) {
-    .Show {
+    .Movie {
         -webkit-box-shadow: 0 -100px 100px 100px rgba(28, 28, 28, 0.8) inset;
         -moz-box-shadow: 0 -100px 100px 100px rgba(28, 28, 28, 0.8) inset;
         box-shadow: 0 -100px 100px 100px rgba(28, 28, 28, 0.8) inset;
@@ -104,7 +104,7 @@
 }
 
 @media (max-width: 560px) {
-    .Show {
+    .Movie {
         -webkit-box-shadow: 0 -70px 100px 100px rgba(28, 28, 28, 0.8) inset;
         -moz-box-shadow: 0 -70px 100px 100px rgba(28, 28, 28, 0.8) inset;
         box-shadow: 0 -70px 100px 100px rgba(28, 28, 28, 0.8) inset;
@@ -116,7 +116,7 @@
     }
 }
 @media (max-width: 390px) {
-    .Show {
+    .Movie {
         -webkit-box-shadow: 0 -50px 100px 60px rgba(28, 28, 28, 0.8) inset;
         -moz-box-shadow: 0 -50px 100px 60px rgba(28, 28, 28, 0.8) inset;
         box-shadow: 0 -50px 100px 60px rgba(28, 28, 28, 0.8) inset;

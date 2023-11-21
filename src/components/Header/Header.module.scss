@@ -1,12 +1,16 @@
 .Header {
     @apply absolute w-full z-30 flex justify-between px-24 py-8;
+
+    -webkit-box-shadow: 0 170px 20px -55px rgb(12 12 12 / 50%) inset;
+    -moz-box-shadow: 0 170px 20px -55px rgb(12 12 12 / 50%) inset;
+    box-shadow: 0 170px 20px -55px rgb(12 12 12 / 50%) inset;
 }
 
 .Center {
     @apply flex items-center;
 
     div {
-        @apply px-4 text-slate-50 font-bold text-lg;
+        @apply flex items-center px-4 text-slate-50 font-bold text-lg;
     }
 
     a {
@@ -20,7 +24,7 @@
         @apply text-gray-300;
 
         button {
-            @apply px-4 py-2 ml-2;
+            @apply px-3 py-1 ml-2;
         }
     }
 
@@ -30,6 +34,10 @@
         width: 30px;
         height: 30px;
     }
+}
+
+.Buttons {
+    @apply flex;
 }
 
 .AvatarActive {
@@ -44,7 +52,11 @@
 }
 
 .ProfileActive {
-    @apply absolute top-10 -right-8 w-36 h-16 py-2 pl-2 mr-2 bg-slate-800;
+    @apply absolute top-10 -right-8 w-36 py-2 px-2 bg-slate-800;
+
+    p {
+        @apply py-1;
+    }
 }
 
 @media (min-width: 768px) {
@@ -59,6 +71,9 @@
     }
 }
 @media (max-width: 1024px) {
+    .Header {
+        @apply py-4;
+    }
     .Right {
         div {
             button {
@@ -66,14 +81,31 @@
             }
         }
     }
+    .Buttons {
+        @apply flex-col;
+
+        button {
+            @apply mb-1 text-xs;
+        }
+    }
 }
 @media (max-width: 900px) {
     .Header {
-        @apply pl-7 pr-10;
+        @apply pl-3 pr-3;
+    }
+    .Center {
+        a {
+            @apply text-center;
+        }
     }
 }
 @media (max-width: 768px) {
     //NOTE - Burger
+    .Header {
+        -webkit-box-shadow: 0 170px 20px -85px rgba(12, 12, 12, 0.5) inset;
+        -moz-box-shadow: 0 170px 20px -85px rgba(12, 12, 12, 0.5) inset;
+        box-shadow: 0 170px 20px -85px rgba(12, 12, 12, 0.5) inset;
+    }
     .Center {
         @apply hidden;
     }

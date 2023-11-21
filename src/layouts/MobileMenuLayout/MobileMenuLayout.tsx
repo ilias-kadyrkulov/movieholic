@@ -7,6 +7,7 @@ import BurgerMenu from '../../components/BurgerMenu/BurgerMenu'
 
 const MobileMenuLayout = () => {
     const navigate = useNavigate()
+    
     return (
         <div>
             <div className={styles.Header}>
