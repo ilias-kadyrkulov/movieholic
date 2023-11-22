@@ -1,63 +1,115 @@
 import Slider from 'react-slick'
 import styles from './CastSlider.module.scss'
-import { CastEntryType } from '../../../api/show/titles.api'
 import castDummy from '../../../assets/noPhotoActor.png'
 import styled from 'styled-components'
+import { useGetCastDetailsByMovieIdQuery } from '../../../api/tmdbV3/movies.api'
+import { useParams } from 'react-router-dom'
+import { tmdbApiConfig } from '../../../api/tmdbV3/tmdb.api'
 
 const CustomStyles = styled.div`
+    .slick-slide {
+        padding-left: 1rem;
+    }
     .slick-prev {
-        left: -45px;
+        left: -40px;
         top: 45px;
-        width: 40px;
-        height: 40px;
     }
     .slick-prev::before {
         font-size: 30px;
         color: rgb(42, 153, 83);
     }
     .slick-next {
-        right: -45px;
+        right: -35px;
         top: 45px;
-        width: 40px;
-        height: 40px;
     }
     .slick-next::before {
         font-size: 30px;
         color: rgb(42, 153, 83);
     }
+
+    @media (max-width: 1024px) {
+        .slick-prev {
+            left: -20px;
+        }
+        .slick-prev::before {
+            font-size: 25px;
+        }
+        .slick-next {
+            right: -25px;
+        }
+        .slick-next::before {
+            font-size: 25px;
+        }
+    }
+    @media (max-width: 768px) {
+        .slick-slide {
+            padding-left: 1rem;
+        }
+        .slick-prev::before {
+            font-size: 20px;
+        }
+        .slick-next {
+            right: -25px;
+        }
+        .slick-next::before {
+            font-size: 20px;
+        }
+    }
+    @media (max-width: 650px) {
+        .slick-prev {
+            left: -15px;
+        }
+        .slick-next {
+            right: -15px;
+        }
+    }
+    @media (max-width: 550px) {
+        .slick-next {
+            right: -20px;
+        }
+    }
 `
 
-const CastSlider = ({ data }: { data: CastEntryType | undefined }) => {
+const CastSlider = () => {
+    const { id } = useParams<{ id: string }>()
+
+    const { data } = useGetCastDetailsByMovieIdQuery({
+        movieId: Number(id)
+    })
+
     let settings = {
         arrows: true,
         infinite: true,
         speed: 600,
-        slidesToShow: 8,
-        slidesToScroll: 4,
+        slidesToShow: 6,
+        slidesToScroll: 6,
         responsive: [
             {
                 breakpoint: 1920,
                 settings: {
-                    slidesToShow: 7
+                    slidesToShow: 5,
+                    slidesToScroll: 5,
                 }
             },
             {
                 breakpoint: 1600,
                 settings: {
-                    slidesToShow: 6
+                    slidesToShow: 4,
+                    slidesToScroll: 4,
                 }
             },
             {
                 breakpoint: 1440,
                 settings: {
-                    slidesToShow: 4
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
                 }
             },
             {
                 breakpoint: 1220,
                 settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3
+                    slidesToShow: 2,
+                    slidesToScroll: 2
                 }
             },
             {
@@ -68,7 +120,7 @@ const CastSlider = ({ data }: { data: CastEntryType | undefined }) => {
                 }
             },
             {
-                breakpoint: 425,
+                breakpoint: 650,
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1
@@ -80,29 +132,26 @@ const CastSlider = ({ data }: { data: CastEntryType | undefined }) => {
     return (
         <CustomStyles>
             <Slider {...settings} className={styles.CastSlider}>
-                {data?.cast?.edges?.map((e) => (
+                {data?.cast?.map((e) => (
                     <div key={data.id}>
                         <div className={styles.Slide}>
                             <div
                                 className={styles.Actor}
                                 style={{
-                                    backgroundImage: `url(${e.node.name.primaryImage?.url}), url(${castDummy})`,
+                                    backgroundImage: `url(${tmdbApiConfig.originalImage(
+                                        e.profile_path
+                                    )}), url(${castDummy})`,
                                     backgroundSize: 'cover',
                                     borderRadius: '50%'
                                 }}
                             />
                             <div className="flex flex-col ml-3 font-medium">
                                 <h3 className="text-slate-100 w-full">
-                                    {e.node?.name?.nameText?.text}
+                                    {e.name}
                                 </h3>
-                                {e.node.characters?.map((c, index) => (
-                                    <p
-                                        key={index}
-                                        className="text-slate-400 w-24"
-                                    >
-                                        {c.name}
-                                    </p>
-                                ))}
+                                <p className="text-slate-400 w-24">
+                                    {e.character}
+                                </p>
                             </div>
                         </div>
                     </div>

@@ -5,7 +5,7 @@ import { useActions } from '../../../hooks/useActions'
 
 type PropsType = {
     text: 'Play now'
-    id: string | undefined
+    tmdbId: number | undefined
     titleType: 'Movie' | 'TV Series' | undefined
     titleText: string | undefined
 }
@@ -14,20 +14,23 @@ const PlayContinueButton = ({ text, titleType, titleText }: PropsType) => {
     const { showBeenClicked } = useActions()
 
     const handleOnPlayButtonClick = () => {
-        showBeenClicked({title: titleText, titleType: titleType})
+        showBeenClicked({ title: titleText, titleType: titleType })
     }
 
     return (
         <>
             {titleType === 'Movie' ? (
-                <Link to={`movies/${titleText}`}>
-                    <button className={styles.PlayContinueButton} onClick={handleOnPlayButtonClick}>
+                <Link to={`${titleText}`}>
+                    <button
+                        className={styles.PlayContinueButton}
+                        onClick={handleOnPlayButtonClick}
+                    >
                         <BsPlayCircle />
                         <span>{text}</span>
                     </button>
                 </Link>
             ) : (
-                <Link to={`tvSeries/${titleText}/ep-1`}>
+                <Link to={`${titleText}/ep-1`}>
                     <button className={styles.PlayContinueButton}>
                         <BsPlayCircle />
                         <span>{text}</span>

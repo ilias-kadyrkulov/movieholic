@@ -3,7 +3,7 @@
         display: none;
     }
     .LaptopDesktop {
-        @apply z-50 hidden transition-colors flex-col border-gray-500 rounded-3xl p-6 absolute w-2/4 content-none top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4;
+        @apply z-50 hidden transition-colors flex-col border-gray-500 rounded-3xl p-6 fixed w-2/4 content-none top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4;
         background-color: #0d0c0f;
         border: 1px solid rgb(32, 32, 32);
 
@@ -12,7 +12,7 @@
         }
         .Details {
             div {
-                @apply m-2 flex flex-col;
+                @apply my-2 flex flex-col;
 
                 label {
                     @apply text-slate-200 mb-2;

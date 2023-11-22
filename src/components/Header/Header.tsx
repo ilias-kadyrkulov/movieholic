@@ -2,47 +2,87 @@ import { useEffect, useState } from 'react'
 import styles from './Header.module.scss'
 import logo from '../../assets/logo-low-resolution.png'
 import smallLogo from '../../assets/movieholic-favicon-color.png'
-import avatarDummy from '../../assets/pianoCrop.jpg'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { IoMdNotificationsOutline } from 'react-icons/io'
-import SignupForm from '../SignupForm/SignupForm'
-import { User, onAuthStateChanged, signOut } from 'firebase/auth'
-import { auth } from '../../firebase'
-import LoginForm from '../LoginForm/LoginForm'
+import SignupForm from '../Forms/SignupForm/SignupForm'
+import LoginForm from '../Forms/LoginForm/LoginForm'
 import { useActions } from '../../hooks/useActions'
 import CustomLink from '../../common/CustomLink/CustomLink'
 import BurgerMenu from '../BurgerMenu/BurgerMenu'
 import PagesList from '../PagesList/PagesList'
 import { Link, useNavigate } from 'react-router-dom'
+import {
+    useCreateRequestTokenQuery,
+    useDeleteSessionMutation
+    // usePrefetch
+} from '../../api/tmdbV3/auth.api'
+import { useAppSelector } from '../../hooks/hooks'
+import { tmdbApiConfig } from '../../api/tmdbV3/tmdb.api'
 
 const Header = () => {
-    const [authUser, setAuthUser] = useState<User | null>(null)
+    const { data: requestTokenData } = useCreateRequestTokenQuery()
+    const [deleteSession] = useDeleteSessionMutation()
+    // const prefetchRequestToken = usePrefetch('createRequestToken')
+
     const [signupFormClicked, setSignupFormClicked] = useState(false)
     const [loginFormClicked, setLoginFormClicked] = useState(false)
     const [isProfileClicked, setIsProfileClicked] = useState(false)
 
-    const { watchListCleared, showListCleared } = useActions()
+    const tmdbAccount = useAppSelector((state) => state.tmdbAccount)
+    const sessionId = useAppSelector((state) => state.tmdbSession.sessionId)
+    const requestToken = useAppSelector(
+        (state) => state.tmdbSession.requestToken
+    )
+    const validatedRequestToken = useAppSelector(
+        (state) => state.tmdbSession.validatedToken
+    )
+
+    const {
+        watchListCleared,
+        likeListCleared,
+        requestTokenStored,
+        requestTokenCleared,
+        validatedTokenCleared,
+        sessionBeenDeleted,
+        userLoggedOut
+    } = useActions()
 
     const navigate = useNavigate()
 
+    const urlParams = new URLSearchParams(window.location.search)
+    const requestTokenURI = urlParams.get('request_token')
+
     useEffect(() => {
-        const listen = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setAuthUser(user)
-            } else {
-                setAuthUser(null)
-            }
-        })
+        console.log('requestToken - ', requestToken)
+        console.log('tmdbAccount - ', tmdbAccount)
+        console.log('sessionId - ', sessionId)
+        console.log('validatedRequestToken - ', validatedRequestToken)
+    }, [requestToken, tmdbAccount, sessionId, validatedRequestToken])
 
-        return () => {
-            listen()
-        }
-    }, [])
+    useEffect(() => {
+        !requestTokenURI &&
+            requestTokenStored({
+                request_token: requestTokenData?.request_token
+            })
+    }, [requestTokenData])
 
-    const handleSignOut = () => {
-        signOut(auth)
+    const handleLogOut = () => {
+        sessionBeenDeleted()
+        userLoggedOut()
         watchListCleared()
-        showListCleared()
+        likeListCleared()
+        requestTokenCleared()
+        validatedTokenCleared()
+        navigate('/movieholic/')
+    }
+
+    const handleSessionDeletion = async () => {
+        await deleteSession(sessionId)
+
+        sessionBeenDeleted()
+        userLoggedOut()
+        watchListCleared()
+        likeListCleared()
         navigate('/movieholic/')
     }
 
@@ -65,14 +105,13 @@ const Header = () => {
     const handleProfileClick = () => {
         setIsProfileClicked(!isProfileClicked)
     }
-    console.log(window.window.outerWidth)
 
     return (
         <>
             <div className={styles.Header}>
-                <div className="left">
+                <div className="left flex items-center">
                     <CustomLink to="/movieholic/">
-                        {window.window.innerWidth <= 1024 ? (
+                        {window.window.innerWidth <= 1120 ? (
                             <img
                                 className="w-10 h-12"
                                 src={smallLogo}
@@ -86,12 +125,12 @@ const Header = () => {
                 <div className={styles.Center}>
                     <PagesList />
                 </div>
+
                 <div className={styles.Right}>
                     <div>
                         <AiOutlineSearch />
                     </div>
-
-                    {authUser ? ( //TODO - Profile page
+                    {tmdbAccount.username ? ( //TODO - Profile page with only avatar (not changeable) and username (not changeable), and sessionId (deleteable)
                         <>
                             <div className={styles.Laptop}>
                                 <div className="flex relative items-center">
@@ -105,11 +144,23 @@ const Header = () => {
                                         <p className="cursor-pointer">
                                             Profile
                                         </p>
+                                        <hr />
+                                        <p className="text-ellipsis overflow-hidden">
+                                            sessionId: {sessionId}
+                                        </p>
+                                        <hr />
                                         <p
                                             className="cursor-pointer"
-                                            onClick={handleSignOut}
+                                            onClick={handleLogOut}
                                         >
-                                            Sign out
+                                            Log out of a session
+                                        </p>
+                                        <hr />
+                                        <p
+                                            className="cursor-pointer"
+                                            onClick={handleSessionDeletion}
+                                        >
+                                            Delete the session
                                         </p>
                                     </div>
                                     <IoMdNotificationsOutline />
@@ -122,7 +173,9 @@ const Header = () => {
                                         onClick={handleProfileClick}
                                     >
                                         <img
-                                            src={avatarDummy}
+                                            src={`${tmdbApiConfig.w500Image(
+                                                tmdbAccount.avatar
+                                            )}`}
                                             className="w-10 h-10 rounded-3xl"
                                             alt="Avatar"
                                         />
@@ -134,7 +187,9 @@ const Header = () => {
                                     <IoMdNotificationsOutline />
                                     <Link to="/movieholic/mobile-menu">
                                         <img
-                                            src={avatarDummy}
+                                            src={`${tmdbApiConfig.w500Image(
+                                                tmdbAccount.avatar
+                                            )}`}
                                             className="w-10 h-10 rounded-3xl"
                                             alt="Avatar"
                                         />
@@ -145,12 +200,23 @@ const Header = () => {
                     ) : (
                         <>
                             <div className={styles.LaptopDesktop}>
-                                <div className="flex">
+                                <div className={styles.Buttons}>
                                     <button
                                         className="border-gray-300 border-2 rounded-md transition-colors hover:bg-purple-900"
                                         onClick={handleSignupFormOnClick}
                                     >
-                                        Sign up
+                                        {!requestTokenURI && (
+                                            <a
+                                                href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=http://127.0.0.1:5173/movieholic/`}
+                                            >
+                                                Sign up
+                                            </a>
+                                        )}
+                                        {!requestTokenURI ? (
+                                            ''
+                                        ) : (
+                                            <span>Sign up</span>
+                                        )}
                                     </button>
                                     <button
                                         className="border-green-700 border-2 rounded-md bg-green-700 hover:opacity-90"
@@ -169,6 +235,7 @@ const Header = () => {
                 formClicked={signupFormClicked}
                 closeForm={handleSignUpFormOnClose}
                 openLoginForm={handleLoginFormOnClick}
+                requestTokenURI={requestTokenURI}
             />
             <LoginForm
                 formClicked={loginFormClicked}

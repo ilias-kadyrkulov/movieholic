@@ -1,18 +1,18 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-const initialState: Array<string | undefined> = []
+const initialState: Array<number | undefined> = []
 
 export const likeListSlice = createSlice({
     name: 'likeList',
     initialState,
     reducers: {
-        showGotLiked: (state, action: PayloadAction<string | undefined>) => {
+        showGotLiked: (state, action: PayloadAction<number | undefined>) => {
             state.push(action.payload)
         },
-        showGotUnliked: (state, action: PayloadAction<string | undefined>) => {
+        showGotUnliked: (state, action: PayloadAction<number | undefined>) => {
             return state.filter(showId => showId != action.payload)
         },
-        showListCleared: () => {
+        likeListCleared: () => {
             return []
         }
     }

@@ -2,10 +2,10 @@
     @apply flex;
 }
 .Actor {
-    @apply w-20 h-20;
+    @apply w-24 h-24;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 650px) {
     .Slide {
         @apply justify-center;
     }

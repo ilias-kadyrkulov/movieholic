@@ -1,27 +1,19 @@
-
+import ReactPlayer from 'react-player'
 
 const TrailerPlayer = () => {
     return (
-        <div>
-            {/* <ReactPlayer
-                className="relative z-50"
-                url={filemoon}
+        <div className="flex justify-center pt-24">
+            <ReactPlayer
+                // url={}
                 controls={true}
-                onPlay={handlePlay}
-                onError={handleError}
-                onProgress={handleProgress}
-                onReady={handleReady}
                 width="800px"
                 height="450px"
                 config={{
                     youtube: {
                         playerVars: { showinfo: 1 }
-                    },
-                    file: {
-                        attributes: {}
                     }
                 }}
-            /> */}
+            />
         </div>
     )
 }

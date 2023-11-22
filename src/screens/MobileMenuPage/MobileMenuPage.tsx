@@ -1,31 +1,50 @@
 import styles from './MobileMenuPage.module.scss'
 import PagesList from '../../components/PagesList/PagesList'
-import { useContext } from 'react'
-import { UserContext } from '../../App'
 import CustomLink from '../../common/CustomLink/CustomLink'
 import { useActions } from '../../hooks/useActions'
-import { signOut } from 'firebase/auth'
-import { auth } from '../../firebase'
 import { useNavigate } from 'react-router-dom'
+import { useAppSelector } from '../../hooks/hooks'
+import { useLazyCreateRequestTokenQuery } from '../../api/tmdbV3/auth.api'
 
 const MobileMenuPage = () => {
-    const user = useContext(UserContext)
+    const [createRequestToken] = useLazyCreateRequestTokenQuery()
 
-    const { watchListCleared, showListCleared } = useActions()
+    const tmdbAccount = useAppSelector((state) => state.tmdbAccount)
+    const requestToken = useAppSelector(
+        (state) => state.tmdbSession.requestToken
+    )
 
-    const navigate = useNavigate();
+    const {
+        watchListCleared,
+        likeListCleared,
+        requestTokenStored,
+        requestTokenCleared,
+        validatedTokenCleared,
+        sessionBeenDeleted,
+        userLoggedOut
+    } = useActions()
 
-    const handleSignOut = () => {
-        signOut(auth)
+    const navigate = useNavigate()
+
+    const handleTokenCreation = async () => {
+        const result = await createRequestToken().unwrap()
+        requestTokenStored({ request_token: result.request_token })
+    }
+
+    const handleLogOut = () => {
+        sessionBeenDeleted()
+        userLoggedOut()
         watchListCleared()
-        showListCleared()
+        likeListCleared()
+        requestTokenCleared()
+        validatedTokenCleared()
         navigate('/movieholic/')
     }
 
     return (
         <div className={styles.Body}>
-            <div className={styles.Buttons}>
-                {user ? (
+            <div className={tmdbAccount.username ? styles.UserLoggedIn : styles.Buttons}>
+                {tmdbAccount.username ? (
                     <>
                         <button
                             className="border-green-700 bg-green-700 hover:opacity-90"
@@ -35,20 +54,26 @@ const MobileMenuPage = () => {
                         </button>
                         <button
                             className="border-gray-300 transition-colors hover:bg-purple-900"
-                            onClick={handleSignOut}
+                            onClick={handleLogOut}
                         >
                             Sign out
                         </button>
                     </>
                 ) : (
                     <>
-                        <CustomLink to="sign-up">
-                            <button className="border-gray-300 transition-colors hover:bg-purple-900 mr-6">
+                        <button className="border-gray-300 transition-colors hover:bg-purple-900" onClick={handleTokenCreation}>
+                            Request new token
+                        </button>
+                        <button className="border-gray-300 transition-colors hover:bg-purple-900">
+                            <a
+                                href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=http://127.0.0.1:5173/movieholic/mobile-menu/sign-up`}
+                            >
                                 Sign up
-                            </button>
-                        </CustomLink>
+                            </a>
+                        </button>
+
                         <CustomLink to="login">
-                            <button className="border-green-700 bg-green-700 hover:opacity-90 ml-6">
+                            <button className="border-green-700 bg-green-700 hover:opacity-90">
                                 Login
                             </button>
                         </CustomLink>

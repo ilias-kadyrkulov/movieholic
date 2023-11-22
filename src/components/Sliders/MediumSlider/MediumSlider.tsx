@@ -21,7 +21,7 @@ const CustomStyles = styled.div`
         height: 40px;
     }
     .slick-prev::before {
-        font-size: 40px;
+        font-size: 35px;
         color: rgb(42, 153, 83);
     }
     .slick-next {
@@ -30,7 +30,7 @@ const CustomStyles = styled.div`
         height: 40px;
     }
     .slick-next::before {
-        font-size: 40px;
+        font-size: 35px;
         color: rgb(42, 153, 83);
     }
 
@@ -65,13 +65,13 @@ const CustomStyles = styled.div`
             padding-right: 0.75rem;
         }
         .slick-prev {
-            left: -35px;
+            left: -27px;
         }
         .slick-prev::before {
             font-size: 30px;
         }
         .slick-next {
-            right: -20px;
+            right: -25px;
         }
         .slick-next::before {
             font-size: 30px;
@@ -85,7 +85,7 @@ const CustomStyles = styled.div`
             font-size: 25px;
         }
         .slick-next {
-            right: -20px;
+            right: -25px;
         }
         .slick-next::before {
             font-size: 25px;

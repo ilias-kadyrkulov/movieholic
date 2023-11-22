@@ -1,10 +1,8 @@
 import Slider from 'react-slick'
 import styles from './WatchListSlider.module.scss'
-import { useGetWatchListQuery } from '../../../api/show/titles.api'
 import { AiFillStar } from 'react-icons/ai'
 import { LiaFilmSolid } from 'react-icons/lia'
 import { Link } from 'react-router-dom'
-import { useAppSelector } from '../../../hooks/hooks'
 import styled from 'styled-components'
 
 const CustomStyles = styled.div`
@@ -54,13 +52,10 @@ const CustomStyles = styled.div`
 `
 
 const WatchListSlider = () => {
-    const showIds = useAppSelector((state) => state.watchList)
 
-    const { results } = useGetWatchListQuery(showIds, {
-        selectFromResult: ({ data }) => ({
-            results: data?.results
-        })
-    })
+    //TODO - Watchlist data
+
+    const mockData: any = []
 
     let settings = {
         infinite: true,
@@ -94,7 +89,7 @@ const WatchListSlider = () => {
     return (
         <CustomStyles>
             <Slider {...settings} className={styles.WatchListSlider}>
-                {results?.map((e) => (
+                {mockData?.map((e: any) => (
                     <Link to={`title/${e.id}`} key={e.id}>
                         {e.primaryImage && e.primaryImage.url && (
                             <div className={styles.MovieCard}>
@@ -120,7 +115,7 @@ const WatchListSlider = () => {
                                             <LiaFilmSolid />
                                         </div>
                                         <div className="leading-3 w-full">
-                                            {e.genres.genres.map((g) => (
+                                            {e.genres.genres.map((g: any) => (
                                                 <span
                                                     className="font-bold text-slate-400 mr-1"
                                                     key={g.id}

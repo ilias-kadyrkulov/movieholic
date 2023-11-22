@@ -17,14 +17,14 @@
     @apply h-full relative;
 
     > div {
-        -webkit-box-shadow: 0px 0px 200px 150px rgba(28, 28, 28, 0.8) inset;
-        -moz-box-shadow: 0px 0px 200px 150px rgba(28, 28, 28, 0.8) inset;
-        box-shadow: 0px 0px 200px 150px rgba(28, 28, 28, 0.8) inset;
+        -webkit-box-shadow: 0 -300px 55px -50px rgba(18, 17, 17, 0.8) inset;
+        -moz-box-shadow: 0 -300px 55px -50px rgba(18, 17, 17, 0.8) inset;
+        box-shadow: 0 -300px 55px -50px rgba(18, 17, 17, 0.8) inset;
     }
 }
 
 .Details {
-    @apply absolute bottom-7 left-10 max-w-2xl z-30;
+    @apply absolute bottom-3 left-14 max-w-2xl z-30;
 }
 
 .Buttons {
@@ -76,7 +76,7 @@
 
 @media (max-width: 1024px) {
     .Details {
-        @apply max-w-xl;
+        @apply left-6 bottom-3 max-w-xl;
 
         h3 {
             @apply text-2xl;
@@ -103,8 +103,6 @@
         @apply m-0;
     }
     .Details {
-        @apply left-6 bottom-14;
-
         h3 {
             @apply text-xl;
         }
@@ -117,9 +115,9 @@
     }
     .Slide {
         > div {
-            -webkit-box-shadow: 0 0 100px 100px rgba(28, 28, 28, 0.8) inset;
-            -moz-box-shadow: 0 0 100px 100px rgba(28, 28, 28, 0.8) inset;
-            box-shadow: 0 0 100px 100px rgba(28, 28, 28, 0.8) inset;
+            -webkit-box-shadow: 0 -250px 100px 0px rgba(28, 28, 28, 0.8) inset;
+            -moz-box-shadow: 0 -250px 100px 0px rgba(28, 28, 28, 0.8) inset;
+            box-shadow: 0 -250px 100px 0px rgba(28, 28, 28, 0.8) inset;
         }
     }
 }

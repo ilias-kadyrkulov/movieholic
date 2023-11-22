@@ -1,4 +1,4 @@
-.Show {
+.Movie {
     @apply relative bg-cover bg-no-repeat bg-center;
 
     height: 100vh;
@@ -10,7 +10,6 @@
 .Details {
     @apply relative;
     top: -12rem;
-    padding-top: -40px;
     padding-left: 3rem;
 
     max-width: 95%;
@@ -37,7 +36,7 @@
 }
 
 @media (max-width: 1440px) {
-    .Show {
+    .Movie {
         -webkit-box-shadow: 0 -100px 200px 200px rgba(28, 28, 28, 0.8) inset;
         -moz-box-shadow: 0 -100px 200px 200px rgba(28, 28, 28, 0.8) inset;
         box-shadow: 0 -100px 200px 200px rgba(28, 28, 28, 0.8) inset;
@@ -49,7 +48,7 @@
     }
 }
 @media (max-width: 1024px) {
-    .Show {
+    .Movie {
         -webkit-box-shadow: 0 -70px 100px 150px rgba(28, 28, 28, 0.8) inset;
         -moz-box-shadow: 0 -70px 100px 150px rgba(28, 28, 28, 0.8) inset;
         box-shadow: 0 -70px 100px 150px rgba(28, 28, 28, 0.8) inset;
@@ -59,17 +58,13 @@
     }
 }
 @media (max-width: 768px) {
-    .Show {
+    .Movie {
         -webkit-box-shadow: 0 -100px 100px 100px rgba(28, 28, 28, 0.8) inset;
         -moz-box-shadow: 0 -100px 100px 100px rgba(28, 28, 28, 0.8) inset;
         box-shadow: 0 -100px 100px 100px rgba(28, 28, 28, 0.8) inset;
     }
     .Details {
         top: -13rem;
-
-        div {
-            @apply m-1;
-        }
     }
     .Buttons {
         span {
@@ -103,12 +98,13 @@
 }
 @media (max-width: 568px) {
     .Details {
+        padding-left: 1.5rem;
         top: -17rem;
     }
 }
 
 @media (max-width: 560px) {
-    .Show {
+    .Movie {
         -webkit-box-shadow: 0 -70px 100px 100px rgba(28, 28, 28, 0.8) inset;
         -moz-box-shadow: 0 -70px 100px 100px rgba(28, 28, 28, 0.8) inset;
         box-shadow: 0 -70px 100px 100px rgba(28, 28, 28, 0.8) inset;
@@ -120,7 +116,7 @@
     }
 }
 @media (max-width: 390px) {
-    .Show {
+    .Movie {
         -webkit-box-shadow: 0 -50px 100px 60px rgba(28, 28, 28, 0.8) inset;
         -moz-box-shadow: 0 -50px 100px 60px rgba(28, 28, 28, 0.8) inset;
         box-shadow: 0 -50px 100px 60px rgba(28, 28, 28, 0.8) inset;
@@ -129,5 +125,8 @@
         top: -6.5rem;
     }
 }
-@media (max-width: 307px) {
+@media (max-width: 375px) {
+    .Details {
+        padding-left: 1rem;
+    }
 }

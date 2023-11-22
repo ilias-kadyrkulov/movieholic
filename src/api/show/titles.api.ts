@@ -1,4 +1,4 @@
-import { showApi } from './show.api'
+import { showAPI } from './show.api'
 
 type GetPopularOfTheWeekResponseType = {
     entries: number
@@ -121,7 +121,7 @@ export type TopRatedSeriesEntryType = EntryType & {
     plot: { plotText: { plainText: string } }
 }
 
-const titlesAPI = showApi.injectEndpoints({
+const titlesAPI = showAPI.injectEndpoints({
     endpoints: (builder) => ({
         getPopularOfTheWeek: builder.query<
             GetPopularOfTheWeekResponseType,
