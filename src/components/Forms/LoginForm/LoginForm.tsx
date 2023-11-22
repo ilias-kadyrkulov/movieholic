@@ -35,6 +35,7 @@ const validatePassword = (value: string) => {
 }
 
 const LoginForm = (props: PropsType) => {
+
     const [isFormActive, setIsFormActive] = useState(false)
     const [authValidText, setAuthValidText] = useState('')
 
