@@ -66,7 +66,7 @@ const MobileMenuPage = () => {
                         </button>
                         <button className="border-gray-300 transition-colors hover:bg-purple-900">
                             <a
-                                href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=http://127.0.0.1:5173/movieholic/mobile-menu/sign-up`}
+                                href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=https://ilias-kadyrkulov.github.io/movieholic/mobile-menu/sign-up`}
                             >
                                 Sign up
                             </a>

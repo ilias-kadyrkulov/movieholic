@@ -207,7 +207,7 @@ const Header = () => {
                                     >
                                         {!requestTokenURI && (
                                             <a
-                                                href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=http://127.0.0.1:5173/movieholic/`}
+                                                href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=https://ilias-kadyrkulov.github.io/movieholic/`}
                                             >
                                                 Sign up
                                             </a>

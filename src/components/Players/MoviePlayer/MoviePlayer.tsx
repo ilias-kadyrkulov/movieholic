@@ -14,13 +14,12 @@ const MoviePlayer = () => {
 
     return (
         <>
-            
             <div className={styles.MobileTablet}>
                 <div className="flex pt-32 h-full">
                     <div className={styles.MoviePlayer}>
                         {server === 'Filemoon' && fileChosen.file_code && (
                             <iframe
-                                src={`https://filemoon.sx/e/${fileChosen.file_code}}`}
+                                src={`https://filemoon.sx/e/${fileChosen.file_code}`}
                                 className="w-full h-full"
                                 allowFullScreen
                             />
