@@ -311,33 +311,15 @@ const SignupForm = (props: PropsType) => {
                     </Form>
                     <Form
                         className={
-                            location.pathname !=
-                            'mobile-menu/sign-up'
+                            location.pathname != 'mobile-menu/sign-up'
                                 ? styles.hidden
                                 : `${styles.MobileTablet}`
                         }
                     >
-                        <div className={styles.Logo}>
-                            <div>
-                                <img className="w-44 h-11" src={logo} />
-                                <p className="text-gray-400">
-                                    Please, re-enter your credentials.
-                                </p>
-                            </div>
-                            <div>
-                                <button
-                                    type="button"
-                                    className="text-gray-400 border-2 border-gray-300 rounded-xl px-5 py-3 transition-colors hover:bg-slate-50 hover:text-black"
-                                    onClick={() => {
-                                        handleClearFormValues(handleReset)
-                                        props.closeForm && props.closeForm()
-                                    }}
-                                >
-                                    Close
-                                </button>
-                            </div>
-                        </div>
                         <div className={styles.Details}>
+                            <p className="text-gray-400">
+                                Please, re-enter your credentials.
+                            </p>
                             <div>
                                 <label htmlFor={`${id}-username`}>
                                     Username
@@ -392,9 +374,6 @@ const SignupForm = (props: PropsType) => {
                                 type="submit"
                                 disabled={isSubmitting}
                                 className="text-gray-400 font-bold bg-slate-200 rounded-md w-full py-3 my-3 transition-colors hover:bg-black hover:text-slate-200"
-                                onClick={() =>
-                                    handleClearFormValues(handleReset)
-                                }
                             >
                                 Create account
                             </button>
@@ -402,9 +381,7 @@ const SignupForm = (props: PropsType) => {
                         <h3 className="text-center mt-4 text-gray-500 text-sm">
                             Already have an account?{' '}
                             <span className="text-slate-200 font-bold hover:opacity-80">
-                                <Link to="mobile-menu/login">
-                                    Login
-                                </Link>
+                                <Link to="mobile-menu/login">Login</Link>
                             </span>
                         </h3>
                     </Form>

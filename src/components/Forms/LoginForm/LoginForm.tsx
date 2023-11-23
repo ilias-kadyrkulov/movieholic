@@ -126,7 +126,7 @@ const LoginForm = (props: PropsType) => {
             }}
             onSubmit={handleSubmit}
         >
-            {({ isSubmitting, errors, touched, handleReset }) => (
+            {({ isSubmitting, errors, touched }) => (
                 <>
                     <Form
                         className={`${styles.LaptopDesktop} ${
@@ -205,9 +205,6 @@ const LoginForm = (props: PropsType) => {
                                 type="submit"
                                 disabled={isSubmitting}
                                 className="text-gray-400 font-bold bg-white rounded-md w-full py-3 my-3 transition-colors hover:bg-black hover:text-slate-200"
-                                onClick={() =>
-                                    handleClearFormValues(handleReset)
-                                }
                             >
                                 Login
                             </button>
@@ -222,7 +219,7 @@ const LoginForm = (props: PropsType) => {
                                 }}
                             >
                                 <a
-                                    href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=https://stately-moonbeam-5d3b0c.netlify.app`}
+                                    href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=https://stately-moonbeam-5d3b0c.netlify.app/`}
                                 >
                                     Sign up
                                 </a>
@@ -236,23 +233,6 @@ const LoginForm = (props: PropsType) => {
                                 : `${styles.MobileTablet}`
                         }
                     >
-                        <div className={styles.Logo}>
-                            <div>
-                                <img className="w-44 h-11" src={logo} />
-                                <p className="text-gray-400">
-                                    Login to your account
-                                </p>
-                            </div>
-                            <div>
-                                <button
-                                    type="button"
-                                    className="text-gray-400 border-2 border-gray-300 rounded-xl px-5 py-3 transition-colors hover:bg-slate-50 hover:text-black"
-                                    onClick={props.closeForm}
-                                >
-                                    Close
-                                </button>
-                            </div>
-                        </div>
                         <div className={styles.Details}>
                             <div>
                                 <label htmlFor={`${id}-username`}>
@@ -308,9 +288,6 @@ const LoginForm = (props: PropsType) => {
                                 type="submit"
                                 disabled={isSubmitting}
                                 className="text-gray-400 font-bold bg-slate-200 rounded-md w-full py-3 my-3 transition-colors hover:bg-black hover:text-slate-200"
-                                onClick={() =>
-                                    handleClearFormValues(handleReset)
-                                }
                             >
                                 Login
                             </button>

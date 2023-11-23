@@ -108,7 +108,7 @@ function App() {
                             />
                         </Route>
                         <Route
-                            path="mobile-menu"
+                            path="/mobile-menu"
                             element={<MobileMenuLayout />}
                         >
                             <Route index element={<MobileMenuPage />} />
