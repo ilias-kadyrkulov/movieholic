@@ -68,11 +68,6 @@ const LoginForm = (props: PropsType) => {
         }
     }
 
-    const handleClearFormValues = (resetFunc: () => void) => {
-        resetFunc()
-        setAuthValidText('')
-    }
-
     useEffect(() => {
         if (!props.formClicked) {
             setIsFormActive(false)
