@@ -18,6 +18,7 @@ import {
 } from '../../api/tmdbV3/auth.api'
 import { useAppSelector } from '../../hooks/hooks'
 import { tmdbApiConfig } from '../../api/tmdbV3/tmdb.api'
+import { RotatingLines } from 'react-loader-spinner'
 
 const Header = () => {
     const { data: requestTokenData } = useCreateRequestTokenQuery()
@@ -172,13 +173,25 @@ const Header = () => {
                                         }
                                         onClick={handleProfileClick}
                                     >
-                                        <img
-                                            src={`${tmdbApiConfig.w500Image(
-                                                tmdbAccount.avatar
-                                            )}`}
-                                            className="w-10 h-10 rounded-3xl"
-                                            alt="Avatar"
-                                        />
+                                        {!tmdbAccount.avatar ? (
+                                            <div className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">
+                                                <RotatingLines
+                                                    strokeColor="grey"
+                                                    strokeWidth="5"
+                                                    animationDuration="0.75"
+                                                    width="100"
+                                                    visible={true}
+                                                />
+                                            </div>
+                                        ) : (
+                                            <img
+                                                src={`${tmdbApiConfig.w500Image(
+                                                    tmdbAccount.avatar
+                                                )}`}
+                                                className="w-10 h-10 rounded-3xl"
+                                                alt="Avatar"
+                                            />
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -207,7 +220,7 @@ const Header = () => {
                                     >
                                         {!requestTokenURI && (
                                             <a
-                                                href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=https://ilias-kadyrkulov.github.io/movieholic/`}
+                                                href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=https://ilias-kadyrkulov.github.io/movieholic`}
                                             >
                                                 Sign up
                                             </a>

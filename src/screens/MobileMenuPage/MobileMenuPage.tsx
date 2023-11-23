@@ -1,13 +1,14 @@
+import { useEffect } from 'react'
 import styles from './MobileMenuPage.module.scss'
 import PagesList from '../../components/PagesList/PagesList'
 import CustomLink from '../../common/CustomLink/CustomLink'
 import { useActions } from '../../hooks/useActions'
 import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../../hooks/hooks'
-import { useLazyCreateRequestTokenQuery } from '../../api/tmdbV3/auth.api'
+import { useCreateRequestTokenQuery } from '../../api/tmdbV3/auth.api'
 
 const MobileMenuPage = () => {
-    const [createRequestToken] = useLazyCreateRequestTokenQuery()
+    const { data: requestTokenData } = useCreateRequestTokenQuery()
 
     const tmdbAccount = useAppSelector((state) => state.tmdbAccount)
     const requestToken = useAppSelector(
@@ -26,10 +27,15 @@ const MobileMenuPage = () => {
 
     const navigate = useNavigate()
 
-    const handleTokenCreation = async () => {
-        const result = await createRequestToken().unwrap()
-        requestTokenStored({ request_token: result.request_token })
-    }
+    const urlParams = new URLSearchParams(window.location.search)
+    const requestTokenURI = urlParams.get('request_token')
+
+    useEffect(() => {
+        !requestTokenURI &&
+            requestTokenStored({
+                request_token: requestTokenData?.request_token
+            })
+    }, [requestTokenData])
 
     const handleLogOut = () => {
         sessionBeenDeleted()
@@ -43,7 +49,11 @@ const MobileMenuPage = () => {
 
     return (
         <div className={styles.Body}>
-            <div className={tmdbAccount.username ? styles.UserLoggedIn : styles.Buttons}>
+            <div
+                className={
+                    tmdbAccount.username ? styles.UserLoggedIn : styles.Buttons
+                }
+            >
                 {tmdbAccount.username ? (
                     <>
                         <button
@@ -61,9 +71,6 @@ const MobileMenuPage = () => {
                     </>
                 ) : (
                     <>
-                        <button className="border-gray-300 transition-colors hover:bg-purple-900" onClick={handleTokenCreation}>
-                            Request new token
-                        </button>
                         <button className="border-gray-300 transition-colors hover:bg-purple-900">
                             <a
                                 href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=https://ilias-kadyrkulov.github.io/movieholic/mobile-menu/sign-up`}

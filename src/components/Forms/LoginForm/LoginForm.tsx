@@ -35,7 +35,6 @@ const validatePassword = (value: string) => {
 }
 
 const LoginForm = (props: PropsType) => {
-
     const [isFormActive, setIsFormActive] = useState(false)
     const [authValidText, setAuthValidText] = useState('')
 
@@ -67,6 +66,11 @@ const LoginForm = (props: PropsType) => {
         } else {
             return querySnapshot.docs.map((doc) => doc.data())
         }
+    }
+
+    const handleClearFormValues = (resetFunc: () => void) => {
+        resetFunc()
+        setAuthValidText('')
     }
 
     useEffect(() => {
@@ -122,7 +126,7 @@ const LoginForm = (props: PropsType) => {
             }}
             onSubmit={handleSubmit}
         >
-            {({ isSubmitting, errors, touched }) => (
+            {({ isSubmitting, errors, touched, handleReset }) => (
                 <>
                     <Form
                         className={`${styles.LaptopDesktop} ${
@@ -201,6 +205,9 @@ const LoginForm = (props: PropsType) => {
                                 type="submit"
                                 disabled={isSubmitting}
                                 className="text-gray-400 font-bold bg-white rounded-md w-full py-3 my-3 transition-colors hover:bg-black hover:text-slate-200"
+                                onClick={() =>
+                                    handleClearFormValues(handleReset)
+                                }
                             >
                                 Login
                             </button>
@@ -210,7 +217,8 @@ const LoginForm = (props: PropsType) => {
                             <span
                                 className="text-slate-200 font-bold hover:opacity-80 cursor-pointer"
                                 onClick={() => {
-                                    props.openSignupForm && props.openSignupForm()
+                                    props.openSignupForm &&
+                                        props.openSignupForm()
                                 }}
                             >
                                 <a
@@ -300,6 +308,9 @@ const LoginForm = (props: PropsType) => {
                                 type="submit"
                                 disabled={isSubmitting}
                                 className="text-gray-400 font-bold bg-slate-200 rounded-md w-full py-3 my-3 transition-colors hover:bg-black hover:text-slate-200"
+                                onClick={() =>
+                                    handleClearFormValues(handleReset)
+                                }
                             >
                                 Login
                             </button>

@@ -4,7 +4,11 @@ import styles from './SignupForm.module.scss'
 import logo from '../../../assets/logo-low-resolution.png'
 import 'firebase/auth'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { useCreateSessionMutation, useLazyGetAccountDetailsQuery, useValidateTokenWithLoginMutation } from '../../../api/tmdbV3/auth.api'
+import {
+    useCreateSessionMutation,
+    useLazyGetAccountDetailsQuery,
+    useValidateTokenWithLoginMutation
+} from '../../../api/tmdbV3/auth.api'
 import { useActions } from '../../../hooks/useActions'
 import { useAppSelector } from '../../../hooks/hooks'
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore'
@@ -43,7 +47,7 @@ const SignupForm = (props: PropsType) => {
     const [validateSessionWithLogin] = useValidateTokenWithLoginMutation()
     const [getAccountDetails] = useLazyGetAccountDetailsQuery()
     const [createSession] = useCreateSessionMutation()
-    
+
     const urlParams = new URLSearchParams(window.location.search)
     const requestTokenURI = urlParams.get('request_token')
 
@@ -121,7 +125,7 @@ const SignupForm = (props: PropsType) => {
         if (shouldRunFunction && sessionId) {
             handleSessionIdStoredInFirestore()
             functionShouldNotRun()
-            navigate('/movieholic/')
+            navigate('/movieholic')
         }
     }, [sessionId, shouldRunFunction])
 
@@ -164,7 +168,9 @@ const SignupForm = (props: PropsType) => {
                 const userExists = querySnapshot.docs.length > 0
 
                 if (userExists) {
-                    setAuthValidText('Another user with such username already exists.')
+                    setAuthValidText(
+                        'Another user with such username already exists.'
+                    )
                     setSubmitting(false)
                 } else {
                     setUser({
@@ -283,6 +289,9 @@ const SignupForm = (props: PropsType) => {
                                 type="submit"
                                 disabled={isSubmitting}
                                 className="text-gray-400 font-bold bg-white rounded-md w-full py-3 my-3 transition-colors hover:bg-black hover:text-white"
+                                onClick={() =>
+                                    handleClearFormValues(handleReset)
+                                }
                             >
                                 Create account
                             </button>
@@ -383,6 +392,9 @@ const SignupForm = (props: PropsType) => {
                                 type="submit"
                                 disabled={isSubmitting}
                                 className="text-gray-400 font-bold bg-slate-200 rounded-md w-full py-3 my-3 transition-colors hover:bg-black hover:text-slate-200"
+                                onClick={() =>
+                                    handleClearFormValues(handleReset)
+                                }
                             >
                                 Create account
                             </button>
