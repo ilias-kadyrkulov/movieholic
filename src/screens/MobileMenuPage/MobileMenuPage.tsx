@@ -44,7 +44,7 @@ const MobileMenuPage = () => {
         likeListCleared()
         requestTokenCleared()
         validatedTokenCleared()
-        navigate('/movieholic/')
+        navigate('/')
     }
 
     return (
@@ -73,7 +73,7 @@ const MobileMenuPage = () => {
                     <>
                         <button className="border-gray-300 transition-colors hover:bg-purple-900">
                             <a
-                                href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=https://ilias-kadyrkulov.github.io/movieholic/mobile-menu/sign-up`}
+                                href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=https://stately-moonbeam-5d3b0c.netlify.app/mobile-menu/sign-up`}
                             >
                                 Sign up
                             </a>

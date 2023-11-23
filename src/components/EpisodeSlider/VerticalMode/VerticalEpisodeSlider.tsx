@@ -31,7 +31,7 @@ const VerticalEpisodeSlider = () => {
     return (
         <Slider {...settings} className={styles.EpisodeSlider}>
             {fileList?.map((f, index) => (
-                <Link to={`/title/${id}/ep-${index + 1}`} replace key={index}>
+                <Link to={`title/${id}/ep-${index + 1}`} replace key={index}>
                     <div    
                         className={styles.Episode}
                         style={{

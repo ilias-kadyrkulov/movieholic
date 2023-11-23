@@ -74,7 +74,7 @@ const Header = () => {
         likeListCleared()
         requestTokenCleared()
         validatedTokenCleared()
-        navigate('/movieholic/')
+        navigate('/')
     }
 
     const handleSessionDeletion = async () => {
@@ -84,7 +84,7 @@ const Header = () => {
         userLoggedOut()
         watchListCleared()
         likeListCleared()
-        navigate('/movieholic/')
+        navigate('/')
     }
 
     const handleSignUpFormOnClose = () => {
@@ -111,7 +111,7 @@ const Header = () => {
         <>
             <div className={styles.Header}>
                 <div className="left flex items-center">
-                    <CustomLink to="/movieholic/">
+                    <CustomLink to="/">
                         {window.window.innerWidth <= 1120 ? (
                             <img
                                 className="w-10 h-12"
@@ -198,7 +198,7 @@ const Header = () => {
                             <div className={styles.MobileTablet}>
                                 <div className="flex relative items-center">
                                     <IoMdNotificationsOutline />
-                                    <Link to="/movieholic/mobile-menu">
+                                    <Link to="mobile-menu">
                                         <img
                                             src={`${tmdbApiConfig.w500Image(
                                                 tmdbAccount.avatar
@@ -220,7 +220,7 @@ const Header = () => {
                                     >
                                         {!requestTokenURI && (
                                             <a
-                                                href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=https://ilias-kadyrkulov.github.io/movieholic`}
+                                                href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=https://stately-moonbeam-5d3b0c.netlify.app`}
                                             >
                                                 Sign up
                                             </a>

@@ -11,7 +11,7 @@ type PropsType = {
 const WatchTrailerButton = ({ text, tmdbId }: PropsType) => {
     const { fileListEmptied } = useActions()
     return (
-        <Link to={`/movieholic/trailer/${tmdbId}`}>
+        <Link to={`trailer/${tmdbId}`}>
             <button
                 className={styles.WatchTrailerButton}
                 onClick={() => fileListEmptied()}

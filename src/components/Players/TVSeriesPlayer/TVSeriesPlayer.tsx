@@ -79,7 +79,7 @@ const TVSeriesPlayer = () => { //FIXME - Fix filemoon server
         //             if (index > fileListData.length - 1) {
         //                 //FIXME - bug in Firefox browser
         //                 navigate(
-        //                     `/movieholic/title/${id}/tvSeries/${titleText}/ep-1`
+        //                     `/title/${id}/tvSeries/${titleText}/ep-1`
         //                 )
         //             }
         //         }
@@ -88,9 +88,9 @@ const TVSeriesPlayer = () => { //FIXME - Fix filemoon server
         if (episodeRegex && server === 'Vidplay' && episodes) {
             const episode = +episodeRegex[0]
             if (episode >= episodes) {
-                navigate(`/movieholic/title/${id}/tvSeries/${titleText}/ep-1`)
+                navigate(`title/${id}/tvSeries/${titleText}/ep-1`)
             } else if (episode === 0) {
-                navigate(`/movieholic/title/${id}/tvSeries/${titleText}/ep-1`)
+                navigate(`title/${id}/tvSeries/${titleText}/ep-1`)
             }
         }
     }, [fileList, episodeRegex])
@@ -112,7 +112,7 @@ const TVSeriesPlayer = () => { //FIXME - Fix filemoon server
             }`
 
             navigate(
-                `/movieholic/title/${id}/tvSeries/${titleText}/ep-${index + 1}`
+                `title/${id}/tvSeries/${titleText}/ep-${index + 1}`
             )
         }
     }

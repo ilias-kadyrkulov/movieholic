@@ -125,7 +125,7 @@ const SignupForm = (props: PropsType) => {
         if (shouldRunFunction && sessionId) {
             handleSessionIdStoredInFirestore()
             functionShouldNotRun()
-            navigate('/movieholic')
+            navigate('/')
         }
     }, [sessionId, shouldRunFunction])
 
@@ -312,7 +312,7 @@ const SignupForm = (props: PropsType) => {
                     <Form
                         className={
                             location.pathname !=
-                            '/movieholic/mobile-menu/sign-up'
+                            'mobile-menu/sign-up'
                                 ? styles.hidden
                                 : `${styles.MobileTablet}`
                         }
@@ -402,7 +402,7 @@ const SignupForm = (props: PropsType) => {
                         <h3 className="text-center mt-4 text-gray-500 text-sm">
                             Already have an account?{' '}
                             <span className="text-slate-200 font-bold hover:opacity-80">
-                                <Link to="/movieholic/mobile-menu/login">
+                                <Link to="mobile-menu/login">
                                     Login
                                 </Link>
                             </span>

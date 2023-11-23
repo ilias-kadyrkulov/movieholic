@@ -108,7 +108,7 @@ const LoginForm = (props: PropsType) => {
 
                     setSubmitting(false)
                     props.closeForm && props.closeForm()
-                    navigate('/movieholic/')
+                    navigate('/')
                 }
             })
             .catch((error) => {
@@ -222,7 +222,7 @@ const LoginForm = (props: PropsType) => {
                                 }}
                             >
                                 <a
-                                    href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=http://127.0.0.1:5173/movieholic/`}
+                                    href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=https://stately-moonbeam-5d3b0c.netlify.app`}
                                 >
                                     Sign up
                                 </a>
@@ -231,7 +231,7 @@ const LoginForm = (props: PropsType) => {
                     </Form>
                     <Form
                         className={
-                            location.pathname != '/movieholic/mobile-menu/login'
+                            location.pathname != 'mobile-menu/login'
                                 ? styles.hidden
                                 : `${styles.MobileTablet}`
                         }
@@ -319,7 +319,7 @@ const LoginForm = (props: PropsType) => {
                             Don't have an account?{' '}
                             <span className="text-slate-200 font-bold hover:opacity-80">
                                 <Link
-                                    to={`/movieholic/mobile-menu/sign-up?request_token=${requestToken}`}
+                                    to={`mobile-menu/sign-up?request_token=${requestToken}`}
                                 >
                                     Sign up
                                 </Link>

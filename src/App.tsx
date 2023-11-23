@@ -4,7 +4,6 @@ import {
     Routes,
     Route
 } from 'react-router-dom'
-import './App.css'
 import PrimaryLayout from './layouts/PrimaryLayout/PrimaryLayout'
 import HomePage from './screens/HomePage/HomePage'
 import { User, onAuthStateChanged } from 'firebase/auth'
@@ -80,12 +79,12 @@ function App() {
             <UserContext.Provider value={authUser}>
                 <Router>
                     <Routes>
-                        <Route path="/movieholic" element={<PrimaryLayout />}>
+                        <Route path="/" element={<PrimaryLayout />}>
                             <Route index element={<HomePage />} />
                             <Route path="discover" element={<DiscoverPage />} />
                             <Route path="about" element={<AboutPage />} />
                         </Route>
-                        <Route path="/movieholic" element={<SecondaryLayout />}>
+                        <Route path="/" element={<SecondaryLayout />}>
                             <Route
                                 path="movie-release"
                                 element={<MovieReleasePage />}
@@ -109,7 +108,7 @@ function App() {
                             />
                         </Route>
                         <Route
-                            path="/movieholic/mobile-menu"
+                            path="mobile-menu"
                             element={<MobileMenuLayout />}
                         >
                             <Route index element={<MobileMenuPage />} />
