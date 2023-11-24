@@ -4,23 +4,18 @@ import { Link } from 'react-router-dom'
 import { useActions } from '../../../hooks/useActions'
 
 type PropsType = {
-    text: string
-    tmdbId: number
+  text: string
+  tmdbId: number
 }
 
 const GreenButton = ({ text, tmdbId }: PropsType) => {
-    const { fileListEmptied } = useActions()
-    return (
-        <Link to={`title/movie/${tmdbId}`}>
-            <button
-                className={styles.GreenButton}
-                onClick={() => fileListEmptied()}
-            >
-                <BsPlayCircle />
-                <span>{text}</span>
-            </button>
-        </Link>
-    )
+  const { fileListEmptied } = useActions()
+  return (
+    <button className={styles.GreenButton} onClick={() => fileListEmptied()}>
+      <BsPlayCircle />
+      <Link to={`title/movie/${tmdbId}`}>{text}</Link>
+    </button>
+  )
 }
 
 export default GreenButton

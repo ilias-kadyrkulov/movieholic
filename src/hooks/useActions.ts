@@ -1,6 +1,6 @@
 import { bindActionCreators } from '@reduxjs/toolkit'
 import { useAppDispatch } from './hooks'
-import { watchListActions } from './../store/slices/watchListSlice'
+import { movieWatchlistActions } from '../store/slices/movieWatchlistSlice'
 import { userActions } from './../store/slices/userSlice'
 import { likeListActions } from './../store/slices/likeListSlice'
 import { playerActions } from './../store/slices/playerSlice'
@@ -10,7 +10,7 @@ import { tmdbAccountActions } from './../store/slices/tmdbAccountSlice';
 import { functionOptimizationActions } from './../store/slices/functionOptimizationSlice';
 
 const allActions = {
-    ...watchListActions,
+    ...movieWatchlistActions,
     ...userActions,
     ...likeListActions,
     ...playerActions,

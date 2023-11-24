@@ -11,7 +11,7 @@ import {
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' //
 import { showAPI } from '../api/show/show.api'
-import { watchListReducer } from './slices/watchListSlice'
+import { movieWatchlistReducer } from './slices/movieWatchlistSlice'
 import { userReducer } from './slices/userSlice'
 import { likeListReducer } from './slices/likeListSlice'
 import { filemoonAPI } from '../api/filemoon/filemoon.api'
@@ -25,7 +25,7 @@ import { functionOptimizationReducer } from './slices/functionOptimizationSlice'
 
 const rootReducer = combineReducers({
     [showAPI.reducerPath]: showAPI.reducer,
-    watchList: watchListReducer,
+    movieWatchlist: movieWatchlistReducer,
     user: userReducer,
     likeList: likeListReducer,
     [filemoonAPI.reducerPath]: filemoonAPI.reducer,

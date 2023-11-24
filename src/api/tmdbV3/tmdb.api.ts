@@ -11,6 +11,7 @@ let accountAccessToken = {
 
 export const tmdbV3API = createApi({
     reducerPath: 'tmdbApiV3',
+    tagTypes: ['MovieWatchlist', 'TVWatchlist'],
     baseQuery: fetchBaseQuery({
         baseUrl: API_URL,
         headers: {

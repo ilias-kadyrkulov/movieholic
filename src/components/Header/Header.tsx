@@ -39,7 +39,7 @@ const Header = () => {
     )
 
     const {
-        watchListCleared,
+        movieWatchlistCleared,
         likeListCleared,
         requestTokenStored,
         requestTokenCleared,
@@ -70,7 +70,7 @@ const Header = () => {
     const handleLogOut = () => {
         sessionBeenDeleted()
         userLoggedOut()
-        watchListCleared()
+        movieWatchlistCleared()
         likeListCleared()
         requestTokenCleared()
         validatedTokenCleared()
@@ -80,11 +80,7 @@ const Header = () => {
     const handleSessionDeletion = async () => {
         await deleteSession(sessionId)
 
-        sessionBeenDeleted()
-        userLoggedOut()
-        watchListCleared()
-        likeListCleared()
-        navigate('/')
+        handleLogOut()
     }
 
     const handleSignUpFormOnClose = () => {
@@ -220,7 +216,7 @@ const Header = () => {
                                     >
                                         {!requestTokenURI && (
                                             <a
-                                                href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=https://stately-moonbeam-5d3b0c.netlify.app`}
+                                                href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=https://movieholic-ik.netlify.app`}
                                             >
                                                 Sign up
                                             </a>

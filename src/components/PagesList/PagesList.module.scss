@@ -1,31 +1,28 @@
-@media (min-width: 768px) {
-    .PagesList {
-        @apply flex items-center;
-
-        a {
-            @apply text-lg;
-        }
-    }
-    
+a {
+  @apply text-base;
 }
 
+@media (min-width: 768px) {
+  .PagesList {
+    @apply flex items-center;
+  }
+}
 
 @media (max-width: 1400px) {
-    .PagesList {
-        a {
-            @apply text-xs;
-        }
+  .PagesList {
+    a {
+      @apply text-xs;
     }
-    
+  }
 }
 
 @media (max-width: 768px) {
-    .PagesList {
-        div {
-            @apply pt-2 hover:opacity-80;
-        }
-        a {
-            @apply text-slate-200 pl-5;
-        }
+  .PagesList {
+    div {
+      @apply pt-2 hover:opacity-80;
     }
+    a {
+      @apply text-slate-200 pl-5;
+    }
+  }
 }

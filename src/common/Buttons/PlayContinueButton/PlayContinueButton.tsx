@@ -6,7 +6,7 @@ import { useActions } from '../../../hooks/useActions'
 type PropsType = {
     text: 'Play now'
     tmdbId: number | undefined
-    titleType: 'Movie' | 'TV Series' | undefined
+    titleType: 'movie' | 'tv' | undefined
     titleText: string | undefined
 }
 
@@ -19,7 +19,7 @@ const PlayContinueButton = ({ text, titleType, titleText }: PropsType) => {
 
     return (
         <>
-            {titleType === 'Movie' ? (
+            {titleType === 'movie' ? (
                 <Link to={`${titleText}`}>
                     <button
                         className={styles.PlayContinueButton}

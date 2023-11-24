@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext, Suspense } from 'react'
+import React, { Suspense } from 'react'
 import {
     BrowserRouter as Router,
     Routes,
@@ -6,8 +6,6 @@ import {
 } from 'react-router-dom'
 import PrimaryLayout from './layouts/PrimaryLayout/PrimaryLayout'
 import HomePage from './screens/HomePage/HomePage'
-import { User, onAuthStateChanged } from 'firebase/auth'
-import { auth } from './firebase'
 import LoginForm from './components/Forms/LoginForm/LoginForm'
 import SignupForm from './components/Forms/SignupForm/SignupForm'
 import { RotatingLines } from 'react-loader-spinner'
@@ -43,24 +41,8 @@ const MobileMenuPage = React.lazy(
     () => import('./screens/MobileMenuPage/MobileMenuPage')
 )
 
-export const UserContext = createContext<User | null>(null)
 
 function App() {
-    const [authUser, setAuthUser] = useState<User | null>(null)
-
-    useEffect(() => {
-        const listen = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setAuthUser(user)
-            } else {
-                setAuthUser(null)
-            }
-        })
-
-        return () => {
-            listen()
-        }
-    }, [])
 
     return (
         <Suspense
@@ -76,7 +58,6 @@ function App() {
                 </div>
             }
         >
-            <UserContext.Provider value={authUser}>
                 <Router>
                     <Routes>
                         <Route path="/" element={<PrimaryLayout />}>
@@ -118,7 +99,6 @@ function App() {
                         <Route path="*" element={<NotFoundPage />} />
                     </Routes>
                 </Router>
-            </UserContext.Provider>
         </Suspense>
     )
 }

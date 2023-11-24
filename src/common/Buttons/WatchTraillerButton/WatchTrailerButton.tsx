@@ -4,23 +4,18 @@ import { useActions } from '../../../hooks/useActions'
 import { AiOutlinePlayCircle } from 'react-icons/ai'
 
 type PropsType = {
-    text: 'Watch Trailer'
-    tmdbId: number | undefined
+  text: 'Watch Trailer'
+  tmdbId: number | undefined
 }
 
 const WatchTrailerButton = ({ text, tmdbId }: PropsType) => {
-    const { fileListEmptied } = useActions()
-    return (
-        <Link to={`trailer/${tmdbId}`}>
-            <button
-                className={styles.WatchTrailerButton}
-                onClick={() => fileListEmptied()}
-            >
-                <AiOutlinePlayCircle />
-                <span>{text}</span>
-            </button>
-        </Link>
-    )
+  const { fileListEmptied } = useActions()
+  return (
+    <button className={styles.WatchTrailerButton} onClick={() => fileListEmptied()}>
+      <AiOutlinePlayCircle />
+      <Link to={`trailer/${tmdbId}`}>{text}</Link>
+    </button>
+  )
 }
 
 export default WatchTrailerButton

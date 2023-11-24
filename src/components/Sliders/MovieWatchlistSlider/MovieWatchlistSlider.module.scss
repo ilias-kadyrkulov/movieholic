@@ -1,4 +1,4 @@
-.WatchListSlider {
+.MovieWatchlistSlider {
     .MovieCard {
         @apply flex rounded-2xl bg-cover bg-no-repeat bg-center;
 
@@ -36,7 +36,7 @@
         }
 
         .TitleType {
-            @apply text-slate-400 pl-2 before:absolute before:left-0 before:bg-slate-400 before:h-6;
+            @apply text-slate-400 pl-2 text-base before:absolute before:left-0 before:bg-slate-400 before:h-6;
 
             &::before {
                 width: 1px;
@@ -46,7 +46,7 @@
 }
 
 @media (max-width: 1150px) {
-    .WatchListSlider {
+    .MovieWatchlistSlider {
         .MovieDetails {
             h2 {
                 @apply text-sm;
@@ -60,7 +60,7 @@
     }
 }
 @media (max-width: 425px) {
-    .WatchListSlider {
+    .MovieWatchlistSlider {
         .MovieCard {
             @apply flex-col items-center;
         }

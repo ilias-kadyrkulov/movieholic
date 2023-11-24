@@ -214,7 +214,7 @@ const LoginForm = (props: PropsType) => {
                                 }}
                             >
                                 <a
-                                    href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=https://stately-moonbeam-5d3b0c.netlify.app/`}
+                                    href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=https://movieholic-ik.netlify.app`}
                                 >
                                     Sign up
                                 </a>
@@ -223,7 +223,7 @@ const LoginForm = (props: PropsType) => {
                     </Form>
                     <Form
                         className={
-                            location.pathname != 'mobile-menu/login'
+                            location.pathname != '/mobile-menu/login'
                                 ? styles.hidden
                                 : `${styles.MobileTablet}`
                         }
