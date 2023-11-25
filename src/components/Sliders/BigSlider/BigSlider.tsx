@@ -147,12 +147,10 @@ export const BigSlider = (props: PropsType) => {
                     <div className={styles.Buttons}>
                       <GreenButton text="Watch" tmdbId={m.id} />
                       <WatchTrailerButton tmdbId={m.id} text="Watch Trailer" />
-                      {tmdbAccount &&
-                      movieWatchlist &&
-                      movieWatchlist.find((item) => m.id === item.id) ? (
+                      {movieWatchlist.find((item) => m.id === item.id) ? (
                         <MovieWatchlistButton text="Remove from Watchlist" tmdbId={m.id} />
                       ) : (
-                        <MovieWatchlistButton text="Add to Watchlist" tmdbId={m.id} />
+                        <MovieWatchlistButton text="Add to Watchlist" tmdbId={m.id} tmdbAcc={tmdbAccount} />
                       )}
                     </div>
                   </div>

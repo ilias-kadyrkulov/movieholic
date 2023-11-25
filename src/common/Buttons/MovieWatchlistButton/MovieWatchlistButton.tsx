@@ -7,9 +7,11 @@ import { useActions } from '../../../hooks/useActions'
 const MovieWatchlistButton = ({
   text,
   tmdbId,
+  tmdbAcc
 }: {
   text: 'Add to Watchlist' | 'Remove from Watchlist'
   tmdbId: number | undefined
+  tmdbAcc?: string
 }) => {
   const [manipulateMovieWatchlist] = useMovieWatchlistMutation()
 
@@ -41,7 +43,7 @@ const MovieWatchlistButton = ({
 
   return (
     <>
-      {text === 'Add to Watchlist' && (
+      {text === 'Add to Watchlist' && tmdbAcc && (
         <button className={styles.MovieWatchlistButton} onClick={handleAddToWatchlist}>
           <GrBookmark />
           <span>{text}</span>

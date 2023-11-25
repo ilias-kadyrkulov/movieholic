@@ -104,7 +104,7 @@ const ShowPage = () => {
           <div className={styles.Right}>
             <DownloadButton />
             <ShareButton />
-            <LikeButton showId={movieDetails?.id} />
+            <LikeButton tmdbId={movieDetails?.id} />
           </div>
         </div>
         <div>

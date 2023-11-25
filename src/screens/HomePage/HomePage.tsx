@@ -2,8 +2,8 @@ import PopularOfTheWeek from './PopularOfTheWeek/PopularOfTheWeek'
 import TopBoxOffice from './TopBoxOffice/TopBoxOffice'
 import styles from './HomePage.module.scss'
 import { useAppSelector } from '../../hooks/hooks'
-import Watchlist from './Watchlist/Watchlist'
 import Favorite from './Favorite/Favorite'
+import Watchlist from './Watchlist/WatchList'
 
 const HomePage = () => {
   const tmdbAccount = useAppSelector((state) => state.tmdbAccount.username)

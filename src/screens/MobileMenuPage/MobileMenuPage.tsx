@@ -21,6 +21,8 @@ const MobileMenuPage = () => {
     validatedTokenCleared,
     sessionBeenDeleted,
     userLoggedOut,
+    movieGenresCleared,
+    movieFavoriteCleared
   } = useActions()
 
   const navigate = useNavigate()
@@ -42,6 +44,8 @@ const MobileMenuPage = () => {
     likeListCleared()
     requestTokenCleared()
     validatedTokenCleared()
+    movieGenresCleared()
+    movieFavoriteCleared()
     navigate('/')
   }
 
