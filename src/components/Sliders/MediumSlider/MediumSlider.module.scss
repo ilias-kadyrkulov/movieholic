@@ -1,78 +1,64 @@
-.CustomHeight {
-    .slick-slide {
-        height: 500px; // Стили для слайдов, если присутствует класс CustomHeight
-    }
-}
-
 .MediumSlider {
-    .slick-list {
-        .slick-track {
-            .slick-slide {
-                height: 300px;
-            }
-        }
+  .MovieCard {
+    -webkit-box-shadow: 0px 170px 60px -70px rgba(0, 0, 0, 0.8) inset;
+    -moz-box-shadow: 0px 170px 60px -70px rgba(0, 0, 0, 0.8) inset;
+    box-shadow: 0px 170px 60px -70px rgba(0, 0, 0, 0.8) inset;
+    @apply relative rounded-2xl bg-cover bg-no-repeat bg-center h-full;
+
+    img {
+      @apply relative -z-50 rounded-2xl w-full;
+      height: 100%;
+    }
+    svg {
+      @apply w-5 h-5;
+
+      path {
+        @apply fill-yellow-400;
+      }
     }
 
-    .MovieCard {
-        -webkit-box-shadow: 0px 170px 60px -70px rgba(0, 0, 0, 0.8) inset;
-        -moz-box-shadow: 0px 170px 60px -70px rgba(0, 0, 0, 0.8) inset;
-        box-shadow: 0px 170px 60px -70px rgba(0, 0, 0, 0.8) inset;
-        @apply relative rounded-2xl bg-cover bg-no-repeat bg-center h-full;
+    .MovieDetails {
+      @apply absolute top-3 left-3;
 
-        img {
-            @apply relative -z-50 rounded-2xl w-full;
-            height: 100%;
-        }
-        svg {
-            @apply w-5 h-5;
+      max-width: 90%;
+    }
+  }
 
-            path {
-                @apply fill-yellow-400;
-            }
-        }
+  .Genres {
+    @apply pl-2 before:absolute before:left-0 before:bg-slate-400 before:h-10 leading-3;
 
-        .MovieDetails {
-            @apply absolute top-3 left-3;
-
-            max-width: 90%;
-        }
+    &:before {
+      width: 1px;
     }
 
-    .Genres {
-        @apply pl-2 before:absolute before:left-0 before:bg-slate-400 before:h-10 leading-3;
-
-        &:before {
-            width: 1px;
-        }
-
-        span {
-            display: inline-block;
-            font-size: 11px;
-        }
+    span {
+      display: inline-block;
+      font-size: 11px;
     }
+  }
 }
 
 @media (max-width: 850px) {
-    .MovieDetails {
-        h2 {
-            @apply text-base
-        }
+  .MovieDetails {
+    h2 {
+      @apply text-base;
     }
-    .Rating {
-        div {
-            @apply text-sm
-        }
+  }
+  .Rating {
+    div {
+      @apply text-sm;
     }
+  }
 }
 @media (max-width: 425px) {
-    .MovieDetails {
-        h2 {
-            @apply text-sm
-        }
+  .MovieDetails {
+    h2 {
+      @apply text-sm;
     }
-    .Rating {
-        div {
-            @apply text-sm
-        }
+  }
+  .Rating {
+    div {
+      @apply text-sm;
     }
+  }
 }

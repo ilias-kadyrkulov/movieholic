@@ -17,7 +17,7 @@ const PopularOfTheWeek = () => {
 
     return (
         <div className={styles.PopularOfTheWeek}>
-            <div className="font-bold text-2xl text-white mb-8">
+            <div className={styles.Title}>
                 Popular of the week
             </div>
             <SmallSlider popularOfTheWeek={results} />

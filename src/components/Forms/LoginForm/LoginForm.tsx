@@ -158,7 +158,7 @@ const LoginForm = (props: PropsType) => {
                                     validate={validateUsername}
                                 />
                                 {errors.username && touched.username && (
-                                    <div className="text-red-600 font-bold mt-3">
+                                    <div className="text-red-600 font-semibold mt-3">
                                         {errors.username}
                                     </div>
                                 )}
@@ -175,12 +175,12 @@ const LoginForm = (props: PropsType) => {
                                     validate={validatePassword}
                                 />
                                 {errors.password && touched.password && (
-                                    <div className="text-red-600 font-bold mt-3">
+                                    <div className="text-red-600 font-semibold mt-3">
                                         {errors.password}
                                     </div>
                                 )}
                                 {authValidText && (
-                                    <p className="text-red-600 font-bold">
+                                    <p className="text-red-600 font-semibold">
                                         {authValidText}
                                     </p>
                                 )}
@@ -199,7 +199,7 @@ const LoginForm = (props: PropsType) => {
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="text-gray-400 font-bold bg-white rounded-md w-full py-3 my-3 transition-colors hover:bg-black hover:text-slate-200"
+                                className="text-gray-400 font-semibold bg-white rounded-md w-full py-3 my-3 transition-colors hover:bg-black hover:text-slate-200"
                             >
                                 Login
                             </button>
@@ -207,7 +207,7 @@ const LoginForm = (props: PropsType) => {
                         <h3 className="text-center mt-4 text-gray-500 text-sm">
                             Don't have an account?{' '}
                             <span
-                                className="text-slate-200 font-bold hover:opacity-80 cursor-pointer"
+                                className="text-slate-200 font-semibold hover:opacity-80 cursor-pointer"
                                 onClick={() => {
                                     props.openSignupForm &&
                                         props.openSignupForm()
@@ -241,7 +241,7 @@ const LoginForm = (props: PropsType) => {
                                     validate={validateUsername}
                                 />
                                 {errors.username && touched.username && (
-                                    <div className="text-red-600 font-bold mt-3">
+                                    <div className="text-red-600 font-semibold mt-3">
                                         {errors.username}
                                     </div>
                                 )}
@@ -258,12 +258,12 @@ const LoginForm = (props: PropsType) => {
                                     validate={validatePassword}
                                 />
                                 {errors.password && touched.password && (
-                                    <div className="text-red-600 font-bold mt-3">
+                                    <div className="text-red-600 font-semibold mt-3">
                                         {errors.password}
                                     </div>
                                 )}
                                 {authValidText && (
-                                    <p className="text-red-600 font-bold mt-3">
+                                    <p className="text-red-600 font-semibold mt-3">
                                         {authValidText}
                                     </p>
                                 )}
@@ -282,14 +282,14 @@ const LoginForm = (props: PropsType) => {
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="text-gray-400 font-bold bg-slate-200 rounded-md w-full py-3 my-3 transition-colors hover:bg-black hover:text-slate-200"
+                                className="text-gray-400 font-semibold bg-slate-200 rounded-md w-full py-3 my-3 transition-colors hover:bg-black hover:text-slate-200"
                             >
                                 Login
                             </button>
                         </div>
                         <h3 className="text-center mt-4 text-gray-500 text-sm">
                             Don't have an account?{' '}
-                            <span className="text-slate-200 font-bold hover:opacity-80">
+                            <span className="text-slate-200 font-semibold hover:opacity-80">
                                 <Link
                                     to={`mobile-menu/sign-up?request_token=${requestToken}`}
                                 >

@@ -1,212 +1,135 @@
-import Slider from 'react-slick'
 import styles from './MediumSlider.module.scss'
 import styled from 'styled-components'
 import { EntryType } from '../../../api/show/titles.api'
 import { AiFillStar } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/swiper-bundle.css'
 
 type PropsType = {
-    topBoxOffice?: EntryType[]
+  topBoxOffice?: EntryType[]
 }
 
 const CustomStyles = styled.div`
-    .slick-slide {
-        height: 750px;
-        padding-right: 1.25rem;
-        padding-left: 0.75rem;
+  @media (min-width: 325px) {
+    .swiper-slide {
+      height: 500px;
     }
-    .slick-prev {
-        left: -45px;
-        width: 40px;
-        height: 40px;
+  }
+  @media (min-width: 425px) {
+    .swiper-slide {
+      height: 350px;
     }
-    .slick-prev::before {
-        font-size: 35px;
-        color: rgb(42, 153, 83);
+  }
+  @media (min-width: 650px) {
+    .swiper-slide {
+      height: 450px;
     }
-    .slick-next {
-        right: -30px;
-        width: 40px;
-        height: 40px;
+  }
+  @media (min-width: 768px) {
+    .swiper-slide {
+      height: 400px;
     }
-    .slick-next::before {
-        font-size: 35px;
-        color: rgb(42, 153, 83);
+  }
+  @media (min-width: 950px) {
+    .swiper-slide {
+      height: 450px;
     }
-
-    @media (max-width: 2250px) {
-        .slick-slide {
-            height: 600px;
-        }
+  }
+  @media (min-width: 1100px) {
+    .swiper-slide {
+      height: 500px;
     }
-    @media (max-width: 1920px) {
-        .slick-slide {
-            height: 500px;
-        }
+  }
+  @media (min-width: 1200px) {
+    .swiper-slide {
+      height: 450px;
     }
-    @media (max-width: 1640px) {
-        .slick-slide {
-            height: 400px;
-        }
+  }
+  @media (min-width: 1400px) {
+    .swiper-slide {
+      height: 500px;
     }
-    @media (max-width: 1175px) {
-        .slick-slide {
-            height: 350px;
-        }
+  }
+  @media (min-width: 1600px) {
+    .swiper-slide {
+      height: 600px;
     }
-    @media (max-width: 900px) {
-        .slick-slide {
-            height: 300px;
-        }
+  }
+  @media (min-width: 1800px) {
+    .swiper-slide {
+      height: 650px;
     }
-    @media (max-width: 768px) {
-        .slick-slide {
-            height: 450px;
-            padding-right: 0.75rem;
-        }
-        .slick-prev {
-            left: -27px;
-        }
-        .slick-prev::before {
-            font-size: 30px;
-        }
-        .slick-next {
-            right: -25px;
-        }
-        .slick-next::before {
-            font-size: 30px;
-        }
+  }
+  @media (min-width: 2000px) {
+    .swiper-slide {
+      height: 750px;
     }
-    @media (max-width: 678px) {
-        .slick-prev {
-            left: -25px;
-        }
-        .slick-prev::before {
-            font-size: 25px;
-        }
-        .slick-next {
-            right: -25px;
-        }
-        .slick-next::before {
-            font-size: 25px;
-        }
+  }
+  @media (min-width: 2300px) {
+    .swiper-slide {
+      height: 800px;
     }
-    @media (max-width: 600px) {
-        .slick-slide {
-            height: 700px;
-        }
-    }
-    @media (max-width: 500px) {
-        .slick-slide {
-            height: 550px;
-        }
-    }
-    @media (max-width: 475px) {
-        .slick-slide {
-            padding-right: 1.25rem;
-            padding-left: 1.25rem;
-        }
-        .slick-prev {
-            left: -18px;
-        }
-        .slick-next {
-            right: -13px;
-        }
-    }
-    @media (max-width: 375px) {
-        .slick-slide {
-            height: 500px;
-        }
-    }
-    @media (max-width: 325px) {
-        .slick-slide {
-            height: 400px;
-        }
-    }
+  }
 `
 
 const MediumSlider = (props: PropsType) => {
-    let settings = {
-        infinite: true,
-        speed: 600,
-        slidesToShow: 5,
-        slidesToScroll: 5,
-        rows: 1,
-        responsive: [
-            {
-                breakpoint: 1440,
-                settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 2
-                }
-            },
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3
-                }
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2
-                }
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-        ]
-    }
-
-    return (
-        <CustomStyles>
-            <Slider {...settings} className={styles.MediumSlider}>
-                {props?.topBoxOffice?.map((m) => (
-                    <Link to={`title/${m.id}`} key={m.id} className="h-full">
-                        {m.primaryImage && m.primaryImage.url && (
-                            <div className={styles.MovieCard}>
-                                <img src={m.primaryImage.url} />
-                                <div className={styles.MovieDetails}>
-                                    <h2 className="font-bold text-xl text-white mb-2">
-                                        {m.titleText.text}
-                                    </h2>
-                                    <div className="flex max-w-full">
-                                        <div className="flex flex-col items-center">
-                                            <AiFillStar />
-                                            <div className="font-bold text-lg mx-2 text-white">
-                                                {
-                                                    m.ratingsSummary
-                                                        .aggregateRating
-                                                }
-                                            </div>
-                                        </div>
-                                        <div className="relative flex max-w-full w-10/12">
-                                            <div className={styles.Genres}>
-                                                {m.genres.genres.map((g) => (
-                                                    <span
-                                                        className="font-bold text-slate-400 mr-1"
-                                                        key={g.id}
-                                                    >
-                                                        {g.text}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                    </Link>
-                ))}
-            </Slider>
-        </CustomStyles>
-    )
+  return (
+    <CustomStyles>
+      <Swiper
+        className={styles.MediumSlider}
+        spaceBetween={20}
+        navigation
+        breakpoints={{
+          2300: {
+            slidesPerView: 5,
+          },
+          1200: {
+            slidesPerView: 4,
+          },
+          768: {
+            slidesPerView: 3,
+          },
+          425: {
+            slidesPerView: 2,
+          },
+        }}
+        style={{ boxShadow: ' -75px 0px 0px 0px rgba(0, 0, 0, 0.8) inset' }}
+      >
+        {props?.topBoxOffice?.map((m) => (
+          <SwiperSlide key={m.id}>
+            <Link to={`title/movie/${m.id}`}>
+              {m.primaryImage && m.primaryImage.url && (
+                <div className={styles.MovieCard}>
+                  <img src={m.primaryImage.url} />
+                  <div className={styles.MovieDetails}>
+                    <h2 className="font-semibold text-xl text-white mb-2">{m.titleText.text}</h2>
+                    <div className="flex max-w-full">
+                      <div className="flex flex-col items-center">
+                        <AiFillStar />
+                        <div className="font-semibold text-lg mx-2 text-white">
+                          {m.ratingsSummary.aggregateRating}
+                        </div>
+                      </div>
+                      <div className="relative flex max-w-full w-10/12">
+                        <div className={styles.Genres}>
+                          {m.genres.genres.map((g) => (
+                            <span className="font-semibold text-slate-400 mr-1" key={g.id}>
+                              {g.text}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </Link>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </CustomStyles>
+  )
 }
 
 export default MediumSlider

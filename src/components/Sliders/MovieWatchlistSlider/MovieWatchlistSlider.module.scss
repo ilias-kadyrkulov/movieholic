@@ -1,71 +1,75 @@
-.MovieWatchlistSlider {
-    .MovieCard {
-        @apply flex rounded-2xl bg-cover bg-no-repeat bg-center;
+.MovieWatchlistSlider, .MovieFavoriteSlider {
+  .MovieCard {
+    @apply flex rounded-2xl bg-cover bg-no-repeat bg-center;
 
-        img {
-            @apply block mx-3 w-20 rounded-2xl;
-        }
-        svg {
-            @apply w-5 h-5;
-            path {
-                @apply fill-yellow-400;
-            }
-        }
+    img {
+      @apply block mx-3 w-20 rounded-2xl;
     }
-    .MovieDetails {
-        @apply flex flex-col items-baseline max-w-7xl;
-
-        .Rating {
-            @apply flex items-center my-2;
-        }
-
-        .Genres {
-            @apply flex;
-
-            svg {
-                @apply max-w-full h-5;
-                path {
-                    @apply fill-slate-400;
-                }
-            }
-
-            span {
-                display: inline-block;
-                font-size: 11px;
-            }
-        }
-
-        .TitleType {
-            @apply text-slate-400 pl-2 text-base before:absolute before:left-0 before:bg-slate-400 before:h-6;
-
-            &::before {
-                width: 1px;
-            }
-        }
+    svg {
+      @apply w-5 h-5;
+      path {
+        @apply fill-yellow-400;
+      }
     }
+  }
+  .MovieDetails {
+    @apply flex flex-col items-baseline max-w-7xl;
+
+    .Rating {
+      @apply flex items-center my-2;
+    }
+
+    .Genres {
+      @apply flex;
+
+      svg {
+        @apply max-w-full h-5;
+        path {
+          @apply fill-slate-400;
+        }
+      }
+
+      span {
+        display: inline-block;
+        font-size: 11px;
+      }
+    }
+
+    .TitleType {
+      @apply text-slate-400 pl-2 text-base before:absolute before:left-0 before:bg-slate-400 before:h-6;
+
+      &::before {
+        width: 1px;
+      }
+    }
+  }
 }
 
 @media (max-width: 1150px) {
-    .MovieWatchlistSlider {
-        .MovieDetails {
-            h2 {
-                @apply text-sm;
-            }
-            .Rating {
-                div {
-                    @apply text-sm;
-                }
-            }
+  .MovieWatchlistSlider, .MovieFavoriteSlider {
+    .MovieDetails {
+      h2 {
+        @apply text-sm;
+      }
+      .Rating {
+        div {
+          @apply text-sm;
         }
+      }
     }
+  }
 }
-@media (max-width: 425px) {
-    .MovieWatchlistSlider {
-        .MovieCard {
-            @apply flex-col items-center;
-        }
-        .MovieDetails {
-            @apply items-center;
-        }
+@media (max-width: 768px) {
+  .MovieWatchlistSlider, .MovieFavoriteSlider {
+    .MovieCard {
+      @apply flex-col items-center;
     }
+    .MovieDetails {
+      @apply items-center;
+
+      h2 {
+        @apply mt-4;
+      }
+    }
+  }
 }

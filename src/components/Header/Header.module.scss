@@ -10,7 +10,7 @@
   @apply flex items-center;
 
   div {
-    @apply flex items-center px-4 text-slate-50 font-bold text-lg;
+    @apply flex items-center px-4 text-slate-50 font-semibold text-lg;
   }
 
   a {
@@ -84,7 +84,7 @@
         @apply px-3 py-1.5 ml-2;
       }
       a {
-        @apply text-xs
+        @apply text-xs;
       }
     }
   }
@@ -98,7 +98,7 @@
 }
 @media (max-width: 900px) {
   .Header {
-    @apply pl-7 pr-12;
+    @apply pl-7 pr-10;
   }
   .Center {
     div {
@@ -114,9 +114,9 @@
   .Header {
     @apply px-7;
 
-    -webkit-box-shadow: 0 170px 20px -85px rgba(12, 12, 12, 0.5) inset;
-    -moz-box-shadow: 0 170px 20px -85px rgba(12, 12, 12, 0.5) inset;
-    box-shadow: 0 170px 20px -85px rgba(12, 12, 12, 0.5) inset;
+    -webkit-box-shadow: 0 90px 10px -16px rgba(12, 12, 12, 0.5) inset;
+    -moz-box-shadow: 0 90px 10px -16px rgba(12, 12, 12, 0.5) inset;
+    box-shadow: 0 90px 10px -16px rgba(12, 12, 12, 0.5) inset;
   }
   .Center {
     @apply hidden;

@@ -8,9 +8,13 @@ import { showActions } from './../store/slices/showSlice'
 import { tmdbSessionActions } from './../store/slices/tmdbSessionSlice'
 import { tmdbAccountActions } from './../store/slices/tmdbAccountSlice';
 import { functionOptimizationActions } from './../store/slices/functionOptimizationSlice';
+import { movieFavoriteActions } from './../store/slices/movieFavoriteSlice';
+import { movieGenresActions } from './../store/slices/movieGenresSlice';
 
 const allActions = {
     ...movieWatchlistActions,
+    ...movieFavoriteActions,
+    ...movieGenresActions,
     ...userActions,
     ...likeListActions,
     ...playerActions,

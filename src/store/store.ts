@@ -22,10 +22,14 @@ import { tmdbSessionReducer } from './slices/tmdbSessionSlice'
 import { tmdbV4API } from '../api/tmdbV4/tmdb.api'
 import { tmdbAccountReducer } from './slices/tmdbAccountSlice'
 import { functionOptimizationReducer } from './slices/functionOptimizationSlice'
+import { movieFavoriteReducer } from './slices/movieFavoriteSlice'
+import { movieGenresReducer } from './slices/movieGenresSlice'
 
 const rootReducer = combineReducers({
     [showAPI.reducerPath]: showAPI.reducer,
     movieWatchlist: movieWatchlistReducer,
+    movieFavorite: movieFavoriteReducer,
+    movieGenres: movieGenresReducer,
     user: userReducer,
     likeList: likeListReducer,
     [filemoonAPI.reducerPath]: filemoonAPI.reducer,

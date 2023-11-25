@@ -13,7 +13,6 @@ import WatchTrailerButton from '../../common/Buttons/WatchTraillerButton/WatchTr
 import { RotatingLines } from 'react-loader-spinner'
 import { useGetMovieDetailsByMovieIdQuery } from '../../api/tmdbV3/movies.api'
 import { tmdbApiConfig } from '../../api/tmdbV3/tmdb.api'
-import { useGetMovieGenresQuery } from '../../api/tmdbV3/genres.api'
 import { skipToken } from '@reduxjs/toolkit/query'
 
 const MoviePage = () => {
@@ -22,18 +21,12 @@ const MoviePage = () => {
 
   const { fileList } = useAppSelector((state) => state.player)
   const movieWatchlist = useAppSelector((state) => state.movieWatchlist)
+  const movieGenres = useAppSelector((state) => state.movieGenres)
   const tmdbAccount = useAppSelector((state) => state.tmdbAccount.username)
 
   const { data: movieDetails, isLoading } = useGetMovieDetailsByMovieIdQuery({
     movieId: Number(id ?? skipToken),
   })
-
-  const { data: genresData } = useGetMovieGenresQuery(undefined)
-
-  const genreObj = genresData?.genres.reduce((acc, genre) => {
-    acc[genre.id] = genre.name
-    return acc
-  }, {} as Record<number, string>)
 
   const { fileListData } = useGetFileListQuery(movieDetails?.title, {
     selectFromResult: ({ data }) => ({
@@ -74,14 +67,14 @@ const MoviePage = () => {
         }}
       ></div>
       <div className={styles.Details}>
-        <h3 className="text-4xl text-slate-200 font-bold">{movieDetails?.original_title}</h3>
+        <h3 className="text-4xl text-slate-200 font-semibold">{movieDetails?.original_title}</h3>
         <div className="my-3">
-          <p className="font-bold text-slate-400">{movieDetails?.runtime} min</p>
+          <p className="font-semibold text-slate-400">{movieDetails?.runtime} min</p>
 
-          <span className="font-bold text-slate-400">{movieDetails?.release_date} • </span>
+          <span className="font-semibold text-slate-400">{movieDetails?.release_date} • </span>
           {movieDetails?.genres.map((g) => (
-            <span className="font-bold text-slate-400 mr-1" key={g.id}>
-              {genreObj && genreObj[g.id]}
+            <span className="font-semibold text-slate-400 mr-1" key={g.id}>
+              {movieGenres && movieGenres[g.id]}
             </span>
           ))}
         </div>
@@ -104,15 +97,15 @@ const MoviePage = () => {
           <div className={styles.Right}>
             <DownloadButton />
             <ShareButton />
-            <LikeButton showId={movieDetails?.id} />
+            <LikeButton tmdbId={movieDetails?.id} />
           </div>
         </div>
         <div>
-          <h2 className="font-bold text-white mb-3 mt-12">Story Line</h2>
+          <h2 className="font-semibold text-white mb-3 mt-12">Story Line</h2>
           <p className="font-medium text-gray-300">{movieDetails?.overview}</p>
         </div>
         <div>
-          <h2 className="font-bold text-white mb-3 mt-4">Cast</h2>
+          <h2 className="font-semibold text-white mb-3 mt-4">Cast</h2>
           <CastSlider />
         </div>
       </div>

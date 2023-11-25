@@ -140,7 +140,7 @@ const EpisodeSlider = (props: PropsType) => {
                             }}
                         >
                             <div className="absolute bottom-5 left-5">
-                                <h4 className="font-bold text-lg text-slate-100">
+                                <h4 className="font-semibold text-lg text-slate-100">
                                     Episode {index + 1}
                                 </h4>
                             </div>

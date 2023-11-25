@@ -14,7 +14,7 @@
 }
 
 .Slide {
-  @apply h-full relative;
+  @apply h-full w-full relative;
 
   > div {
     -webkit-box-shadow: 0 -300px 55px -50px rgba(18, 17, 17, 0.8) inset;
@@ -47,10 +47,10 @@
   }
 
   .TrailerButton {
-    @apply flex items-center justify-between mr-6 rounded-md bg-green-600 text-white font-bold hover:opacity-90;
+    @apply flex items-center justify-between mr-6 rounded-md bg-green-600 text-white font-semibold hover:opacity-90;
   }
   .WatchButton {
-    @apply flex items-center border-2 rounded-md border-slate-400 text-slate-200 font-bold transition-colors hover:bg-purple-900;
+    @apply flex items-center border-2 rounded-md border-slate-400 text-slate-200 font-semibold transition-colors hover:bg-purple-900;
 
     &:hover {
       polygon {
@@ -80,7 +80,7 @@
 
 @media (max-width: 1024px) {
   .Details {
-    @apply left-6 bottom-3 max-w-xl;
+    @apply left-6 bottom-5 max-w-xl;
 
     h3 {
       @apply text-2xl;
@@ -130,9 +130,30 @@
   }
 }
 
-@media (max-width: 678px) {
+@media (max-width: 600px) {
+  .TrailerButton {
+    @apply ml-2;
+  }
   .Buttons {
+    @apply my-3;
+
     button {
+      @apply my-0 mr-0;
+    }
+  }
+}
+
+@media (max-width: 540px) {
+  .TrailerButton {
+    @apply ml-2;
+  }
+  .Buttons {
+    @apply my-3;
+
+    button {
+      &:nth-child(2) {
+        @apply ml-2;
+      }
       &:nth-child(3) {
         @apply mt-2;
       }
@@ -140,18 +161,10 @@
   }
 }
 
-@media (max-width: 544px) {
-  .Details {
-    @apply bottom-0.5;
-  }
-}
 @media (max-width: 500px) {
   .Details {
     @apply left-5 mr-6;
 
-    > div {
-      @apply leading-4 mb-1;
-    }
   }
   .Buttons {
     span {
@@ -175,6 +188,21 @@
   .Buttons {
     span {
       font-size: 0.6rem;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .Buttons {
+    @apply mb-8;
+
+    button {
+      &:nth-child(2) {
+        @apply ml-0;
+      }
+      &:nth-child(3) {
+        @apply mt-0;
+      }
     }
   }
 }

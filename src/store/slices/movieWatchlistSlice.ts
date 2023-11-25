@@ -1,21 +1,19 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { WatchlistMovieType } from '../../api/tmdbV3/account.api'
+import { MovieType } from '../../api/tmdbV3/account.api'
 
-let initialState: WatchlistMovieType[] = []
+let initialState: MovieType[] = []
 
 const movieWatchlistSlice = createSlice({
   name: 'movieWatchlist',
   initialState,
   reducers: {
-    movieWatchlistReceived: (state, action: PayloadAction<WatchlistMovieType[]>) => {
+    movieWatchlistReceived: (state, action: PayloadAction<MovieType[]>) => {
       state.push(...action.payload)
     },
     movieDeletedFromWatchlist: (state, action: PayloadAction<number | undefined>) => {
       return state.filter((m) => m.id !== action.payload)
     },
-    movieWatchlistCleared: () => {
-      return []
-    },
+    movieWatchlistCleared: () => ([]),
   },
 })
 

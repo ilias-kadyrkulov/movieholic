@@ -1,10 +1,10 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
-import styles from './MovieWatchlistSlider.module.scss'
+import styles from '../MovieWatchlistSlider/MovieWatchlistSlider.module.scss'
 import { AiFillStar } from 'react-icons/ai'
 import { LiaFilmSolid } from 'react-icons/lia'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { useGetMoviesWatchlistQuery } from '../../../api/tmdbV3/account.api'
+import { useGetMoviesFavoriteQuery } from '../../../api/tmdbV3/account.api'
 import { useAppSelector } from '../../../hooks/hooks'
 import { tmdbApiConfig } from '../../../api/tmdbV3/tmdb.api'
 import { useEffect } from 'react'
@@ -25,29 +25,30 @@ const CustomStyles = styled.div`
   }
 `
 
-const MovieWatchlistSlider = () => {
+const MovieFavoriteSlider = () => {
   const sessionId = useAppSelector((state) => state.tmdbSession.sessionId)
-  const movieWatchlist = useAppSelector((state) => state.movieWatchlist)
+  const movieFavorite = useAppSelector((state) => state.movieFavorite)
   const movieGenres = useAppSelector((state) => state.movieGenres)
+  console.log(movieFavorite)
 
-  const { movieWatchlistReceived, movieWatchlistCleared } = useActions()
+  const { movieFavoriteReceived, movieFavoriteCleared } = useActions()
 
-  const { data: movieWatchlistData } = useGetMoviesWatchlistQuery({
+  const { data: movieFavoriteData } = useGetMoviesFavoriteQuery({
     session_id: sessionId,
   })
 
   useEffect(() => {
-    movieWatchlistCleared() //TODO - May be optimized? Unnecessary state cleaning?
+    movieFavoriteCleared() //TODO - May be optimized? Unnecessary state cleaning?
   }, [])
 
   useEffect(() => {
-    movieWatchlistData && movieWatchlistReceived(movieWatchlistData.results)
-  }, [movieWatchlistData])
+    movieFavoriteData && movieFavoriteReceived(movieFavoriteData.results)
+  }, [movieFavoriteData])
 
   return (
     <CustomStyles>
       <Swiper
-        className={styles.MovieWatchlistSlider}
+        className={styles.MovieFavoriteSlider}
         navigation
         breakpoints={{
           1800: {
@@ -64,7 +65,7 @@ const MovieWatchlistSlider = () => {
           },
         }}
       >
-        {movieWatchlist?.map((m) => (
+        {movieFavorite?.map((m) => (
           <SwiperSlide key={m.id}>
             <Link to={`title/movie/${m.id}`}>
               {m.poster_path && (
@@ -104,4 +105,4 @@ const MovieWatchlistSlider = () => {
   )
 }
 
-export default MovieWatchlistSlider
+export default MovieFavoriteSlider

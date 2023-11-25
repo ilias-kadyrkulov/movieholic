@@ -1,11 +1,18 @@
 .PopularOfTheWeek {
-    @apply mb-10;
+  @apply my-10;
+}
+
+.Title {
+  @apply font-semibold text-xl text-white mb-5;
 }
 
 @media (max-width: 768px) {
-    .PopularOfTheWeek {
-        div {
-            @apply text-xl;
-        }
+  .PopularOfTheWeek {
+    div {
+      @apply text-xl;
     }
+  }
+  .Title {
+    @apply mb-5 ml-0;
+}
 }

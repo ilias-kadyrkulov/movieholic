@@ -46,7 +46,7 @@ const VerticalEpisodeSlider = () => {
                         }}
                     >
                         <div className="absolute bottom-3 left-3">
-                            <h4 className="font-bold text-lg text-slate-100">
+                            <h4 className="font-semibold text-lg text-slate-100">
                                 Episode {index + 1}
                             </h4>
                         </div>

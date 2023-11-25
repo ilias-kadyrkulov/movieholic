@@ -1,9 +1,12 @@
-.TopBoxOffice {
-    @apply font-bold text-3xl text-white mb-8;
+.Title {
+  @apply font-semibold text-white text-2xl mb-5;
 }
 
 @media (max-width: 768px) {
-    .TopBoxOffice {
-        @apply text-2xl;
-    }
+  .TopBoxOffice {
+    @apply text-2xl;
+  }
+  .Title {
+    @apply mb-5 ml-0;
+  }
 }

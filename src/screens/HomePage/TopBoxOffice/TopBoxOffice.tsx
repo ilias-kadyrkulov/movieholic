@@ -15,7 +15,7 @@ const TopBoxOffice = () => {
 
     return (
         <div className={styles.TopBoxOffice}>
-            <div className="mb-5">Top 200 all-time box office movies</div>
+            <div className={styles.Title}>Top 200 all-time box office movies</div>
             <MediumSlider topBoxOffice={results} />
         </div>
     )

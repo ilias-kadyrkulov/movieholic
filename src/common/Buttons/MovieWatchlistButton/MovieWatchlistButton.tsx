@@ -15,11 +15,10 @@ const MovieWatchlistButton = ({
 
   const sessionId = useAppSelector((state) => state.tmdbSession.sessionId)
 
-  const {movieDeletedFromWatchlist, movieWatchlistCleared} = useActions()
+  const { movieDeletedFromWatchlist, movieWatchlistCleared } = useActions()
 
   const handleAddToWatchlist = async () => {
     const result = await manipulateMovieWatchlist({
-      mediaType: 'movie',
       mediaId: tmdbId,
       boolean: true,
       session_id: sessionId,
@@ -31,7 +30,6 @@ const MovieWatchlistButton = ({
 
   const handleRemoveFromWatchlist = async () => {
     const result = await manipulateMovieWatchlist({
-      mediaType: 'movie',
       mediaId: tmdbId,
       boolean: false,
       session_id: sessionId,

@@ -74,13 +74,13 @@ const ShowPage = () => {
         }}
       ></div>
       <div className={styles.Details}>
-        <h3 className="text-4xl text-slate-200 font-bold">{movieDetails?.original_title}</h3>
+        <h3 className="text-4xl text-slate-200 font-semibold">{movieDetails?.original_title}</h3>
         <div className="my-3">
-          <p className="font-bold text-slate-400">{movieDetails?.runtime}</p>
+          <p className="font-semibold text-slate-400">{movieDetails?.runtime}</p>
 
-          <span className="font-bold text-slate-400">{movieDetails?.release_date} • </span>
+          <span className="font-semibold text-slate-400">{movieDetails?.release_date} • </span>
           {movieDetails?.genres.map((g) => (
-            <span className="font-bold text-slate-400 mr-1" key={g.id}>
+            <span className="font-semibold text-slate-400 mr-1" key={g.id}>
               {genreObj && genreObj[g.id]}
             </span>
           ))}
@@ -108,15 +108,15 @@ const ShowPage = () => {
           </div>
         </div>
         <div>
-          <h2 className="font-bold text-white mb-3 mt-12">Story Line</h2>
+          <h2 className="font-semibold text-white mb-3 mt-12">Story Line</h2>
           <p className="font-medium text-gray-300">{movieDetails?.overview}</p>
         </div>
         <div>
-          <h2 className="font-bold text-white mb-3 mt-4">Cast</h2>
+          <h2 className="font-semibold text-white mb-3 mt-4">Cast</h2>
           <CastSlider />
         </div>
         <div className="mb-10 mt-5">
-          <div className="flex justify-between items-center text-slate-100 font-bold mb-5">
+          <div className="flex justify-between items-center text-slate-100 font-semibold mb-5">
             <h3 className="text-2xl">1-9 Episode</h3>
             <p className="text-sm">Season 1</p>
           </div>
