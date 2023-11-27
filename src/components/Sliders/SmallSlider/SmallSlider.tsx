@@ -9,7 +9,7 @@ import { tmdbApiConfig } from '../../../api/tmdbV3/tmdb.api'
 import { useAppSelector } from '../../../hooks/hooks'
 
 type PropsType = {
-  data: MovieType[]
+  data: MovieType[] | undefined
 }
 
 const CustomStyles = styled.div``
