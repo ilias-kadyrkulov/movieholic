@@ -1,39 +1,28 @@
 import { RotatingLines } from 'react-loader-spinner'
-import { useGetTopRatedSeriesQuery } from '../../api/show/titles.api'
 import { BigSlider } from '../Sliders/BigSlider/BigSlider'
 import { useGetNowPlayingMoviesQuery } from '../../api/tmdbV3/movieLists.api'
 
 const Hero = () => {
-    const { results, isLoading } = useGetTopRatedSeriesQuery(
-        { list: 'top_rated_series_250', info: 'base_info', sort: 'year.decr' },
-        {
-            selectFromResult: ({ data, isLoading }) => ({
-                results: data?.results,
-                isLoading
-            })
-        }
-    )
+  const { data: nowPlayingMoviesData, isLoading } = useGetNowPlayingMoviesQuery({})
 
-    const { data } = useGetNowPlayingMoviesQuery({})
-
-    return (
-        <>
-            <div className="hero relative">
-                {isLoading && (
-                    <div className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">
-                        <RotatingLines
-                            strokeColor="grey"
-                            strokeWidth="5"
-                            animationDuration="0.75"
-                            width="100"
-                            visible={true}
-                        />
-                    </div>
-                )}
-                <BigSlider topRatedSeries={results} nowPlayingMovies={data} />
-            </div>
-        </>
-    )
+  return (
+    <>
+      <div className="hero relative">
+        {isLoading && (
+          <div className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">
+            <RotatingLines
+              strokeColor="grey"
+              strokeWidth="5"
+              animationDuration="0.75"
+              width="100"
+              visible={true}
+            />
+          </div>
+        )}
+        <BigSlider data={nowPlayingMoviesData?.results} />
+      </div>
+    </>
+  )
 }
 
 export default Hero

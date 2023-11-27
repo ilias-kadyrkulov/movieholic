@@ -1,14 +1,16 @@
 .Home {
-    @apply mt-10 mx-10;
+  @apply mt-10;
+
+  box-shadow: -140px 0px 25px -70px rgba(8, 8, 8, 0.9) inset;
 }
 
 @media (max-width: 768px) {
-    .Home {
-        @apply mx-6;
-    }
+  .Home {
+    box-shadow: none;
+  }
 }
 @media (max-width: 475px) {
-    .Home {
-        @apply mx-3;
-    }
+  .Home {
+    @apply mx-0;
+  }
 }

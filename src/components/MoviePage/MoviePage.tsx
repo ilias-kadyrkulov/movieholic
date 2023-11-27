@@ -9,7 +9,7 @@ import CastSlider from '../Sliders/CastSlider/CastSlider'
 import { useAppSelector } from '../../hooks/hooks'
 import { useGetFileListQuery } from '../../api/filemoon/file.api'
 import { useActions } from '../../hooks/useActions'
-import WatchTrailerButton from '../../common/Buttons/WatchTraillerButton/WatchTrailerButton'
+import WatchTrailerButton from '../../common/Buttons/WatchTrailerButton/WatchTrailerButton'
 import { RotatingLines } from 'react-loader-spinner'
 import { useGetMovieDetailsByMovieIdQuery } from '../../api/tmdbV3/movies.api'
 import { tmdbApiConfig } from '../../api/tmdbV3/tmdb.api'
@@ -67,7 +67,7 @@ const MoviePage = () => {
         }}
       ></div>
       <div className={styles.Details}>
-        <h3 className="text-4xl text-slate-200 font-semibold">{movieDetails?.original_title}</h3>
+        <h3 className="text-4xl text-slate-200 font-semibold">{movieDetails?.title}</h3>
         <div className="my-3">
           <p className="font-semibold text-slate-400">{movieDetails?.runtime} min</p>
 
@@ -85,7 +85,7 @@ const MoviePage = () => {
               text="Play now"
               tmdbId={movieDetails?.id}
               titleType={'movie'}
-              titleText={movieDetails?.original_title}
+              titleText={movieDetails?.title}
             />
             <WatchTrailerButton text="Watch Trailer" tmdbId={movieDetails?.id} />
             {tmdbAccount && movieWatchlist && movieWatchlist.find((item) => movieDetails?.id === item.id) ? (

@@ -1,5 +1,5 @@
 .PopularOfTheWeek {
-  @apply my-10;
+  @apply ml-16 my-10;
 }
 
 .Title {
@@ -8,6 +8,7 @@
 
 @media (max-width: 768px) {
   .PopularOfTheWeek {
+    @apply ml-2;
     div {
       @apply text-xl;
     }

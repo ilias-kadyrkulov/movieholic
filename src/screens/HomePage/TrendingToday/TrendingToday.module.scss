@@ -1,0 +1,256 @@
+.Featured {
+  @apply absolute top-16 left-16 z-50;
+}
+
+.Popularity {
+  @apply absolute left-16 bg-zinc-900 inline-block rounded-xl text-slate-300 font-normal text-base p-1.5 z-30;
+
+  top: 40%;
+}
+
+.TrendingToday {
+  @apply relative w-full z-10 rounded-2xl overflow-hidden mb-10;
+  height: 900px;
+
+  .slick-list {
+    @apply h-full;
+  }
+
+  .slick-slide {
+    > div {
+      height: 100%;
+    }
+  }
+}
+
+.Slide {
+  @apply h-full w-full relative;
+
+  > div {
+    -webkit-box-shadow: 900px 0px 110px 110px rgba(0, 0, 0, 0.8) inset;
+    -moz-box-shadow: 900px 0px 110px 110px rgba(0, 0, 0, 0.8) inset;
+    box-shadow: 900px 0px 110px 110px rgba(0, 0, 0, 0.8) inset;
+  }
+}
+
+.Details {
+  @apply absolute bottom-3 left-16 z-30;
+
+  max-width: 40rem;
+
+  svg:first-child {
+    @apply inline w-5 h-5 mr-1;
+    path {
+      @apply fill-yellow-400;
+    }
+  }
+}
+
+.Title {
+  @apply text-6xl text-slate-200 font-semibold;
+}
+
+.Genres {
+  @apply inline-block font-semibold text-slate-400 mr-1 text-sm;
+}
+
+.Overview {
+  @apply font-medium text-gray-300 text-base;
+}
+
+.Buttons {
+  @apply flex my-4 flex-wrap;
+
+  button {
+    @apply py-3 px-6 cursor-pointer;
+  }
+
+  span {
+    @apply ml-3;
+  }
+
+  a {
+    @apply text-sm;
+  }
+
+  svg {
+    @apply w-5 h-5;
+  }
+
+  .TrailerButton {
+    @apply flex items-center justify-between mr-6 rounded-md bg-green-600 text-white font-semibold hover:opacity-90;
+  }
+  .WatchButton {
+    @apply flex items-center border-2 rounded-md border-slate-400 text-slate-200 font-semibold transition-colors hover:bg-purple-900;
+
+    &:hover {
+      polygon {
+        @apply fill-yellow-400;
+      }
+    }
+  }
+}
+
+@media (max-width: 2400px) {
+  .Details {
+    max-width: 30rem;
+  }
+}
+
+@media (max-width: 1900px) {
+  .Slide {
+    > div {
+      -webkit-box-shadow: 800px 0px 110px 110px rgba(0, 0, 0, 0.8) inset;
+      -moz-box-shadow: 800px 0px 110px 110px rgba(0, 0, 0, 0.8) inset;
+      box-shadow: 800px 0px 110px 110px rgba(0, 0, 0, 0.8) inset;
+    }
+  }
+}
+
+@media (max-width: 1700px) {
+  .Slide {
+    > div {
+      -webkit-box-shadow: 600px 0px 110px 110px rgba(0, 0, 0, 0.8) inset;
+      -moz-box-shadow: 600px 0px 110px 110px rgba(0, 0, 0, 0.8) inset;
+      box-shadow: 600px 0px 110px 110px rgba(0, 0, 0, 0.8) inset;
+    }
+  }
+}
+
+@media (max-width: 1440px) {
+  .Title {
+    @apply text-4xl;
+  }
+  .Details {
+    max-width: 25rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .Details {
+    @apply left-8;
+  }
+  .Featured {
+    @apply left-8;
+  }
+
+  .Popularity {
+    @apply left-8;
+
+    top: 40%;
+  }
+  .Slide {
+    > div {
+      -webkit-box-shadow: 500px 0px 110px 110px rgba(0, 0, 0, 0.8) inset;
+      -moz-box-shadow: 500px 0px 110px 110px rgba(0, 0, 0, 0.8) inset;
+      box-shadow: 500px 0px 110px 110px rgba(0, 0, 0, 0.8) inset;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .TrendingToday {
+    height: 1250px;
+  }
+  .Details {
+    @apply left-8;
+  }
+  .Featured {
+    @apply top-5;
+  }
+
+  .Popularity {
+    bottom: 28%;
+    top: unset;
+  }
+}
+
+@media (max-width: 768px) {
+  .Title {
+    @apply text-2xl;
+  }
+  .Overview {
+    @apply text-sm;
+  }
+
+  .Featured {
+    @apply left-4;
+    h2 {
+      @apply text-2xl;
+    }
+
+    h5 {
+      @apply text-base;
+    }
+  }
+  .Details {
+    @apply left-4;
+  }
+
+  .Popularity {
+    bottom: 35%;
+    left: 16px;
+  }
+}
+
+@media (max-width: 650px) {
+  .Popularity {
+    bottom: 25%;
+  }
+}
+
+@media (max-width: 500px) {
+  .Popularity {
+    bottom: 37%;
+  }
+}
+
+@media (max-width: 475px) {
+  .TrendingToday {
+    height: 1100px;
+  }
+  .Buttons {
+    button {
+      @apply py-2 px-3;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .Featured {
+    @apply left-4;
+    h2 {
+      @apply text-lg;
+    }
+
+    h5 {
+      @apply text-sm;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .Featured {
+    @apply left-2;
+  }
+  .Details {
+    @apply left-2;
+  }
+
+  .Popularity {
+    bottom: 45%;
+  }
+}
+
+@media (max-width: 325px) {
+  .Featured {
+    @apply left-4;
+    h2 {
+      @apply text-base;
+    }
+
+    h5 {
+      @apply text-xs;
+    }
+  }
+}

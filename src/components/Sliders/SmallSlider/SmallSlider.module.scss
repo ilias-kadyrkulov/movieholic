@@ -36,10 +36,9 @@
                         @apply fill-slate-400;
                     }
                 }
-
+                  
                 span {
-                    display: inline-block;
-                    font-size: 11px;
+                    @apply inline-block font-semibold text-slate-400 mr-1 text-xs;
                 }
             }
 

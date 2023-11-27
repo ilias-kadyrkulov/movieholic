@@ -25,15 +25,14 @@
   }
 
   .Genres {
-    @apply pl-2 before:absolute before:left-0 before:bg-slate-400 before:h-10 leading-3;
+    @apply pl-2 before:absolute before:left-0 before:bg-slate-400 before:h-5 leading-3;
 
     &:before {
       width: 1px;
     }
 
     span {
-      display: inline-block;
-      font-size: 11px;
+      @apply inline-block font-semibold text-slate-400 mr-1 text-sm;
     }
   }
 }

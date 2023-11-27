@@ -1,6 +1,5 @@
-.Carousel {
+.BigSlider {
   @apply relative w-full z-10 overflow-hidden;
-  height: 750px;
 
   .slick-list {
     @apply h-full;
@@ -100,9 +99,6 @@
 }
 
 @media (max-width: 768px) {
-  .Carousel {
-    height: 600px;
-  }
   .Buttons {
     @apply m-0;
 

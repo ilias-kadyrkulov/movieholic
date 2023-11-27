@@ -9,6 +9,7 @@ import { tmdbAccountActions } from './../store/slices/tmdbAccountSlice';
 import { functionOptimizationActions } from './../store/slices/functionOptimizationSlice';
 import { movieFavoriteActions } from './../store/slices/movieFavoriteSlice';
 import { movieGenresActions } from './../store/slices/movieGenresSlice';
+import { latestReleasedMoviesActions } from './../store/slices/latestReleasedMoviesSlice';
 
 const allActions = {
     ...movieWatchlistActions,
@@ -19,7 +20,8 @@ const allActions = {
     ...showActions,
     ...tmdbSessionActions,
     ...tmdbAccountActions,
-    ...functionOptimizationActions
+    ...functionOptimizationActions,
+    ...latestReleasedMoviesActions
 }
 
 export const useActions = () => {

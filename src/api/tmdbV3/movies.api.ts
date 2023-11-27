@@ -1,57 +1,53 @@
+import { MovieDetailsType, MovieType } from '../../types/types'
+import { WFResponseType } from './account.api'
 import { tmdbV3API } from './tmdb.api'
 
-type GetMovieDetailsType = {
-    adult: boolean
-    backdrop_path: string
-    genres: MovieDetailsType[]
-    id: number
-    original_title: string
-    overview: string
-    popularity: number
-    poster_path: string
-    release_date: string
-    runtime: number
-    title: string
-    vote_average: number
-    vote_count: number
-}
-
-type MovieDetailsType = {
-    id: number
-    name: string
-}
-
 type GetCastDetailsType = {
-    id: number
-    cast: CastType[]
+  id: number
+  cast: CastType[]
 }
 
 type CastType = {
-    id: number
-    name: string
-    profile_path: string
-    character: string
+  id: number
+  name: string
+  profile_path: string
+  character: string
 }
 
-type RequestType = {
-    movieId: number
-    language?: string
+export type RequestType = {
+  movieId: number | undefined
+  language?: string
 }
 
 const tmdbMoviesAPI = tmdbV3API.injectEndpoints({
-    endpoints: (builder) => ({
-        getMovieDetailsByMovieId: builder.query<
-            GetMovieDetailsType,
-            RequestType
-        >({
-            query: ({movieId, language = 'en-US'}) =>
-                `movie/${movieId}?language=${language}&`
-        }),
-        getCastDetailsByMovieId: builder.query<GetCastDetailsType, RequestType>({
-            query: ({movieId, language = 'en-US'}) =>
-                `movie/${movieId}/credits?language=${language}`
-        })
-    })
+  endpoints: (builder) => ({
+    getMovieDetailsByMovieId: builder.query<MovieDetailsType, RequestType>({
+      query: ({ movieId, language = 'en-KG' }) => `movie/${movieId}?language=${language}`,
+    }),
+    getCastDetailsByMovieId: builder.query<GetCastDetailsType, RequestType>({
+      query: ({ movieId, language = 'en-KG' }) => `movie/${movieId}/credits?language=${language}`,
+    }),
+    getLatestReleasedMovies: builder.query<WFResponseType<MovieType[]>, string>({
+      query: (date) => ({
+        url: `discover/movie`,
+        params: {
+          include_adult: 'false',
+          include_video: 'false',
+          language: 'en-KG',
+          page: '1',
+          region: 'KG',
+          'release_date.gte': '2023-10-01',
+          'release_date.lte': date,
+          sort_by: 'popularity.asc'
+        },
+      }),
+    }),
+  }),
 })
 
-export const { useGetMovieDetailsByMovieIdQuery, useGetCastDetailsByMovieIdQuery } = tmdbMoviesAPI
+export const {
+  useGetMovieDetailsByMovieIdQuery,
+  useLazyGetMovieDetailsByMovieIdQuery,
+  useGetCastDetailsByMovieIdQuery,
+  useGetLatestReleasedMoviesQuery,
+} = tmdbMoviesAPI

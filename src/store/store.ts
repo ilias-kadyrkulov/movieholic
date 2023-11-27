@@ -23,6 +23,7 @@ import { tmdbAccountReducer } from './slices/tmdbAccountSlice'
 import { functionOptimizationReducer } from './slices/functionOptimizationSlice'
 import { movieFavoriteReducer } from './slices/movieFavoriteSlice'
 import { movieGenresReducer } from './slices/movieGenresSlice'
+import { latestReleasedMoviesReducer } from './slices/latestReleasedMoviesSlice'
 
 const rootReducer = combineReducers({
     [showAPI.reducerPath]: showAPI.reducer,
@@ -37,7 +38,8 @@ const rootReducer = combineReducers({
     tmdbSession: tmdbSessionReducer,
     [tmdbV4API.reducerPath] : tmdbV4API.reducer,
     tmdbAccount: tmdbAccountReducer,
-    functionOptimization: functionOptimizationReducer
+    functionOptimization: functionOptimizationReducer,
+    latestReleasedMovies: latestReleasedMoviesReducer
 })
 
 const persistConfig = {

@@ -10,7 +10,7 @@ type PropsType = {
     titleText: string | undefined
 }
 
-const PlayContinueButton = ({ text, titleType, titleText }: PropsType) => {
+const PlayContinueButton = ({ text, tmdbId, titleType, titleText }: PropsType) => {
     const { showBeenClicked } = useActions()
 
     const handleOnPlayButtonClick = () => {
@@ -20,7 +20,7 @@ const PlayContinueButton = ({ text, titleType, titleText }: PropsType) => {
     return (
         <>
             {titleType === 'movie' ? (
-                <Link to={`${titleText}`}>
+                <Link to={`title/movie/${tmdbId}/${titleText}`}>
                     <button
                         className={styles.PlayContinueButton}
                         onClick={handleOnPlayButtonClick}
@@ -30,7 +30,7 @@ const PlayContinueButton = ({ text, titleType, titleText }: PropsType) => {
                     </button>
                 </Link>
             ) : (
-                <Link to={`${titleText}/ep-1`}>
+                <Link to={`title/tvSeries/${tmdbId}/${titleText}/ep-1`}>
                     <button className={styles.PlayContinueButton}>
                         <BsPlayCircle />
                         <span>{text}</span>

@@ -1,18 +1,22 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import styles from './SmallSlider.module.scss'
 import styled from 'styled-components'
-import { SmallMediumEntryType } from '../../../api/show/titles.api'
 import { AiFillStar } from 'react-icons/ai'
 import { LiaFilmSolid } from 'react-icons/lia'
 import { Link } from 'react-router-dom'
+import { MovieType } from '../../../types/types'
+import { tmdbApiConfig } from '../../../api/tmdbV3/tmdb.api'
+import { useAppSelector } from '../../../hooks/hooks'
 
 type PropsType = {
-  popularOfTheWeek?: SmallMediumEntryType[]
+  data: MovieType[]
 }
 
 const CustomStyles = styled.div``
 
 const SmallSlider = (props: PropsType) => {
+  const movieGenres = useAppSelector((state) => state.movieGenres)
+
   return (
     <CustomStyles>
       <Swiper
@@ -33,25 +37,25 @@ const SmallSlider = (props: PropsType) => {
           },
         }}
       >
-        {props.popularOfTheWeek?.map((e, index) => (
+        {props.data?.map((e, index) => (
           <SwiperSlide key={e.id}>
             <Link to={`title/movie/${e.id}`}>
-              {e.primaryImage && e.primaryImage.url && (
+              {e.poster_path && (
                 <div className={styles.MovieCard}>
                   <div className={styles.Number}>{index + 1}</div>
-                  <img src={e.primaryImage.url} />
+                  <img src={tmdbApiConfig.w500Image(e.poster_path)} />
                   <div className={styles.MovieDetails}>
                     <h2 className="font-semibold text-base text-white mt-3">
-                      {e.originalTitleText.text}
+                      {e.title}
                     </h2>
 
                     <div className={styles.Rating}>
                       <AiFillStar />
-                      <div className="font-semibold text-lg mx-2 text-white">
-                        {e.ratingsSummary.aggregateRating}
+                      <div className="font-semibold text-base mx-2 text-white">
+                        {e.vote_average}
                       </div>
                       <div className="relative">
-                        <div className={styles.TitleType}>{e.titleType.text}</div>
+                        <div className={styles.TitleType}>Movie</div>
                       </div>
                     </div>
                     <div className={styles.Genres}>
@@ -59,9 +63,9 @@ const SmallSlider = (props: PropsType) => {
                         <LiaFilmSolid />
                       </div>
                       <div className="leading-3 w-3/4 text-center">
-                        {e.genres.genres.map((g) => (
-                          <span className="font-semibold text-slate-400 mr-1" key={g.id}>
-                            {g.text}
+                        {movieGenres && e.genre_ids.map((g) => (
+                          <span key={g}>
+                            {movieGenres[g]}
                           </span>
                         ))}
                       </div>

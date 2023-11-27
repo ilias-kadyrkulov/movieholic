@@ -13,7 +13,9 @@ import PagesList from '../PagesList/PagesList'
 import { Link, useNavigate } from 'react-router-dom'
 import {
   useCreateRequestTokenQuery,
+  useCreateSessionMutation,
   useDeleteSessionMutation,
+  useLazyGetAccountDetailsQuery,
   // usePrefetch
 } from '../../api/tmdbV3/auth.api'
 import { useAppSelector } from '../../hooks/hooks'
@@ -23,6 +25,8 @@ import { RotatingLines } from 'react-loader-spinner'
 const Header = () => {
   const { data: requestTokenData } = useCreateRequestTokenQuery()
   const [deleteSession] = useDeleteSessionMutation()
+  const [getAccountDetails] = useLazyGetAccountDetailsQuery()
+  const [createSession] = useCreateSessionMutation()
   // const prefetchRequestToken = usePrefetch('createRequestToken')
 
   const [signupFormClicked, setSignupFormClicked] = useState(false)
@@ -44,6 +48,9 @@ const Header = () => {
     userLoggedOut,
     movieGenresCleared,
     movieFavoriteCleared,
+    sessionBeenStored,
+    userLoggedIn,
+    functionShouldRun,
   } = useActions()
 
   const navigate = useNavigate()
@@ -51,19 +58,21 @@ const Header = () => {
   const urlParams = new URLSearchParams(window.location.search)
   const requestTokenURI = urlParams.get('request_token')
 
-  useEffect(() => {
-    console.log('requestToken - ', requestToken)
-    console.log('tmdbAccount - ', tmdbAccount)
-    console.log('sessionId - ', sessionId)
-    console.log('validatedRequestToken - ', validatedRequestToken)
-  }, [requestToken, tmdbAccount, sessionId, validatedRequestToken])
+  const handleSessionCreation = async () => {
+    const result = await createSession(validatedRequestToken).unwrap()
+    sessionBeenStored({ session_id: result.session_id })
+    functionShouldRun()
+  }
 
-  useEffect(() => {
-    !requestTokenURI &&
-      requestTokenStored({
-        request_token: requestTokenData?.request_token,
-      })
-  }, [requestTokenData])
+  const handleAccountDetails = async () => {
+    const result = await getAccountDetails(sessionId).unwrap()
+    userLoggedIn({
+      username: result.username,
+      avatar: result.avatar,
+      iso_639_1: result.iso_639_1,
+      iso_3166_1: result.iso_3166_1,
+    })
+  }
 
   const handleLogOut = () => {
     sessionBeenDeleted()
@@ -102,6 +111,28 @@ const Header = () => {
   const handleProfileClick = () => {
     setIsProfileClicked(!isProfileClicked)
   }
+
+  useEffect(() => {
+    sessionId && handleAccountDetails()
+  }, [sessionId])
+
+  useEffect(() => {
+    validatedRequestToken && handleSessionCreation()
+  }, [validatedRequestToken])
+
+  useEffect(() => {
+    console.log('requestToken - ', requestToken)
+    console.log('tmdbAccount - ', tmdbAccount)
+    console.log('sessionId - ', sessionId)
+    console.log('validatedRequestToken - ', validatedRequestToken)
+  }, [requestToken, tmdbAccount, sessionId, validatedRequestToken])
+
+  useEffect(() => {
+    !requestTokenURI &&
+      requestTokenStored({
+        request_token: requestTokenData?.request_token,
+      })
+  }, [requestTokenData])
 
   return (
     <>

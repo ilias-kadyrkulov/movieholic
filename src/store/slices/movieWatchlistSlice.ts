@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { MovieType } from '../../api/tmdbV3/account.api'
+import { MovieType } from '../../types/types'
 
 let initialState: MovieType[] = []
 

@@ -1,14 +1,11 @@
 import styles from './MediumSlider.module.scss'
 import styled from 'styled-components'
-import { EntryType } from '../../../api/show/titles.api'
 import { AiFillStar } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper-bundle.css'
-
-type PropsType = {
-  topBoxOffice?: EntryType[]
-}
+import { tmdbApiConfig } from '../../../api/tmdbV3/tmdb.api'
+import { useAppSelector } from '../../../hooks/hooks'
 
 const CustomStyles = styled.div`
   @media (min-width: 325px) {
@@ -73,7 +70,10 @@ const CustomStyles = styled.div`
   }
 `
 
-const MediumSlider = (props: PropsType) => {
+const MediumSlider = () => {
+  const movieGenres = useAppSelector((state) => state.movieGenres)
+  const latestReleasedMovies = useAppSelector((state) => state.latestReleasedMovies)
+
   return (
     <CustomStyles>
       <Swiper
@@ -94,36 +94,34 @@ const MediumSlider = (props: PropsType) => {
             slidesPerView: 2,
           },
         }}
-        style={{ boxShadow: ' -75px 0px 0px 0px rgba(0, 0, 0, 0.8) inset' }}
       >
-        {props?.topBoxOffice?.map((m) => (
+        {latestReleasedMovies?.map((m) => (
           <SwiperSlide key={m.id}>
             <Link to={`title/movie/${m.id}`}>
-              {m.primaryImage && m.primaryImage.url && (
                 <div className={styles.MovieCard}>
-                  <img src={m.primaryImage.url} />
+                  <img src={tmdbApiConfig.originalImage(m.poster_path)} />
                   <div className={styles.MovieDetails}>
-                    <h2 className="font-semibold text-xl text-white mb-2">{m.titleText.text}</h2>
+                    <h2 className="font-semibold text-base text-white mb-2">{m.title}</h2>
                     <div className="flex max-w-full">
-                      <div className="flex flex-col items-center">
+                      <div className="flex items-center">
                         <AiFillStar />
-                        <div className="font-semibold text-lg mx-2 text-white">
-                          {m.ratingsSummary.aggregateRating}
+                        <div className="font-semibold text-base mx-2 text-white">
+                          {m.vote_average}
                         </div>
                       </div>
                       <div className="relative flex max-w-full w-10/12">
                         <div className={styles.Genres}>
-                          {m.genres.genres.map((g) => (
-                            <span className="font-semibold text-slate-400 mr-1" key={g.id}>
-                              {g.text}
-                            </span>
-                          ))}
+                          {movieGenres &&
+                            m.genre_ids?.map((g) => (
+                              <span key={g}>
+                                {movieGenres[g]}
+                              </span>
+                            ))}
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              )}
             </Link>
           </SwiperSlide>
         ))}

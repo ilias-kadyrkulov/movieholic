@@ -11,12 +11,6 @@ import { useEffect } from 'react'
 import { useActions } from '../../../hooks/useActions'
 
 const CustomStyles = styled.div`
-  @media (max-width: 1100px) {
-    .swiper-slide {
-      display: flex;
-      justify-content: center;
-    }
-  }
   @media (max-width: 768px) {
     .swiper-slide {
       display: flex;
@@ -29,7 +23,6 @@ const MovieFavoriteSlider = () => {
   const sessionId = useAppSelector((state) => state.tmdbSession.sessionId)
   const movieFavorite = useAppSelector((state) => state.movieFavorite)
   const movieGenres = useAppSelector((state) => state.movieGenres)
-  console.log(movieFavorite)
 
   const { movieFavoriteReceived, movieFavoriteCleared } = useActions()
 
@@ -72,8 +65,7 @@ const MovieFavoriteSlider = () => {
                 <div className={styles.MovieCard}>
                   <img src={tmdbApiConfig.w500Image(m.poster_path)} />
                   <div className={styles.MovieDetails}>
-                    <h2 className="font-semibold text-base text-white">{m.original_title}</h2>
-
+                    <h2 className="font-semibold text-base text-white">{m.title}</h2>
                     <div className={styles.Rating}>
                       <AiFillStar />
                       <div className="font-semibold text-lg mx-2 text-white">{m.vote_average}</div>

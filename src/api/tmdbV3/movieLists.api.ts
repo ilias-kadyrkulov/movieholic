@@ -1,7 +1,7 @@
 import { tmdbV3API } from './tmdb.api'
 
 export type GetNowPlayingMoviesType = {
-    dates: {
+    dates?: {
         maximum: string
         minimum: string
     }
@@ -13,6 +13,7 @@ export type GetNowPlayingMoviesType = {
 
 type MovieType = {
     adult: boolean
+    backdrop_path: string
     genre_ids: number[]
     id: number
     original_title: string
@@ -31,7 +32,7 @@ const tmdbMovieListsAPI = tmdbV3API.injectEndpoints({
             GetNowPlayingMoviesType,
             { language?: string; page?: number }
         >({
-            query: ({ language = 'en-US', page = 1}) =>
+            query: ({ language = 'en-KG', page = 1}) =>
                 `movie/now_playing?language=${language}&page=${page}`
         })
     })

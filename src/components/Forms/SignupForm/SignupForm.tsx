@@ -45,8 +45,6 @@ const validatePassword = (value: string) => {
 
 const SignupForm = (props: PropsType) => {
     const [validateSessionWithLogin] = useValidateTokenWithLoginMutation()
-    const [getAccountDetails] = useLazyGetAccountDetailsQuery()
-    const [createSession] = useCreateSessionMutation()
 
     const urlParams = new URLSearchParams(window.location.search)
     const requestTokenURI = urlParams.get('request_token')
@@ -64,15 +62,9 @@ const SignupForm = (props: PropsType) => {
     const shouldRunFunction = useAppSelector(
         (state) => state.functionOptimization.shouldRunFunction
     )
-    const validatedRequestToken = useAppSelector(
-        (state) => state.tmdbSession.validatedToken
-    )
 
     const {
         requestTokenValidatedWithLogin,
-        sessionBeenStored,
-        userLoggedIn,
-        functionShouldRun,
         functionShouldNotRun
     } = useActions()
 
@@ -98,28 +90,6 @@ const SignupForm = (props: PropsType) => {
             sessionId: sessionId
         })
     }, [user, sessionId])
-
-    const handleSessionCreation = async () => {
-        const result = await createSession(validatedRequestToken).unwrap()
-        sessionBeenStored({ session_id: result.session_id })
-        functionShouldRun()
-    }
-
-    const handleAccountDetails = async () => {
-        const result = await getAccountDetails(sessionId).unwrap()
-        userLoggedIn({
-            username: result.username,
-            avatar: result.avatar.tmdb.avatar_path
-        })
-    }
-
-    useEffect(() => {
-        sessionId && handleAccountDetails()
-    }, [sessionId])
-
-    useEffect(() => {
-        validatedRequestToken && handleSessionCreation()
-    }, [validatedRequestToken])
 
     useEffect(() => {
         if (shouldRunFunction && sessionId) {

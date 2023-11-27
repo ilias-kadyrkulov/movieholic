@@ -44,7 +44,7 @@ const LoginForm = (props: PropsType) => {
 
     const navigate = useNavigate()
 
-    const { userLoggedIn, sessionBeenStored } = useActions()
+    const { sessionBeenStored } = useActions()
 
     const sessionIdsCollection = collection(db, 'sessionIds')
 
@@ -95,10 +95,8 @@ const LoginForm = (props: PropsType) => {
                     console.log(response)
 
                     const userData: FirestoreSnapshot = response[0]
-                    const username = userData.username
                     const sessionId = userData.sessionId
 
-                    userLoggedIn({ username: username })
                     sessionBeenStored({ session_id: sessionId })
 
                     setSubmitting(false)

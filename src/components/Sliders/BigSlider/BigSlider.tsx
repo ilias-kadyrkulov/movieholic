@@ -1,30 +1,24 @@
-import { useEffect } from 'react'
 import styles from './BigSlider.module.scss'
 import styled from 'styled-components'
-import { TopRatedSeriesEntryType } from '../../../api/show/titles.api'
 import GreenButton from '../../../common/Buttons/GreenButton/GreenButton'
 import MovieWatchlistButton from '../../../common/Buttons/MovieWatchlistButton/MovieWatchlistButton'
 import { useAppSelector } from '../../../hooks/hooks'
-import WatchTrailerButton from '../../../common/Buttons/WatchTraillerButton/WatchTrailerButton'
-import { GetNowPlayingMoviesType } from '../../../api/tmdbV3/movieLists.api'
-import { useGetMovieGenresQuery } from '../../../api/tmdbV3/genres.api'
+import WatchTrailerButton from '../../../common/Buttons/WatchTrailerButton/WatchTrailerButton'
 import { tmdbApiConfig } from '../../../api/tmdbV3/tmdb.api'
 import SwiperCore from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import 'swiper/swiper-bundle.css'
-import { useActions } from '../../../hooks/useActions'
+import { MovieType } from '../../../types/types'
 
 SwiperCore.use([Navigation, Autoplay, Pagination])
 
 type PropsType = {
-  topRatedSeries: TopRatedSeriesEntryType[] | undefined
-  nowPlayingMovies: GetNowPlayingMoviesType | undefined
+  data: MovieType[] | undefined
 }
 
 const CustomStyles = styled.div`
   .swiper {
-    width: 100%;
     height: 850px;
   }
 
@@ -40,7 +34,11 @@ const CustomStyles = styled.div`
     }
   }
 
-  @media (min-width: 768px) {
+  @media (max-width: 768px) {
+    .swiper {
+      height: 600px;
+    }
+
     .swiper-button-next,
     .swiper-button-prev {
       width: 0;
@@ -86,44 +84,30 @@ const CustomStyles = styled.div`
 `
 
 export const BigSlider = (props: PropsType) => {
-  const { data: movieGenresData } = useGetMovieGenresQuery()
-
-  const { movieGenresReceived } = useActions()
-
   const movieWatchlist = useAppSelector((state) => state.movieWatchlist)
   const movieGenres = useAppSelector((state) => state.movieGenres)
   const tmdbAccount = useAppSelector((state) => state.tmdbAccount.username)
-
-  const genreObj = movieGenresData?.genres.reduce((acc, genre) => {
-    acc[genre.id] = genre.name
-    return acc
-  }, {} as Record<number, string>)
-
-  useEffect(() => {
-    movieGenresData && movieGenresReceived(genreObj)
-  }, [movieGenresData])
 
   return (
     <>
       <CustomStyles>
         <Swiper
-          className={styles.Carousel}
+          className={styles.BigSlider}
           slidesPerView={1}
-          navigation
-          autoplay={{ delay: 5000 }}
+          autoplay={{ delay: 7000 }}
           pagination
         >
-          {props.nowPlayingMovies?.results.map((m) => (
+          {props.data?.map((m) => (
             <SwiperSlide key={m.id}>
               <div className={styles.Slide}>
                 <div
                   className={`bg-cover bg-no-repeat bg-center h-full`}
                   style={{
-                    backgroundImage: `url(${tmdbApiConfig.originalImage(m.poster_path)})`,
+                    backgroundImage: `url(${tmdbApiConfig.originalImage(m.backdrop_path)})`,
                   }}
                 >
                   <div className={styles.Details}>
-                    <h3 className="text-2xl text-slate-200 font-semibold">{m.original_title}</h3>
+                    <h3 className="text-2xl text-slate-200 font-semibold">{m.title}</h3>
                     <div>
                       <span className="font-semibold text-slate-400">{m.release_date} • </span>
                       {movieGenres &&
