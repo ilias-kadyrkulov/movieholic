@@ -1,0 +1,20 @@
+.Footer {
+  @apply flex justify-between items-center p-10;
+
+  img {
+    @apply w-20 h-10;
+  }
+
+  svg {
+    @apply inline;
+    path {
+      @apply fill-white;
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .Footer {
+    @apply p-4;
+  }
+}

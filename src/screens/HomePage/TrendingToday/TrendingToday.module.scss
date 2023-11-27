@@ -9,7 +9,7 @@
 }
 
 .TrendingToday {
-  @apply relative w-full z-10 rounded-2xl overflow-hidden mb-10;
+  @apply relative w-full z-10 rounded-2xl overflow-hidden;
   height: 900px;
 
   .slick-list {

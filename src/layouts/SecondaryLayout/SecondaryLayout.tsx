@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import Header from '../../components/Header/Header'
+import Footer from '../../components/Footer/Footer'
 
 const SecondaryLayout = () => {
     return (
@@ -7,6 +8,7 @@ const SecondaryLayout = () => {
                 <div className="secondary-layout">
                     <Header />
                     <Outlet />
+                    <Footer />
                 </div>
         </>
     )
