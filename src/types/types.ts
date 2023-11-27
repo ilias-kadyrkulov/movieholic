@@ -13,6 +13,7 @@ export type MovieType = {
   vote_average: number
   vote_count: number
 }
+export type NowPlayingMovieType = Omit<MovieType, 'runtime'>
 export type MovieDetailsType = Omit<MovieType, 'genre_ids'> & {
   genres: MovieGenresType[]
 }

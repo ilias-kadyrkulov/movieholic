@@ -9,12 +9,12 @@ import SwiperCore from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import 'swiper/swiper-bundle.css'
-import { MovieType } from '../../../types/types'
+import { NowPlayingMovieType } from '../../../types/types'
 
 SwiperCore.use([Navigation, Autoplay, Pagination])
 
 type PropsType = {
-  data: MovieType[] | undefined
+  data: NowPlayingMovieType[] | undefined
 }
 
 const CustomStyles = styled.div`
@@ -95,7 +95,9 @@ export const BigSlider = (props: PropsType) => {
           className={styles.BigSlider}
           slidesPerView={1}
           autoplay={{ delay: 7000 }}
-          pagination
+          pagination={
+            {clickable: true}
+          }
         >
           {props.data?.map((m) => (
             <SwiperSlide key={m.id}>

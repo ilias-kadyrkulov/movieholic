@@ -5,8 +5,6 @@ import logo from '../../../assets/logo-low-resolution.png'
 import 'firebase/auth'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
-    useCreateSessionMutation,
-    useLazyGetAccountDetailsQuery,
     useValidateTokenWithLoginMutation
 } from '../../../api/tmdbV3/auth.api'
 import { useActions } from '../../../hooks/useActions'
