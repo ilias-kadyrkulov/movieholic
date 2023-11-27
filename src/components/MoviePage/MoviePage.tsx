@@ -14,6 +14,7 @@ import { RotatingLines } from 'react-loader-spinner'
 import { useGetMovieDetailsByMovieIdQuery } from '../../api/tmdbV3/movies.api'
 import { tmdbApiConfig } from '../../api/tmdbV3/tmdb.api'
 import { skipToken } from '@reduxjs/toolkit/query'
+import MoviePagePlayButton from '../../common/Buttons/PlayContinueButton/MoviePagePlayButton'
 
 const MoviePage = () => {
   const { id } = useParams<{ id: string }>()
@@ -69,11 +70,11 @@ const MoviePage = () => {
       <div className={styles.Details}>
         <h3 className="text-4xl text-slate-200 font-semibold">{movieDetails?.title}</h3>
         <div className="my-3">
-          <p className="font-semibold text-slate-400">{movieDetails?.runtime} min</p>
+          <p className="font-semibold text-slate-300">{movieDetails?.runtime} min</p>
 
-          <span className="font-semibold text-slate-400">{movieDetails?.release_date} • </span>
+          <span className="font-semibold text-slate-300">{movieDetails?.release_date} • </span>
           {movieDetails?.genres.map((g) => (
-            <span className="font-semibold text-slate-400 mr-1" key={g.id}>
+            <span className="font-semibold text-slate-300 mr-1" key={g.id}>
               {movieGenres && movieGenres[g.id]}
             </span>
           ))}
@@ -81,9 +82,8 @@ const MoviePage = () => {
 
         <div className={styles.Buttons}>
           <div className="flex mr-10 flex-wrap">
-            <PlayContinueButton
+            <MoviePagePlayButton
               text="Play now"
-              tmdbId={movieDetails?.id}
               titleType={'movie'}
               titleText={movieDetails?.title}
             />

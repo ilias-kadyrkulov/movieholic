@@ -13,8 +13,7 @@ const Footer = () => {
       </div>
       <div>
         <div className='text-slate-200 font-semibold'>Ilias Kadyrkulov</div>
-        <a href="https://github.com/ilias-kadyrkulov/movieholic" className='text-slate-200 font-medium'>Source: </a>
-        <FaGithub />
+        <a href="https://github.com/ilias-kadyrkulov/movieholic" target='_blank' className='text-slate-200 font-medium'>Source: <FaGithub /></a>
       </div>
     </div>
   )

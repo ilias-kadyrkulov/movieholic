@@ -33,7 +33,7 @@ const TrendingToday = () => {
         <h5 className="text-slate-300 font-normal text-xl">Best featured for you today</h5>
       </div>
       <h5 className={styles.Popularity}>
-        #{popularity} in {country}
+        #{popularity} in {country ? country : 'KG'}
       </h5>
 
       <div className={styles.Slide}>

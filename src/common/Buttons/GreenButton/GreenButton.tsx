@@ -11,10 +11,12 @@ type PropsType = {
 const GreenButton = ({ text, tmdbId }: PropsType) => {
   const { fileListEmptied } = useActions()
   return (
-    <button className={styles.GreenButton} onClick={() => fileListEmptied()}>
-      <BsPlayCircle />
-      <Link to={`title/movie/${tmdbId}`}>{text}</Link>
-    </button>
+    <Link to={`title/movie/${tmdbId}`}>
+      <button className={styles.GreenButton} onClick={() => fileListEmptied()}>
+        <BsPlayCircle />
+        {text}
+      </button>
+    </Link>
   )
 }
 

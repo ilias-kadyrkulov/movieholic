@@ -8,22 +8,22 @@ import { tmdbApiConfig } from '../../../api/tmdbV3/tmdb.api'
 import { useAppSelector } from '../../../hooks/hooks'
 
 const CustomStyles = styled.div`
-  @media (min-width: 325px) {
-    .swiper-slide {
-      height: 500px;
-    }
-  }
   @media (min-width: 425px) {
     .swiper-slide {
       height: 350px;
     }
   }
-  @media (min-width: 650px) {
+  @media (min-width: 500px) {
     .swiper-slide {
-      height: 450px;
+      height: 400px;
     }
   }
-  @media (min-width: 768px) {
+  @media (min-width: 575px) {
+    .swiper-slide {
+      height: 500px;
+    }
+  }
+  @media (min-width: 830px) {
     .swiper-slide {
       height: 400px;
     }

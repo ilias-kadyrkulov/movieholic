@@ -15,6 +15,7 @@ import { RotatingLines } from 'react-loader-spinner'
 import { useGetMovieDetailsByMovieIdQuery } from '../../api/tmdbV3/movies.api'
 import { tmdbApiConfig } from '../../api/tmdbV3/tmdb.api'
 import { useGetMovieGenresQuery } from '../../api/tmdbV3/genres.api'
+import MoviePagePlayButton from '../../common/Buttons/PlayContinueButton/MoviePagePlayButton'
 
 const ShowPage = () => {
   const { id } = useParams<{ id: string }>()
@@ -88,10 +89,9 @@ const ShowPage = () => {
 
         <div className={styles.Buttons}>
           <div className="flex mr-10 flex-wrap">
-            <PlayContinueButton
+            <MoviePagePlayButton
               text="Play now"
-              tmdbId={movieDetails?.id}
-              titleType={'tv'}
+              titleType={'movie'}
               titleText={movieDetails?.title}
             />
             <WatchTrailerButton text="Watch Trailer" tmdbId={movieDetails?.id} />

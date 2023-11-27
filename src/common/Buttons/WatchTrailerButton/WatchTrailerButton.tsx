@@ -11,10 +11,12 @@ type PropsType = {
 const WatchTrailerButton = ({ text, tmdbId }: PropsType) => {
   const { fileListEmptied } = useActions()
   return (
-    <button className={styles.WatchTrailerButton} onClick={() => fileListEmptied()}>
-      <AiOutlinePlayCircle />
-      <Link to={`trailer/${tmdbId}`}>{text}</Link>
-    </button>
+    <Link to={`trailer/${tmdbId}`}>
+      <button className={styles.WatchTrailerButton} onClick={() => fileListEmptied()}>
+        <AiOutlinePlayCircle />
+        {text}
+      </button>
+    </Link>
   )
 }
 

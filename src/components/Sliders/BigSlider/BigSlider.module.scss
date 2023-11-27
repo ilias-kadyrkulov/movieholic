@@ -38,11 +38,11 @@
   }
 
   a {
-    @apply ml-3 text-sm;
+    @apply text-sm;
   }
 
   svg {
-    @apply w-5 h-5;
+    @apply w-5 h-5 pr-1;
   }
 
   .TrailerButton {
@@ -134,7 +134,7 @@
     @apply my-3;
 
     button {
-      @apply my-0 mr-0;
+      @apply my-0 m-1;
     }
   }
 }

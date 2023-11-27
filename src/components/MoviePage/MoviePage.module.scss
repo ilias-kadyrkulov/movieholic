@@ -27,7 +27,7 @@
     }
 
     span {
-        @apply ml-5;
+        @apply ml-2;
     }
 
     svg {
@@ -59,6 +59,8 @@
 }
 @media (max-width: 768px) {
     .Movie {
+        height: 600px;
+
         -webkit-box-shadow: 0 -200px 100px 0 rgba(28, 28, 28, 0.7) inset;
         -moz-box-shadow: 0 -200px 100px 0 rgba(28, 28, 28, 0.7) inset;
         box-shadow: 0 -200px 100px 0 rgba(28, 28, 28, 0.7) inset;
@@ -69,6 +71,10 @@
     .Buttons {
         span {
             @apply text-sm;
+        }
+
+        a {
+            @apply text-xs;
         }
 
         button {
@@ -83,6 +89,14 @@
 
         h3 {
             @apply text-xl;
+        }
+
+        p {
+            @apply text-xs;
+        }
+
+        span {
+            @apply text-xs;
         }
     }
 }

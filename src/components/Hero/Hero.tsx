@@ -3,7 +3,7 @@ import { BigSlider } from '../Sliders/BigSlider/BigSlider'
 import { useGetNowPlayingMoviesQuery } from '../../api/tmdbV3/movieLists.api'
 
 const Hero = () => {
-  const { data: nowPlayingMoviesData, isLoading } = useGetNowPlayingMoviesQuery({})
+  const { data: nowPlayingMoviesData, isLoading, isSuccess } = useGetNowPlayingMoviesQuery({})
 
   return (
     <>
@@ -19,7 +19,7 @@ const Hero = () => {
             />
           </div>
         )}
-        <BigSlider data={nowPlayingMoviesData?.results} />
+        {isSuccess && <BigSlider data={nowPlayingMoviesData?.results} />}
       </div>
     </>
   )
