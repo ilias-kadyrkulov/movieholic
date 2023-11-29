@@ -95,9 +95,7 @@ export const BigSlider = (props: PropsType) => {
           className={styles.BigSlider}
           slidesPerView={1}
           autoplay={{ delay: 7000 }}
-          pagination={
-            {clickable: true}
-          }
+          pagination={{ clickable: true }}
         >
           {props.data?.map((m) => (
             <SwiperSlide key={m.id}>
@@ -133,10 +131,19 @@ export const BigSlider = (props: PropsType) => {
                     <div className={styles.Buttons}>
                       <GreenButton text="Watch" tmdbId={m.id} />
                       <WatchTrailerButton tmdbId={m.id} text="Watch Trailer" />
-                      {movieWatchlist.find((item) => m.id === item.id) ? (
-                        <WatchlistButton text="Remove from Watchlist" tmdbId={m.id} titleType='movie' />
+                      {movieWatchlist.find((item) => m.id === item) ? (
+                        <WatchlistButton
+                          text="Remove from Watchlist"
+                          tmdbId={m.id}
+                          titleType="movie"
+                        />
                       ) : (
-                        <WatchlistButton text="Add to Watchlist" tmdbId={m.id} tmdbAcc={tmdbAccount} titleType='movie' />
+                        <WatchlistButton
+                          text="Add to Watchlist"
+                          tmdbId={m.id}
+                          tmdbAcc={tmdbAccount}
+                          titleType="movie"
+                        />
                       )}
                     </div>
                   </div>

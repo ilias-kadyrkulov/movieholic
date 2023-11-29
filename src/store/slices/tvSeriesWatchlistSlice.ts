@@ -1,17 +1,16 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { TVType } from '../../types/types'
 
-let initialState: TVType[] = []
+let initialState: number[] = []
 
 const tvSeriesWatchlistSlice = createSlice({
   name: 'tvSeriesWatchlist',
   initialState,
   reducers: {
-    tvSeriesWatchlistReceived: (state, action: PayloadAction<TVType[]>) => {
+    tvSeriesWatchlistReceived: (state, action: PayloadAction<number[]>) => {
       state.push(...action.payload)
     },
     tvSeriesDeletedFromWatchlist: (state, action: PayloadAction<number | undefined>) => {
-      return state.filter((m) => m.id !== action.payload)
+      return state.filter((m) => m !== action.payload)
     },
     tvSeriesWatchlistCleared: () => [],
   },

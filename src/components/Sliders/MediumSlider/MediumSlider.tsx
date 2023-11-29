@@ -106,9 +106,9 @@ const MediumSlider = () => {
                 <div className={styles.MovieCard}>
                   <img src={tmdbApiConfig.originalImage(m.poster_path)} />
                   <div className={styles.MovieDetails}>
-                    <h2 className="font-semibold text-base text-white mb-2">{m.title}</h2>
+                    <h2 className="font-semibold text-base text-white mb-2 h-14">{m.title}</h2>
                     <div className="flex max-w-full">
-                      <div className="flex items-center">
+                      <div className="flex">
                         <AiFillStar />
                         <div className="font-semibold text-sm mx-2 text-white">
                           {m.vote_average}

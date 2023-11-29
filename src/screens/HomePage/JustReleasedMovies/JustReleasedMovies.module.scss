@@ -6,9 +6,9 @@
   @apply font-semibold text-white text-xl mb-5;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .JustReleasedMovies {
-    @apply text-2xl ml-2;
+    @apply text-2xl ml-4;
   }
   .Title {
     @apply mb-5 ml-0;

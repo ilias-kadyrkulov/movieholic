@@ -12,10 +12,9 @@ type PropsType = {
 }
 
 const CustomStyles = styled.div`
-  margin-left: 4rem;
 `
 
-const BaseMovieSlider = ({ data }: PropsType) => {
+const BaseTVSlider = ({ data }: PropsType) => {
   const tvGenres = useAppSelector((state) => state.tvGenres)
 
   return (
@@ -39,24 +38,20 @@ const BaseMovieSlider = ({ data }: PropsType) => {
           },
         }}
       >
-        {data?.map((m) => (
+        {data.map((m) => (
           <SwiperSlide key={m.id}>
-            <Link to={`title/movie/${m.id}`}>
+            <Link to={`title/tvSeries/${m.id}`}>
               {m.poster_path && (
-                <div
-                  className={styles.ShowCard}
-                  style={{ backgroundImage: `url(${tmdbApiConfig.w500Image(m.poster_path)})` }}
-                >
+                <div className={styles.ShowCard}>
+                  <img src={tmdbApiConfig.originalImage(m.backdrop_path)} />
                   <h2 className={styles.Title}>{m.name}</h2>
                   <div className={styles.MovieDetails}>
                     <div className={styles.Rating}>
                       <AiFillStar />
-                      <div className="font-semibold text-lg mx-2 text-white">{m.vote_average}</div>
+                      <div className="font-semibold text-sm mx-2 text-white">{m.vote_average}</div>
                     </div>
                     <div className={styles.Genres}>
-                      <div className="leading-3 w-full">
-                        {tvGenres && m.genre_ids.map((g) => <span key={g}>{tvGenres[g]}</span>)}
-                      </div>
+                      {tvGenres && m.genre_ids.map((g) => <span key={g}>• {tvGenres[g]}</span>)}
                     </div>
                   </div>
                 </div>
@@ -69,4 +64,4 @@ const BaseMovieSlider = ({ data }: PropsType) => {
   )
 }
 
-export default BaseMovieSlider
+export default BaseTVSlider

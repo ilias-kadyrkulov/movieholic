@@ -8,7 +8,6 @@ import { useGetMovieGenresQuery, useGetTVGenresQuery } from '../../api/tmdbV3/ge
 import Watchlist from './Watchlist/Watchlist'
 import { useActions } from '../../hooks/useActions'
 import { useEffect } from 'react'
-import BaseMovieSlider from '../../components/Sliders/BaseMovieSlider/BaseMovieSlider'
 
 const HomePage = () => {
   const { data: movieGenresData } = useGetMovieGenresQuery()
@@ -45,7 +44,6 @@ const HomePage = () => {
       <TrendingToday />
       {tmdbAccount && movieWatchlist && <Watchlist />}
       {tmdbAccount && movieFavorite && <Favorite />}
-      <BaseMovieSlider data={movieWatchlist} />
     </div>
   )
 }

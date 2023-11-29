@@ -26,14 +26,14 @@ type AddToResponseType = {
 const tmdbAccountAPI = tmdbV3API.injectEndpoints({
   endpoints: (builder) => ({
     getMoviesWatchlist: builder.query<GetMovieResponseType, WFRequestType>({
-      query: ({ language = 'en-KG', page = '1', sort_by = 'created_at.asc', session_id }) => ({
+      query: ({ language = 'en-KG', page = '1', sort_by = 'created_at.desc', session_id }) => ({
         url: `account/${tmdbAccountId}/watchlist/movies?language=${language}&page=${page}&sort_by=${sort_by}`,
         params: { session_id: session_id },
       }),
       providesTags: ['MovieWatchlist'],
     }),
     getTVWatchlist: builder.query<GetTVResponseType, WFRequestType>({
-      query: ({ language = 'en-KG', page = '1', sort_by = 'created_at.asc', session_id }) => ({
+      query: ({ language = 'en-KG', page = '1', sort_by = 'created_at.desc', session_id }) => ({
         url: `account/${tmdbAccountId}/watchlist/tv?language=${language}&page=${page}&sort_by=${sort_by}`,
         params: { session_id: session_id },
       }),
@@ -66,14 +66,14 @@ const tmdbAccountAPI = tmdbV3API.injectEndpoints({
       invalidatesTags: ['TVWatchlist'],
     }),
     getMoviesFavorite: builder.query<GetMovieResponseType, WFRequestType>({
-      query: ({ language = 'en-KG', page = '1', sort_by = 'created_at.asc', session_id }) => ({
+      query: ({ language = 'en-KG', page = '1', sort_by = 'created_at.desc', session_id }) => ({
         url: `account/${tmdbAccountId}/favorite/movies?language=${language}&page=${page}&sort_by=${sort_by}`,
         params: { session_id: session_id },
       }),
       providesTags: ['MovieFavorite'],
     }),
     getTVFavorite: builder.query<GetTVResponseType, WFRequestType>({
-      query: ({ language = 'en-KG', page = '1', sort_by = 'created_at.asc', session_id }) => ({
+      query: ({ language = 'en-KG', page = '1', sort_by = 'created_at.desc', session_id }) => ({
         url: `account/${tmdbAccountId}/favorite/tv?language=${language}&page=${page}&sort_by=${sort_by}`,
         params: { session_id: session_id },
       }),
@@ -110,6 +110,7 @@ const tmdbAccountAPI = tmdbV3API.injectEndpoints({
 
 export const {
   useGetMoviesWatchlistQuery,
+  useLazyGetMoviesWatchlistQuery,
   useGetTVWatchlistQuery,
   useMovieWatchlistMutation,
   useTvWatchlistMutation,

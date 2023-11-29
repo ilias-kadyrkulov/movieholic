@@ -1,12 +1,15 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-const initialState: Array<number | undefined> = []
+const initialState: Array<number> = []
 
 export const likeListSlice = createSlice({
     name: 'likeList',
     initialState,
     reducers: {
-        showGotLiked: (state, action: PayloadAction<number | undefined>) => {
+        favoriteShowsReceived: (state, action: PayloadAction<number[]>) => {
+            state.push(...action.payload)
+        },
+        showGotLiked: (state, action: PayloadAction<number>) => {
             state.push(action.payload)
         },
         showGotUnliked: (state, action: PayloadAction<number | undefined>) => {

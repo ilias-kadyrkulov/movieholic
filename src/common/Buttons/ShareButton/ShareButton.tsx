@@ -3,7 +3,7 @@ import styles from './ShareButton.module.scss'
 
 const ShareButton = () => {
     return (
-        <button className={styles.ShareButton}>
+        <button className={styles.ShareButton} disabled>
             <HiOutlineShare />
             <span>Share</span>
         </button>

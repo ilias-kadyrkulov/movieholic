@@ -1,17 +1,16 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { MovieType } from '../../types/types'
 
-let initialState: MovieType[] = []
+let initialState: number[] = []
 
 const movieFavoriteSlice = createSlice({
   name: 'movieFavorite',
   initialState,
   reducers: {
-    movieFavoriteReceived: (state, action: PayloadAction<MovieType[]>) => {
+    movieFavoriteReceived: (state, action: PayloadAction<number[]>) => {
       state.push(...action.payload)
     },
     movieDeletedFromFavorite: (state, action: PayloadAction<number | undefined>) => {
-      return state.filter((m) => m.id !== action.payload)
+      return state.filter((m) => m !== action.payload)
     },
     movieFavoriteCleared: () => ([])
   },

@@ -3,12 +3,12 @@
 }
 
 .Title {
-    @apply font-semibold text-xl text-white mb-5;
+    @apply font-semibold text-xl text-white mb-5 mt-10;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .Watchlist {
-        @apply ml-2;
+        @apply ml-4;
     }
     .Title {
         @apply mb-5 ml-0;

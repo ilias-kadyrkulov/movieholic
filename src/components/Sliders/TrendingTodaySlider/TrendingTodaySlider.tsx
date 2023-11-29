@@ -13,10 +13,10 @@ type PropsType = {
 }
 
 const CustomStyles = styled.div`
-  .swiper-button-next {
-    right: unset;
-    left: 80dvw;
-  }
+  // .swiper-button-next {
+  //   right: unset;
+  //   left: 80dvw;
+  // }
 `
 
 const TrendingTodaySlider = ({ data, getMovieDetails, setPopularity }: PropsType) => {

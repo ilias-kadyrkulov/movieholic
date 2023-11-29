@@ -11,7 +11,13 @@ type PropsType = {
   data: MovieType[]
 }
 
-const CustomStyles = styled.div``
+const CustomStyles = styled.div`
+  @media (max-width: 768px) {
+    .swiper-wrapper {
+      margin-left: 0;
+    }
+  }
+`
 
 const BaseMovieSlider = ({ data }: PropsType) => {
   const movieGenres = useAppSelector((state) => state.movieGenres)
@@ -23,7 +29,7 @@ const BaseMovieSlider = ({ data }: PropsType) => {
         spaceBetween={20}
         navigation
         breakpoints={{
-          1800: {
+          2100: {
             slidesPerView: 5,
           },
           1400: {
@@ -37,14 +43,12 @@ const BaseMovieSlider = ({ data }: PropsType) => {
           },
         }}
       >
-        {data?.map((m) => (
+        {data.map((m) => (
           <SwiperSlide key={m.id}>
             <Link to={`title/movie/${m.id}`}>
               {m.poster_path && (
-                <div
-                  className={styles.ShowCard}
-                >
-                  <img src={tmdbApiConfig.w500Image(m.backdrop_path)} />
+                <div className={styles.ShowCard}>
+                  <img src={tmdbApiConfig.originalImage(m.backdrop_path)} />
                   <h2 className={styles.Title}>{m.title}</h2>
                   <div className={styles.MovieDetails}>
                     <div className={styles.Rating}>
@@ -52,8 +56,7 @@ const BaseMovieSlider = ({ data }: PropsType) => {
                       <div className="font-semibold text-sm mx-2 text-white">{m.vote_average}</div>
                     </div>
                     <div className={styles.Genres}>
-                        {movieGenres &&
-                          m.genre_ids.map((g) => <span key={g}>{movieGenres[g]}</span>)}
+                      {movieGenres && m.genre_ids.map((g) => <span key={g}>• {movieGenres[g]}</span>)}
                     </div>
                   </div>
                 </div>

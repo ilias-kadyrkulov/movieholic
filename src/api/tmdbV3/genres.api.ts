@@ -11,7 +11,7 @@ const tmdbGenresAPI = tmdbV3API.injectEndpoints({
       query: () => 'genre/movie/list',
     }),
     getTVGenres: builder.query<GenresResponseType, void>({
-      query: () => 'genre/movie/list',
+      query: () => 'genre/tv/list',
     }),
   }),
 })

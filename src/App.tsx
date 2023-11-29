@@ -23,6 +23,7 @@ const MobileMenuLayout = React.lazy(() => import('./layouts/MobileMenuLayout/Mob
 const MobileMenuPage = React.lazy(() => import('./screens/MobileMenuPage/MobileMenuPage'))
 
 function App() {
+  
   return (
     <Suspense
       fallback={

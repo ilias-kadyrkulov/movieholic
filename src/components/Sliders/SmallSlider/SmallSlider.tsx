@@ -45,7 +45,7 @@ const SmallSlider = (props: PropsType) => {
                   <div className={styles.Number}>{index + 1}</div>
                   <img src={tmdbApiConfig.w500Image(e.poster_path)} />
                   <div className={styles.MovieDetails}>
-                    <h2 className="font-semibold text-base text-white mt-3">
+                    <h2 className="font-medium text-sm text-white mt-2 h-10">
                       {e.title}
                     </h2>
 

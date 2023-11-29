@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import styles from './SeriesPage.module.scss'
 import WatchlistButton from '../../common/Buttons/WatchlistButton/WatchlistButton'
@@ -17,15 +18,17 @@ import {
   useGetCastDetailsByTVSeriesIdQuery,
   useGetTVSeriesDetailsByMovieIdQuery,
 } from '../../api/tmdbV3/tvSeries.api'
+import { useGetTVWatchlistQuery } from '../../api/tmdbV3/account.api'
 
 const SeriesPage = () => {
   const { id } = useParams<{ id: string }>()
-  const { fileListReceived } = useActions()
+  const { fileListReceived, tvSeriesWatchlistReceived } = useActions()
 
+  const sessionId = useAppSelector((state) => state.tmdbSession.sessionId)
   const { fileList } = useAppSelector((state) => state.player)
-  const movieWatchlist = useAppSelector((state) => state.movieWatchlist) //TODO - TV Watchlist
+  const tvSeriesWatchlist = useAppSelector((state) => state.tvSeriesWatchlist)
   const tmdbAccount = useAppSelector((state) => state.tmdbAccount.username)
-  const movieGenres = useAppSelector((state) => state.movieGenres)
+  const tvGenres = useAppSelector((state) => state.tvGenres)
 
   const { data: tvSeriesDetails, isFetching } = useGetTVSeriesDetailsByMovieIdQuery({
     tvSeriesId: Number(id),
@@ -33,6 +36,10 @@ const SeriesPage = () => {
 
   const { data: tvSeriesCastDetails } = useGetCastDetailsByTVSeriesIdQuery({
     tvSeriesId: Number(id),
+  })
+
+  const { data: tvWatchlistData } = useGetTVWatchlistQuery({
+    session_id: sessionId,
   })
 
   const { fileListData } = useGetFileListQuery(tvSeriesDetails?.name, {
@@ -53,6 +60,10 @@ const SeriesPage = () => {
       fileListReceived(sortedFileListData)
     }
   }
+
+  useEffect(() => {
+    tvWatchlistData && tvSeriesWatchlistReceived(tvWatchlistData.results.map((item) => item.id))
+  }, [tvWatchlistData])
 
   return (
     <>
@@ -76,15 +87,17 @@ const SeriesPage = () => {
       <div className={styles.Details}>
         <h3 className="text-4xl text-slate-200 font-semibold">{tvSeriesDetails?.name}</h3>
         <div className="my-3">
-          <p className="font-semibold text-slate-300">Episode runtime: {tvSeriesDetails?.episode_run_time} min</p>
+          <p className="font-semibold text-slate-300">
+            Episode runtime: {tvSeriesDetails?.episode_run_time.map((item) => item + '. ')} min
+          </p>
 
           <span className="font-semibold text-slate-300">
             Since {tvSeriesDetails?.first_air_date} •{' '}
           </span>
-          {movieGenres &&
+          {tvGenres &&
             tvSeriesDetails?.genres.map((g) => (
               <span className="font-semibold text-slate-300 mr-1" key={g.id}>
-                {movieGenres[g.id]}
+                {tvGenres[g.id]}
               </span>
             ))}
         </div>
@@ -97,13 +110,17 @@ const SeriesPage = () => {
               titleText={tvSeriesDetails?.name}
             />
             <WatchTrailerButton text="Watch Trailer" tmdbId={tvSeriesDetails?.id} />
-            {tmdbAccount && movieWatchlist.find((item) => tvSeriesDetails?.id === item.id) ? (
-              <WatchlistButton text="Remove from Watchlist" tmdbId={tvSeriesDetails?.id} titleType='tv' />
+            {tmdbAccount && tvSeriesWatchlist.find((item) => tvSeriesDetails?.id === item) ? (
+              <WatchlistButton
+                text="Remove from Watchlist"
+                tmdbId={tvSeriesDetails?.id}
+                titleType="tv"
+              />
             ) : (
               <WatchlistButton
                 text="Add to Watchlist"
                 tmdbId={tvSeriesDetails?.id}
-                titleType='tv'
+                titleType="tv"
                 tmdbAcc={tmdbAccount}
               />
             )}
@@ -111,7 +128,7 @@ const SeriesPage = () => {
           <div className={styles.Right}>
             <DownloadButton />
             <ShareButton />
-            <LikeButton tmdbId={tvSeriesDetails?.id} />
+            <LikeButton tmdbId={tvSeriesDetails?.id} titleType="tv" />
           </div>
         </div>
         <div>

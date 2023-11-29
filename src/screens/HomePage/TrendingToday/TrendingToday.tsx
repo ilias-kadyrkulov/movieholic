@@ -77,7 +77,7 @@ const TrendingToday = () => {
                 titleType="movie"
                 tmdbId={movieDetailsData?.id}
               />
-              {movieWatchlist.find((item) => movieDetailsData?.id === item.id) ? (
+              {movieWatchlist.find((item) => movieDetailsData?.id === item) ? (
                 <WatchlistButton
                   text="Remove from Watchlist"
                   tmdbId={movieDetailsData?.id}

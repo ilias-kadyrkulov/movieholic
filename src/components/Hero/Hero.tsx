@@ -3,12 +3,12 @@ import { BigSlider } from '../Sliders/BigSlider/BigSlider'
 import { useGetNowPlayingMoviesQuery } from '../../api/tmdbV3/movieLists.api'
 
 const Hero = () => {
-  const { data: nowPlayingMoviesData, isLoading, isSuccess } = useGetNowPlayingMoviesQuery({})
+  const { data: nowPlayingMoviesData, isFetching, isSuccess } = useGetNowPlayingMoviesQuery({})
 
   return (
     <>
       <div className="hero relative">
-        {isLoading && (
+        {isFetching && (
           <div className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">
             <RotatingLines
               strokeColor="grey"

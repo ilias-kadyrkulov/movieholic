@@ -17,12 +17,17 @@ import {
 import { tmdbApiConfig } from '../../api/tmdbV3/tmdb.api'
 import { skipToken } from '@reduxjs/toolkit/query'
 import ShowPagePlayButton from '../../common/Buttons/PlayContinueButton/ShowPagePlayButton'
+import {
+  useGetMoviesWatchlistQuery
+} from '../../api/tmdbV3/account.api'
+import { useEffect } from 'react'
 
 const MoviePage = () => {
   const { id } = useParams<{ id: string }>()
-  const { fileListReceived } = useActions()
+  const { fileListReceived, movieWatchlistReceived } = useActions()
 
   const { fileList } = useAppSelector((state) => state.player)
+  const sessionId = useAppSelector((state) => state.tmdbSession.sessionId)
   const movieWatchlist = useAppSelector((state) => state.movieWatchlist)
   const movieGenres = useAppSelector((state) => state.movieGenres)
   const tmdbAccount = useAppSelector((state) => state.tmdbAccount.username)
@@ -33,6 +38,10 @@ const MoviePage = () => {
 
   const { data: movieCastDetails } = useGetCastDetailsByMovieIdQuery({
     movieId: Number(id),
+  })
+
+  const { data: movieWatchlistData } = useGetMoviesWatchlistQuery({
+    session_id: sessionId,
   })
 
   const { fileListData } = useGetFileListQuery(movieDetails?.title, {
@@ -53,6 +62,10 @@ const MoviePage = () => {
       fileListReceived(sortedFileListData)
     }
   }
+
+  useEffect(() => {
+    movieWatchlistData && movieWatchlistReceived(movieWatchlistData.results.map((item) => item.id))
+  }, [movieWatchlistData])
 
   return (
     <>
@@ -94,18 +107,17 @@ const MoviePage = () => {
               titleText={movieDetails?.title}
             />
             <WatchTrailerButton text="Watch Trailer" tmdbId={movieDetails?.id} />
-            {tmdbAccount &&
-            movieWatchlist &&
-            movieWatchlist.find((item) => movieDetails?.id === item.id) ? (
+            {movieDetails && movieWatchlist.find((item) => movieDetails.id === item) ? (
               <WatchlistButton
                 text="Remove from Watchlist"
-                tmdbId={movieDetails?.id}
+                tmdbId={movieDetails.id}
                 titleType="movie"
               />
             ) : (
               <WatchlistButton
                 text="Add to Watchlist"
                 tmdbId={movieDetails?.id}
+                tmdbAcc={tmdbAccount}
                 titleType="movie"
               />
             )}
@@ -113,7 +125,7 @@ const MoviePage = () => {
           <div className={styles.Right}>
             <DownloadButton />
             <ShareButton />
-            <LikeButton tmdbId={movieDetails?.id} />
+            <LikeButton tmdbId={movieDetails?.id} titleType="movie" />
           </div>
         </div>
         <div>

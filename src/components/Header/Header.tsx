@@ -10,7 +10,7 @@ import { useActions } from '../../hooks/useActions'
 import CustomLink from '../../common/CustomLink/CustomLink'
 import BurgerMenu from '../BurgerMenu/BurgerMenu'
 import PagesList from '../PagesList/PagesList'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
   useCreateRequestTokenQuery,
   useCreateSessionMutation,
@@ -71,6 +71,7 @@ const Header = () => {
   } = useActions()
 
   const navigate = useNavigate()
+  const { pathname } = useLocation()
 
   const urlParams = new URLSearchParams(window.location.search)
   const requestTokenURI = urlParams.get('request_token')
@@ -154,6 +155,10 @@ const Header = () => {
         request_token: requestTokenData?.request_token,
       })
   }, [requestTokenData])
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
 
   return (
     <>
