@@ -2,9 +2,12 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import styles from './CastSlider.module.scss'
 import castDummy from '../../../assets/noPhotoActor.png'
 import styled from 'styled-components'
-import { useGetCastDetailsByMovieIdQuery } from '../../../api/tmdbV3/movies.api'
-import { useParams } from 'react-router-dom'
 import { tmdbApiConfig } from '../../../api/tmdbV3/tmdb.api'
+import { CastType } from '../../../types/types'
+
+type PropsType = {
+  data: CastType[] | undefined
+}
 
 const CustomStyles = styled.div`
   .slick-slide {
@@ -70,13 +73,7 @@ const CustomStyles = styled.div`
   }
 `
 
-const CastSlider = () => {
-  const { id } = useParams<{ id: string }>()
-
-  const { data } = useGetCastDetailsByMovieIdQuery({
-    movieId: Number(id),
-  })
-
+const CastSlider = ({ data }: PropsType) => {
   return (
     <CustomStyles>
       <Swiper
@@ -96,17 +93,17 @@ const CastSlider = () => {
             slidesPerView: 3,
           },
           610: {
-            slidesPerView: 2
-          }
+            slidesPerView: 2,
+          },
         }}
       >
-        {data?.cast?.map((e) => (
+        {data?.map((e) => (
           <SwiperSlide key={e.id}>
             <div className={styles.Slide}>
               <div
                 className={styles.Actor}
                 style={{
-                  backgroundImage: `url(${tmdbApiConfig.originalImage(
+                  backgroundImage: `url(${tmdbApiConfig.w500Image(
                     e.profile_path,
                   )}), url(${castDummy})`,
                   backgroundSize: 'cover',

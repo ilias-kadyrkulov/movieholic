@@ -21,6 +21,7 @@ import {
 import { useAppSelector } from '../../hooks/hooks'
 import { tmdbApiConfig } from '../../api/tmdbV3/tmdb.api'
 import { RotatingLines } from 'react-loader-spinner'
+import SearchInput from '../../common/SearchInput/SearchInput'
 
 const Header = () => {
   const { data: requestTokenData } = useCreateRequestTokenQuery()
@@ -32,11 +33,27 @@ const Header = () => {
   const [signupFormClicked, setSignupFormClicked] = useState(false)
   const [loginFormClicked, setLoginFormClicked] = useState(false)
   const [isProfileClicked, setIsProfileClicked] = useState(false)
+  const [isSearchClicked, setIsSearchClicked] = useState(false)
+  const [IsViewportWidthMoreThan1120, setIsViewportWidthMoreThan1120] = useState<boolean | null>(
+    null,
+  )
 
   const tmdbAccount = useAppSelector((state) => state.tmdbAccount)
   const sessionId = useAppSelector((state) => state.tmdbSession.sessionId)
   const requestToken = useAppSelector((state) => state.tmdbSession.requestToken)
   const validatedRequestToken = useAppSelector((state) => state.tmdbSession.validatedToken)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsViewportWidthMoreThan1120(window.innerWidth > 1120)
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [IsViewportWidthMoreThan1120, window.window.innerWidth])
 
   const {
     movieWatchlistCleared,
@@ -112,6 +129,10 @@ const Header = () => {
     setIsProfileClicked(!isProfileClicked)
   }
 
+  const handleSearchClick = () => {
+    setIsSearchClicked(!isSearchClicked)
+  }
+
   useEffect(() => {
     sessionId && handleAccountDetails()
   }, [sessionId])
@@ -136,23 +157,23 @@ const Header = () => {
 
   return (
     <>
+      {isSearchClicked && <SearchInput handleSearchClick={handleSearchClick} />}
       <div className={styles.Header}>
         <div className="left flex items-center">
           <CustomLink to="/">
-            {window.window.innerWidth <= 1120 ? (
-              <img className="w-10 h-12" src={smallLogo} alt="Logo" />
-            ) : (
+            {IsViewportWidthMoreThan1120 ? (
               <img className="w-40 h-10" src={logo} alt="Logo" />
+            ) : (
+              <img className="w-10 h-12" src={smallLogo} alt="Logo" />
             )}
           </CustomLink>
         </div>
         <div className={styles.Center}>
           <PagesList />
         </div>
-
         <div className={styles.Right}>
-          <div>
-            <AiOutlineSearch />
+          <div className="flex items-center justify-center">
+            <AiOutlineSearch onClick={handleSearchClick} />
           </div>
           {tmdbAccount.username ? ( //TODO - Profile page with only avatar (not changeable) and username (not changeable), and sessionId (deleteable)
             <>

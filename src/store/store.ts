@@ -1,13 +1,13 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import {
-    persistStore,
-    persistReducer,
-    FLUSH,
-    REHYDRATE,
-    PAUSE,
-    PERSIST,
-    PURGE,
-    REGISTER
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' //
 import { showAPI } from '../api/show/show.api'
@@ -24,45 +24,54 @@ import { functionOptimizationReducer } from './slices/functionOptimizationSlice'
 import { movieFavoriteReducer } from './slices/movieFavoriteSlice'
 import { movieGenresReducer } from './slices/movieGenresSlice'
 import { latestReleasedMoviesReducer } from './slices/latestReleasedMoviesSlice'
+import { tvSeriesWatchlistReducer } from './slices/tvSeriesWatchlistSlice'
+import { tvGenresReducer } from './slices/tvGenresSlice'
 
 const rootReducer = combineReducers({
-    [showAPI.reducerPath]: showAPI.reducer,
-    movieWatchlist: movieWatchlistReducer,
-    movieFavorite: movieFavoriteReducer,
-    movieGenres: movieGenresReducer,
-    likeList: likeListReducer,
-    [filemoonAPI.reducerPath]: filemoonAPI.reducer,
-    player: playerReducer,
-    show: showReducer,
-    [tmdbV3API.reducerPath]: tmdbV3API.reducer,
-    tmdbSession: tmdbSessionReducer,
-    [tmdbV4API.reducerPath] : tmdbV4API.reducer,
-    tmdbAccount: tmdbAccountReducer,
-    functionOptimization: functionOptimizationReducer,
-    latestReleasedMovies: latestReleasedMoviesReducer
+  [showAPI.reducerPath]: showAPI.reducer,
+  movieWatchlist: movieWatchlistReducer,
+  tvSeriesWatchlist: tvSeriesWatchlistReducer,
+  movieFavorite: movieFavoriteReducer,
+  movieGenres: movieGenresReducer,
+  tvGenres : tvGenresReducer,
+  likeList: likeListReducer,
+  [filemoonAPI.reducerPath]: filemoonAPI.reducer,
+  player: playerReducer,
+  show: showReducer,
+  [tmdbV3API.reducerPath]: tmdbV3API.reducer,
+  tmdbSession: tmdbSessionReducer,
+  [tmdbV4API.reducerPath]: tmdbV4API.reducer,
+  tmdbAccount: tmdbAccountReducer,
+  functionOptimization: functionOptimizationReducer,
+  latestReleasedMovies: latestReleasedMoviesReducer,
 })
 
 const persistConfig = {
-    key: 'root',
-    storage,
-    blacklist: [showAPI.reducerPath, filemoonAPI.reducerPath, tmdbV3API.reducerPath, tmdbV4API.reducerPath]
+  key: 'root',
+  storage,
+  blacklist: [
+    showAPI.reducerPath,
+    filemoonAPI.reducerPath,
+    tmdbV3API.reducerPath,
+    tmdbV4API.reducerPath,
+  ],
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const store = configureStore({
-    reducer: persistedReducer,
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({
-            serializableCheck: {
-              ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-            },
-          }).concat(
-            showAPI.middleware,
-            filemoonAPI.middleware,
-            tmdbV3API.middleware,
-            tmdbV4API.middleware
-        )
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(
+      showAPI.middleware,
+      filemoonAPI.middleware,
+      tmdbV3API.middleware,
+      tmdbV4API.middleware,
+    ),
 })
 
 export const persistor = persistStore(store)

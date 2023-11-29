@@ -1,7 +1,7 @@
 import styles from './BigSlider.module.scss'
 import styled from 'styled-components'
 import GreenButton from '../../../common/Buttons/GreenButton/GreenButton'
-import MovieWatchlistButton from '../../../common/Buttons/MovieWatchlistButton/MovieWatchlistButton'
+import WatchlistButton from '../../../common/Buttons/WatchlistButton/WatchlistButton'
 import { useAppSelector } from '../../../hooks/hooks'
 import WatchTrailerButton from '../../../common/Buttons/WatchTrailerButton/WatchTrailerButton'
 import { tmdbApiConfig } from '../../../api/tmdbV3/tmdb.api'
@@ -134,9 +134,9 @@ export const BigSlider = (props: PropsType) => {
                       <GreenButton text="Watch" tmdbId={m.id} />
                       <WatchTrailerButton tmdbId={m.id} text="Watch Trailer" />
                       {movieWatchlist.find((item) => m.id === item.id) ? (
-                        <MovieWatchlistButton text="Remove from Watchlist" tmdbId={m.id} />
+                        <WatchlistButton text="Remove from Watchlist" tmdbId={m.id} titleType='movie' />
                       ) : (
-                        <MovieWatchlistButton text="Add to Watchlist" tmdbId={m.id} tmdbAcc={tmdbAccount} />
+                        <WatchlistButton text="Add to Watchlist" tmdbId={m.id} tmdbAcc={tmdbAccount} titleType='movie' />
                       )}
                     </div>
                   </div>

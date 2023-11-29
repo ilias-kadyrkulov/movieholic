@@ -68,7 +68,7 @@ const MovieFavoriteSlider = () => {
                     <h2 className="font-semibold text-base text-white">{m.title}</h2>
                     <div className={styles.Rating}>
                       <AiFillStar />
-                      <div className="font-semibold text-lg mx-2 text-white">{m.vote_average}</div>
+                      <div className="font-semibold text-sm mx-2 text-white">{m.vote_average}</div>
                       <div className="relative">
                         <div className={styles.TitleType}>Movie</div>
                       </div>

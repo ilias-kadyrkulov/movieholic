@@ -1,4 +1,4 @@
-import { MovieType, TVType } from '../../types/types'
+import { MovieType, ResponseType, TVType } from '../../types/types'
 import { tmdbV3API } from './tmdb.api'
 
 const tmdbAccountId = 20616061
@@ -9,14 +9,9 @@ type WFRequestType = {
   sort_by?: string
   session_id: string | undefined
 }
-export type WFResponseType<R> = {
-  page: number
-  results: R
-  total_pages: number
-  total_results: number
-}
-type GetMovieResponseType = WFResponseType<MovieType[]>
-type GetTVResponseType = WFResponseType<TVType[]>
+
+type GetMovieResponseType = ResponseType<MovieType[]>
+type GetTVResponseType = ResponseType<TVType[]>
 
 type AddToRequestType = {
   mediaId: number | undefined

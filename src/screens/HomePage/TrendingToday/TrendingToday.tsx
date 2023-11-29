@@ -6,7 +6,7 @@ import { useAppSelector } from '../../../hooks/hooks'
 import { tmdbApiConfig } from '../../../api/tmdbV3/tmdb.api'
 import { AiFillStar } from 'react-icons/ai'
 import PlayContinueButton from '../../../common/Buttons/PlayContinueButton/PlayContinueButton'
-import MovieWatchlistButton from '../../../common/Buttons/MovieWatchlistButton/MovieWatchlistButton'
+import WatchlistButton from '../../../common/Buttons/WatchlistButton/WatchlistButton'
 import { useLazyGetMovieDetailsByMovieIdQuery } from '../../../api/tmdbV3/movies.api'
 
 const TrendingToday = () => {
@@ -78,19 +78,28 @@ const TrendingToday = () => {
                 tmdbId={movieDetailsData?.id}
               />
               {movieWatchlist.find((item) => movieDetailsData?.id === item.id) ? (
-                <MovieWatchlistButton text="Remove from Watchlist" tmdbId={movieDetailsData?.id} />
+                <WatchlistButton
+                  text="Remove from Watchlist"
+                  tmdbId={movieDetailsData?.id}
+                  titleType="movie"
+                />
               ) : (
-                <MovieWatchlistButton
+                <WatchlistButton
                   text="Add to Watchlist"
                   tmdbId={movieDetailsData?.id}
                   tmdbAcc={tmdbAccount}
+                  titleType="movie"
                 />
               )}
             </div>
           </div>
         </div>
       </div>
-      <TrendingTodaySlider data={trendingMoviesData?.results} getMovieDetails={getMovieDetails} setPopularity={setPopularity} />
+      <TrendingTodaySlider
+        data={trendingMoviesData?.results}
+        getMovieDetails={getMovieDetails}
+        setPopularity={setPopularity}
+      />
     </div>
   )
 }

@@ -69,10 +69,7 @@ const MovieWatchlistSlider = () => {
 
                     <div className={styles.Rating}>
                       <AiFillStar />
-                      <div className="font-semibold text-lg mx-2 text-white">{m.vote_average}</div>
-                      <div className="relative">
-                        <div className={styles.TitleType}>Movie</div>
-                      </div>
+                      <div className="font-semibold text-sm mx-2 text-white">{m.vote_average}</div>
                     </div>
                     <div className={styles.Genres}>
                       <div className="pr-1">

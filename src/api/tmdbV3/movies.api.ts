@@ -1,5 +1,4 @@
-import { MovieDetailsType, MovieType } from '../../types/types'
-import { WFResponseType } from './account.api'
+import { MovieDetailsRequestType, MovieDetailsResponseType, MovieType, ResponseType } from '../../types/types'
 import { tmdbV3API } from './tmdb.api'
 
 type GetCastDetailsType = {
@@ -14,20 +13,17 @@ type CastType = {
   character: string
 }
 
-export type RequestType = {
-  movieId: number | undefined
-  language?: string
-}
+
 
 const tmdbMoviesAPI = tmdbV3API.injectEndpoints({
   endpoints: (builder) => ({
-    getMovieDetailsByMovieId: builder.query<MovieDetailsType, RequestType>({
+    getMovieDetailsByMovieId: builder.query<MovieDetailsResponseType, MovieDetailsRequestType>({
       query: ({ movieId, language = 'en-KG' }) => `movie/${movieId}?language=${language}`,
     }),
-    getCastDetailsByMovieId: builder.query<GetCastDetailsType, RequestType>({
+    getCastDetailsByMovieId: builder.query<GetCastDetailsType, MovieDetailsRequestType>({
       query: ({ movieId, language = 'en-KG' }) => `movie/${movieId}/credits?language=${language}`,
     }),
-    getLatestReleasedMovies: builder.query<WFResponseType<MovieType[]>, string>({
+    getLatestReleasedMovies: builder.query<ResponseType<MovieType[]>, string>({
       query: (date) => ({
         url: `discover/movie`,
         params: {

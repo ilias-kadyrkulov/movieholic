@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom'
 import styles from './MoviePage.module.scss'
-import MovieWatchlistButton from '../../common/Buttons/MovieWatchlistButton/MovieWatchlistButton'
-import PlayContinueButton from '../../common/Buttons/PlayContinueButton/PlayContinueButton'
+import WatchlistButton from '../../common/Buttons/WatchlistButton/WatchlistButton'
 import DownloadButton from '../../common/Buttons/DownloadButton/DownloadButton'
 import ShareButton from '../../common/Buttons/ShareButton/ShareButton'
 import LikeButton from '../../common/Buttons/LikeButton/LikeButton'
@@ -11,10 +10,13 @@ import { useGetFileListQuery } from '../../api/filemoon/file.api'
 import { useActions } from '../../hooks/useActions'
 import WatchTrailerButton from '../../common/Buttons/WatchTrailerButton/WatchTrailerButton'
 import { RotatingLines } from 'react-loader-spinner'
-import { useGetMovieDetailsByMovieIdQuery } from '../../api/tmdbV3/movies.api'
+import {
+  useGetCastDetailsByMovieIdQuery,
+  useGetMovieDetailsByMovieIdQuery,
+} from '../../api/tmdbV3/movies.api'
 import { tmdbApiConfig } from '../../api/tmdbV3/tmdb.api'
 import { skipToken } from '@reduxjs/toolkit/query'
-import MoviePagePlayButton from '../../common/Buttons/PlayContinueButton/MoviePagePlayButton'
+import ShowPagePlayButton from '../../common/Buttons/PlayContinueButton/ShowPagePlayButton'
 
 const MoviePage = () => {
   const { id } = useParams<{ id: string }>()
@@ -25,8 +27,12 @@ const MoviePage = () => {
   const movieGenres = useAppSelector((state) => state.movieGenres)
   const tmdbAccount = useAppSelector((state) => state.tmdbAccount.username)
 
-  const { data: movieDetails, isLoading } = useGetMovieDetailsByMovieIdQuery({
+  const { data: movieDetails, isFetching } = useGetMovieDetailsByMovieIdQuery({
     movieId: Number(id ?? skipToken),
+  })
+
+  const { data: movieCastDetails } = useGetCastDetailsByMovieIdQuery({
+    movieId: Number(id),
   })
 
   const { fileListData } = useGetFileListQuery(movieDetails?.title, {
@@ -50,7 +56,7 @@ const MoviePage = () => {
 
   return (
     <>
-      {isLoading && (
+      {isFetching && (
         <div className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">
           <RotatingLines
             strokeColor="grey"
@@ -66,7 +72,7 @@ const MoviePage = () => {
         style={{
           backgroundImage: `url(${tmdbApiConfig.originalImage(movieDetails?.backdrop_path)})`,
         }}
-      ></div>
+      />
       <div className={styles.Details}>
         <h3 className="text-4xl text-slate-200 font-semibold">{movieDetails?.title}</h3>
         <div className="my-3">
@@ -82,16 +88,26 @@ const MoviePage = () => {
 
         <div className={styles.Buttons}>
           <div className="flex mr-10 flex-wrap">
-            <MoviePagePlayButton
+            <ShowPagePlayButton
               text="Play now"
               titleType={'movie'}
               titleText={movieDetails?.title}
             />
             <WatchTrailerButton text="Watch Trailer" tmdbId={movieDetails?.id} />
-            {tmdbAccount && movieWatchlist && movieWatchlist.find((item) => movieDetails?.id === item.id) ? (
-              <MovieWatchlistButton text="Remove from Watchlist" tmdbId={movieDetails?.id} />
+            {tmdbAccount &&
+            movieWatchlist &&
+            movieWatchlist.find((item) => movieDetails?.id === item.id) ? (
+              <WatchlistButton
+                text="Remove from Watchlist"
+                tmdbId={movieDetails?.id}
+                titleType="movie"
+              />
             ) : (
-              <MovieWatchlistButton text="Add to Watchlist" tmdbId={movieDetails?.id} />
+              <WatchlistButton
+                text="Add to Watchlist"
+                tmdbId={movieDetails?.id}
+                titleType="movie"
+              />
             )}
           </div>
           <div className={styles.Right}>
@@ -106,7 +122,7 @@ const MoviePage = () => {
         </div>
         <div>
           <h2 className="font-semibold text-white mb-3 mt-4">Cast</h2>
-          <CastSlider />
+          <CastSlider data={movieCastDetails?.cast} />
         </div>
       </div>
     </>

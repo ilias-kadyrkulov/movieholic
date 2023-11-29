@@ -51,7 +51,7 @@ const SmallSlider = (props: PropsType) => {
 
                     <div className={styles.Rating}>
                       <AiFillStar />
-                      <div className="font-semibold text-base mx-2 text-white">
+                      <div className="font-semibold text-sm mx-2 text-white">
                         {e.vote_average}
                       </div>
                       <div className="relative">

@@ -94,7 +94,7 @@
     .MovieCard {
       .MovieDetails {
         @apply bottom-12 left-12;
-  
+
         max-width: 90%;
       }
     }
@@ -104,7 +104,7 @@
 @media (max-width: 850px) {
   .MovieDetails {
     h2 {
-      @apply text-base;
+      @apply text-sm;
     }
   }
   .Rating {
@@ -139,6 +139,11 @@
 @media (max-width: 475px) {
   .TrendingTodaySlider {
     height: 500px;
+    .MovieCard {
+      .MovieDetails {
+        @apply bottom-5 left-4;
+      }
+    }
   }
 }
 
@@ -154,7 +159,6 @@
     }
   }
 }
-
 
 @media (max-width: 375px) {
   .TrendingTodaySlider {

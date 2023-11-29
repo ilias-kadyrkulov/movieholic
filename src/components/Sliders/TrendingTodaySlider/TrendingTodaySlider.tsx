@@ -1,15 +1,14 @@
 import styles from './TrendingTodaySlider.module.scss'
 import { useAppSelector } from '../../../hooks/hooks'
-import { MovieType } from '../../../types/types'
+import { MovieDetailsRequestType, MovieType } from '../../../types/types'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { tmdbApiConfig } from '../../../api/tmdbV3/tmdb.api'
 import { AiFillStar } from 'react-icons/ai'
-import { RequestType } from '../../../api/tmdbV3/movies.api'
 import styled from 'styled-components'
 
 type PropsType = {
   data: MovieType[] | undefined
-  getMovieDetails: (movieId: RequestType) => void
+  getMovieDetails: (movieId: MovieDetailsRequestType) => void
   setPopularity: (index: number) => void
 }
 
@@ -55,11 +54,11 @@ const TrendingTodaySlider = ({ data, getMovieDetails, setPopularity }: PropsType
               <div className={styles.MovieCard}>
                 <img src={tmdbApiConfig.originalImage(m.poster_path)} />
                 <div className={styles.MovieDetails}>
-                  <h2 className="font-semibold text-xl text-white mb-1">{m.title}</h2>
+                  <h2 className="font-semibold text-base text-white mb-1">{m.title}</h2>
                   <div className="flex max-w-full">
                     <div className="flex items-center">
                       <AiFillStar />
-                      <div className="font-semibold text-sm mx-2 text-white">{m.vote_average}</div>
+                      <div className="font-semibold text-xs mx-2 text-white">{m.vote_average}</div>
                     </div>
                     <div className="relative flex max-w-full w-10/12">
                       <div className={styles.Genres}>

@@ -1,0 +1,43 @@
+.BaseTVSlider {
+  @apply ml-16;
+}
+
+.BaseMovieSlider {
+  @apply ml-16;
+}
+
+.ShowCard {
+  img {
+    @apply h-52 rounded-2xl;
+  }
+}
+
+.Title {
+  @apply font-semibold text-base text-white my-2;
+}
+
+.MovieDetails {
+  @apply flex justify-start items-center;
+}
+
+.Rating {
+  @apply flex items-center;
+
+  svg {
+    @apply mr-1;
+
+    path {
+      @apply fill-yellow-400;
+    }
+  }
+}
+
+.Genres {
+  @apply relative flex flex-wrap items-center before:absolute before:-left-1 before:bg-slate-400 before:h-4;
+  &::before {
+    width: 1px;
+  }
+  span {
+    @apply inline-block mr-1 text-xs text-slate-400 font-semibold;
+  }
+}

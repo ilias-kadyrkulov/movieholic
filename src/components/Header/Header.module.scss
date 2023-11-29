@@ -10,7 +10,7 @@
   @apply flex items-center;
 
   div {
-    @apply flex items-center px-4 text-slate-50 font-semibold text-lg;
+    @apply flex items-center px-4 text-center text-slate-50 font-semibold text-lg;
   }
 
   a {
@@ -18,7 +18,7 @@
   }
 }
 .Right {
-  @apply relative flex items-center;
+  @apply flex items-center;
 
   div {
     @apply text-gray-300;

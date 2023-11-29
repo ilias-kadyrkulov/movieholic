@@ -8,22 +8,27 @@ import { tmdbApiConfig } from '../../../api/tmdbV3/tmdb.api'
 import { useAppSelector } from '../../../hooks/hooks'
 
 const CustomStyles = styled.div`
-  @media (min-width: 425px) {
+  @media (min-width: 475px) {
     .swiper-slide {
       height: 350px;
     }
   }
-  @media (min-width: 500px) {
+  @media (min-width: 530px) {
     .swiper-slide {
       height: 400px;
     }
   }
-  @media (min-width: 575px) {
+  @media (min-width: 630px) {
     .swiper-slide {
       height: 500px;
     }
   }
-  @media (min-width: 830px) {
+  @media (min-width: 768px) {
+    .swiper-slide {
+      height: 350px;
+    }
+  }
+  @media (min-width: 900px) {
     .swiper-slide {
       height: 400px;
     }
@@ -105,7 +110,7 @@ const MediumSlider = () => {
                     <div className="flex max-w-full">
                       <div className="flex items-center">
                         <AiFillStar />
-                        <div className="font-semibold text-base mx-2 text-white">
+                        <div className="font-semibold text-sm mx-2 text-white">
                           {m.vote_average}
                         </div>
                       </div>

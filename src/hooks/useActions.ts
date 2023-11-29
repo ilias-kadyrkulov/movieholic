@@ -10,11 +10,15 @@ import { functionOptimizationActions } from './../store/slices/functionOptimizat
 import { movieFavoriteActions } from './../store/slices/movieFavoriteSlice';
 import { movieGenresActions } from './../store/slices/movieGenresSlice';
 import { latestReleasedMoviesActions } from './../store/slices/latestReleasedMoviesSlice';
+import { tvSeriesWatchlistActions } from './../store/slices/tvSeriesWatchlistSlice';
+import { tvGenresActions } from './../store/slices/tvGenresSlice';
 
 const allActions = {
     ...movieWatchlistActions,
+    ...tvSeriesWatchlistActions,
     ...movieFavoriteActions,
     ...movieGenresActions,
+    ...tvGenresActions,
     ...likeListActions,
     ...playerActions,
     ...showActions,

@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom'
-import styles from './MoviePage.module.scss'
-import MovieWatchlistButton from '../../common/Buttons/MovieWatchlistButton/MovieWatchlistButton'
-import PlayContinueButton from '../../common/Buttons/PlayContinueButton/PlayContinueButton'
+import styles from './SeriesPage.module.scss'
+import WatchlistButton from '../../common/Buttons/WatchlistButton/WatchlistButton'
 import DownloadButton from '../../common/Buttons/DownloadButton/DownloadButton'
 import ShareButton from '../../common/Buttons/ShareButton/ShareButton'
 import LikeButton from '../../common/Buttons/LikeButton/LikeButton'
@@ -12,31 +11,31 @@ import { useGetFileListQuery } from '../../api/filemoon/file.api'
 import { useActions } from '../../hooks/useActions'
 import WatchTrailerButton from '../../common/Buttons/WatchTrailerButton/WatchTrailerButton'
 import { RotatingLines } from 'react-loader-spinner'
-import { useGetMovieDetailsByMovieIdQuery } from '../../api/tmdbV3/movies.api'
 import { tmdbApiConfig } from '../../api/tmdbV3/tmdb.api'
-import { useGetMovieGenresQuery } from '../../api/tmdbV3/genres.api'
-import MoviePagePlayButton from '../../common/Buttons/PlayContinueButton/MoviePagePlayButton'
+import ShowPagePlayButton from '../../common/Buttons/PlayContinueButton/ShowPagePlayButton'
+import {
+  useGetCastDetailsByTVSeriesIdQuery,
+  useGetTVSeriesDetailsByMovieIdQuery,
+} from '../../api/tmdbV3/tvSeries.api'
 
-const ShowPage = () => {
+const SeriesPage = () => {
   const { id } = useParams<{ id: string }>()
   const { fileListReceived } = useActions()
 
   const { fileList } = useAppSelector((state) => state.player)
   const movieWatchlist = useAppSelector((state) => state.movieWatchlist) //TODO - TV Watchlist
   const tmdbAccount = useAppSelector((state) => state.tmdbAccount.username)
+  const movieGenres = useAppSelector((state) => state.movieGenres)
 
-  const { data: movieDetails, isLoading } = useGetMovieDetailsByMovieIdQuery({
-    movieId: Number(id),
+  const { data: tvSeriesDetails, isFetching } = useGetTVSeriesDetailsByMovieIdQuery({
+    tvSeriesId: Number(id),
   })
 
-  const { data: genresData } = useGetMovieGenresQuery(undefined)
+  const { data: tvSeriesCastDetails } = useGetCastDetailsByTVSeriesIdQuery({
+    tvSeriesId: Number(id),
+  })
 
-  const genreObj = genresData?.genres.reduce((acc, genre) => {
-    acc[genre.id] = genre.name
-    return acc
-  }, {} as Record<number, string>)
-
-  const { fileListData } = useGetFileListQuery(movieDetails?.title, {
+  const { fileListData } = useGetFileListQuery(tvSeriesDetails?.name, {
     selectFromResult: ({ data }) => ({
       fileListData: data?.result.files,
     }),
@@ -57,7 +56,7 @@ const ShowPage = () => {
 
   return (
     <>
-      {isLoading && (
+      {isFetching && (
         <div className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">
           <RotatingLines
             strokeColor="grey"
@@ -69,62 +68,70 @@ const ShowPage = () => {
         </div>
       )}
       <div
-        className={styles.Movie}
+        className={styles.TVSeries}
         style={{
-          backgroundImage: `url(${tmdbApiConfig.originalImage(movieDetails?.backdrop_path)})`,
+          backgroundImage: `url(${tmdbApiConfig.originalImage(tvSeriesDetails?.backdrop_path)})`,
         }}
-      ></div>
+      />
       <div className={styles.Details}>
-        <h3 className="text-4xl text-slate-200 font-semibold">{movieDetails?.title}</h3>
+        <h3 className="text-4xl text-slate-200 font-semibold">{tvSeriesDetails?.name}</h3>
         <div className="my-3">
-          <p className="font-semibold text-slate-400">{movieDetails?.runtime}</p>
+          <p className="font-semibold text-slate-300">Episode runtime: {tvSeriesDetails?.episode_run_time} min</p>
 
-          <span className="font-semibold text-slate-400">{movieDetails?.release_date} • </span>
-          {movieDetails?.genres.map((g) => (
-            <span className="font-semibold text-slate-400 mr-1" key={g.id}>
-              {genreObj && genreObj[g.id]}
-            </span>
-          ))}
+          <span className="font-semibold text-slate-300">
+            Since {tvSeriesDetails?.first_air_date} •{' '}
+          </span>
+          {movieGenres &&
+            tvSeriesDetails?.genres.map((g) => (
+              <span className="font-semibold text-slate-300 mr-1" key={g.id}>
+                {movieGenres[g.id]}
+              </span>
+            ))}
         </div>
 
         <div className={styles.Buttons}>
           <div className="flex mr-10 flex-wrap">
-            <MoviePagePlayButton
+            <ShowPagePlayButton
               text="Play now"
-              titleType={'movie'}
-              titleText={movieDetails?.title}
+              titleType={'tv'}
+              titleText={tvSeriesDetails?.name}
             />
-            <WatchTrailerButton text="Watch Trailer" tmdbId={movieDetails?.id} />
-            {tmdbAccount && movieWatchlist.find((item) => movieDetails?.id === item.id) ? (
-              <MovieWatchlistButton text="Remove from Watchlist" tmdbId={movieDetails?.id} />
+            <WatchTrailerButton text="Watch Trailer" tmdbId={tvSeriesDetails?.id} />
+            {tmdbAccount && movieWatchlist.find((item) => tvSeriesDetails?.id === item.id) ? (
+              <WatchlistButton text="Remove from Watchlist" tmdbId={tvSeriesDetails?.id} titleType='tv' />
             ) : (
-              <MovieWatchlistButton text="Add to Watchlist" tmdbId={movieDetails?.id} />
+              <WatchlistButton
+                text="Add to Watchlist"
+                tmdbId={tvSeriesDetails?.id}
+                titleType='tv'
+                tmdbAcc={tmdbAccount}
+              />
             )}
           </div>
           <div className={styles.Right}>
             <DownloadButton />
             <ShareButton />
-            <LikeButton tmdbId={movieDetails?.id} />
+            <LikeButton tmdbId={tvSeriesDetails?.id} />
           </div>
         </div>
         <div>
           <h2 className="font-semibold text-white mb-3 mt-12">Story Line</h2>
-          <p className="font-medium text-gray-300">{movieDetails?.overview}</p>
+          <p className="font-medium text-gray-300">{tvSeriesDetails?.overview}</p>
         </div>
         <div>
           <h2 className="font-semibold text-white mb-3 mt-4">Cast</h2>
-          <CastSlider />
+          <CastSlider data={tvSeriesCastDetails?.cast} />
         </div>
         <div className="mb-10 mt-5">
           <div className="flex justify-between items-center text-slate-100 font-semibold mb-5">
             <h3 className="text-2xl">1-9 Episode</h3>
             <p className="text-sm">Season 1</p>
           </div>
-          <EpisodeSlider titleText={movieDetails?.title} fileList={fileList} />
+          <EpisodeSlider titleText={tvSeriesDetails?.name} fileList={fileList} />
         </div>
       </div>
     </>
   )
 }
 
-export default ShowPage
+export default SeriesPage
