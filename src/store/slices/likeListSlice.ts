@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-const initialState: Array<number> = []
+const initialState: Array<number | undefined> = []
 
 export const likeListSlice = createSlice({
     name: 'likeList',
@@ -9,7 +9,7 @@ export const likeListSlice = createSlice({
         favoriteShowsReceived: (state, action: PayloadAction<number[]>) => {
             state.push(...action.payload)
         },
-        showGotLiked: (state, action: PayloadAction<number>) => {
+        showGotLiked: (state, action: PayloadAction<number | undefined>) => {
             state.push(action.payload)
         },
         showGotUnliked: (state, action: PayloadAction<number | undefined>) => {

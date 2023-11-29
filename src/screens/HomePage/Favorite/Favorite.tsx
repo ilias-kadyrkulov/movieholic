@@ -26,7 +26,8 @@ const Favorite = () => {
   useEffect(() => {
     likeListCleared()
     movieFavoriteData && favoriteShowsReceived(movieFavoriteData.results.map(item => item.id))
-  }, [movieFavoriteData])
+    tvFavoriteData && favoriteShowsReceived(tvFavoriteData.results.map(item => item.id))
+  }, [movieFavoriteData, tvFavoriteData])
   return (
     <div className={styles.Favorite}>
       {movieFavoriteData && movieFavoriteData.results.length > 0 && (
