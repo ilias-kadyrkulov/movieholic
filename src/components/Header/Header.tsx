@@ -33,10 +33,10 @@ const Header = () => {
   const [signupFormClicked, setSignupFormClicked] = useState(false)
   const [loginFormClicked, setLoginFormClicked] = useState(false)
   const [isProfileClicked, setIsProfileClicked] = useState(false)
-  const [isSearchClicked, setIsSearchClicked] = useState(false)
   const [IsViewportWidthMoreThan1120, setIsViewportWidthMoreThan1120] = useState<boolean | null>(
     null,
   )
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
 
   const tmdbAccount = useAppSelector((state) => state.tmdbAccount)
   const sessionId = useAppSelector((state) => state.tmdbSession.sessionId)
@@ -130,8 +130,10 @@ const Header = () => {
     setIsProfileClicked(!isProfileClicked)
   }
 
-  const handleSearchClick = () => {
-    setIsSearchClicked(!isSearchClicked)
+  const handleSearchOnClick = () => {
+    setIsSearchOpen(!isSearchOpen)
+
+    document.body.style.overflow = isSearchOpen ? 'auto' : 'hidden'
   }
 
   useEffect(() => {
@@ -162,7 +164,9 @@ const Header = () => {
 
   return (
     <>
-      {isSearchClicked && <SearchInput handleSearchClick={handleSearchClick} />}
+      {isSearchOpen && (
+        <SearchInput handleSearchOnClick={handleSearchOnClick} isSearchOpen={isSearchOpen} />
+      )}
       <div className={styles.Header}>
         <div className="left flex items-center">
           <CustomLink to="/">
@@ -178,7 +182,7 @@ const Header = () => {
         </div>
         <div className={styles.Right}>
           <div className="flex items-center justify-center">
-            <AiOutlineSearch onClick={handleSearchClick} />
+            <AiOutlineSearch onClick={handleSearchOnClick} />
           </div>
           {tmdbAccount.username ? ( //TODO - Profile page with only avatar (not changeable) and username (not changeable), and sessionId (deleteable)
             <>
@@ -269,7 +273,6 @@ const Header = () => {
         formClicked={signupFormClicked}
         closeForm={handleSignUpFormOnClose}
         openLoginForm={handleLoginFormOnClick}
-        requestTokenURI={requestTokenURI}
       />
       <LoginForm
         formClicked={loginFormClicked}
