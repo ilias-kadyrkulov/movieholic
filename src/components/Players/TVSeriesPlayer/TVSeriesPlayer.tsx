@@ -7,7 +7,6 @@ import { useState, useEffect, useRef } from 'react'
 import ServerButton from '../../../common/Buttons/ServerButton/ServerButton'
 import { useLazyGetTVSeasonsDetailsQuery } from '../../../api/tmdbV3/tvSeasons.api'
 import { useGetTVSeriesDetailsByMovieIdQuery } from '../../../api/tmdbV3/tvSeries.api'
-import { tmdbApiConfig } from '../../../api/tmdbV3/tmdb.api'
 
 const TVSeriesPlayer = () => {
   //FIXME - Fix filemoon server
@@ -59,6 +58,10 @@ const TVSeriesPlayer = () => {
 
   const episodeRegex = ep?.match(/\d+/)
   const seasonNumberRegex = seasonNumber?.match(/\d+/)
+
+  const episode = episodeRegex && +episodeRegex[0]
+  const seasonNum = seasonNumberRegex && +seasonNumberRegex[0]
+
   const maxSeasonNumber = tvSeriesDetails?.seasons.reduce((max, s) => {
     //NOTE - max seasonNumber
     return Math.max(max, s.season_number)
@@ -85,43 +88,38 @@ const TVSeriesPlayer = () => {
     // }
     if (
       //NOTE - Episode control
-      episodeRegex &&
-      seasonNumberRegex &&
+      episode &&
+      seasonNum &&
       server === 'Vidplay' &&
       tvSeasonDetails
     ) {
-      const episode = +episodeRegex[0]
-      const seasonNumber = +seasonNumberRegex[0]
 
       if (episode > tvSeasonDetails.episodes.length) {
         navigate(`/title/tvSeries/${id}/${titleText}/season/1/ep-1`)
-      } else if (episode === 0 || seasonNumber === 0) {
+      } else if (episode === 0 || seasonNum === 0) {
         navigate(`/title/tvSeries/${id}/${titleText}/season/1/ep-1`)
       }
     }
-  }, [fileList, episodeRegex, seasonNumberRegex])
+  }, [fileList, episode, seasonNum])
 
   useEffect(() => {
     //NOTE - Season control
-    if (seasonNumberRegex && server === 'Vidplay' && tvSeriesDetails) {
-      const seasonNumber = +seasonNumberRegex[0]
+    if (seasonNum && server === 'Vidplay' && tvSeriesDetails) {
 
-      if (maxSeasonNumber && seasonNumber > maxSeasonNumber) {
+      if (maxSeasonNumber && seasonNum > maxSeasonNumber) {
         navigate(`/title/tvSeries/${id}/${titleText}/season/1/ep-1`)
       }
     }
-  }, [seasonNumberRegex])
+  }, [seasonNum])
 
   useEffect(() => {
     //NOTE - Episode selection through url
-    if (episodeRegex && server === 'Vidplay') {
-      const episode = +episodeRegex[0]
-
+    if (episode && server === 'Vidplay') {
       if (!!iframeRef.current) {
         iframeRef.current.src = `https://vidsrc.to/embed/tv/${id}/${seasonNumber}/${episode}`
       }
     }
-  }, [episodeRegex])
+  }, [episode])
 
   const handleEpisodeClick = (index: number) => {
     //NOTE - Episode selection
@@ -133,21 +131,6 @@ const TVSeriesPlayer = () => {
       })
     }
   }
-
-  useEffect(() => {
-    const iframeDocument = iframeRef.current?.contentDocument
-
-    if (iframeDocument && iframeDocument.querySelector) {
-      const bodyElement = iframeDocument.querySelector('main')
-      if (bodyElement) {
-        bodyElement.style.backgroundImage = `url(${tmdbApiConfig.w500Image(
-          tvSeasonDetails?.poster_path,
-        )}`
-        bodyElement.style.backgroundSize = 'cover'
-        bodyElement.style.backgroundPosition = 'center'
-      }
-    }
-  }, [iframeRef.current])
 
   return (
     <>
@@ -163,7 +146,7 @@ const TVSeriesPlayer = () => {
             )}
             {server === 'Vidplay' && (
               <iframe
-                src={`https://vidsrc.to/embed/tv/${id}/${seasonNumber}/${ep}`}
+                src={`https://vidsrc.to/embed/tv/${id}/${seasonNumber}/${episode}`}
                 className="w-full h-full"
                 allowFullScreen
                 ref={iframeRef}
@@ -247,7 +230,7 @@ const TVSeriesPlayer = () => {
             )}
             {server === 'Vidplay' && (
               <iframe
-                src={`https://vidsrc.to/embed/tv/${id}/${seasonNumber}/${ep}`}
+                src={`https://vidsrc.to/embed/tv/${id}/${seasonNumber}/${episode}`}
                 className="w-full h-full"
                 allowFullScreen
                 ref={iframeRef}
