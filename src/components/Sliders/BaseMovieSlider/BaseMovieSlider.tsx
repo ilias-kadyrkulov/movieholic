@@ -26,21 +26,19 @@ const BaseMovieSlider = ({ data }: PropsType) => {
     <CustomStyles>
       <Swiper
         className={styles.BaseMovieSlider}
+        slidesPerView={1.5}
         spaceBetween={20}
         navigation
         breakpoints={{
           2100: {
-            slidesPerView: 5,
+            slidesPerView: 4.5,
           },
-          1400: {
-            slidesPerView: 4,
+          1750: {
+            slidesPerView: 3.5,
           },
           1100: {
-            slidesPerView: 3,
-          },
-          475: {
-            slidesPerView: 2,
-          },
+            slidesPerView: 2.5,
+          }
         }}
       >
         {data.map((m) => (

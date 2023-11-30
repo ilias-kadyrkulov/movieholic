@@ -12,12 +12,7 @@ type PropsType = {
   setPopularity: (index: number) => void
 }
 
-const CustomStyles = styled.div`
-  // .swiper-button-next {
-  //   right: unset;
-  //   left: 80dvw;
-  // }
-`
+const CustomStyles = styled.div``
 
 const TrendingTodaySlider = ({ data, getMovieDetails, setPopularity }: PropsType) => {
   const movieGenres = useAppSelector((state) => state.movieGenres)
@@ -26,19 +21,28 @@ const TrendingTodaySlider = ({ data, getMovieDetails, setPopularity }: PropsType
     <CustomStyles>
       <Swiper
         className={styles.TrendingTodaySlider}
-        slidesPerView={2}
+        slidesPerView={1.3}
         spaceBetween={20}
         navigation
         breakpoints={{
           2400: {
-            slidesPerView: 5,
+            slidesPerView: 3.5,
           },
-          2000: {
-            slidesPerView: 4,
+          1270: {
+            slidesPerView: 2.5,
           },
-          1200: {
-            slidesPerView: 3,
-          }
+          1160: {
+            slidesPerView: 1.5,
+          },
+          950: {
+            slidesPerView: 3.5,
+          },
+          710: {
+            slidesPerView: 2.5,
+          },
+          425: {
+            slidesPerView: 1.4,
+          },
         }}
       >
         {data?.map((m, index) => (

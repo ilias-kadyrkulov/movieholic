@@ -3,69 +3,68 @@ import styled from 'styled-components'
 import { AiFillStar } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/swiper-bundle.css'
 import { tmdbApiConfig } from '../../../api/tmdbV3/tmdb.api'
 import { useAppSelector } from '../../../hooks/hooks'
 
 const CustomStyles = styled.div`
-  @media (min-width: 475px) {
-    .swiper-slide {
-      height: 350px;
-    }
-  }
-  @media (min-width: 530px) {
-    .swiper-slide {
-      height: 400px;
-    }
-  }
-  @media (min-width: 630px) {
-    .swiper-slide {
-      height: 500px;
-    }
-  }
-  @media (min-width: 768px) {
-    .swiper-slide {
-      height: 350px;
-    }
-  }
-  @media (min-width: 900px) {
-    .swiper-slide {
-      height: 400px;
-    }
-  }
-  @media (min-width: 950px) {
-    .swiper-slide {
-      height: 450px;
-    }
-  }
-  @media (min-width: 1100px) {
-    .swiper-slide {
-      height: 500px;
-    }
-  }
-  @media (min-width: 1200px) {
-    .swiper-slide {
-      height: 450px;
-    }
-  }
-  @media (min-width: 1400px) {
-    .swiper-slide {
-      height: 500px;
-    }
-  }
-  @media (min-width: 1600px) {
+  @media (min-width: 576px) {
     .swiper-slide {
       height: 600px;
     }
   }
-  @media (min-width: 1800px) {
+  @media (min-width: 678px) {
+    .swiper-slide {
+      height: 700px;
+    }
+  }
+  @media (min-width: 768px) {
+    .swiper-slide {
+      height: 450px;
+    }
+  }
+  @media (min-width: 800px) {
+    .swiper-slide {
+      height: 500px;
+    }
+  }
+  @media (min-width: 900px) {
+    .swiper-slide {
+      height: 550px;
+    }
+  }
+  @media (min-width: 950px) {
+    .swiper-slide {
+      height: 600px;
+    }
+  }
+  @media (min-width: 1100px) {
     .swiper-slide {
       height: 650px;
     }
   }
-  @media (min-width: 2000px) {
+  @media (min-width: 1200px) {
+    .swiper-slide {
+      height: 500px;
+    }
+  }
+  @media (min-width: 1400px) {
+    .swiper-slide {
+      height: 550px;
+    }
+  }
+  @media (min-width: 1600px) {
+    .swiper-slide {
+      height: 650px;
+    }
+  }
+  @media (min-width: 1800px) {
     .swiper-slide {
       height: 750px;
+    }
+  }
+  @media (min-width: 2000px) {
+    .swiper-slide {
+      height: 875px;
     }
   }
   @media (min-width: 2300px) {
@@ -83,20 +82,18 @@ const MediumSlider = () => {
     <CustomStyles>
       <Swiper
         className={styles.MediumSlider}
+        slidesPerView={1.5}
         spaceBetween={20}
         navigation
         breakpoints={{
           2300: {
-            slidesPerView: 5,
+            slidesPerView: 4.5,
           },
           1200: {
-            slidesPerView: 4,
+            slidesPerView: 3.5,
           },
           768: {
-            slidesPerView: 3,
-          },
-          425: {
-            slidesPerView: 2,
+            slidesPerView: 2.5,
           },
         }}
       >

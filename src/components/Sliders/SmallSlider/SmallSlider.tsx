@@ -21,19 +21,26 @@ const SmallSlider = (props: PropsType) => {
     <CustomStyles>
       <Swiper
         className={styles.SmallSlider}
+        slidesPerView={1.5}
         navigation
         breakpoints={{
           2000: {
-            slidesPerView: 5,
+            slidesPerView: 5.5,
           },
-          1500: {
-            slidesPerView: 4,
+          1600: {
+            slidesPerView: 4.5,
           },
-          1150: {
-            slidesPerView: 3,
+          1250: {
+            slidesPerView: 3.5,
+          },
+          950: {
+            slidesPerView: 4.5,
+          },
+          768: {
+            slidesPerView: 3.5,
           },
           475: {
-            slidesPerView: 2,
+            slidesPerView: 2.5,
           },
         }}
       >

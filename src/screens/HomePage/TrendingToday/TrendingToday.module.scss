@@ -105,6 +105,9 @@
       box-shadow: 800px 0px 110px 110px rgba(0, 0, 0, 0.8) inset;
     }
   }
+  .Title {
+    @apply text-4xl;
+  }
 }
 
 @media (max-width: 1700px) {
@@ -126,7 +129,7 @@
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1270px) {
   .Details {
     @apply left-8;
   }
@@ -148,20 +151,26 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1160px) {
   .TrendingToday {
-    height: 1250px;
+    height: 1150px;
   }
   .Details {
-    @apply left-8;
+    @apply left-8 max-w-full;
   }
   .Featured {
     @apply top-5;
   }
 
   .Popularity {
-    bottom: 33%;
+    bottom: 37%;
     top: unset;
+  }
+}
+
+@media (max-width: 950px) {
+  .Popularity {
+    bottom: 35%;
   }
 }
 
@@ -190,6 +199,14 @@
   .Popularity {
     bottom: 31%;
     left: 16px;
+  }
+}
+
+@media (max-width: 710px) {
+  .Popularity {
+    right: 10px;
+    left: unset;
+    bottom: 20%;
   }
 }
 
@@ -232,7 +249,9 @@
   }
 
   .Popularity {
-    bottom: 45%;
+    bottom: 40%;
+    right: unset;
+    left: 10px;
   }
 }
 

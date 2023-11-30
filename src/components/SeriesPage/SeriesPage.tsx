@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import styles from './SeriesPage.module.scss'
 import WatchlistButton from '../../common/Buttons/WatchlistButton/WatchlistButton'
@@ -19,6 +19,7 @@ import {
   useGetTVSeriesDetailsByMovieIdQuery,
 } from '../../api/tmdbV3/tvSeries.api'
 import { useGetTVWatchlistQuery } from '../../api/tmdbV3/account.api'
+import { useLazyGetTVSeasonsDetailsQuery } from '../../api/tmdbV3/tvSeasons.api'
 
 const SeriesPage = () => {
   const { id } = useParams<{ id: string }>()
@@ -30,9 +31,14 @@ const SeriesPage = () => {
   const tmdbAccount = useAppSelector((state) => state.tmdbAccount.username)
   const tvGenres = useAppSelector((state) => state.tvGenres)
 
+  const [season, setSeason] = useState(1)
+  const [isSeasonDropdownClicked, setIsSeasonDropdownClicked] = useState(false)
+
   const { data: tvSeriesDetails, isFetching } = useGetTVSeriesDetailsByMovieIdQuery({
     tvSeriesId: Number(id),
   })
+
+  const [getTVSeasonsDetails, { data: tvSeasonDetails }] = useLazyGetTVSeasonsDetailsQuery()
 
   const { data: tvSeriesCastDetails } = useGetCastDetailsByTVSeriesIdQuery({
     tvSeriesId: Number(id),
@@ -61,6 +67,14 @@ const SeriesPage = () => {
     }
   }
 
+  const handleSeasonDropdownOnClick = () => {
+    setIsSeasonDropdownClicked(!isSeasonDropdownClicked)
+  }
+
+  useEffect(() => {
+    getTVSeasonsDetails({ tvSeriesId: Number(id), season_number: season })
+  }, [season])
+
   useEffect(() => {
     tvWatchlistData && tvSeriesWatchlistReceived(tvWatchlistData.results.map((item) => item.id))
   }, [tvWatchlistData])
@@ -88,7 +102,10 @@ const SeriesPage = () => {
         <h3 className="text-4xl text-slate-200 font-semibold">{tvSeriesDetails?.name}</h3>
         <div className="my-3">
           <p className="font-semibold text-slate-300">
-            Episode runtime: {tvSeriesDetails?.episode_run_time.map((item) => item + '. ')} min
+            Episode runtime:{' '}
+            {tvSeriesDetails?.episode_run_time[0]
+              ? tvSeriesDetails?.episode_run_time.map((item) => item + '. ')
+              : 'no data'}
           </p>
 
           <span className="font-semibold text-slate-300">
@@ -108,6 +125,7 @@ const SeriesPage = () => {
               text="Play now"
               titleType={'tv'}
               titleText={tvSeriesDetails?.name}
+              season={1}
             />
             <WatchTrailerButton text="Watch Trailer" tmdbId={tvSeriesDetails?.id} />
             {tmdbAccount && tvSeriesWatchlist.find((item) => tvSeriesDetails?.id === item) ? (
@@ -141,10 +159,24 @@ const SeriesPage = () => {
         </div>
         <div className="mb-10 mt-5">
           <div className="flex justify-between items-center text-slate-100 font-semibold mb-5">
-            <h3 className="text-2xl">1-9 Episode</h3>
-            <p className="text-sm">Season 1</p>
+            <h3 className={styles.Episodes}>1 - {tvSeasonDetails?.episodes.length} Episode</h3>
+            <div className="relative">
+              <p className="text-sm border-slate-400 border-2 rounded-lg py-1 px-2" onClick={handleSeasonDropdownOnClick}>
+                Season {season}
+              </p>
+              {isSeasonDropdownClicked && (
+                <div className={styles.SeasonsDropdown}>
+                  {tvSeriesDetails?.seasons.map((s) => (
+                    <div className="text-xs border-b-2 rounded-lg py-1 px-2 cursor-pointer" onClick={() => {
+                      setSeason(s.season_number)
+                      handleSeasonDropdownOnClick()
+                    }}>Season {s.season_number}</div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
-          <EpisodeSlider titleText={tvSeriesDetails?.name} fileList={fileList} />
+          <EpisodeSlider titleText={tvSeriesDetails?.name} data={tvSeasonDetails?.episodes} />
         </div>
       </div>
     </>

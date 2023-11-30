@@ -11,8 +11,7 @@ type PropsType = {
   data: TVType[]
 }
 
-const CustomStyles = styled.div`
-`
+const CustomStyles = styled.div``
 
 const BaseTVSlider = ({ data }: PropsType) => {
   const tvGenres = useAppSelector((state) => state.tvGenres)
@@ -21,20 +20,18 @@ const BaseTVSlider = ({ data }: PropsType) => {
     <CustomStyles>
       <Swiper
         className={styles.BaseTVSlider}
+        slidesPerView={1.5}
         spaceBetween={20}
         navigation
         breakpoints={{
-          1800: {
-            slidesPerView: 5,
+          2100: {
+            slidesPerView: 4.5,
           },
-          1400: {
-            slidesPerView: 4,
+          1750: {
+            slidesPerView: 3.5,
           },
           1100: {
-            slidesPerView: 3,
-          },
-          475: {
-            slidesPerView: 2,
+            slidesPerView: 2.5,
           },
         }}
       >

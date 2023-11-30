@@ -89,7 +89,7 @@ const MoviePage = () => {
       <div className={styles.Details}>
         <h3 className="text-4xl text-slate-200 font-semibold">{movieDetails?.title}</h3>
         <div className="my-3">
-          <p className="font-semibold text-slate-300">{movieDetails?.runtime} min</p>
+          <p className="font-semibold text-slate-300">Duration: {movieDetails?.runtime} min</p>
 
           <span className="font-semibold text-slate-300">{movieDetails?.release_date} • </span>
           {movieDetails?.genres.map((g) => (

@@ -6,9 +6,10 @@ type PropsType = {
     text: 'Play now'
     titleType: 'movie' | 'tv' | undefined
     titleText: string | undefined
+    season?: number
 }
 
-const ShowPagePlayButton = ({ text, titleType, titleText }: PropsType) => {
+const ShowPagePlayButton = ({ text, titleType, titleText, season }: PropsType) => {
 
     return (
         <>
@@ -22,7 +23,7 @@ const ShowPagePlayButton = ({ text, titleType, titleText }: PropsType) => {
                     </button>
                 </Link>
             ) : (
-                <Link to={`${titleText}/ep-1`}>
+                <Link to={`${titleText}/season/${season}/ep-1`}>
                     <button className={styles.PlayContinueButton}>
                         <BsPlayCircle />
                         <span>{text}</span>

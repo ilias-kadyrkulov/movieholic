@@ -185,7 +185,7 @@ const LoginForm = (props: PropsType) => {
               {!requestTokenURI ? (
                 <a
                   href={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=https://movieholic-ik.netlify.app`}
-                  className="font-semibold text-sm"
+                  className="font-semibold text-sm text-gray-200"
                 >
                   Sign up
                 </a>

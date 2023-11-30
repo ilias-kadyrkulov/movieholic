@@ -14,7 +14,7 @@
         }
 
         .Episode {
-            @apply py-1 text-slate-200 cursor-pointer w-3/4;
+            @apply py-1 pl-2 rounded-md text-slate-200 cursor-pointer w-3/4;
 
             background-color: #050405;
 
@@ -58,7 +58,7 @@
         display: none;
     }
     .MobileTablet {
-        @apply mx-7;
+        @apply mx-5;
         .TVSeriesPlayer {
             @apply w-full;
 

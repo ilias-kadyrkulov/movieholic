@@ -6,14 +6,22 @@
   @apply font-semibold text-xl text-white mb-5;
 }
 
+@media (max-width: 1250px) {
+  .PopularOfTheWeek {
+    @apply ml-0;
+  }
+  .Title {
+    @apply ml-16;
+  }
+}
+
 @media (max-width: 1024px) {
   .PopularOfTheWeek {
-    @apply ml-4;
     div {
       @apply text-xl;
     }
   }
   .Title {
-    @apply mb-5 ml-0;
-}
+    @apply mb-5 ml-4;
+  }
 }

@@ -77,23 +77,27 @@ const CastSlider = ({ data }: PropsType) => {
   return (
     <CustomStyles>
       <Swiper
-        className={styles.SmallSlider}
+        className={styles.CastSlider}
+        slidesPerView={1.2}
         navigation
         breakpoints={{
           1920: {
-            slidesPerView: 6,
+            slidesPerView: 6.5,
           },
           1600: {
-            slidesPerView: 5,
+            slidesPerView: 5.5,
           },
           1220: {
-            slidesPerView: 4,
+            slidesPerView: 4.5,
           },
-          900: {
-            slidesPerView: 3,
+          990: {
+            slidesPerView: 3.5,
           },
-          610: {
-            slidesPerView: 2,
+          735: {
+            slidesPerView: 2.5,
+          },
+          375: {
+            slidesPerView: 1.5,
           },
         }}
       >

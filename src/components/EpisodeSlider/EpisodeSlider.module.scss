@@ -2,12 +2,37 @@
     height: 250px;
 }
 
-@media (max-width: 1920px) {
+@media (max-width: 1150px) {
+    .EpisodeSlider {
+        height: 450px;
+    }
+}
+
+@media (max-width: 935px) {
+    .EpisodeSlider {
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .EpisodeSlider {
+        height: 300px;
+    }
+}
+
+@media (max-width: 640px) {
+    .EpisodeSlider {
+        height: 250px;
+    }
+}
+
+@media (max-width: 475px) {
     .EpisodeSlider {
         height: 200px;
     }
 }
-@media (max-width: 1400px) {
+
+@media (max-width: 375px) {
     .EpisodeSlider {
         height: 150px;
     }

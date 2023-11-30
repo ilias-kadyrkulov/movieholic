@@ -1,13 +1,13 @@
 import styles from './EpisodeSlider.module.scss'
-import { FileType } from '../../api/filemoon/file.api'
-import { useActions } from '../../hooks/useActions'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { EpisodesType } from '../../types/types'
+import { tmdbApiConfig } from '../../api/tmdbV3/tmdb.api'
 
 type PropsType = {
   titleText: string | undefined
-  fileList: FileType[] | undefined
+  data: EpisodesType[] | undefined
 }
 
 const CustomStyles = styled.div`
@@ -76,45 +76,43 @@ const CustomStyles = styled.div`
   }
 `
 
-const EpisodeSlider = (props: PropsType) => {
-  const { fileBeenChosen } = useActions()
-
+const EpisodeSlider = ({ data, titleText }: PropsType) => {
   return (
     <CustomStyles>
       <Swiper
         className={styles.EpisodeSlider}
+        slidesPerView={1.2}
+        spaceBetween={20}
         navigation
         breakpoints={{
-          1440: {
-            slidesPerView: 5,
+          2400: {
+            slidesPerView: 5.5,
           },
-          1080: {
-            slidesPerView: 4,
+          1990: {
+            slidesPerView: 4.5,
           },
-          700: {
-            slidesPerView: 3,
+          1550: {
+            slidesPerView: 3.5,
           },
-          425: {
-            slidesPerView: 2,
-          }
+          1150: {
+            slidesPerView: 2.5,
+          },
         }}
       >
-        {props?.fileList?.map((f, index) => (
+        {data?.map((e, index) => (
           <SwiperSlide key={index}>
-            <Link to={`tvSeries/${props.titleText}/ep-${index + 1}`} className="h-full">
+            <Link to={`${titleText}/season/${e.season_number}/ep-${index + 1}`} className="h-full">
               <div
                 className="relative h-full"
                 style={{
-                  backgroundImage: `url(${f.thumbnail})`,
+                  backgroundImage: `url(${tmdbApiConfig.originalImage(e.still_path)})`,
                   backgroundSize: 'cover',
                   borderRadius: '20px',
                   cursor: 'pointer',
                 }}
-                onClick={() => {
-                  fileBeenChosen(f)
-                }}
+                onClick={() => {}}
               >
-                <div className="absolute bottom-5 left-5">
+                <div className="absolute bottom-1 left-3">
                   <h4 className="font-semibold text-lg text-slate-100">Episode {index + 1}</h4>
                 </div>
               </div>

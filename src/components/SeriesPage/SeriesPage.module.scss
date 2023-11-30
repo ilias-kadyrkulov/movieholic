@@ -1,126 +1,126 @@
 .TVSeries {
-    @apply relative bg-cover bg-no-repeat bg-center;
-  
-    height: 100vh;
-    -webkit-box-shadow: 0 -250px 100px 0 rgba(28, 28, 28, 0.8) inset;
-    -moz-box-shadow: 0 -250px 100px 0 rgba(28, 28, 28, 0.8) inset;
-    box-shadow: 0 -250px 100px 0 rgba(28, 28, 28, 0.8) inset;
+  @apply relative bg-cover bg-no-repeat bg-center;
+
+  height: 100vh;
+  -webkit-box-shadow: 0 -250px 100px 0 rgba(28, 28, 28, 0.8) inset;
+  -moz-box-shadow: 0 -250px 100px 0 rgba(28, 28, 28, 0.8) inset;
+  box-shadow: 0 -250px 100px 0 rgba(28, 28, 28, 0.8) inset;
+}
+
+.Details {
+  @apply relative mx-10;
+  top: -12rem;
+}
+
+.Buttons {
+  @apply flex justify-between flex-wrap;
+
+  .Right {
+    @apply flex flex-wrap;
   }
-  
+
+  button {
+    @apply py-3 px-5;
+  }
+
+  span {
+    @apply ml-2;
+  }
+
+  svg {
+    @apply w-5 h-5;
+  }
+}
+
+.SeasonsDropdown {
+  @apply absolute top-8 flex flex-col z-50;
+
+  background-color: #0d0c0f;
+}
+
+.Episodes {
+  @apply text-xl;
+}
+
+@media (max-width: 1190px) {
   .Details {
-    @apply relative;
-    top: -12rem;
-    padding-left: 3rem;
-  
-    max-width: 95%;
+    top: -15rem;
   }
-  
+}
+@media (max-width: 1024px) {
+  .TVSeries {
+    -webkit-box-shadow: 0 -300px 60px 0 rgba(28, 28, 28, 0.7) inset;
+    -moz-box-shadow: 0 -300px 60px 0 rgba(28, 28, 28, 0.7) inset;
+    box-shadow: 0 -300px 60px 0 rgba(28, 28, 28, 0.7) inset;
+  }
+}
+@media (max-width: 768px) {
+  .TVSeries {
+    height: 600px;
+
+    -webkit-box-shadow: 0 -200px 100px 0 rgba(28, 28, 28, 0.7) inset;
+    -moz-box-shadow: 0 -200px 100px 0 rgba(28, 28, 28, 0.7) inset;
+    box-shadow: 0 -200px 100px 0 rgba(28, 28, 28, 0.7) inset;
+  }
+  .Details {
+    @apply mx-4;
+    top: -13rem;
+  }
   .Buttons {
-    @apply flex justify-between flex-wrap;
-  
-    .Right {
-      @apply flex flex-wrap;
-    }
-  
-    button {
-      @apply py-3 px-5;
-    }
-  
     span {
-      @apply ml-2;
+      @apply text-sm;
     }
-  
-    svg {
-      @apply w-5 h-5;
+
+    a {
+      @apply text-xs;
     }
-  }
-  @media (max-width: 1190px) {
-    .Details {
-      top: -15rem;
-    }
-  }
-  @media (max-width: 1024px) {
-    .TVSeries {
-      -webkit-box-shadow: 0 -300px 60px 0 rgba(28, 28, 28, 0.7) inset;
-      -moz-box-shadow: 0 -300px 60px 0 rgba(28, 28, 28, 0.7) inset;
-      box-shadow: 0 -300px 60px 0 rgba(28, 28, 28, 0.7) inset;
-    }
-    .Details {
-      @apply pl-6;
+
+    button {
+      @apply py-2 px-3;
     }
   }
-  @media (max-width: 768px) {
-    .TVSeries {
-      height: 600px;
-  
-      -webkit-box-shadow: 0 -200px 100px 0 rgba(28, 28, 28, 0.7) inset;
-      -moz-box-shadow: 0 -200px 100px 0 rgba(28, 28, 28, 0.7) inset;
-      box-shadow: 0 -200px 100px 0 rgba(28, 28, 28, 0.7) inset;
+}
+
+@media (max-width: 605px) {
+  .Details {
+    > h3 {
+      @apply text-2xl;
     }
-    .Details {
-      top: -13rem;
+
+    p {
+      @apply text-xs;
     }
-    .Buttons {
-      span {
-        @apply text-sm;
-      }
-  
-      a {
-        @apply text-xs;
-      }
-  
-      button {
-        @apply py-2 px-3;
-      }
+
+    span {
+      @apply text-xs;
     }
   }
-  
-  @media (max-width: 605px) {
-    .Details {
-      h3 {
-        @apply text-2xl;
-      }
-  
-      p {
-        @apply text-xs;
-      }
-  
-      span {
-        @apply text-xs;
-      }
+}
+@media (max-width: 590px) {
+  .Buttons {
+    span {
+      @apply m-1;
     }
   }
-  @media (max-width: 590px) {
-    .Buttons {
-      span {
-        @apply m-1;
-      }
-    }
+}
+
+@media (max-width: 560px) {
+  .Details {
+    @apply mx-2;
   }
-  @media (max-width: 568px) {
-    .Details {
-      padding-left: 1.5rem;
-    }
+  .Episodes {
+    @apply text-base;
   }
-  
-  @media (max-width: 560px) {
-    
+}
+@media (max-width: 425px) {
+  .TVSeries {
+    height: 450px;
+
+    -webkit-box-shadow: 0 -100px 100px 0 rgba(28, 28, 28, 0.7) inset;
+    -moz-box-shadow: 0 -100px 100px 0 rgba(28, 28, 28, 0.7) inset;
+    box-shadow: 0 -100px 100px 0 rgba(28, 28, 28, 0.7) inset;
   }
-  @media (max-width: 425px) {
-    .TVSeries {
-        height: 450px;
-    
-        -webkit-box-shadow: 0 -100px 100px 0 rgba(28, 28, 28, 0.7) inset;
-        -moz-box-shadow: 0 -100px 100px 0 rgba(28, 28, 28, 0.7) inset;
-        box-shadow: 0 -100px 100px 0 rgba(28, 28, 28, 0.7) inset;
-      }
-    .Details {
-      top: -6rem;
-    }
+  .Details {
+    top: -6rem;
   }
-  @media (max-width: 375px) {
-    .Details {
-      padding-left: 1rem;
-    }
-  }
-  
+}
