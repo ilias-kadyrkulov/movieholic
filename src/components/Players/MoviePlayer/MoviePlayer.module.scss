@@ -1,4 +1,4 @@
-@media (min-width: 768px) {
+@media (min-width: 1000px) {
     .MobileTablet {
         display: none;
     }
@@ -36,12 +36,12 @@
         }
     }
 }
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     .LaptopDesktop {
         display: none;
     }
     .MobileTablet {
-        @apply mx-7;
+        @apply mx-0;
         .MoviePlayer {
             @apply w-full;
 

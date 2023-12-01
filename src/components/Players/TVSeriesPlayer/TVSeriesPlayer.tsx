@@ -25,10 +25,11 @@ const TVSeriesPlayer = () => {
   })
 
   const [server, setServer] = useState<'Filemoon' | 'Vidplay'>('Vidplay')
+  const [season, setSeason] = useState(Number(seasonNumber))
+  const [isSeasonDropdownClicked, setIsSeasonDropdownClicked] = useState(false)
 
   const { fileChosen } = useAppSelector((state) => state.player)
   const fileList = useAppSelector((state) => state.player.fileList)
-  console.log(fileList)
 
   useEffect(() => {
     seasonNumber &&
@@ -67,50 +68,62 @@ const TVSeriesPlayer = () => {
     return Math.max(max, s.season_number)
   }, 0)
 
+  const seasonCount = tvSeriesDetails?.seasons.filter((s) => s.season_number > 0)
+
+  //   useEffect(() => {
+  // if (server === 'Filemoon') {
+  //         if (episodeRegex && fileList) {
+  //             const index = +episodeRegex[0] - 1
+  //             const fileToDispatch = fileList[index]
+
+  //             fileToDispatch && fileBeenChosen(fileToDispatch)
+
+  //             if (fileListData) {
+  //                 if (index > fileListData.length - 1) {
+  //                     //FIXME - bug in Firefox browser
+  //                     navigate(
+  //                         `/title/tvSeries/${id}/${titleText}/ep-1`
+  //                     )
+  //                 }
+  //             }
+  //         }
+  //     }
+  //   }, [fileList])
+
   useEffect(() => {
-    console.log('url changed to: ', ep)
-    // if (server === 'Filemoon') {
-    //     if (episodeRegex && fileList) {
-    //         const index = +episodeRegex[0] - 1
-    //         const fileToDispatch = fileList[index]
-
-    //         fileToDispatch && fileBeenChosen(fileToDispatch)
-
-    //         if (fileListData) {
-    //             if (index > fileListData.length - 1) {
-    //                 //FIXME - bug in Firefox browser
-    //                 navigate(
-    //                     `/title/tvSeries/${id}/${titleText}/ep-1`
-    //                 )
-    //             }
-    //         }
-    //     }
-    // }
     if (
       //NOTE - Episode control
       episode &&
-      seasonNum &&
       server === 'Vidplay' &&
       tvSeasonDetails
     ) {
-
       if (episode > tvSeasonDetails.episodes.length) {
-        navigate(`/title/tvSeries/${id}/${titleText}/season/1/ep-1`)
-      } else if (episode === 0 || seasonNum === 0) {
         navigate(`/title/tvSeries/${id}/${titleText}/season/1/ep-1`)
       }
     }
-  }, [fileList, episode, seasonNum])
+  }, [episode, tvSeasonDetails])
+
+  useEffect(() => {
+    if (episode === 0) {
+      navigate(`/title/tvSeries/${id}/${titleText}/season/1/ep-1`)
+    }
+  }, [episode])
+
+  useEffect(() => {
+    if (seasonNum === 0) {
+      navigate(`/title/tvSeries/${id}/${titleText}/season/1/ep-1`)
+    }
+  }, [seasonNum])
 
   useEffect(() => {
     //NOTE - Season control
     if (seasonNum && server === 'Vidplay' && tvSeriesDetails) {
-
       if (maxSeasonNumber && seasonNum > maxSeasonNumber) {
+        setSeason(1)
         navigate(`/title/tvSeries/${id}/${titleText}/season/1/ep-1`)
       }
     }
-  }, [seasonNum])
+  }, [seasonNum, tvSeriesDetails])
 
   useEffect(() => {
     //NOTE - Episode selection through url
@@ -132,58 +145,124 @@ const TVSeriesPlayer = () => {
     }
   }
 
+  const handleSeasonDropdownOnClick = () => {
+    setIsSeasonDropdownClicked(!isSeasonDropdownClicked)
+  }
+
+  const handleSeasonOnClick = (seasonNumber: number) => () => {
+    navigate(`/title/tvSeries/${id}/${titleText}/season/${seasonNumber}/1`, {
+      replace: true,
+    })
+    setSeason(seasonNumber)
+    handleSeasonDropdownOnClick()
+  }
+
   return (
-    <>
-      <div className={styles.MobileTablet}>
-        <div className="flex pt-32 h-full">
-          <div className={styles.TVSeriesPlayer}>
-            {server === 'Filemoon' && fileChosen.file_code && (
-              <iframe
-                src={`https://filemoon.sx/e/${fileChosen.file_code}}`}
-                className="w-full h-full"
-                allowFullScreen
-              />
-            )}
-            {server === 'Vidplay' && (
-              <iframe
-                src={`https://vidsrc.to/embed/tv/${id}/${seasonNumber}/${episode}`}
-                className="w-full h-full"
-                allowFullScreen
-                ref={iframeRef}
-              />
-            )}
+    <div>
+      <div className="text-center text-slate-200 font-semibold text-xl w-full pt-20 mb-5">
+        {tvSeriesDetails?.name} | Season {tvSeasonDetails?.season_number}
+      </div>
+      <div className={styles.TVSeriesDeskLapPlayer}>
+        <div className={styles.Left}>
+          <div className={styles.Description}>
+            You're watching Episode <span className="text-green-700">{episodeRegex}</span>.
+            <br />
+            If current server doesn't work, please try other servers beside.
+          </div>
+          <div className={styles.Servers}>
+            <ServerButton
+              text="Vidplay"
+              onServerClick={() => setServer('Vidplay')}
+              serverChosen={server}
+            />
+            <ServerButton
+              text="Filemoon"
+              onServerClick={() => setServer('Filemoon')}
+              serverChosen={server}
+            />
           </div>
         </div>
-        <div className="flex mt-5">
-          {server === 'Filemoon' && (
-            <div className="w-2/4 flex flex-wrap">
-              <VerticalEpisodeSlider />
-            </div>
+        <div className={styles.Wrapper}>
+          {server === 'Filemoon' && fileChosen.file_code && fileList && (
+            <iframe
+              src={`https://filemoon.sx/e/${fileChosen.file_code}}`}
+              className="w-full h-full"
+              allowFullScreen
+            />
           )}
           {server === 'Vidplay' && (
-            <div className="w-2/4">
-              {tvSeasonDetails &&
-                Array.from({ length: tvSeasonDetails.episodes.length }, (_, index) => (
+            <iframe
+              src={`https://vidsrc.to/embed/tv/${id}/${seasonNumber}/${episode}`}
+              className={styles.iframe}
+              allowFullScreen
+              ref={iframeRef}
+            />
+          )}
+        </div>
+        {server === 'Filemoon' && (
+          <div className="w-1/4">
+            <VerticalEpisodeSlider />
+          </div>
+        )}
+        {server === 'Vidplay' && (
+          <div className="relative w-1/4 flex flex-col mr-5">
+            <p
+              className="text-sm w-3/4 mb-3 text-slate-100 text-center border-slate-400 border-2 rounded-lg py-1 px-2"
+              onClick={handleSeasonDropdownOnClick}
+            >
+              Season {season}
+            </p>
+            {isSeasonDropdownClicked && (
+              <div className={styles.SeasonsDropdown}>
+                {seasonCount?.map((s) => (
                   <div
-                    key={index}
-                    className={styles.Episode}
-                    onClick={() => handleEpisodeClick(index)}
+                    className="text-xs text-slate-300 border-2 rounded-md py-1 px-2 cursor-pointer"
+                    onClick={handleSeasonOnClick(s.season_number)}
                   >
-                    {index + 1}
+                    Season {s.season_number}
                   </div>
                 ))}
-            </div>
+              </div>
+            )}
+            {tvSeasonDetails &&
+              Array.from({ length: tvSeasonDetails.episodes.length }, (_, index) => (
+                <div
+                  key={index}
+                  className={styles.Episode}
+                  onClick={() => handleEpisodeClick(index)}
+                >
+                  Episode {index + 1}
+                </div>
+              ))}
+          </div>
+        )}
+      </div>
+      <div className={styles.TVSeriesMobilePlayer}>
+        <div className={styles.Wrapper}>
+          {server === 'Filemoon' && fileChosen.file_code && fileList && (
+            <iframe
+              src={`https://filemoon.sx/e/${fileChosen.file_code}}`}
+              className="w-full h-full"
+              allowFullScreen
+            />
           )}
-          <div className={styles.Servers}>
-            <div className="w-2/4">
-              You're watching Episode{' '}
-              <span className="text-green-700">
-                {episodeRegex} of season <span className="text-green-700">{seasonNumber}</span>
-              </span>
+          {server === 'Vidplay' && (
+            <iframe
+              src={`https://vidsrc.to/embed/tv/${id}/${seasonNumber}/${episode}`}
+              className={styles.iframe}
+              allowFullScreen
+              ref={iframeRef}
+            />
+          )}
+        </div>
+        <div className={styles.LeftWrapper}>
+          <div className={styles.Left}>
+            <div className={styles.Description}>
+              You're watching Episode <span className="text-green-700">{episodeRegex}</span>.
               <br />
               If current server doesn't work, please try other servers beside.
             </div>
-            <div className="pt-2">
+            <div className={styles.Servers}>
               <ServerButton
                 text="Vidplay"
                 onServerClick={() => setServer('Vidplay')}
@@ -196,69 +275,52 @@ const TVSeriesPlayer = () => {
               />
             </div>
           </div>
-        </div>
-      </div>
-      <div className={styles.LaptopDesktop}>
-        <div className="flex pt-32 h-full">
-          <div className={styles.Servers}>
-            <div className="w-2/4">
-              You're watching Episode <span className="text-green-700">{episodeRegex}</span> of
-              season <span className="text-green-700">{seasonNumber}</span>.
-              <br />
-              If current server doesn't work, please try other servers beside.
-            </div>
-            <div className="w-2/4 pt-2">
-              <ServerButton
-                text="Vidplay"
-                onServerClick={() => setServer('Vidplay')}
-                serverChosen={server}
-              />
-              <ServerButton
-                text="Filemoon"
-                onServerClick={() => setServer('Filemoon')}
-                serverChosen={server}
-              />
-            </div>
-          </div>
-          <div className={styles.TVSeriesPlayer}>
-            {server === 'Filemoon' && fileChosen.file_code && fileList && (
-              <iframe
-                src={`https://filemoon.sx/e/${fileChosen.file_code}}`}
-                className="w-full h-full"
-                allowFullScreen
-              />
-            )}
-            {server === 'Vidplay' && (
-              <iframe
-                src={`https://vidsrc.to/embed/tv/${id}/${seasonNumber}/${episode}`}
-                className="w-full h-full"
-                allowFullScreen
-                ref={iframeRef}
-              />
-            )}
-          </div>
+
           {server === 'Filemoon' && (
             <div className="w-1/4">
               <VerticalEpisodeSlider />
             </div>
           )}
           {server === 'Vidplay' && (
-            <div className="w-1/4">
-              {tvSeasonDetails &&
-                Array.from({ length: tvSeasonDetails.episodes.length }, (_, index) => (
-                  <div
-                    key={index}
-                    className={styles.Episode}
-                    onClick={() => handleEpisodeClick(index)}
-                  >
-                    Episode {index + 1}
-                  </div>
-                ))}
+            <div className={styles.Seasons}>
+              <p
+                className="text-sm w-3/4 mb-3 text-slate-100 text-center border-slate-400 border-2 rounded-lg py-1 px-2"
+                onClick={handleSeasonDropdownOnClick}
+              >
+                Season {season}
+              </p>
+              {isSeasonDropdownClicked && (
+                <div className={styles.SeasonsDropdown}>
+                  {seasonCount?.map((s) => (
+                    <div
+                      className="text-xs text-slate-300 border-2 text-center rounded-md py-1 px-2 cursor-pointer"
+                      onClick={handleSeasonOnClick(s.season_number)}
+                    >
+                      Season {s.season_number}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <div className="relative w-3/4 flex flex-wrap items-center">
+                {tvSeasonDetails &&
+                  Array.from({ length: tvSeasonDetails.episodes.length }, (_, index) => (
+                    <div
+                      key={index}
+                      className={styles.Episode}
+                      onClick={() => {
+                        handleEpisodeClick(index)
+                      }}
+                    >
+                      {index + 1}
+                    </div>
+                  ))}
+              </div>
             </div>
           )}
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

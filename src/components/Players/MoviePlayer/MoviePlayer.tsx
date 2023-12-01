@@ -15,7 +15,7 @@ const MoviePlayer = () => {
     return (
         <>
             <div className={styles.MobileTablet}>
-                <div className="flex pt-32 h-full">
+                <div className="flex pt-20 h-full">
                     <div className={styles.MoviePlayer}>
                         {server === 'Filemoon' && (
                             <iframe
@@ -58,7 +58,7 @@ const MoviePlayer = () => {
                 </div>
             </div>
             <div className={styles.LaptopDesktop}>
-                <div className="flex pt-32 h-full">
+                <div className="flex pt-28 h-full">
                     <div className={styles.Servers}>
                         <div className="w-2/4">
                             You're watching{' '}

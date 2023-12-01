@@ -1,121 +1,138 @@
-@media (min-width: 768px) {
-    .MobileTablet {
-        display: none;
+@media (min-width: 2300px) {
+  .TVSeriesMobilePlayer {
+    display: none;
+  }
+  .TVSeriesDeskLapPlayer {
+    .Left {
+      @apply flex w-1/4 text-slate-200 pl-5;
     }
-    .LaptopDesktop {
-        .TVSeriesPlayer {
-            @apply w-2/4 mx-10;
 
-            height: 500px;
-        }
-
-        .Servers {
-            @apply flex w-1/4 text-slate-200 pl-5;
-        }
-
-        .Episode {
-            @apply py-1 pl-2 rounded-md text-slate-200 cursor-pointer w-3/4;
-
-            background-color: #050405;
-
-            &:nth-child(2n) {
-                @apply bg-gray-800;
-            }
-        }
-
-        @media (max-width: 1250px) {
-            .TVSeriesPlayer {
-                height: 400px;
-            }
-            .Servers {
-                @apply flex-col;
-
-                div {
-                    @apply w-full m-0;
-                }
-            }
-        }
-        @media (max-width: 1000px) {
-            .TVSeriesPlayer {
-                @apply mx-4;
-
-                height: 300px;
-            }
-        }
-        @media (max-width: 768px) {
-            .Servers {
-                @apply pl-3;
-
-                div {
-                    @apply text-sm;
-                }
-            }
-        }
+    .Description {
+      @apply w-2/4;
     }
+  }
+}
+@media (min-width: 1000px) {
+  .TVSeriesDeskLapPlayer {
+    @apply flex;
+    height: 600px;
+    width: 100%;
+
+    .Wrapper {
+      @apply mx-5;
+      width: 100%;
+      height: 100%;
+    }
+
+    .SeasonsDropdown {
+      @apply absolute top-8 flex flex-col z-50 w-full;
+
+      background-color: #0d0c0f;
+    }
+
+    .Episode {
+      @apply py-1 pl-2 rounded-md text-slate-200 cursor-pointer w-full;
+
+      background-color: #363636;
+    }
+  }
+}
+
+@media (max-width: 2300px) {
+  .TVSeriesMobilePlayer {
+    display: none;
+  }
+  .TVSeriesDeskLapPlayer {
+    @apply flex;
+
+    .Left {
+      @apply flex flex-col w-1/4 text-slate-200 pl-5;
+    }
+
+    .Description {
+      @apply w-full;
+    }
+
+    .Servers {
+      @apply w-full pt-2;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .TVSeriesDeskLapPlayer {
+    display: none;
+  }
+  .TVSeriesMobilePlayer {
+    @apply flex flex-col;
+
+    .Wrapper {
+      width: 100vw;
+      height: 400px;
+    }
+
+    .SeasonsDropdown {
+      @apply absolute top-8 flex flex-col z-50 w-2/4;
+
+      background-color: #0d0c0f;
+    }
+  }
+  .LeftWrapper {
+    @apply flex mt-5;
+  }
+  .Left {
+    @apply flex w-2/4 text-slate-200 pl-5;
+
+    .Description {
+      @apply mr-3;
+    }
+  }
+  .Seasons {
+    @apply relative w-2/4 flex flex-col items-center;
+  }
+
+  .Episode {
+    @apply py-1 border-2 border-slate-900 text-center text-slate-200 cursor-pointer;
+
+    width: 16.6%;
+
+    background-color: #363636;
+  }
 }
 @media (max-width: 768px) {
-    .LaptopDesktop {
-        display: none;
+  .TVSeriesMobilePlayer {
+    .Left {
+      @apply flex-col;
+
+      .Description {
+        @apply mr-0 mb-3;
+      }
     }
-    .MobileTablet {
-        @apply mx-5;
-        .TVSeriesPlayer {
-            @apply w-full;
-
-            height: 400px;
-        }
-        .Servers {
-            @apply flex w-2/4 text-slate-200 ml-5;
-        }
-
-        .Episode {
-            @apply py-1 text-slate-200 cursor-pointer pl-3;
-
-            background-color: #050405;
-
-            &:nth-child(2n) {
-                @apply bg-gray-800;
-            }
-        }
-    }
+  }
 }
-@media (max-width: 600px) {
-    .MobileTablet {
-        .TVSeriesPlayer {
-            height: 300px;
-        }
-    }
-}
-@media (max-width: 568px) {
-    .MobileTablet {
-        .Servers {
-            @apply flex-col;
-            div {
-                @apply w-full;
-            }
-        }
-    }
+@media (max-width: 625px) {
+  .Episode {
+    width: 25%;
+  }
 }
 @media (max-width: 425px) {
-    .MobileTablet {
-        .TVSeriesPlayer {
-            height: 250px;
-        }
+  .TVSeriesMobilePlayer {
+    .LeftWrapper {
+      @apply flex-col;
     }
+    .Description {
+      @apply mb-0;
+    }
+    .Left {
+      @apply flex-col w-full pr-5;
+    }
+    .Seasons {
+      @apply w-full;
+    }
+  }
 }
-@media (max-width: 325px) {
-    .MobileTablet {
-        .TVSeriesPlayer {
-            height: 200px;
-        }
-        .Servers {
-            div {
-                @apply text-sm;
 
-                button {
-                    @apply px-0.5 py-1 w-full;
-                }
-            }
-        }
-    }
+.iframe {
+  width: 100%;
+  height: 100%;
 }

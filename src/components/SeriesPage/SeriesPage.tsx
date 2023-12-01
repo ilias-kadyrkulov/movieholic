@@ -40,6 +40,8 @@ const SeriesPage = () => {
 
   const [getTVSeasonsDetails, { data: tvSeasonDetails }] = useLazyGetTVSeasonsDetailsQuery()
 
+  const seasonCount = tvSeriesDetails?.seasons.filter((s) => s.season_number > 0)
+
   const { data: tvSeriesCastDetails } = useGetCastDetailsByTVSeriesIdQuery({
     tvSeriesId: Number(id),
   })
@@ -166,7 +168,7 @@ const SeriesPage = () => {
               </p>
               {isSeasonDropdownClicked && (
                 <div className={styles.SeasonsDropdown}>
-                  {tvSeriesDetails?.seasons.map((s) => (
+                  {seasonCount?.map((s) => (
                     <div className="text-xs border-b-2 rounded-lg py-1 px-2 cursor-pointer" onClick={() => {
                       setSeason(s.season_number)
                       handleSeasonDropdownOnClick()
