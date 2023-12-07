@@ -6,7 +6,7 @@
   input {
     @apply bg-black rounded-lg py-2 px-2 pl-8 text-slate-200 w-full;
     border: 1px solid rgb(32, 32, 32);
-  }
+  }  
 }
 
 .Overlay {
@@ -21,6 +21,15 @@
 
   path {
     @apply fill-slate-400;
+  }
+}
+
+.NoSearchQueryIcon {
+  svg {
+    @apply w-7 h-7;
+  }
+  path:nth-child(2) {
+    @apply fill-slate-400
   }
 }
 

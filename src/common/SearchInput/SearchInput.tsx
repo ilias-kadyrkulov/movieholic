@@ -8,6 +8,7 @@ import {
   useLazySearchForTVQuery,
 } from '../../api/tmdbV3/search.api'
 import { AiFillStar, AiOutlineSearch } from 'react-icons/ai'
+import { MdOutlineManageSearch } from 'react-icons/md'
 import { LiaFilmSolid } from 'react-icons/lia'
 import { useAppSelector } from '../../hooks/hooks'
 import { tmdbApiConfig } from '../../api/tmdbV3/tmdb.api'
@@ -103,180 +104,191 @@ const SearchInput = ({ handleSearchOnClick, isSearchOpen }: PropsType) => {
             People
           </button>
         </div>
-        <div className={styles.SearchResults}>
-          {chosenType === 'All' &&
-            multiSearchData?.results.map((i) => (
-              <>
-                {i.media_type === 'movie' && (
-                  <Link to={`/title/movie/${i.id}`} onClick={handleSearchOnClick}>
-                    <div className="flex justify-center mt-5">
-                      <img src={tmdbApiConfig.w500Image(i.poster_path)} />
+        {!search ? (
+          <div className="flex flex-col justify-center items-center w-full h-full">
+            <div className={styles.NoSearchQueryIcon}>
+              <MdOutlineManageSearch />
+            </div>
+            <h2 className="text-slate-300 text-xs">Start typing to search...</h2>
+          </div>
+        ) : (
+          <div className={styles.SearchResults}>
+            {chosenType === 'All' &&
+              multiSearchData?.results.map((i) => (
+                <>
+                  {i.media_type === 'movie' && (
+                    <Link to={`/title/movie/${i.id}`} onClick={handleSearchOnClick}>
+                      <div className="flex justify-center mt-5">
+                        <img src={tmdbApiConfig.w500Image(i.poster_path)} />
+                      </div>
+                      <h2 className="font-semibold text-base text-slate-200 mt-3 text-center px-2 h-20">
+                        {i.title}
+                      </h2>
+                      <div className={styles.Rating}>
+                        <AiFillStar />
+                        <div className="font-semibold text-base mx-2 text-slate-200">
+                          {i.vote_average}
+                        </div>
+                        <div className="relative">
+                          <div className={styles.TitleType}>{i.media_type}</div>
+                        </div>
+                      </div>
+                      <div className={styles.Genres}>
+                        <LiaFilmSolid />
+                        <div className="leading-3">
+                          {movieGenres &&
+                            i.genre_ids.map((g) => <span key={g}>{movieGenres[g]}</span>)}
+                        </div>
+                      </div>
+                    </Link>
+                  )}
+                  {i.media_type === 'tv' && (
+                    <Link to={`/title/tvSeries/${i.id}`} onClick={handleSearchOnClick}>
+                      <div className="flex justify-center mt-5">
+                        <img src={tmdbApiConfig.w500Image(i.poster_path)} />
+                      </div>
+                      <h2 className="font-semibold text-base text-slate-200 mt-3 text-center px-2 h-20">
+                        {i.name}
+                      </h2>
+                      <div className={styles.Rating}>
+                        <AiFillStar />
+                        <div className="font-semibold text-base mx-2 text-slate-200">
+                          {i.vote_average}
+                        </div>
+                        <div className="relative">
+                          <div className={styles.TitleType}>TV Series</div>
+                        </div>
+                      </div>
+                      <div className={styles.Genres}>
+                        <LiaFilmSolid />
+                        <div className="leading-3">
+                          {movieGenres &&
+                            i.genre_ids.map((g) => <span key={g}>{movieGenres[g]}</span>)}
+                        </div>
+                      </div>
+                    </Link>
+                  )}
+                  {i.media_type === 'person' && (
+                    <div className={styles.Person} onClick={handleSearchOnClick}>
+                      <div className="flex justify-center">
+                        <img src={tmdbApiConfig.w500Image(i.profile_path)} />
+                      </div>
+                      <h2 className="font-semibold text-base text-slate-200 mt-3 text-center px-2 h-20">
+                        {i.name}
+                      </h2>
+                      <div className={styles.Rating}>
+                        <AiFillStar />
+                        <div className="font-semibold text-base mx-2 text-slate-200">
+                          {i.popularity}
+                        </div>
+                        <div className="relative">
+                          <div className={styles.TitleType}>{i.media_type}</div>
+                        </div>
+                      </div>
+                      <div className="flex">
+                        <div className="text-left text-slate-200 leading-4 pl-2">Known for:</div>
+                        <div className="leading-3 ml-2">
+                          {i.known_for.map((g) => (
+                            <span
+                              className="inline-block text-slate-400 font-normal text-xs mr-1"
+                              key={g.id}
+                            >
+                              • {g.media_type === 'movie' ? g.title : g.name}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                    <h2 className="font-semibold text-base text-slate-200 mt-3 text-center px-2 h-20">
-                      {i.title}
-                    </h2>
-                    <div className={styles.Rating}>
-                      <AiFillStar />
-                      <div className="font-semibold text-base mx-2 text-slate-200">
-                        {i.vote_average}
-                      </div>
-                      <div className="relative">
-                        <div className={styles.TitleType}>{i.media_type}</div>
-                      </div>
+                  )}
+                </>
+              ))}
+            {chosenType === 'Movies' &&
+              movieSearchData?.results.map((i) => (
+                <Link to={`/title/movie/${i.id}`} onClick={handleSearchOnClick}>
+                  <div className="flex justify-center mt-5">
+                    <img src={tmdbApiConfig.w500Image(i.poster_path)} />
+                  </div>
+                  <h2 className="font-semibold text-base text-slate-200 mt-3 text-center px-2 h-20">
+                    {i.title}
+                  </h2>
+                  <div className={styles.Rating}>
+                    <AiFillStar />
+                    <div className="font-semibold text-base mx-2 text-slate-200">
+                      {i.vote_average}
                     </div>
-                    <div className={styles.Genres}>
-                      <LiaFilmSolid />
-                      <div className="leading-3">
-                        {movieGenres &&
-                          i.genre_ids.map((g) => <span key={g}>{movieGenres[g]}</span>)}
-                      </div>
-                    </div>
-                  </Link>
-                )}
-                {i.media_type === 'tv' && (
-                  <Link to={`/title/tvSeries/${i.id}`} onClick={handleSearchOnClick}>
-                    <div className="flex justify-center mt-5">
-                      <img src={tmdbApiConfig.w500Image(i.poster_path)} />
-                    </div>
-                    <h2 className="font-semibold text-base text-slate-200 mt-3 text-center px-2 h-20">
-                      {i.name}
-                    </h2>
-                    <div className={styles.Rating}>
-                      <AiFillStar />
-                      <div className="font-semibold text-base mx-2 text-slate-200">
-                        {i.vote_average}
-                      </div>
-                      <div className="relative">
-                        <div className={styles.TitleType}>TV Series</div>
-                      </div>
-                    </div>
-                    <div className={styles.Genres}>
-                      <LiaFilmSolid />
-                      <div className="leading-3">
-                        {movieGenres &&
-                          i.genre_ids.map((g) => <span key={g}>{movieGenres[g]}</span>)}
-                      </div>
-                    </div>
-                  </Link>
-                )}
-                {i.media_type === 'person' && (
-                  <div className={styles.Person} onClick={handleSearchOnClick}>
-                    <div className="flex justify-center">
-                      <img src={tmdbApiConfig.w500Image(i.profile_path)} />
-                    </div>
-                    <h2 className="font-semibold text-base text-slate-200 mt-3 text-center px-2 h-20">
-                      {i.name}
-                    </h2>
-                    <div className={styles.Rating}>
-                      <AiFillStar />
-                      <div className="font-semibold text-base mx-2 text-slate-200">
-                        {i.popularity}
-                      </div>
-                      <div className="relative">
-                        <div className={styles.TitleType}>{i.media_type}</div>
-                      </div>
-                    </div>
-                    <div className="flex">
-                      <div className="text-left text-slate-200 leading-4 pl-2">Known for:</div>
-                      <div className="leading-3 ml-2">
-                        {i.known_for.map((g) => (
-                          <span
-                            className="inline-block text-slate-400 font-normal text-xs mr-1"
-                            key={g.id}
-                          >
-                            • {g.media_type === 'movie' ? g.title : g.name}
-                          </span>
-                        ))}
-                      </div>
+                    <div className="relative">
+                      <div className={styles.TitleType}>Movie</div>
                     </div>
                   </div>
-                )}
-              </>
-            ))}
-          {chosenType === 'Movies' &&
-            movieSearchData?.results.map((i) => (
-              <Link to={`/title/movie/${i.id}`} onClick={handleSearchOnClick}>
-                <div className="flex justify-center mt-5">
-                  <img src={tmdbApiConfig.w500Image(i.poster_path)} />
-                </div>
-                <h2 className="font-semibold text-base text-slate-200 mt-3 text-center px-2 h-20">
-                  {i.title}
-                </h2>
-                <div className={styles.Rating}>
-                  <AiFillStar />
-                  <div className="font-semibold text-base mx-2 text-slate-200">
-                    {i.vote_average}
+                  <div className={styles.Genres}>
+                    <LiaFilmSolid />
+                    <div className="leading-3">
+                      {movieGenres && i.genre_ids.map((g) => <span key={g}>{movieGenres[g]}</span>)}
+                    </div>
                   </div>
-                  <div className="relative">
-                    <div className={styles.TitleType}>Movie</div>
+                </Link>
+              ))}
+            {chosenType === 'TV Series' &&
+              tvSearchData?.results.map((i) => (
+                <Link to={`/title/tvSeries/${i.id}`} onClick={handleSearchOnClick}>
+                  <div className="flex justify-center mt-5">
+                    <img src={tmdbApiConfig.w500Image(i.poster_path)} />
                   </div>
-                </div>
-                <div className={styles.Genres}>
-                  <LiaFilmSolid />
-                  <div className="leading-3">
-                    {movieGenres && i.genre_ids.map((g) => <span key={g}>{movieGenres[g]}</span>)}
+                  <h2 className="font-semibold text-base text-slate-200 mt-3 text-center px-2 h-20">
+                    {i.name}
+                  </h2>
+                  <div className={styles.Rating}>
+                    <AiFillStar />
+                    <div className="font-semibold text-base mx-2 text-slate-200">
+                      {i.vote_average}
+                    </div>
+                    <div className="relative">
+                      <div className={styles.TitleType}>TV Series</div>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
-          {chosenType === 'TV Series' &&
-            tvSearchData?.results.map((i) => (
-              <Link to={`/title/tvSeries/${i.id}`} onClick={handleSearchOnClick}>
-                <div className="flex justify-center mt-5">
-                  <img src={tmdbApiConfig.w500Image(i.poster_path)} />
-                </div>
-                <h2 className="font-semibold text-base text-slate-200 mt-3 text-center px-2 h-20">
-                  {i.name}
-                </h2>
-                <div className={styles.Rating}>
-                  <AiFillStar />
-                  <div className="font-semibold text-base mx-2 text-slate-200">
-                    {i.vote_average}
+                  <div className={styles.Genres}>
+                    <LiaFilmSolid />
+                    <div className="leading-3">
+                      {movieGenres && i.genre_ids.map((g) => <span key={g}>{movieGenres[g]}</span>)}
+                    </div>
                   </div>
-                  <div className="relative">
-                    <div className={styles.TitleType}>TV Series</div>
+                </Link>
+              ))}
+            {chosenType === 'Person' && //TODO - Person page
+              personSearchData?.results.map((i) => (
+                <div className={styles.Person} onClick={handleSearchOnClick}>
+                  <div className="flex justify-center">
+                    <img src={tmdbApiConfig.w500Image(i.profile_path)} />
                   </div>
-                </div>
-                <div className={styles.Genres}>
-                  <LiaFilmSolid />
-                  <div className="leading-3">
-                    {movieGenres && i.genre_ids.map((g) => <span key={g}>{movieGenres[g]}</span>)}
+                  <h2 className="font-semibold text-base text-slate-200 mt-3 text-center px-2 h-5">
+                    {i.name}
+                  </h2>
+                  <div className={styles.Rating}>
+                    <AiFillStar />
+                    <div className="font-semibold text-base mx-2 text-slate-200">
+                      {i.popularity}
+                    </div>
+                    <div className="relative">
+                      <div className={styles.TitleType}>{i.known_for_department}</div>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
-          {chosenType === 'Person' && //TODO - Person page
-            personSearchData?.results.map((i) => (
-              <div className={styles.Person} onClick={handleSearchOnClick}>
-                <div className="flex justify-center">
-                  <img src={tmdbApiConfig.w500Image(i.profile_path)} />
-                </div>
-                <h2 className="font-semibold text-base text-slate-200 mt-3 text-center px-2 h-5">
-                  {i.name}
-                </h2>
-                <div className={styles.Rating}>
-                  <AiFillStar />
-                  <div className="font-semibold text-base mx-2 text-slate-200">{i.popularity}</div>
-                  <div className="relative">
-                    <div className={styles.TitleType}>{i.known_for_department}</div>
+                  <div className="flex">
+                    <div className="text-left text-slate-200 leading-4 pl-2">Known for:</div>
+                    <div className="leading-3 ml-2">
+                      {i.known_for.map((g) => (
+                        <span
+                          className="inline-block text-slate-400 font-normal text-xs mr-1"
+                          key={g.id}
+                        >
+                          • {g.media_type === 'movie' ? g.title : g.name}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-                <div className="flex">
-                  <div className="text-left text-slate-200 leading-4 pl-2">Known for:</div>
-                  <div className="leading-3 ml-2">
-                    {i.known_for.map((g) => (
-                      <span
-                        className="inline-block text-slate-400 font-normal text-xs mr-1"
-                        key={g.id}
-                      >
-                        • {g.media_type === 'movie' ? g.title : g.name}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-        </div>
+              ))}
+          </div>
+        )}
       </div>
     </>
   )

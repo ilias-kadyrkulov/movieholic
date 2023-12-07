@@ -23,7 +23,6 @@ const MobileMenuLayout = React.lazy(() => import('./layouts/MobileMenuLayout/Mob
 const MobileMenuPage = React.lazy(() => import('./screens/MobileMenuPage/MobileMenuPage'))
 
 function App() {
-  
   return (
     <Suspense
       fallback={
@@ -50,7 +49,10 @@ function App() {
             <Route path="forum" element={<ForumPage />} />
             <Route path="title/movie/:id" element={<MoviePage />} />
             <Route path="title/tvSeries/:id" element={<SeriesPage />} />
-            <Route path="title/tvSeries/:id/:titleText/season/:seasonNumber/:ep" element={<TVSeriesPlayer />} />
+            <Route
+              path="title/tvSeries/:id/:titleText/season/:seasonNumber/:ep"
+              element={<TVSeriesPlayer />}
+            />
             <Route path="title/movie/:id/:titleText" element={<MoviePlayer />} />
             <Route path="trailer/:id" element={<TrailerPlayer />} />
           </Route>
