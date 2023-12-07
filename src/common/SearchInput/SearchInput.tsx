@@ -24,6 +24,8 @@ type ChosenType = 'All' | 'Movies' | 'TV Series' | 'Person'
 
 const SearchInput = ({ handleSearchOnClick, isSearchOpen }: PropsType) => {
   const [search, setSearch] = useState('')
+  const [page, setPage] = useState(1)
+
   const [searchForMulti, { data: multiSearchData, isFetching: isMultiLoading }] =
     useLazySearchForMultiQuery()
   const [searchForMovie, { data: movieSearchData, isFetching: isMovieLoading }] =
@@ -42,6 +44,22 @@ const SearchInput = ({ handleSearchOnClick, isSearchOpen }: PropsType) => {
 
   const handleChosenType = (type: ChosenType) => () => {
     setChosenType(type)
+    setPage(1)
+  }
+
+  const handleOnBackClick = () => {
+    chosenType === 'All' && searchForMulti({ query: search, page: page - 1 })
+    chosenType === 'Movies' && searchForMovie({ query: search, page: page - 1 })
+    chosenType === 'TV Series' && searchForTVSeries({ query: search, page: page - 1 })
+    chosenType === 'Person' && searchForPerson({ query: search, page: page - 1 })
+    setPage((prevPage) => prevPage - 1)
+  }
+  const handleOnNextClick = () => {
+    chosenType === 'All' && searchForMulti({ query: search, page: page + 1 })
+    chosenType === 'Movies' && searchForMovie({ query: search, page: page + 1 })
+    chosenType === 'TV Series' && searchForTVSeries({ query: search, page: page + 1 })
+    chosenType === 'Person' && searchForPerson({ query: search, page: page + 1 })
+    setPage((prevPage) => prevPage + 1)
   }
 
   useEffect(() => {
@@ -287,6 +305,90 @@ const SearchInput = ({ handleSearchOnClick, isSearchOpen }: PropsType) => {
                   </div>
                 </div>
               ))}
+            {chosenType === 'All' && (
+              <div className="flex justify-between p-5 w-full">
+                <button
+                  className="text-slate-300 disabled:opacity-30"
+                  onClick={handleOnBackClick}
+                  disabled={page === 1}
+                >
+                  Back
+                </button>
+                <div className="text-slate-300">
+                  {page} of {multiSearchData?.total_pages}
+                </div>
+                <button
+                  className="text-slate-300"
+                  onClick={handleOnNextClick}
+                  disabled={multiSearchData?.total_pages === page}
+                >
+                  Next
+                </button>
+              </div>
+            )}
+            {chosenType === 'Movies' && (
+              <div className="flex justify-between p-5 w-full">
+                <button
+                  className="text-slate-300 disabled:opacity-30"
+                  onClick={handleOnBackClick}
+                  disabled={page === 1}
+                >
+                  Back
+                </button>
+                <div className="text-slate-300">
+                  {page} of {movieSearchData?.total_pages}
+                </div>
+                <button
+                  className="text-slate-300"
+                  onClick={handleOnNextClick}
+                  disabled={movieSearchData?.total_pages === page}
+                >
+                  Next
+                </button>
+              </div>
+            )}
+            {chosenType === 'TV Series' && (
+              <div className="flex justify-between p-5 w-full">
+                <button
+                  className="text-slate-300 disabled:opacity-30"
+                  onClick={handleOnBackClick}
+                  disabled={page === 1}
+                >
+                  Back
+                </button>
+                <div className="text-slate-300">
+                  {page} of {tvSearchData?.total_pages}
+                </div>
+                <button
+                  className="text-slate-300"
+                  onClick={handleOnNextClick}
+                  disabled={tvSearchData?.total_pages === page}
+                >
+                  Next
+                </button>
+              </div>
+            )}
+            {chosenType === 'Person' && (
+              <div className="flex justify-between p-5 w-full">
+                <button
+                  className="text-slate-300 disabled:opacity-30"
+                  onClick={handleOnBackClick}
+                  disabled={page === 1}
+                >
+                  Back
+                </button>
+                <div className="text-slate-300">
+                  {page} of {personSearchData?.total_pages}
+                </div>
+                <button
+                  className="text-slate-300"
+                  onClick={handleOnNextClick}
+                  disabled={personSearchData?.total_pages === page}
+                >
+                  Next
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>
