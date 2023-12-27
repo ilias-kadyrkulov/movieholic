@@ -44,6 +44,15 @@ const TrendingTodaySlider = ({ data, getMovieDetails, setPopularity }: PropsType
             slidesPerView: 1.4,
           },
         }}
+        onSlideChange={(swiper) => {
+          const currentIndex = swiper.activeIndex
+          const selectedMovie = data && data[currentIndex]
+
+          if(selectedMovie) {
+            getMovieDetails({movieId: selectedMovie.id})
+            setPopularity(currentIndex + 1)
+          }
+        }}
       >
         {data?.map((m, index) => (
           <SwiperSlide

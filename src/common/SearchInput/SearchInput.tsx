@@ -318,7 +318,7 @@ const SearchInput = ({ handleSearchOnClick, isSearchOpen }: PropsType) => {
                   {page} of {multiSearchData?.total_pages}
                 </div>
                 <button
-                  className="text-slate-300"
+                  className="text-slate-300 disabled:opacity-30"
                   onClick={handleOnNextClick}
                   disabled={multiSearchData?.total_pages === page}
                 >
@@ -339,7 +339,7 @@ const SearchInput = ({ handleSearchOnClick, isSearchOpen }: PropsType) => {
                   {page} of {movieSearchData?.total_pages}
                 </div>
                 <button
-                  className="text-slate-300"
+                  className="text-slate-300 disabled:opacity-30"
                   onClick={handleOnNextClick}
                   disabled={movieSearchData?.total_pages === page}
                 >
@@ -360,7 +360,7 @@ const SearchInput = ({ handleSearchOnClick, isSearchOpen }: PropsType) => {
                   {page} of {tvSearchData?.total_pages}
                 </div>
                 <button
-                  className="text-slate-300"
+                  className="text-slate-300 disabled:opacity-30"
                   onClick={handleOnNextClick}
                   disabled={tvSearchData?.total_pages === page}
                 >
@@ -381,7 +381,7 @@ const SearchInput = ({ handleSearchOnClick, isSearchOpen }: PropsType) => {
                   {page} of {personSearchData?.total_pages}
                 </div>
                 <button
-                  className="text-slate-300"
+                  className="text-slate-300 disabled:opacity-30"
                   onClick={handleOnNextClick}
                   disabled={personSearchData?.total_pages === page}
                 >
