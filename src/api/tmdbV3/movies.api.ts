@@ -1,4 +1,4 @@
-import { MovieDetailsRequestType, MovieDetailsResponseType, MovieType, ResponseType } from '../../types/types'
+import { MovieDetailsRequestType, MovieDetailsResponseType, MovieType, ResponseType } from '@/types/types'
 import { tmdbV3API } from './tmdb.api'
 
 type GetCastDetailsType = {

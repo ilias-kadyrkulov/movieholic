@@ -1,7 +1,7 @@
 import Slider from 'react-slick'
 import styles from './VerticalEpisodeSlider.module.scss'
-import { useActions } from '../../../hooks/useActions'
-import { useAppSelector } from '../../../hooks/hooks'
+import { useActions } from '@/hooks/useActions'
+import { useAppSelector } from '@/hooks/hooks'
 import { Link, useParams } from 'react-router-dom'
 
 const VerticalEpisodeSlider = () => {

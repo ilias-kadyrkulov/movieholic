@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useActions } from '../../hooks/useActions'
+import { useActions } from '@/hooks/useActions'
 
 const CustomLink = ({ to, children }: { to: string; children?: any }) => {
     const { fileListEmptied } = useActions()

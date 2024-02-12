@@ -1,4 +1,4 @@
-import { MovieSearchType, PersonSearchType, ResponseType, TVSearchType } from '../../types/types'
+import { MovieSearchType, PersonSearchType, ResponseType, TVSearchType } from '@/types/types'
 import { tmdbV3API } from './tmdb.api'
 
 type MultiSearchRequestType = {

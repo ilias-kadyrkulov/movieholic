@@ -1,6 +1,6 @@
 import styles from './WatchTrailerButton.module.scss'
 import { Link } from 'react-router-dom'
-import { useActions } from '../../../hooks/useActions'
+import { useActions } from '@/hooks/useActions'
 import { AiOutlinePlayCircle } from 'react-icons/ai'
 
 type PropsType = {

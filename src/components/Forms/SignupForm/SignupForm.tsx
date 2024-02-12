@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useId, useState } from 'react'
 import { Formik, Form, Field } from 'formik'
 import styles from './SignupForm.module.scss'
-import logo from '../../../assets/logo-low-resolution.png'
+import logo from '@/assets/logo-low-resolution.png'
 import 'firebase/auth'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { useValidateTokenWithLoginMutation } from '../../../api/tmdbV3/auth.api'
-import { useActions } from '../../../hooks/useActions'
-import { useAppSelector } from '../../../hooks/hooks'
+import { useValidateTokenWithLoginMutation } from '@/api/tmdbV3/auth.api'
+import { useActions } from '@/hooks/useActions'
+import { useAppSelector } from '@/hooks/hooks'
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore'
-import { db } from '../../../firebase'
+import { db } from '@/firebase'
 
 type PropsType = {
   formClicked?: boolean
@@ -188,7 +188,7 @@ const SignupForm = (props: PropsType) => {
                   type="username"
                   placeholder="Username..."
                   name="username"
-                  id={`${id}-email`}
+                  id={`${id}-username`}
                   validate={validateUsername}
                 />
                 {errors.username && touched.username && (
@@ -301,7 +301,10 @@ const SignupForm = (props: PropsType) => {
             <h3 className="text-center mt-4 text-gray-500 text-sm">
               Already have an account?{' '}
               <span className="text-slate-200 font-semibold hover:opacity-80">
-                <Link to={`/mobile-menu/login?request_token=${requestTokenURI}`} className="font-semibold text-sm">
+                <Link
+                  to={`/mobile-menu/login?request_token=${requestTokenURI}`}
+                  className="font-semibold text-sm"
+                >
                   Login
                 </Link>
               </span>

@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import styles from './MobileMenuPage.module.scss'
-import PagesList from '../../components/PagesList/PagesList'
-import CustomLink from '../../common/CustomLink/CustomLink'
-import { useActions } from '../../hooks/useActions'
+import PagesList from '@/components/PagesList/PagesList'
+import CustomLink from '@/common/CustomLink/CustomLink'
+import { useActions } from '@/hooks/useActions'
 import { useNavigate } from 'react-router-dom'
-import { useAppSelector } from '../../hooks/hooks'
-import { useCreateRequestTokenQuery } from '../../api/tmdbV3/auth.api'
+import { useAppSelector } from '@/hooks/hooks'
+import { useCreateRequestTokenQuery } from '@/api/tmdbV3/auth.api'
 
 const MobileMenuPage = () => {
   const { data: requestTokenData } = useCreateRequestTokenQuery()

@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { AccountResponseType } from '../../api/tmdbV3/auth.api'
+import { AccountResponseType } from '@/api/tmdbV3/auth.api'
 
 type AccountType = {
   avatar?: string | undefined

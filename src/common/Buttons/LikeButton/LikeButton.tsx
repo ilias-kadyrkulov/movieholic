@@ -1,8 +1,8 @@
 import { BiLike } from 'react-icons/bi'
 import styles from './LikeButton.module.scss'
-import { useActions } from '../../../hooks/useActions'
-import { useAppSelector } from '../../../hooks/hooks'
-import { useMovieFavoriteMutation, useTvFavoriteMutation } from '../../../api/tmdbV3/account.api'
+import { useActions } from '@/hooks/useActions'
+import { useAppSelector } from '@/hooks/hooks'
+import { useMovieFavoriteMutation, useTvFavoriteMutation } from '@/api/tmdbV3/account.api'
 
 const LikeButton = ({
   tmdbId,

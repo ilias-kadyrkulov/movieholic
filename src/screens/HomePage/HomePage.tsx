@@ -1,12 +1,12 @@
 import PopularOfTheWeek from './PopularOfTheWeek/PopularOfTheWeek'
 import JustReleasedMovies from './JustReleasedMovies/JustReleasedMovies'
 import styles from './HomePage.module.scss'
-import { useAppSelector } from '../../hooks/hooks'
+import { useAppSelector } from '@/hooks/hooks'
 import Favorite from './Favorite/Favorite'
 import TrendingToday from './TrendingToday/TrendingToday'
-import { useGetMovieGenresQuery, useGetTVGenresQuery } from '../../api/tmdbV3/genres.api'
+import { useGetMovieGenresQuery, useGetTVGenresQuery } from '@/api/tmdbV3/genres.api'
 import Watchlist from './Watchlist/Watchlist'
-import { useActions } from '../../hooks/useActions'
+import { useActions } from '@/hooks/useActions'
 import { useEffect } from 'react'
 
 const HomePage = () => {

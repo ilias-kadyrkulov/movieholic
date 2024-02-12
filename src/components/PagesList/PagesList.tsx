@@ -1,4 +1,4 @@
-import CustomLink from '../../common/CustomLink/CustomLink'
+import CustomLink from '@/common/CustomLink/CustomLink'
 import styles from './PagesList.module.scss'
 
 const PagesList = () => {

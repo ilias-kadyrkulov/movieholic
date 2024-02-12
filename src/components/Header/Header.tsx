@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import styles from './Header.module.scss'
-import logo from '../../assets/logo-low-resolution.png'
-import smallLogo from '../../assets/movieholic-favicon-color.png'
+import logo from '@/assets/logo-low-resolution.png'
+import smallLogo from '@/assets/movieholic-favicon-color.png'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { IoMdNotificationsOutline } from 'react-icons/io'
 import SignupForm from '../Forms/SignupForm/SignupForm'
 import LoginForm from '../Forms/LoginForm/LoginForm'
-import { useActions } from '../../hooks/useActions'
-import CustomLink from '../../common/CustomLink/CustomLink'
+import { useActions } from '@/hooks/useActions'
+import CustomLink from '@/common/CustomLink/CustomLink'
 import BurgerMenu from '../BurgerMenu/BurgerMenu'
 import PagesList from '../PagesList/PagesList'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
@@ -17,11 +17,11 @@ import {
   useDeleteSessionMutation,
   useLazyGetAccountDetailsQuery,
   // usePrefetch
-} from '../../api/tmdbV3/auth.api'
-import { useAppSelector } from '../../hooks/hooks'
-import { tmdbApiConfig } from '../../api/tmdbV3/tmdb.api'
+} from '@/api/tmdbV3/auth.api'
+import { useAppSelector } from '@/hooks/hooks'
+import { tmdbApiConfig } from '@/api/tmdbV3/tmdb.api'
 import { RotatingLines } from 'react-loader-spinner'
-import SearchInput from '../../common/SearchInput/SearchInput'
+import SearchInput from '@/common/SearchInput/SearchInput'
 
 const Header = () => {
   const { data: requestTokenData } = useCreateRequestTokenQuery()

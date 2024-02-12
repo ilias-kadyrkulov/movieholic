@@ -1,12 +1,12 @@
 import { useNavigate, useParams } from 'react-router-dom'
-import { useAppSelector } from '../../../hooks/hooks'
-import VerticalEpisodeSlider from '../../EpisodeSlider/VerticalMode/VerticalEpisodeSlider'
+import { useAppSelector } from '@/hooks/hooks'
+import VerticalEpisodeSlider from '@/components/EpisodeSlider/VerticalMode/VerticalEpisodeSlider'
 import styles from './TVSeriesPlayer.module.scss'
 import { useState, useEffect, useRef } from 'react'
-// import { useGetFileListQuery } from '../../../api/filemoon/file.api'
-import ServerButton from '../../../common/Buttons/ServerButton/ServerButton'
-import { useLazyGetTVSeasonsDetailsQuery } from '../../../api/tmdbV3/tvSeasons.api'
-import { useGetTVSeriesDetailsByMovieIdQuery } from '../../../api/tmdbV3/tvSeries.api'
+// import { useGetFileListQuery } from '@/api/filemoon/file.api'
+import ServerButton from '@/common/Buttons/ServerButton/ServerButton'
+import { useLazyGetTVSeasonsDetailsQuery } from '@/api/tmdbV3/tvSeasons.api'
+import { useGetTVSeriesDetailsByMovieIdQuery } from '@/api/tmdbV3/tvSeries.api'
 
 const TVSeriesPlayer = () => {
   //FIXME - Fix filemoon server

@@ -1,5 +1,5 @@
-import { useGetTrendingMoviesQuery } from '../../../api/tmdbV3/trending.api'
-import SmallSlider from '../../../components/Sliders/SmallSlider/SmallSlider'
+import { useGetTrendingMoviesQuery } from '@/api/tmdbV3/trending.api'
+import SmallSlider from '@/components/Sliders/SmallSlider/SmallSlider'
 import styles from './PopularOfTheWeek.module.scss'
 
 const PopularOfTheWeek = () => {

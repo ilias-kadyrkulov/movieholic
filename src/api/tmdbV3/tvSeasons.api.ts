@@ -1,4 +1,4 @@
-import { TVSeasonsDetailsRequestType, TVSeasonsDetailsResponseType } from '../../types/types'
+import { TVSeasonsDetailsRequestType, TVSeasonsDetailsResponseType } from '@/types/types'
 import { tmdbV3API } from './tmdb.api'
 
 const tmdbTVSeasonsAPI = tmdbV3API.injectEndpoints({

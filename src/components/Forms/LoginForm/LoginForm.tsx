@@ -1,12 +1,12 @@
 import { useState, useEffect, useId } from 'react'
 import { Field, Form, Formik } from 'formik'
-import { db } from '../../../firebase'
+import { db } from '@/firebase'
 import styles from '../SignupForm/SignupForm.module.scss'
-import logo from '../../../assets/logo-low-resolution.png'
+import logo from '@/assets/logo-low-resolution.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { collection, getDocs, query, where } from 'firebase/firestore'
-import { useActions } from '../../../hooks/useActions'
-import { useAppSelector } from '../../../hooks/hooks'
+import { useActions } from '@/hooks/useActions'
+import { useAppSelector } from '@/hooks/hooks'
 
 type PropsType = {
   formClicked?: boolean

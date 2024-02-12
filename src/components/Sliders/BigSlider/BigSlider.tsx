@@ -1,15 +1,15 @@
 import styles from './BigSlider.module.scss'
 import styled from 'styled-components'
-import GreenButton from '../../../common/Buttons/GreenButton/GreenButton'
-import WatchlistButton from '../../../common/Buttons/WatchlistButton/WatchlistButton'
-import { useAppSelector } from '../../../hooks/hooks'
-import WatchTrailerButton from '../../../common/Buttons/WatchTrailerButton/WatchTrailerButton'
-import { tmdbApiConfig } from '../../../api/tmdbV3/tmdb.api'
+import GreenButton from '@/common/Buttons/GreenButton/GreenButton'
+import WatchlistButton from '@/common/Buttons/WatchlistButton/WatchlistButton'
+import { useAppSelector } from '@/hooks/hooks'
+import WatchTrailerButton from '@/common/Buttons/WatchTrailerButton/WatchTrailerButton'
+import { tmdbApiConfig } from '@/api/tmdbV3/tmdb.api'
 import SwiperCore from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import 'swiper/swiper-bundle.css'
-import { NowPlayingMovieType } from '../../../types/types'
+import { NowPlayingMovieType } from '@/types/types'
 
 SwiperCore.use([Navigation, Autoplay, Pagination])
 

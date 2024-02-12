@@ -1,5 +1,5 @@
 import styles from './Footer.module.scss'
-import tmdbLogo from '../../assets/tmdb-primary-short.svg'
+import tmdbLogo from '@/assets/tmdb-primary-short.svg'
 import { FaGithub } from 'react-icons/fa'
 
 const Footer = () => {

@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
-import { useGetTrendingMoviesQuery } from '../../../api/tmdbV3/trending.api'
-import TrendingTodaySlider from '../../../components/Sliders/TrendingTodaySlider/TrendingTodaySlider'
+import { useGetTrendingMoviesQuery } from '@/api/tmdbV3/trending.api'
+import TrendingTodaySlider from '@/components/Sliders/TrendingTodaySlider/TrendingTodaySlider'
 import styles from './TrendingToday.module.scss'
-import { useAppSelector } from '../../../hooks/hooks'
-import { tmdbApiConfig } from '../../../api/tmdbV3/tmdb.api'
+import { useAppSelector } from '@/hooks/hooks'
+import { tmdbApiConfig } from '@/api/tmdbV3/tmdb.api'
 import { AiFillStar } from 'react-icons/ai'
-import PlayContinueButton from '../../../common/Buttons/PlayContinueButton/PlayContinueButton'
-import WatchlistButton from '../../../common/Buttons/WatchlistButton/WatchlistButton'
-import { useLazyGetMovieDetailsByMovieIdQuery } from '../../../api/tmdbV3/movies.api'
+import PlayContinueButton from '@/common/Buttons/PlayContinueButton/PlayContinueButton'
+import WatchlistButton from '@/common/Buttons/WatchlistButton/WatchlistButton'
+import { useLazyGetMovieDetailsByMovieIdQuery } from '@/api/tmdbV3/movies.api'
 
 const TrendingToday = () => {
   const { data: trendingMoviesData } = useGetTrendingMoviesQuery({

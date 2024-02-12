@@ -1,4 +1,4 @@
-import { MovieType } from '../../types/types'
+import { MovieType } from '@/types/types'
 import { tmdbV3API } from './tmdb.api'
 
 type GetTrendingMoviesType = {

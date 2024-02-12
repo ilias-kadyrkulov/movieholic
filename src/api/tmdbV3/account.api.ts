@@ -1,4 +1,4 @@
-import { MovieType, ResponseType, TVType } from '../../types/types'
+import { MovieType, ResponseType, TVType } from '@/types/types'
 import { tmdbV3API } from './tmdb.api'
 
 const tmdbAccountId = 20616061

@@ -1,8 +1,8 @@
-import { useGetMoviesFavoriteQuery, useGetTVFavoriteQuery } from '../../../api/tmdbV3/account.api'
-import BaseMovieSlider from '../../../components/Sliders/BaseMovieSlider/BaseMovieSlider'
-import BaseTVSlider from '../../../components/Sliders/BaseTVSlider/BaseTVSlider'
-import { useAppSelector } from '../../../hooks/hooks'
-import { useActions } from '../../../hooks/useActions'
+import { useGetMoviesFavoriteQuery, useGetTVFavoriteQuery } from '@/api/tmdbV3/account.api'
+import BaseMovieSlider from '@/components/Sliders/BaseMovieSlider/BaseMovieSlider'
+import BaseTVSlider from '@/components/Sliders/BaseTVSlider/BaseTVSlider'
+import { useAppSelector } from '@/hooks/hooks'
+import { useActions } from '@/hooks/useActions'
 import styles from './Favorite.module.scss'
 import { useEffect } from 'react'
 

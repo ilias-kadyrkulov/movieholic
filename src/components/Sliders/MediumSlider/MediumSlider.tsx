@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { AiFillStar } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { tmdbApiConfig } from '../../../api/tmdbV3/tmdb.api'
-import { useAppSelector } from '../../../hooks/hooks'
+import { tmdbApiConfig } from '@/api/tmdbV3/tmdb.api'
+import { useAppSelector } from '@/hooks/hooks'
 
 const CustomStyles = styled.div`
   @media (min-width: 576px) {

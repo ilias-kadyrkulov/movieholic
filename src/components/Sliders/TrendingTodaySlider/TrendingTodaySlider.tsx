@@ -1,8 +1,8 @@
 import styles from './TrendingTodaySlider.module.scss'
-import { useAppSelector } from '../../../hooks/hooks'
-import { MovieDetailsRequestType, MovieType } from '../../../types/types'
+import { useAppSelector } from '@/hooks/hooks'
+import { MovieDetailsRequestType, MovieType } from '@/types/types'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { tmdbApiConfig } from '../../../api/tmdbV3/tmdb.api'
+import { tmdbApiConfig } from '@/api/tmdbV3/tmdb.api'
 import { AiFillStar } from 'react-icons/ai'
 import styled from 'styled-components'
 

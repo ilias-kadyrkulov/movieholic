@@ -1,8 +1,8 @@
-import { useGetMoviesWatchlistQuery, useGetTVWatchlistQuery } from '../../../api/tmdbV3/account.api'
-import BaseMovieSlider from '../../../components/Sliders/BaseMovieSlider/BaseMovieSlider'
-import BaseTVSlider from '../../../components/Sliders/BaseTVSlider/BaseTVSlider'
-import { useAppSelector } from '../../../hooks/hooks'
-import { useActions } from '../../../hooks/useActions'
+import { useGetMoviesWatchlistQuery, useGetTVWatchlistQuery } from '@/api/tmdbV3/account.api'
+import BaseMovieSlider from '@/components/Sliders/BaseMovieSlider/BaseMovieSlider'
+import BaseTVSlider from '@/components/Sliders/BaseTVSlider/BaseTVSlider'
+import { useAppSelector } from '@/hooks/hooks'
+import { useActions } from '@/hooks/useActions'
 import styles from './Watchlist.module.scss'
 import { useEffect } from 'react'
 

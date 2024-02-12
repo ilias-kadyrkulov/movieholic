@@ -1,9 +1,9 @@
 import { Outlet, useNavigate } from 'react-router-dom'
 import styles from './MobileMenuLayout.module.scss'
 import { IoIosArrowBack } from 'react-icons/io'
-import CustomLink from '../../common/CustomLink/CustomLink'
-import smallLogo from '../../assets/movieholic-favicon-color.png'
-import BurgerMenu from '../../components/BurgerMenu/BurgerMenu'
+import CustomLink from '@/common/CustomLink/CustomLink'
+import smallLogo from '@/assets/movieholic-favicon-color.png'
+import BurgerMenu from '@/components/BurgerMenu/BurgerMenu'
 
 const MobileMenuLayout = () => {
     const navigate = useNavigate()

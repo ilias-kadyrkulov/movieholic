@@ -6,12 +6,12 @@ import {
   useLazySearchForMultiQuery,
   useLazySearchForPersonQuery,
   useLazySearchForTVQuery,
-} from '../../api/tmdbV3/search.api'
+} from '@/api/tmdbV3/search.api'
 import { AiFillStar, AiOutlineSearch } from 'react-icons/ai'
 import { MdOutlineManageSearch } from 'react-icons/md'
 import { LiaFilmSolid } from 'react-icons/lia'
-import { useAppSelector } from '../../hooks/hooks'
-import { tmdbApiConfig } from '../../api/tmdbV3/tmdb.api'
+import { useAppSelector } from '@/hooks/hooks'
+import { tmdbApiConfig } from '@/api/tmdbV3/tmdb.api'
 import { Link } from 'react-router-dom'
 import { Oval } from 'react-loader-spinner'
 

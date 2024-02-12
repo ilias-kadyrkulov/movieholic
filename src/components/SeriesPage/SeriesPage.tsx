@@ -1,25 +1,25 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import styles from './SeriesPage.module.scss'
-import WatchlistButton from '../../common/Buttons/WatchlistButton/WatchlistButton'
-import DownloadButton from '../../common/Buttons/DownloadButton/DownloadButton'
-import ShareButton from '../../common/Buttons/ShareButton/ShareButton'
-import LikeButton from '../../common/Buttons/LikeButton/LikeButton'
+import WatchlistButton from '@/common/Buttons/WatchlistButton/WatchlistButton'
+import DownloadButton from '@/common/Buttons/DownloadButton/DownloadButton'
+import ShareButton from '@/common/Buttons/ShareButton/ShareButton'
+import LikeButton from '@/common/Buttons/LikeButton/LikeButton'
 import CastSlider from '../Sliders/CastSlider/CastSlider'
-import { useAppSelector } from '../../hooks/hooks'
+import { useAppSelector } from '@/hooks/hooks'
 import EpisodeSlider from '../EpisodeSlider/EpisodeSlider'
-import { useGetFileListQuery } from '../../api/filemoon/file.api'
-import { useActions } from '../../hooks/useActions'
-import WatchTrailerButton from '../../common/Buttons/WatchTrailerButton/WatchTrailerButton'
+import { useGetFileListQuery } from '@/api/filemoon/file.api'
+import { useActions } from '@/hooks/useActions'
+import WatchTrailerButton from '@/common/Buttons/WatchTrailerButton/WatchTrailerButton'
 import { RotatingLines } from 'react-loader-spinner'
-import { tmdbApiConfig } from '../../api/tmdbV3/tmdb.api'
-import ShowPagePlayButton from '../../common/Buttons/PlayContinueButton/ShowPagePlayButton'
+import { tmdbApiConfig } from '@/api/tmdbV3/tmdb.api'
+import ShowPagePlayButton from '@/common/Buttons/PlayContinueButton/ShowPagePlayButton'
 import {
   useGetCastDetailsByTVSeriesIdQuery,
   useGetTVSeriesDetailsByMovieIdQuery,
-} from '../../api/tmdbV3/tvSeries.api'
-import { useGetTVWatchlistQuery } from '../../api/tmdbV3/account.api'
-import { useLazyGetTVSeasonsDetailsQuery } from '../../api/tmdbV3/tvSeasons.api'
+} from '@/api/tmdbV3/tvSeries.api'
+import { useGetTVWatchlistQuery } from '@/api/tmdbV3/account.api'
+import { useLazyGetTVSeasonsDetailsQuery } from '@/api/tmdbV3/tvSeasons.api'
 
 const SeriesPage = () => {
   const { id } = useParams<{ id: string }>()

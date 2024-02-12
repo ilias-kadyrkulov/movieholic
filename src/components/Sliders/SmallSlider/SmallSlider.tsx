@@ -4,9 +4,9 @@ import styled from 'styled-components'
 import { AiFillStar } from 'react-icons/ai'
 import { LiaFilmSolid } from 'react-icons/lia'
 import { Link } from 'react-router-dom'
-import { MovieType } from '../../../types/types'
-import { tmdbApiConfig } from '../../../api/tmdbV3/tmdb.api'
-import { useAppSelector } from '../../../hooks/hooks'
+import { MovieType } from '@/types/types'
+import { tmdbApiConfig } from '@/api/tmdbV3/tmdb.api'
+import { useAppSelector } from '@/hooks/hooks'
 
 type PropsType = {
   data: MovieType[] | undefined

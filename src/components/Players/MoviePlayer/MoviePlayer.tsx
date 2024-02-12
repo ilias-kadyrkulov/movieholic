@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import ServerButton from '../../../common/Buttons/ServerButton/ServerButton'
+import ServerButton from '@/common/Buttons/ServerButton/ServerButton'
 import styles from './MoviePlayer.module.scss'
-import { useAppSelector } from '../../../hooks/hooks'
+import { useAppSelector } from '@/hooks/hooks'
 
 const MoviePlayer = () => {
     const { id, titleText } = useParams<{ id?: string; titleText?: string }>()

@@ -1,6 +1,6 @@
 import { RotatingLines } from 'react-loader-spinner'
 import { BigSlider } from '../Sliders/BigSlider/BigSlider'
-import { useGetNowPlayingMoviesQuery } from '../../api/tmdbV3/movieLists.api'
+import { useGetNowPlayingMoviesQuery } from '@/api/tmdbV3/movieLists.api'
 
 const Hero = () => {
   const { data: nowPlayingMoviesData, isFetching } = useGetNowPlayingMoviesQuery({})

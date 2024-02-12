@@ -1,6 +1,6 @@
-import { useGetLatestReleasedMoviesQuery } from '../../../api/tmdbV3/movies.api'
-import MediumSlider from '../../../components/Sliders/MediumSlider/MediumSlider'
-import { useActions } from '../../../hooks/useActions'
+import { useGetLatestReleasedMoviesQuery } from '@/api/tmdbV3/movies.api'
+import MediumSlider from '@/components/Sliders/MediumSlider/MediumSlider'
+import { useActions } from '@/hooks/useActions'
 import styles from './JustReleasedMovies.module.scss'
 import { useEffect } from 'react';
 

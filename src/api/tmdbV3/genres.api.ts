@@ -1,4 +1,4 @@
-import { GenresType } from '../../types/types'
+import { GenresType } from '@/types/types'
 import { tmdbV3API } from './tmdb.api'
 
 type GenresResponseType = {

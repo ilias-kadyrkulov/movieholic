@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { FileType } from '../../api/filemoon/file.api'
+import { FileType } from '@/api/filemoon/file.api'
 
 type PlayerType = {
     enabled: boolean

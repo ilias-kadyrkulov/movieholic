@@ -1,9 +1,9 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import styles from './CastSlider.module.scss'
-import castDummy from '../../../assets/noPhotoActor.png'
+import castDummy from '@/assets/noPhotoActor.png'
 import styled from 'styled-components'
-import { tmdbApiConfig } from '../../../api/tmdbV3/tmdb.api'
-import { CastType } from '../../../types/types'
+import { tmdbApiConfig } from '@/api/tmdbV3/tmdb.api'
+import { CastType } from '@/types/types'
 
 type PropsType = {
   data: CastType[] | undefined

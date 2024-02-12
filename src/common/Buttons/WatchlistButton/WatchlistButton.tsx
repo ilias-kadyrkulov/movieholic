@@ -3,9 +3,9 @@ import styles from './WatchlistButton.module.scss'
 import {
   useMovieWatchlistMutation,
   useTvWatchlistMutation,
-} from '../../../api/tmdbV3/account.api'
-import { useAppSelector } from '../../../hooks/hooks'
-import { useActions } from '../../../hooks/useActions'
+} from '@/api/tmdbV3/account.api'
+import { useAppSelector } from '@/hooks/hooks'
+import { useActions } from '@/hooks/useActions'
 
 const WatchlistButton = ({
   text,
