@@ -1,24 +1,22 @@
-import React from 'react'
-import PrimaryLayout from '../layouts/PrimaryLayout/PrimaryLayout'
-import HomePage from '../screens/HomePage/HomePage'
-import LoginForm from '../components/Forms/LoginForm/LoginForm'
-import SignupForm from '../components/Forms/SignupForm/SignupForm'
-
-const MoviePage = React.lazy(() => import('@/components/MoviePage/MoviePage'))
-const SeriesPage = React.lazy(() => import('@/components/SeriesPage/SeriesPage'))
-const MoviePlayer = React.lazy(() => import('@/components/Players/MoviePlayer/MoviePlayer'))
-const TVSeriesPlayer = React.lazy(
-  () => import('@/components/Players/TVSeriesPlayer/TVSeriesPlayer'),
-)
-const TrailerPlayer = React.lazy(() => import('@/components/Players/TrailerPlayer/TrailerPlayer'))
-const SecondaryLayout = React.lazy(() => import('@/layouts/SecondaryLayout/SecondaryLayout'))
-const DiscoverPage = React.lazy(() => import('@/screens/DiscoverPage/DiscoverPage'))
-const MovieReleasePage = React.lazy(() => import('@/screens/MovieReleasePage/MovieReleasePage'))
-const ForumPage = React.lazy(() => import('@/screens/ForumPage/ForumPage'))
-const AboutPage = React.lazy(() => import('@/screens/AboutPage/AboutPage'))
-const NotFoundPage = React.lazy(() => import('@/screens/NotFoundPage/NotFoundPage'))
-const MobileMenuLayout = React.lazy(() => import('@/layouts/MobileMenuLayout/MobileMenuLayout'))
-const MobileMenuPage = React.lazy(() => import('@/screens/MobileMenuPage/MobileMenuPage'))
+import {
+  AboutPage,
+  DiscoverPage,
+  ForumPage,
+  HomePage,
+  LoginForm,
+  MobileMenuLayout,
+  MobileMenuPage,
+  MoviePage,
+  MoviePlayer,
+  MovieReleasePage,
+  NotFoundPage,
+  PrimaryLayout,
+  SecondaryLayout,
+  SeriesPage,
+  SignupForm,
+  TVSeriesPlayer,
+  TrailerPlayer,
+} from '@/screens'
 
 type Route = {
   path: string
