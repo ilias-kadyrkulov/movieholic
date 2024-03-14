@@ -1,5 +1,8 @@
-import { TVSeriesDetailsRequestType, TVDetailsResponseType, ResponseType, TVType, CastType } from '@/types/types'
 import { tmdbV3API } from './tmdb.api'
+import { ResponseType, TVDetailsResponseType } from '@/types/api.types'
+import { TVSeriesDetailsRequestType } from '@/types/details.types'
+import { TVType } from '@/types/tv.types'
+import { CastType } from '@/types/cast.types'
 
 type GetCastDetailsType = {
   id: number

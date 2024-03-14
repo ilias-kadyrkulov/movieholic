@@ -1,5 +1,5 @@
+import { MovieType } from '@/types/movie.types'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { MovieType } from '@/types/types'
 
 let initialState: MovieType[] = []
 

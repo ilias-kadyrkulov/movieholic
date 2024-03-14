@@ -1,0 +1,90 @@
+.MovieCard {
+    @apply flex rounded-2xl bg-cover bg-no-repeat bg-center;
+
+    .Number {
+        @apply flex items-center font-bold text-white text-4xl;
+    }
+
+    img {
+        @apply block mx-3 rounded-2xl;
+
+        width: 110px;
+        height: 160px;
+    }
+    svg {
+        @apply w-5 h-5;
+        path {
+            @apply fill-yellow-400;
+        }
+    }
+
+    .MovieDetails {
+        @apply flex flex-col items-baseline max-w-7xl;
+
+        .Rating {
+            @apply flex items-center my-2;
+        }
+
+        .Genres {
+            @apply flex justify-center;
+
+            svg {
+                @apply max-w-full h-5;
+                path {
+                    @apply fill-slate-400;
+                }
+            }
+
+            span {
+                @apply inline-block font-semibold text-slate-400 mr-1 text-xs;
+            }
+        }
+
+        .TitleType {
+            @apply text-slate-400 pl-2 before:absolute before:left-0 before:bg-slate-400 before:h-6;
+
+            &::before {
+                width: 1px;
+            }
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .MovieCard {
+        .Number {
+            @apply text-3xl;
+        }
+    }
+}
+
+@media (max-width: 1250px) {
+    .MovieCard {
+        @apply flex-col items-center;
+
+        > div {
+            @apply mb-1;
+        }
+
+        .MovieDetails {
+            h2 {
+                @apply text-center mx-auto;
+            }
+
+            .Rating {
+                div {
+                    @apply text-xs;
+                }
+                margin: 0 auto;
+            }
+
+            .Genres {
+                div {
+                    line-height: 0.5rem;
+                }
+
+                margin: 0 auto;
+            }
+        }
+    }
+}

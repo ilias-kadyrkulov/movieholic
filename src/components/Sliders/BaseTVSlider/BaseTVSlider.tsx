@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
-import styles from '../BaseMovieSlider/BaseMovieSlider.module.scss'
-import styled from 'styled-components'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { TVType } from '@/types/types'
 import { useAppSelector } from '@/hooks/hooks'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import { AiFillStar } from 'react-icons/ai'
 import { tmdbApiConfig } from '@/api/tmdbV3/tmdb.api'
+import { TVType } from '@/types/tv.types'
+import styles from '../BaseMovieSlider/BaseMovieSlider.module.scss'
+import styled from 'styled-components'
 
 type PropsType = {
   data: TVType[]

@@ -1,5 +1,7 @@
-import { MovieType, ResponseType, TVType } from '@/types/types'
 import { tmdbV3API } from './tmdb.api'
+import { MovieType } from '@/types/movie.types'
+import { TVType } from '@/types/tv.types'
+import { ResponseType } from '@/types/api.types'
 
 const tmdbAccountId = 20616061
 
@@ -27,8 +29,13 @@ const tmdbAccountAPI = tmdbV3API.injectEndpoints({
   endpoints: (builder) => ({
     getMoviesWatchlist: builder.query<GetMovieResponseType, WFRequestType>({
       query: ({ language = 'en-KG', page = '1', sort_by = 'created_at.desc', session_id }) => ({
-        url: `account/${tmdbAccountId}/watchlist/movies?language=${language}&page=${page}&sort_by=${sort_by}`,
-        params: { session_id: session_id },
+        url: `account/${tmdbAccountId}/watchlist/movies`,
+        params: {
+          session_id,
+          language,
+          page,
+          sort_by,
+        },
       }),
       providesTags: ['MovieWatchlist'],
     }),
@@ -67,15 +74,25 @@ const tmdbAccountAPI = tmdbV3API.injectEndpoints({
     }),
     getMoviesFavorite: builder.query<GetMovieResponseType, WFRequestType>({
       query: ({ language = 'en-KG', page = '1', sort_by = 'created_at.desc', session_id }) => ({
-        url: `account/${tmdbAccountId}/favorite/movies?language=${language}&page=${page}&sort_by=${sort_by}`,
-        params: { session_id: session_id },
+        url: `account/${tmdbAccountId}/favorite/movies`,
+        params: {
+          session_id,
+          language,
+          page,
+          sort_by,
+        },
       }),
       providesTags: ['MovieFavorite'],
     }),
     getTVFavorite: builder.query<GetTVResponseType, WFRequestType>({
       query: ({ language = 'en-KG', page = '1', sort_by = 'created_at.desc', session_id }) => ({
-        url: `account/${tmdbAccountId}/favorite/tv?language=${language}&page=${page}&sort_by=${sort_by}`,
-        params: { session_id: session_id },
+        url: `account/${tmdbAccountId}/favorite/tv`,
+        params: {
+          session_id,
+          language,
+          page,
+          sort_by,
+        },
       }),
       providesTags: ['TVFavorite'],
     }),
@@ -117,5 +134,5 @@ export const {
   useGetMoviesFavoriteQuery,
   useGetTVFavoriteQuery,
   useMovieFavoriteMutation,
-  useTvFavoriteMutation
+  useTvFavoriteMutation,
 } = tmdbAccountAPI

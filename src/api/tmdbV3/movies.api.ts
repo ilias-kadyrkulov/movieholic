@@ -1,19 +1,13 @@
-import { MovieDetailsRequestType, MovieDetailsResponseType, MovieType, ResponseType } from '@/types/types'
 import { tmdbV3API } from './tmdb.api'
+import { MovieDetailsResponseType, ResponseType } from '@/types/api.types'
+import { MovieDetailsRequestType } from '@/types/details.types'
+import { MovieType } from '@/types/movie.types'
+import { CastType } from '@/types/cast.types'
 
 type GetCastDetailsType = {
   id: number
   cast: CastType[]
 }
-
-type CastType = {
-  id: number
-  name: string
-  profile_path: string
-  character: string
-}
-
-
 
 const tmdbMoviesAPI = tmdbV3API.injectEndpoints({
   endpoints: (builder) => ({

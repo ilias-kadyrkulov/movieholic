@@ -1,5 +1,6 @@
-import { MovieSearchType, PersonSearchType, ResponseType, TVSearchType } from '@/types/types'
 import { tmdbV3API } from './tmdb.api'
+import { ResponseType } from '@/types/api.types'
+import { MovieSearchType, PersonSearchType, TVSearchType } from '@/types/search.types'
 
 type MultiSearchRequestType = {
   query: string

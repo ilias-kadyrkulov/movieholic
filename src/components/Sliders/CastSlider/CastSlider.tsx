@@ -3,7 +3,7 @@ import styles from './CastSlider.module.scss'
 import castDummy from '@/assets/noPhotoActor.png'
 import styled from 'styled-components'
 import { tmdbApiConfig } from '@/api/tmdbV3/tmdb.api'
-import { CastType } from '@/types/types'
+import { CastType } from '@/types/cast.types'
 
 type PropsType = {
   data: CastType[] | undefined

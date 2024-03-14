@@ -1,5 +1,5 @@
-import { MovieType } from '@/types/types'
 import { tmdbV3API } from './tmdb.api'
+import { MovieType } from '@/types/movie.types'
 
 type GetTrendingMoviesType = {
   page: number
@@ -8,16 +8,20 @@ type GetTrendingMoviesType = {
   total_results: number
 }
 
-
+type TrendingMoviesRequestType = {
+  language?: string
+  time_window: string
+}
 
 const tmdbTrendingAPI = tmdbV3API.injectEndpoints({
   endpoints: (builder) => ({
-    getTrendingMovies: builder.query<
-      GetTrendingMoviesType,
-      { language?: string; time_window: string }
-    >({
-      query: ({ language = 'en-KG', time_window }) =>
-        `trending/movie/${time_window}?language=${language}`,
+    getTrendingMovies: builder.query<GetTrendingMoviesType, TrendingMoviesRequestType>({
+      query: ({ language = 'en-KG', time_window }) => ({
+        url: `trending/movie/${time_window}`,
+        params: {
+          language: language,
+        },
+      }),
     }),
   }),
 })
