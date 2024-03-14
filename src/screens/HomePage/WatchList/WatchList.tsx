@@ -1,12 +1,12 @@
+import { useEffect } from 'react'
 import { useGetMoviesWatchlistQuery, useGetTVWatchlistQuery } from '@/api/tmdbV3/account.api'
-import BaseMovieSlider from '@/components/Sliders/BaseMovieSlider/BaseMovieSlider'
-import BaseTVSlider from '@/components/Sliders/BaseTVSlider/BaseTVSlider'
 import { useAppSelector } from '@/hooks/hooks'
 import { useActions } from '@/hooks/useActions'
-import styles from './Watchlist.module.scss'
-import { useEffect } from 'react'
+import BaseMovieSlider from '@/components/Sliders/BaseMovieSlider/BaseMovieSlider'
+import BaseTVSlider from '@/components/Sliders/BaseTVSlider/BaseTVSlider'
+import styles from './WatchList.module.scss'
 
-export const Watchlist = () => {
+export const WatchList = () => {
   const sessionId = useAppSelector((state) => state.tmdbSession.sessionId)
 
   const {
