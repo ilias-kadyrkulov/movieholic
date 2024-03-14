@@ -2,11 +2,11 @@ import { useEffect } from 'react'
 import { useAppSelector } from '@/hooks/hooks'
 import { useActions } from '@/hooks/useActions'
 import { useGetMovieGenresQuery, useGetTVGenresQuery } from '@/api/tmdbV3/genres.api'
+import {Watchlist} from './Watchlist/Watchlist'
 import PopularOfTheWeek from './PopularOfTheWeek/PopularOfTheWeek'
 import JustReleasedMovies from './JustReleasedMovies/JustReleasedMovies'
 import Favorite from './Favorite/Favorite'
 import TrendingToday from './TrendingToday/TrendingToday'
-import Watchlist from './Watchlist/Watchlist'
 import styles from './HomePage.module.scss'
 
 const HomePage = () => {

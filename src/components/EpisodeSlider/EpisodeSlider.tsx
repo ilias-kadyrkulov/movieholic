@@ -1,9 +1,9 @@
-import styles from './EpisodeSlider.module.scss'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { EpisodesType } from '@/types/types'
 import { tmdbApiConfig } from '@/api/tmdbV3/tmdb.api'
+import { EpisodesType } from '@/types/details.types'
+import styles from './EpisodeSlider.module.scss'
+import styled from 'styled-components'
 
 type PropsType = {
   titleText: string | undefined

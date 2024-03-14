@@ -14,7 +14,14 @@ export type MovieType = {
     vote_count: number
 }
 
-export type NowPlayingMovieType = Omit<MovieType, 'runtime'> & {
-    imageSrc: string
-    children: React.ReactNode
+export type NowPlayingMovieType = Omit<
+    MovieType,
+    | 'adult'
+    | 'backdrop_path'
+    | 'vote_average'
+    | 'vote_count'
+    | 'popularity'
+    | 'original_title'
+> & {
+    imageSrc?: string
 }

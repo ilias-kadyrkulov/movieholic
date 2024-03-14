@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import { BigSliderSlide } from './BigSliderSlide/BigSliderSlide'
 import { LazySlide } from '../LazySlide'
-import { NowPlayingMovieType } from '@/types/movie.types'
+import { MovieType } from '@/types/movie.types'
 import styles from './BigSlider.module.scss'
 import styled from 'styled-components'
 import 'swiper/swiper-bundle.css'
@@ -11,7 +11,7 @@ import 'swiper/swiper-bundle.css'
 SwiperCore.use([Navigation, Autoplay, Pagination])
 
 type PropsType = {
-    data: NowPlayingMovieType[] | undefined
+    data: MovieType[] | undefined
 }
 
 const CustomStyles = styled.div`
@@ -93,7 +93,10 @@ export const BigSlider = (props: PropsType) => {
                     {props.data?.map(movie => (
                         <SwiperSlide key={movie.id}>
                             <div className={styles.Slide}>
-                                <LazySlide poster_path={movie.poster_path} threshold={0}>
+                                <LazySlide
+                                    poster_path={movie.poster_path}
+                                    threshold={0}
+                                >
                                     <BigSliderSlide {...movie} />
                                 </LazySlide>
                             </div>

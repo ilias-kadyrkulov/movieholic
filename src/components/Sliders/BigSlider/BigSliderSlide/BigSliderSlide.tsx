@@ -7,7 +7,7 @@ import WatchTrailerButton from '@/common/Buttons/WatchTrailerButton/WatchTrailer
 import styles from '../BigSlider.module.scss'
 
 export const BigSliderSlide = forwardRef<any, NowPlayingMovieType>(
-    ({ id, title, release_date, genre_ids, overview, imageSrc }, ref) => {
+    ({ imageSrc, ...props }, ref) => {
         const movieWatchlist = useAppSelector(state => state.movieWatchlist)
         const movieGenres = useAppSelector(state => state.movieGenres)
         const tmdbAccount = useAppSelector(state => state.tmdbAccount.username)
@@ -24,14 +24,14 @@ export const BigSliderSlide = forwardRef<any, NowPlayingMovieType>(
             >
                 <div className={styles.Details}>
                     <h3 className='text-2xl text-slate-200 font-semibold'>
-                        {title}
+                        {props.title}
                     </h3>
                     <div>
                         <span className='font-semibold text-slate-400'>
-                            {release_date} •{' '}
+                            {props.release_date} •{' '}
                         </span>
                         {movieGenres &&
-                            genre_ids.map(genreId => (
+                            props.genre_ids.map(genreId => (
                                 <span
                                     key={genreId}
                                     className='font-semibold text-slate-400 mr-1'
@@ -49,27 +49,27 @@ export const BigSliderSlide = forwardRef<any, NowPlayingMovieType>(
                             overflow: 'hidden'
                         }}
                     >
-                        {overview}
+                        {props.overview}
                     </p>
                     <div className={styles.Buttons}>
                         <GreenButton
                             text='Watch'
-                            tmdbId={id}
+                            tmdbId={props.id}
                         />
                         <WatchTrailerButton
-                            tmdbId={id}
+                            tmdbId={props.id}
                             text='Watch Trailer'
                         />
-                        {movieWatchlist.find(item => id === item) ? (
+                        {movieWatchlist.find(item => props.id === item) ? (
                             <WatchlistButton
                                 text='Remove from Watchlist'
-                                tmdbId={id}
+                                tmdbId={props.id}
                                 titleType='movie'
                             />
                         ) : (
                             <WatchlistButton
                                 text='Add to Watchlist'
-                                tmdbId={id}
+                                tmdbId={props.id}
                                 tmdbAcc={tmdbAccount}
                                 titleType='movie'
                             />

@@ -6,7 +6,7 @@ import { useActions } from '@/hooks/useActions'
 import styles from './Watchlist.module.scss'
 import { useEffect } from 'react'
 
-const Watchlist = () => {
+export const Watchlist = () => {
   const sessionId = useAppSelector((state) => state.tmdbSession.sessionId)
 
   const {
@@ -57,5 +57,3 @@ const Watchlist = () => {
     </div>
   )
 }
-
-export default Watchlist
